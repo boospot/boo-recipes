@@ -3,3 +3,4 @@
 .gitignore export-ignore
 scss export-ignore
 public/boo-recipes export-ignore
+readme.md export-ignore
