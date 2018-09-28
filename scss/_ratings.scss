@@ -1,0 +1,42 @@
+.recipe-rating {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  margin-bottom: 1em;
+  input {
+    position: absolute;
+    left: -999999px;
+  }
+  label {
+    display: inline-block;
+    font-size: 0;
+  }
+
+  > label {
+
+    svg{
+      color: #ccc;
+    }
+    &:hover, &:hover ~ label, &.selected, &.selected ~ label {
+      cursor: pointer;
+      svg {
+        color: #f0ad4e;
+        //content: "\f006";
+        background: -webkit-linear-gradient(-45deg, #fcb551 0%, #d69a45 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+  }
+
+
+
+}
+
+
+
+.rating-stars{
+  svg{
+    color: #f0ad4e;
+  }
+}

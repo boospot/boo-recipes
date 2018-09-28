@@ -1,0 +1,152 @@
+.single-recipe-style2 {
+
+  .posttype-section-box {
+    width: 100%;
+    flex-basis: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+
+    .recipe-media {
+      padding-top: 0.5em;
+      justify-content: flex-start;
+      max-width: 100%;
+      flex-basis: 100%;
+      flex-direction: column;
+
+    }
+
+    .posttype-section-sub-box {
+      max-width: 100%;
+      flex-basis: 100%;
+      //padding-left: 1em;
+
+      .posttype-section {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: flex-start;
+        flex: 1 0 100%;
+        max-width: 100%;
+        padding-bottom: 1em;
+
+        .posttype-sub-section {
+          > div {
+            flex: 1;
+            padding: 0.2em;
+
+            //border-right: 0px;
+            //justify-content: flex-start;
+
+          }
+
+          p {
+            margin-bottom: 0;
+          }
+          //
+          //> div:last-of-type {
+          //  justify-content: flex-end;
+          //}
+
+        }
+        //
+        //.posttype-sub-section > div:not(.subsection-icon) {
+        //  //flex: 0 1 33%;
+        //}
+
+      }
+
+      span.subsection-label {
+        //display: none;
+
+      }
+
+      .subsection-icon {
+        max-width: 15%;
+      }
+
+      .recipe-meta > div {
+        padding: 0.25em 0;
+      }
+
+    }
+
+  }
+
+  .recipe-main-body {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    .recipe-ingredients,
+    .recipe-instructions {
+      flex: 0 0 100%;
+    }
+
+    .recipe-nutrition {
+      flex: 1 1 100%;
+    }
+
+  }
+
+  .recipe-time-info {
+    border-bottom: 1px dashed #e5e5e5;
+  }
+
+  .recipe-key-points-style-2 {
+    flex-direction: column;
+
+    > div {
+      justify-content: space-between;
+
+      &:not(:last-of-type) {
+        border-right: 0px;
+      }
+      > span {
+        flex-basis: unset;
+
+        svg {
+          margin-right: 0.5em;
+        }
+      }
+    }
+  }
+
+}
+
+@media screen and (min-width: 767px) {
+  .single-recipe-style2 {
+
+    .posttype-section-box{
+
+      .recipe-media {
+        max-width: 50%;
+        flex-basis: 50%;
+
+      }
+
+      .posttype-section-sub-box {
+        max-width: 50%;
+        flex-basis: 50%;
+
+
+        .posttype-section {
+          padding-left: 1em;
+          flex: 1 0 50%;
+        }
+      }
+
+
+    }
+
+    .recipe-main-body {
+
+      .recipe-ingredients,
+      .recipe-instructions {
+        flex: 0 0 50%;
+      }
+    }
+
+
+  }
+}

@@ -1,0 +1,35 @@
+@media print {
+
+  * {
+    background: none !important;
+    background-color: unset !important;
+    color: #000000 !important;
+  }
+
+  .single-recipe {
+    background: #ffffff;
+    color: #000000 !important;
+    margin: 0;
+    max-width: 100%;
+
+    .recipe-img-cont,
+    .responsive-video-container,
+    .wp-video,
+    .single-featured-image-header,
+    .subsection-icon,
+    aside#secondary,
+    img.avatar,
+    .recipe-rating,
+    i {
+      display: none !important;
+    }
+
+  }
+
+}
+
+@media print and (color) {
+  * {
+    -webkit-print-color-adjust: exact;
+  }
+}

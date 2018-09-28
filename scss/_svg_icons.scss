@@ -1,0 +1,13 @@
+$list : (16 20 24 28 32 36 40 44 48);
+
+
+@each $size in $list{
+  svg.icon-size-#{$size}{
+    width: $size+px;
+    height: $size+px;
+    vertical-align: middle;
+  }
+}
+
+
+

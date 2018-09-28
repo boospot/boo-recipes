@@ -1,0 +1,61 @@
+.widget {
+  form.boorecipe-search-form {
+
+    margin: 0;
+
+    .search-form-field-cont {
+      flex-basis: 100%;
+    }
+
+  }
+
+  ul.recipes_list_widget {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+
+    li.recipe-list-item {
+      margin: 0;
+      padding: 0;
+
+      list-style: none;
+      margin-bottom: 0.5em;
+      a {
+        display: flex;
+        flex-wrap: wrap;
+
+        img {
+          width: 50px;
+          height: 50px;
+        }
+
+        .widget-recipe-title {
+          padding-left: 0.5em;
+          display: flex;
+          flex: 1;
+          flex-direction: column;
+          justify-content: center;
+        }
+      }
+    }
+
+  }
+
+  //Recipe Category and Cuisine Widget
+  ul.recipes_taxonomy_list_widget {
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      font-size: 1.2em;
+    }
+  }
+
+}
+
+
+

@@ -1,0 +1,172 @@
+$_border_small: 1px solid #000;
+$_border_medium: 5px solid #000;
+$_border_thick: 10px solid #000;
+$_padding_top_bottom: 3px 0;
+
+.nutrition-facts {
+  font-size: small;
+  line-height: 1.4;
+  border: $_border_small;
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  padding: 0.5rem;
+
+  //>* {
+  //  padding: 5px 0;
+  //}
+
+  p {
+    margin: 0;
+  }
+  table {
+    border-collapse: collapse;
+  }
+
+  .calories-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border-bottom: $_border_medium;
+  }
+
+  .amount-serving-text {
+    border-bottom: $_border_small;
+    font-size: 0.8em;
+  }
+  .nutrition-dv-section {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 0.8em;
+    font-weight: bold;
+    padding: $_padding_top_bottom;
+    border-bottom: $_border_small;
+  }
+
+  .calories-section {
+    padding: 5px 0;
+  }
+
+  .nutrition-parent {
+    font-weight: bold;
+  }
+
+  .nutrition-child {
+    padding-left: 20px;
+  }
+
+  .nutrition-facts-details {
+    border-bottom: $_border_thick;
+
+    .nutrition-detail {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      border-bottom: $_border_small;
+      padding: $_padding_top_bottom;
+
+    }
+
+    .nutrition-percent {
+      font-weight: bold;
+    }
+  }
+
+}
+
+.nutrition-facts__title {
+  font-weight: bold;
+  font-size: 2rem;
+  margin: 0 0 0.25rem 0;
+}
+
+.nutrition-facts__header {
+  border-bottom: 10px solid black;
+  padding: 0 0 0.25rem 0;
+  margin: 0 0 0.5rem 0;
+  p {
+    margin: 0;
+  }
+}
+
+.nutrition-facts__table {
+  width: 100%;
+  thead tr {
+    th, td {
+      border: 0;
+    }
+  }
+  th, td {
+    font-weight: normal;
+    text-align: left;
+    padding: 0.25rem 0;
+    border-top: 1px solid black;
+    white-space: nowrap;
+  }
+  td {
+    &:last-child {
+      text-align: right;
+    }
+  }
+  .blank-cell {
+    width: 1rem;
+    border-top: 0;
+  }
+  .thick-row {
+    th, td {
+      border-top-width: 5px;
+    }
+  }
+}
+
+.small-info {
+  font-size: 0.7rem;
+}
+
+.nutrition-facts__table--small {
+  @extend .nutrition-facts__table;
+  border-bottom: 1px solid #000;
+  margin: 0 0 0.5rem 0;
+  thead {
+    tr {
+      border-bottom: 1px solid black;
+    }
+  }
+  td {
+    &:last-child {
+      text-align: left;
+    }
+  }
+  th, td {
+    border: 0;
+    padding: 0;
+  }
+}
+
+.nutrition-facts__table--grid {
+  @extend .nutrition-facts__table;
+  margin: 0 0 0.5rem 0;
+  td {
+    &:last-child {
+      text-align: left;
+      &::before {
+        content: "•";
+        font-weight: bold;
+        margin: 0 0.25rem 0 0;
+      }
+    }
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
+.thick-end {
+  border-bottom: 10px solid black;
+}
+
+.thin-end {
+  border-bottom: 1px solid black;
+}

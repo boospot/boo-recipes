@@ -1,0 +1,118 @@
+//Layout
+@import "layout";
+@import "nutrition_label";
+
+.recipe-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.boorecipe-recipe {
+
+  .recipe-head {
+    padding-bottom: $_recipe_container_padding;
+  }
+
+  .recipe-section-heading {
+    margin-bottom: 0.5em;
+  }
+
+  .recipe-img-cont {
+    margin-bottom: $_recipe_img_cont_margin_bottom;
+  }
+
+  .recipe-img {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .recipe-ingredients {
+
+    margin-bottom: 1em;
+    //background-color: #f5f5f5;
+  }
+
+  .recipe-meta {
+    > div {
+      padding: $_recipe_sections_padding
+    }
+  }
+
+  //.recipe-time-info{
+  //  padding: 1em 0em 0em;
+  //
+  //  text-align: center;
+  //  >div{
+  //    flex: auto;
+  //  }
+  //}
+
+  @media screen and (min-width: 30em) {
+    // When the Nutrition is side-by-side
+    &.ingredient-side {
+      .recipe-meta {
+        flex: 1 1 50%;
+        padding-right: 1em;
+      }
+      .recipe-ingredients {
+        padding: $_recipe_ingredients_padding;
+        flex: 1 0 40%;
+      }
+    }
+
+    &.nutrition-side {
+      .recipe-instructions {
+        flex: 1 1 50%;
+        padding-right: 1em;
+      }
+      .recipe-nutrition {
+        flex: 1 0 40%;
+      }
+    }
+  }
+
+  div#comments {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex: 1 0 100%;
+  }
+
+}
+
+.posttype-wrapper {
+
+  main#posttype-main {
+    padding: 1em;
+  }
+
+  /* Side bar Styling */
+  #secondary.widget-area {
+    padding: 1em;
+
+    > li {
+      list-style: none;
+    }
+  }
+}
+
+.recipe-author-name-box {
+  display: flex;
+  margin-right: 1em;
+
+  .recipe-author-avatar {
+    img {
+      flex: 1;
+      display: flex;
+      margin-right: 0.25em
+    }
+  }
+}
+
+
+@import "video_responsive";
+@import "share_buttons";
+
+

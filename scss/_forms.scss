@@ -1,0 +1,54 @@
+/*------------------------------------------------------------------
+    Search Form
+-------------------------------------------------------------------*/
+form.boorecipe-search-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0.5em 1em;
+  margin: 0.5em;
+  margin-bottom: 1em;
+
+  .search-form-field-cont {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    //flex-basis: 32%;
+    margin-bottom: 1em;
+    flex: 1;
+    padding: 0.2em;
+    &.recipe-keyword {
+      //flex-basis: 66%;
+    }
+
+    > input,
+    > select,
+    > textarea,
+    > span {
+      background: #fff;
+      border: 1px solid #d1d1d1;
+      border-radius: 2px;
+      color: #686868;
+      padding: 0.5em;
+      width: 100%;
+      height: 50px;
+      margin-bottom: 0;
+    }
+
+  }
+
+  // Normalize select2 styling
+  .select2-container--default .select2-selection--single {
+    background-color: inherit;
+    border: inherit;
+    border-radius: inherit;
+  }
+  .select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 40px;
+  }
+
+  .select2-selection__clear {
+    color: red;
+  }
+}
+

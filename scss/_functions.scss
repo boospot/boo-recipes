@@ -1,0 +1,8 @@
+@mixin set_background($color) {
+  background-color: $color;
+}
+
+
+@mixin get_deducted_height($pixels_to_deduct) {
+  height: calc(100% - #{$pixels_to_deduct});
+}

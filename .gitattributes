@@ -1,0 +1,5 @@
+/exclude below files from .zip export using export-ignore
+.gitattributes export-ignore  
+.gitignore export-ignore
+scss export-ignore
+public/boo-recipes export-ignore

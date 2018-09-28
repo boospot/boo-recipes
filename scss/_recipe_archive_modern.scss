@@ -1,0 +1,109 @@
+$key_points_section_height:33px;
+
+
+
+&.modern-archive {
+
+  .recipe-archive-excerpt {
+    display: none;
+    transition: all ease 2s;
+  }
+
+  a {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+
+  .recipe-img-cont {
+    overflow: hidden;
+  }
+
+  .recipe-card-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    position: absolute;
+    bottom: $key_points_section_height;
+    height: 4em;
+    overflow: hidden;
+    //background: #ffffff9c;
+    width: 100%;
+    text-align: center;
+    justify-content: space-around !important;
+    transition: all ease 0.7s;
+    padding: 10px 0;
+  }
+
+  .recipe-archive-title {
+    margin-bottom: 0px;
+  }
+
+  .recipe-keypoints {
+    display: flex;
+    justify-items: center;
+    flex: 0 1 $key_points_section_height;
+
+    .archive-key-point {
+      padding: 5px 0PX;
+      display: flex;
+      flex: 1;
+      justify-content: center;
+      font-size: 0.85em;
+
+      &.key-point-total_time {
+        background: rgba(0, 0, 0, 0.10);
+      }
+
+      &.key-point-difficulty_level {
+        background: rgba(250, 250, 250, 0.10);
+      }
+
+    }
+
+    .recipe-archive-key-value {
+      padding-left: 4px;
+      word-break: break-all;
+      overflow: hidden;
+    }
+
+  }
+
+  img {
+    transition: all cubic-bezier(0.54, 1.01, 0.85, 1.01) .5s;
+  }
+
+  &:hover {
+    img {
+      transform: scale(1.1) rotate(3deg);
+    }
+
+    .recipe-card-content {
+      @include get_deducted_height($key_points_section_height);
+    }
+    .recipe-archive-excerpt {
+      display: inherit;
+
+      p {
+        font-size: 75%;
+      }
+
+    }
+  }
+
+  /* the following apply only if parent is some mentioned tag */
+  .per-row-5 &{
+    .key-point-yields {
+      display: none;
+    }
+
+    .recipe-archive-title {
+     font-size: 0.8em;
+    }
+
+
+  }
+
+}

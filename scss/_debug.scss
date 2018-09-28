@@ -1,0 +1,65 @@
+/* Debug coloring starts here */
+
+.posttype-container {
+  @include set_background(#d9d9d9);
+}
+
+.recipe-meta {
+  @include set_background(#95a6f9);
+}
+
+.recipe-publish-info {
+  @include set_background(#ecd8d8);
+}
+
+.recipe-datePublished {
+  @include set_background(#c9bea7);
+}
+
+.recipe-description {
+  @include set_background(#508898);
+}
+
+.recipe-time-info {
+  @include set_background(#9b9b9b);
+}
+
+.recipe-prepTime {
+  @include set_background(#dbe4ee);
+}
+
+.recipe-cookTime {
+  @include set_background(#a7c9ad);
+}
+
+.recipe-totalTime {
+  @include set_background(#fff489);
+}
+
+.recipe-suitableForDiet {
+  @include set_background(#bbdae3);
+}
+
+.recipe-img-cont {
+  @include set_background(#87709a);
+}
+
+.recipe-nutrition {
+  @include set_background(#11aed0);
+}
+
+.recipe-ingredients {
+  @include set_background(#a5b2ba);
+}
+
+.recipe-instructions {
+  @include set_background(#ecd8d8);
+}
+
+.recipe-discussion {
+  @include set_background(#ffb8b8);
+}
+
+.recipe-taxonomy {
+  @include set_background(#daf7f4);
+}
