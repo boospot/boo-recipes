@@ -398,6 +398,8 @@ class Boorecipe_Post_Types {
 
 		global $post;
 
+		$prefix = Boorecipe_Globals::get_meta_prefix();
+
 		$this->meta_id = 'boorecipe-recipe-meta';
 
 		$config_recipe_metabox = apply_filters( 'boorecipe_config_recipe_metabox', array(
@@ -414,6 +416,7 @@ class Boorecipe_Post_Types {
 			'capability' => 'edit_posts',                    // The capability needed to view the page
 			'tabbed'     => true,
 			'multilang'  => true,
+			'options'    => 'simple'
 
 		) );
 
@@ -428,7 +431,7 @@ class Boorecipe_Post_Types {
 			'fields' => apply_filters( 'boorecipe_recipe_metabox_fields', array(
 
 				array(
-					'id'       => 'short_description',
+					'id'       => $prefix . 'short_description',
 					'type'     => 'editor',
 					'title'    => __( 'Short Description', 'boorecipe' ),
 					'after'    => __( 'Describe your recipe in a few words', 'boorecipe' ),
@@ -437,7 +440,7 @@ class Boorecipe_Post_Types {
 				),
 
 				array(
-					'id'       => 'recipe_time_format',
+					'id'       => $prefix . 'recipe_time_format',
 					'type'     => 'radio',
 					'title'    => __( 'Time Format', 'boorecipe' ),
 					'options'  => array(
@@ -451,7 +454,7 @@ class Boorecipe_Post_Types {
 				),
 
 				array(
-					'id'         => 'prep_time',
+					'id'         => $prefix . 'prep_time',
 					'type'       => 'number',
 					'title'      => __( 'Prep Time', 'boorecipe' ),
 					'after'      => ' <i class="text-muted">' .
@@ -465,7 +468,7 @@ class Boorecipe_Post_Types {
 				),
 
 				array(
-					'id'         => 'cook_time',
+					'id'         => $prefix . 'cook_time',
 					'type'       => 'number',
 					'title'      => __( 'Cook Time', 'boorecipe' ),
 					'after'      => ' <i class="text-muted">' .
@@ -478,7 +481,7 @@ class Boorecipe_Post_Types {
 
 				),
 				array(
-					'id'         => 'total_time',
+					'id'         => $prefix . 'total_time',
 					'type'       => 'number',
 					'title'      => __( 'Total Time', 'boorecipe' ),
 					'after'      => ' <i class="text-muted">' .
@@ -492,7 +495,7 @@ class Boorecipe_Post_Types {
 
 
 				array(
-					'id'          => 'yields',
+					'id'          => $prefix . 'yields',
 					'type'        => 'text',
 					'title'       => __( 'Yields', 'boorecipe' ),
 					'description' => __( 'e.g. 6 bowls, 2 cakes, three ice-creams', 'boorecipe' ),
@@ -503,7 +506,7 @@ class Boorecipe_Post_Types {
 				),
 
 				array(
-					'id'       => 'is_external_author',
+					'id'       => $prefix . 'is_external_author',
 					'type'     => 'checkbox',
 					'title'    => __( 'Is External Author?', 'boorecipe' ),
 					'label'    => __( 'Check this box if the recipe author is not a registered user on this site', 'boorecipe' ),
@@ -513,7 +516,7 @@ class Boorecipe_Post_Types {
 
 
 				array(
-					'id'         => 'external_author_name',
+					'id'         => $prefix . 'external_author_name',
 					'type'       => 'text',
 					'title'      => __( 'External author name', 'boorecipe' ),
 					'dependency' => array( 'is_external_author', '==', 'true' ),
@@ -524,7 +527,7 @@ class Boorecipe_Post_Types {
 				),
 
 				array(
-					'id'         => 'external_author_link',
+					'id'         => $prefix . 'external_author_link',
 					'type'       => 'text',
 					'title'      => __( 'External author link', 'boorecipe' ),
 					'dependency' => array( 'is_external_author', '==', 'true' ),
@@ -535,7 +538,7 @@ class Boorecipe_Post_Types {
 				),
 
 				array(
-					'id'          => 'ingredients',
+					'id'          => $prefix . 'ingredients',
 					'type'        => 'textarea',
 					'title'       => __( 'Ingredients', 'boorecipe' ),
 					'description' => __( 'If you need to add ingredient group, place ** before the group heading like: <br/> **Cake<br/>ingredient 1<br/>ingredient 2  ', 'boorecipe' ),
@@ -544,7 +547,7 @@ class Boorecipe_Post_Types {
 				),
 
 				array(
-					'id'          => 'directions',
+					'id'          => $prefix . 'directions',
 					'type'        => 'textarea',
 					'title'       => __( 'Directions', 'boorecipe' ),
 					'description' => __( 'If you need to add directions group, place ** before the group heading like: <br/> **How to Make Crust<br/>Direction 1<br/>Direction 2', 'boorecipe' ),
@@ -553,7 +556,7 @@ class Boorecipe_Post_Types {
 				),
 
 				array(
-					'id'          => 'list_excerpt',
+					'id'          => $prefix . 'list_excerpt',
 					'type'        => 'textarea',
 					'title'       => __( 'Excerpt for List view', 'boorecipe' ),
 					'description' => __( 'This will show in archive view of recipes', 'boorecipe' ),
@@ -561,7 +564,7 @@ class Boorecipe_Post_Types {
 				),
 
 				array(
-					'id'       => 'additional_notes',
+					'id'       => $prefix . 'additional_notes',
 					'type'     => 'editor',
 					'title'    => __( 'Additional Notes', 'boorecipe' ),
 					'after'    => __( 'Add additional notes to the recipe. it will show at the end of recipe', 'boorecipe' ),
@@ -570,7 +573,7 @@ class Boorecipe_Post_Types {
 				),
 
 				array(
-					'id'       => 'recipe_title',
+					'id'       => $prefix . 'recipe_title',
 					'type'     => 'hidden',
 					'sanitize' => 'sanitize_title'
 				),
@@ -585,7 +588,7 @@ class Boorecipe_Post_Types {
 
 		// Check if the user want to show nutrition info
 		$recipe_meta_nutrition_fields[] = array(
-			'id'       => 'show_nutrition',
+			'id'       => $prefix . 'show_nutrition',
 			'type'     => 'switcher',
 			'title'    => __( 'Show Nutrition', 'boorecipe' ),
 			'label'    => __( 'Do you want to show nutrition info for this recipe? Its required by Schema.org', 'boorecipe' ),
@@ -625,7 +628,7 @@ class Boorecipe_Post_Types {
 
 					case 'servingSize':
 						$recipe_meta_nutrition_fields[] = array(
-							'id'          => $itemprop,
+							'id'          => $prefix . $itemprop,
 							'type'        => 'text',
 							'title'       => $display,
 							'description' => $description,
@@ -640,7 +643,7 @@ class Boorecipe_Post_Types {
 
 					default:
 						$recipe_meta_nutrition_fields[] = array(
-							'id'          => $itemprop,
+							'id'          => $prefix . $itemprop,
 							'type'        => 'text',
 							'title'       => $display,
 							'description' => $description,

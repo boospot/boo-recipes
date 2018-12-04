@@ -123,7 +123,7 @@ class Boorecipe {
  * The class responsible for Exopite options framework
  */
 
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/exopite-simple-options/exopite-simple-options-framework-class.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/Exopite-Simple-Options-Framework/exopite-simple-options/exopite-simple-options-framework-class.php';
 
 
 		/**
