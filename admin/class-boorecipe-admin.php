@@ -98,10 +98,21 @@ class Boorecipe_Admin {
 	}
 
 
+	/**
+	 * Shall use this to add data update functionality
+	 */
+	public function data_update_menu(){
+
+
+
+	}
+
+
 	/*
 	 * Adding Function for Plugin Menu and options page
 	 */
 	public function create_plugin_menu() {
+
 		$options_fields = array();
 		/*
 		* Create a submenu page under Plugins.

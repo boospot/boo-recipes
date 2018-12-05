@@ -17,6 +17,7 @@ class Boorecipe_Globals {
 
 	public static $default_language_code;
 	public static $current_language_code;
+	protected static $meta_fields;
 	/**
 	 * The ID of this plugin.
 	 *
@@ -324,9 +325,55 @@ class Boorecipe_Globals {
 
 	}
 
+	public static function get_recipe_meta( $item_id ) {
 
-	public static function get_meta_prefix(){
+
+		$meta = array();
+		//$post_meta = get_post_meta( $item->ID );
+		$prefix = Boorecipe_Globals::get_meta_prefix();
+
+		$meta_keys = Boorecipe_Globals::get_meta_fields();
+
+		foreach ( $meta_keys as $meta_key ) {
+			$key          = str_replace( $prefix, '', $meta_key );
+			$meta[ $key ] = get_post_meta( $item_id, $meta_key, true );
+		}
+		unset( $meta_keys );
+
+		return $meta;
+
+	}
+
+	public static function get_meta_prefix() {
 		return 'boorecipe_';
+	}
+
+	public static function get_meta_fields() {
+
+		$fields_array = array();
+
+		$meta_fields = self::$meta_fields;
+//echo"<pre>";
+//var_dump( self::$meta_fields) ;
+//		echo"</pre>";
+//
+//die();
+
+		foreach ( $meta_fields as $key => $value ) {
+			if ( isset( $value['fields'] ) ) {
+
+				foreach ( $value['fields'] as $field ) {
+					$fields_array[] = $field['id'];
+				}
+
+			}
+		}
+
+		return $fields_array;
+	}
+
+	public static function set_meta_fields( $meta_fields_array ) {
+		self::$meta_fields = $meta_fields_array;
 	}
 
 	public static function get_current_language_code() {

@@ -1,4 +1,5 @@
 === Boo Recipes ===
+
 Contributors: boospot
 Tags: recipe, recipes, rich snippet, schema.org
 Donate link: https://www.buymeacoffee.com/raoabid
@@ -12,6 +13,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 Easily add Recipes in user friendly way that generates SEO optimized recipes using Schema.org microdata.
 
 == Description ==
+
 What makes Boo Recipes so impressive is how easy it is to add new recipes, and it creates schema markups automatically.
 
 This plugin uses the Schema.org format that was jointly developed by Google, and other famous search engines, and is the most widely recognized. You can simply add multiple recipes from scratch, no coding needed. It is just as easy as copy, paste, select appropriate meta and publish.
@@ -115,6 +117,11 @@ For more details answers, please refer to [Documentation](http://boorecipes.com/
 3. Mobile View
 
 == Changelog ==
+
+= 1.1.0 =
+- Post metadata structure changed,
+- Will need to update database using Dashboard > Recipes > Update Recipes Meta
+- Uninstall function updated to allow to remove all data related to recipes on uninstall
 
 = 1.0.1 =
 - Renaming main plugin file to be consistent with directory name

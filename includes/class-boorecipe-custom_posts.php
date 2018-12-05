@@ -632,7 +632,7 @@ class Boorecipe_Post_Types {
 							'type'        => 'text',
 							'title'       => $display,
 							'description' => $description,
-							'dependency'  => array( 'show_nutrition', '==', true ),
+							'dependency'  => array( $prefix . 'show_nutrition', '==', true ),
 							'attributes'  => array(
 								'placeholder' => $measurement,
 							),
@@ -650,7 +650,7 @@ class Boorecipe_Post_Types {
 							'attributes'  => array(
 								'placeholder' => $measurement,
 							),
-							'dependency'  => array( 'show_nutrition', '==', true ),
+							'dependency'  => array( $prefix . 'show_nutrition', '==', true ),
 							'sanitize'    => 'boorecipe_sanitize_float'
 						);
 
@@ -670,7 +670,11 @@ class Boorecipe_Post_Types {
 
 		);
 
-		new Exopite_Simple_Options_Framework( $config_recipe_metabox, apply_filters( 'boorecipe_recipe_post_type_meta_fields', $recipe_meta_fields ) );
+		$recipe_meta_fields = apply_filters( 'boorecipe_recipe_post_type_meta_fields', $recipe_meta_fields );
+
+		new Exopite_Simple_Options_Framework( $config_recipe_metabox, $recipe_meta_fields );
+
+		Boorecipe_Globals::set_meta_fields( $recipe_meta_fields );
 
 
 	}

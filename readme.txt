@@ -116,6 +116,11 @@ For more details answers, please refer to [Documentation](http://boorecipes.com/
 
 == Changelog ==
 
+= 1.1.0 =
+- Post metadata structure changed,
+- Will need to update database using Dashboard > Recipes > Update Recipes Meta
+- Uninstall function updated to allow to remove all data related to recipes on uninstall
+
 = 1.0.1 =
 - Renaming main plugin file to be consistent with directory name
 - You may need to reactivate the plugin after update. All options or data will remain safe.

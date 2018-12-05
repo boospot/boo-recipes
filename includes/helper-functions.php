@@ -34,12 +34,12 @@ function boorecipe_is_special_multilang_plugin_active() {
 }
 
 
-function boorecipe_get_current_language_code(){
+function boorecipe_get_current_language_code() {
 
 	return Boorecipe_Globals::get_current_language_code();
 }
 
-function boorecipe_get_default_language_code(){
+function boorecipe_get_default_language_code() {
 
 	return Boorecipe_Globals::$default_language_code;
 
@@ -513,7 +513,7 @@ function boorecipe_sanitize_int( $number_input ) {
  */
 function boorecipe_get_recipe_meta( $key = null ) {
 
-	$recipe_meta_array = get_post_meta( get_the_ID(), 'boorecipe-recipe-meta', true );
+	$recipe_meta_array = Boorecipe_Globals::get_recipe_meta( get_the_ID() );
 
 
 	if ( $key == null ) {

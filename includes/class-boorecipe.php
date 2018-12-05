@@ -75,7 +75,11 @@ class Boorecipe {
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
 
+
 		$this->define_custom_post_types_hooks();
+
+
+		$this->define_ajax_recipe_meta_update();
 
 		$this->define_shortcode_hooks();
 
@@ -90,8 +94,6 @@ class Boorecipe {
 		$this->define_widget_hooks();
 
 		$this->define_customization_hook();
-
-
 
 
 	}
@@ -126,6 +128,10 @@ class Boorecipe {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/Exopite-Simple-Options-Framework/exopite-simple-options/exopite-simple-options-framework-class.php';
 
 
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/libraries/boo-settings-helper/class-boo-settings-helper.php';
+
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-boorecipe-admin-ajax-meta-update.php';
+
 		/**
 		 * The class responsible for all global functions.
 		 */
@@ -134,15 +140,10 @@ class Boorecipe {
 		new Boorecipe_Globals( $this->plugin_name, $this->version );
 
 
-
-
 		/**
 		 * Helper Functions
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/helper-functions.php';
-
-
-
 
 
 		/**
@@ -278,6 +279,26 @@ class Boorecipe {
 		$this->loader->add_action( 'widgets_init', $plugin_admin, 'register_sidebar_widgets', 999 );
 
 		$this->loader->add_filter( 'jupiter_register_metabox_post_type_array', $plugin_admin, 'include_jupiter_options' );
+
+	}
+
+
+	/**
+	 * Register all of the hooks related to the admin area functionality
+	 * of the plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 */
+	private function define_ajax_recipe_meta_update() {
+
+
+		$ajax_meta = new Boorecipe_Admin_Ajax_Meta_Update( $this->get_plugin_name(), $this->get_version() );
+
+
+		$this->loader->add_action( 'admin_enqueue_scripts', $ajax_meta, 'ajax_admin_enqueue_scripts', 10 );
+		$this->loader->add_action( 'wp_ajax_admin_hook', $ajax_meta, 'ajax_admin_handler', 10 );
+
 
 	}
 
@@ -559,10 +580,9 @@ class Boorecipe {
 //		$this->loader->add_action( 'wp_head', $plugin_customization, 'recipe_global_configurable_styles' );
 
 
+		$plugin_globals = new Boorecipe_Globals( $this->get_plugin_name(), $this->get_version() );
 
-		$plugin_globals = new Boorecipe_Globals( $this->get_plugin_name(), $this->get_version());
-
-		$this->loader->add_action( 'plugins_loaded', $plugin_globals, 'set_current_language_code');
+		$this->loader->add_action( 'plugins_loaded', $plugin_globals, 'set_current_language_code' );
 
 	}
 

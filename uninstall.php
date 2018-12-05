@@ -34,18 +34,39 @@ if ( ! empty( $plugin_options ) ) {
 
 	if ( $uninstall_delete_meta === 'yes' ) {
 
-		$meta_type  = 'post';           // since we are deleting data for CPT
-		$object_id  = 0;                // no need to put id of object since we are deleting all
-		$meta_key   = $plugin_meta_key;    // Your target meta_key added using update_post_meta()
-		$meta_value = '';               // No need to check for value since we are deleting all
-		$delete_all = true;             // This is important to have TRUE to delete all post meta
 
-		// This will delete all post meta data having the specified key
-		$deleted = delete_metadata( $meta_type, $object_id, $meta_key, $meta_value, $delete_all );
+		$all_recipes = get_posts( 'numberposts=-1&post_type=boo_recipe&post_status=any' );
 
-		if ( $deleted ) {
-			wp_cache_set( 'last_changed', microtime(), 'posts' );
+		// delete all recipes
+		foreach ( $all_recipes as $recipe ) {
+			wp_delete_post( $recipe->ID, true );
 		}
+
+
+		// delete all postmeta
+		$meta_keys = Boorecipe_Globals::get_meta_fields();
+		foreach ( $meta_keys as $meta_key ) {
+			delete_post_meta_by_key( $meta_key );
+		}
+
+		// delete all terms of taxonomies
+		$recipe_taxonomies = array(
+			'recipe_category',
+			'recipe_cuisine',
+			'skill_level',
+			'recipe_tags',
+			'cooking_method'
+		);
+		foreach ( $recipe_taxonomies as $taxonomy ) {
+			$terms = get_terms( $taxonomy, array( 'fields' => 'ids', 'hide_empty' => false ) );
+
+			if ( is_array( $terms ) && ! empty( $terms ) ) {
+				foreach ( $terms as $term_id ) {
+					wp_delete_term( $term_id, $taxonomy );
+				}
+			}
+		}
+
 
 	}
 }

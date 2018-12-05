@@ -225,11 +225,31 @@ class Boorecipe_Public {
 					$current_meta = $query->get( 'meta_query' );
 
 
-					$custom_meta[] = array(
-						'key'     => 'boorecipe-recipe-meta',
-						'value'   => $search_keyword,
-						'compare' => 'LIKE'
-					);
+					$meta_fields_to_include_in_search = apply_filters( 'boorecipe_filter_search_meta_fields', array(
+						'boorecipe_directions',
+						'boorecipe_ingredient',
+						'boorecipe_short_description'
+					) );
+
+
+					$custom_meta['relation'] = 'OR';
+
+					foreach ( $meta_fields_to_include_in_search as $meta_key ) {
+						$custom_meta[] = array(
+							'key'     => $meta_key,
+							'value'   => $search_keyword,
+							'compare' => 'LIKE'
+						);
+					}
+
+
+//					foreach ( $meta_fields as $meta_key ) {
+//						$custom_meta[] = array(
+//							'key'     => $meta_key,
+//							'value'   => $search_keyword,
+//							'compare' => 'LIKE'
+//						);
+//					}
 
 
 					$meta_query = $current_meta = $custom_meta;
