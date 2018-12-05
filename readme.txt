@@ -130,4 +130,5 @@ For more details answers, please refer to [Documentation](http://boorecipes.com/
 Initial Release of plugin
 
 == Upgrade Notice ==
-Initial release, no upgrade notes yet.
+
+**BACKUP your database** if you are upgrading from version 1.0.1 or earlier. Version 1.1.0 is optimized for speed, you will need to update your recipes data using new option available in Dashboard > Recipes > Update Recipes Meta
