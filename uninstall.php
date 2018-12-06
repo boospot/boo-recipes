@@ -49,9 +49,6 @@ if ( $uninstall_delete_meta === 'yes' ) {
 
 		wp_delete_post( $recipe->ID, true );
 
-
-//		wp_delete_object_term_relationships( $recipe->ID, $recipe_taxonomies );
-
 	}
 
 

@@ -14,6 +14,10 @@ Easily add Recipes in user friendly way that generates SEO optimized recipes usi
 
 == Description ==
 
+**NOTE: If you are upgrading from 1.0.1 and have not updated Recipes meta yet, you will need to update database using:**
+
+`Dashboard > Recipes > Update Recipes Meta`
+
 What makes Boo Recipes so impressive is how easy it is to add new recipes, and it creates schema markups automatically.
 
 This plugin uses the Schema.org format that was jointly developed by Google, and other famous search engines, and is the most widely recognized. You can simply add multiple recipes from scratch, no coding needed. It is just as easy as copy, paste, select appropriate meta and publish.

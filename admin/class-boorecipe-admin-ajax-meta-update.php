@@ -213,14 +213,14 @@ class Boorecipe_Admin_Ajax_Meta_Update {
 							.ajax-form-wrap { width: 100%; overflow: hidden; margin: 0 0 20px 0; }
 							.ajax-form { float: left; width: 400px; }
 							.examples  { float: left; width: 200px; }
-							.ajax-response div {
+							.ajax-response div, .admin-instruction-for-update {
 								width: 95%; overflow: auto; margin: 20px 0; padding: 10px 20px;
 								color: #fff;
 							}
 							.ajax-response div.recipe-already-updated {
 								background-color: orange;
 							}
-							.ajax-response div.recipe-update-fail {
+							.ajax-response div.recipe-update-fail, .admin-instruction-for-update {
 								background-color: red;
 							}
 							.ajax-response div.recipe-update-success {
@@ -228,6 +228,7 @@ class Boorecipe_Admin_Ajax_Meta_Update {
 							}
 							 
 							</style>
+							<div class="admin-instruction-for-update recipe-update-fail"><strong>DO NOT RELOAD</strong> this page after clicking the button, Page will refresh Automatically once process is complete</div>
 							<div class="ajax-response"></div>' ),
 //					'label' => __( 'Click the Button', 'boorecipe' ),
 				'type' => 'html'
