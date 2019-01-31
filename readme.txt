@@ -3,7 +3,7 @@ Contributors: boospot
 Tags: recipe, recipes, rich snippet, schema.org
 Donate link: https://www.buymeacoffee.com/raoabid
 Requires at least: 4.5
-Tested up to: 4.9.8
+Tested up to: 5.0.3
 Requires PHP: 5.6
 Stable tag: trunk
 License: GPL-2.0+
@@ -118,6 +118,11 @@ For more details answers, please refer to [Documentation](http://boorecipes.com/
 3. Mobile View
 
 == Changelog ==
+
+= 1.1.2 =
+- Fix: Archive recipes not loading image from settings
+- Fix: Default image if not not featured image set was not loading
+- Improve: New image size for recipes archive created for speed optimization, may need to regenerate thumbnails
 
 = 1.1.1 =
 - Uninstall function updated to allow to remove all data related to recipes on uninstall including taxonomy related data
