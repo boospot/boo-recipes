@@ -31,7 +31,7 @@ class Boorecipe_Post_Types {
 		 * @link https://codex.wordpress.org/Function_Reference/register_post_type
 		 */
 
-//		$recipe_slug = ( ! empty( $this->get_options_value( 'recipe_slug' ) ) ) ? $this->get_options_value( 'recipe_slug' ) : 'recipe';
+		$recipe_slug = ( ! empty( $this->get_options_value( 'recipe_slug' ) ) ) ? $this->get_options_value( 'recipe_slug' ) : 'recipe';
 
 		$post_types_fields = apply_filters( 'boorecipe_post_type_create_args', array(
 
@@ -45,7 +45,7 @@ class Boorecipe_Post_Types {
 				'hierarchical'        => false,
 				'menu_icon'           => 'dashicons-carrot',
 				'rewrite'             => array(
-					'slug'       => 'recipe',
+					'slug'       => $recipe_slug,
 					'with_front' => true,
 					'pages'      => true,
 					'feeds'      => true,
@@ -142,6 +142,13 @@ class Boorecipe_Post_Types {
 				'height' => 100,
 				'crop'   => true
 			),
+			'recipe_landscape_image_archive'           => array(
+				'name'   => 'recipe_landscape_image_archive',
+				'width'  => 350,
+				'height' => 300,
+				'crop'   => true
+			),
+
 		) );
 
 

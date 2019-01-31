@@ -647,7 +647,8 @@ function boorecipe_get_recipe_registered_taxonomy_array() {
  * @return string
  */
 function boorecipe_default_posttype_image( $post_type ) {
-	$options = get_option( 'boorecipe-options' );
+
+	$options = get_exopite_sof_option( 'boorecipe-options' );
 
 	if ( isset( $options['recipe_default_img_url'] ) && ! empty( $options['recipe_default_img_url'] ) ) {
 		return esc_url_raw( $options['recipe_default_img_url'] );

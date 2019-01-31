@@ -78,7 +78,6 @@ class Boorecipe {
 
 		$this->define_custom_post_types_hooks();
 
-
 		$this->define_ajax_recipe_meta_update();
 
 		$this->define_shortcode_hooks();
