@@ -44,6 +44,8 @@ class Boorecipe {
 	 */
 	protected $plugin_name;
 
+	protected $tahir;
+
 	/**
 	 * The current version of the plugin.
 	 *
