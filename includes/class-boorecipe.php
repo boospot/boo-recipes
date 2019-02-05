@@ -466,6 +466,9 @@ class Boorecipe {
 		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_1', $single_template, 'the_taxonomy_skill_level', 9, 2 );
 
 		$this->loader->add_action( 'boorecipe_single_head_after', $single_template, 'section_sharing_buttons_style_1', 10, 2 );
+
+
+		$this->loader->add_filter( 'boorecipe_single_recipe_wrapper_classes', $single_template, 'add_single_recipe_style_class');
 	}
 
 	/**

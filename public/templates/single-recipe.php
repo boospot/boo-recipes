@@ -26,9 +26,11 @@ if ( have_posts() ) :
 
 	while ( have_posts() ) : the_post();
 		$item = $post;
+
 		include boorecipe_get_template( 'single-recipe-start', 'single' );
 		include boorecipe_get_template( 'single-recipe-content', 'single' );
 		include boorecipe_get_template( 'single-recipe-end', 'single' );
+
 	endwhile;
 
 	/**

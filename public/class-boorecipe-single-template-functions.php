@@ -560,4 +560,16 @@ class Boorecipe_Single_Template_Functions extends Boorecipe_Template_Functions {
 	}
 
 
+	/**
+	 * filter classes
+	 */
+	public function add_single_recipe_style_class( $classes ) {
+
+		$classes[] = 'recipe-layout-' . $this->get_options_value( 'recipe_style' );
+
+		return $classes;
+	}
+
+
+
 } // class
