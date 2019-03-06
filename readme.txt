@@ -119,6 +119,9 @@ For more details answers, please refer to [Documentation](http://boorecipes.com/
 
 == Changelog ==
 
+= 1.2.1 =
+- Fix: file not found error resolved
+
 = 1.2 =
 - Fix: Some minor issues
 - Improve: Added two new single recipe style in premium
