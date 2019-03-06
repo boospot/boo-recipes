@@ -12,6 +12,7 @@ $section_start_identifier = "**";
 $section_count            = 0;
 $item_count               = 0;
 ?>
+<?php do_action( 'boorecipe_single_body_instruction_before'  ); ?>
 <div class="recipe-instructions">
     <h3 class="recipe-section-heading"><?php echo $this->get_options_value( $meta_key . '_label' ); ?></h3>
 	<?php
@@ -70,3 +71,4 @@ $item_count               = 0;
 	echo $html;
 	?>
 </div><!--  end of div.recipe-instructions-->
+<?php do_action( 'boorecipe_single_body_instruction_after'  ); ?>

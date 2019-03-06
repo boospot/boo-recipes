@@ -4,6 +4,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 $meta_key = 'ingredients';
+
+do_action( 'boorecipe_single_body_ingredients_before'  );
 ?>
 <div class="recipe-ingredients">
     <h3 class="recipe-section-heading"><?php echo $this->get_options_value( $meta_key . '_label' ); ?></h3>
@@ -31,3 +33,4 @@ $meta_key = 'ingredients';
 		?>
     </div><!--	.select-items-cont-->
 </div><!--    div.recipe-ingredients-->
+<?php do_action( 'boorecipe_single_body_ingredients_after'  ); ?>

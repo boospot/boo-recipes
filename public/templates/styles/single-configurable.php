@@ -6,7 +6,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <style>
 
-    .boorecipe-recipe .recipe-title {
+    .boorecipe-recipe .recipe-title,
+    .single-recipe-style4 .recipe-datePublished,
+    .single-recipe-style4 .recipe-time-info .subsection-label{
         color: <?php echo $accent_color; ?>;
     }
 
@@ -15,7 +17,11 @@ if ( ! defined( 'ABSPATH' ) ) {
         color: <?php echo $accent_color; ?>;
     }
 
-    .boorecipe-recipe .ingredient-side .recipe-ingredients {
+    .boorecipe-recipe .ingredient-side .recipe-ingredients,
+    .single-recipe-style4 .recipe-time-info,
+    .single-recipe-style4 .posttype-sub-section,
+    .single-recipe-style4 h1.recipe-title,
+    .single-recipe-style2 .recipe-time-info{
         background: <?php echo $secondary_color; ?>;
     }
 

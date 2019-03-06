@@ -469,6 +469,9 @@ class Boorecipe {
 
 
 		$this->loader->add_filter( 'boorecipe_single_recipe_wrapper_classes', $single_template, 'add_single_recipe_style_class');
+
+
+		$this->loader->add_filter('body_class' , $single_template , 'add_recipe_style_class');
 	}
 
 	/**
