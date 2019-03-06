@@ -232,8 +232,8 @@ class Boorecipe_Globals {
 			'social_tweet'                      => _x( 'Tweet', 'twitter tweet', 'boorecipe' ),
 			'social_email'                      => _x( 'Email', 'Send Email', 'boorecipe' ),
 			'recipe_archive_layout'             => 'grid',
-			'grid_view_image_size'              => 'recipe_landscape_image_archive',
-			'list_view_image_size'              => 'recipe_landscape_image_thumbnail',
+			'grid_view_image_size'              => 'medium_large', // recipe_landscape_image_archive
+			'list_view_image_size'              => 'medium', //recipe_landscape_image_thumbnail
 			'show_icons'                        => 'yes',
 			'show_key_point_label'              => 'yes',
 			'heading_for_archive_title'         => 'h3',

@@ -229,6 +229,7 @@ class Boorecipe_Single_Template_Functions extends Boorecipe_Template_Functions {
 	 * @param array $meta
 	 */
 	public function the_time_icon( $item, $meta ) {
+
 		if ( $this->get_options_value( 'show_icons' ) !== 'yes' ) {
 			return;
 		}
@@ -555,6 +556,7 @@ class Boorecipe_Single_Template_Functions extends Boorecipe_Template_Functions {
 		$classes_array[] = ( $this->get_options_value( 'ingredient_side' ) === 'yes' ) ? 'ingredient-side' : '';
 		$classes_array[] = ( $this->get_options_value( 'nutrition_side' ) === 'yes' ) ? 'nutrition-side' : '';
 		$classes_array[] = 'single-recipe-' . $this->get_options_value( 'recipe_style' );
+		$classes_array[] = ( $this->get_options_value( 'show_icons' ) === 'yes' ) ? 'recipe-has-icons' : '';
 
 		return $classes_array;
 	}
@@ -570,6 +572,17 @@ class Boorecipe_Single_Template_Functions extends Boorecipe_Template_Functions {
 		return $classes;
 	}
 
+	public function add_recipe_style_class( $post_classes ) {
+
+		if ( 'boo_recipe' == get_post_type() ) {
+
+			$post_classes[] = 'single-recipe-body-' . $this->get_options_value( 'recipe_style' );
+
+
+		}
+
+		return $post_classes;
+	}
 
 
 } // class
