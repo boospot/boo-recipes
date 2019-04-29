@@ -70,6 +70,10 @@
         flex: 1 0 40%;
       }
     }
+
+    .recipe-additional-notes {
+      grid-column: 1/3 span;
+    }
   }
 
   div#comments {

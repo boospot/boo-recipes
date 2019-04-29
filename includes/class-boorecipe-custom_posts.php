@@ -72,10 +72,10 @@ class Boorecipe_Post_Types {
 					'revisions',
 					'page-attributes',
 				),
-				'custom_caps'         => true,
-				'custom_caps_users'   => array(
-					'administrator',
-				),
+				'custom_caps'         => false,
+//				'custom_caps_users'   => array(
+//					'administrator',
+//				),
 				'taxonomies'          => apply_filters( 'boorecipe_taxonomies_create_args', array(
 
 					array(
@@ -526,7 +526,7 @@ class Boorecipe_Post_Types {
 					'id'         => $prefix . 'external_author_name',
 					'type'       => 'text',
 					'title'      => __( 'External author name', 'boorecipe' ),
-					'dependency' => array( 'is_external_author', '==', 'true' ),
+					'dependency' => array( $prefix . 'is_external_author', '==', 'true' ),
 					'attributes' => array(
 						'placeholder' => __( 'External author name', 'boorecipe' ),
 					),
@@ -537,7 +537,7 @@ class Boorecipe_Post_Types {
 					'id'         => $prefix . 'external_author_link',
 					'type'       => 'text',
 					'title'      => __( 'External author link', 'boorecipe' ),
-					'dependency' => array( 'is_external_author', '==', 'true' ),
+					'dependency' => array( $prefix . 'is_external_author', '==', 'true' ),
 					'attributes' => array(
 						'placeholder' => __( 'External author link', 'boorecipe' ),
 					),

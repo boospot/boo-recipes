@@ -33,6 +33,11 @@ class Boorecipe_Single_Template_Functions extends Boorecipe_Template_Functions {
 	 */
 	public function recipe_featured_image( $item, $meta ) {
 
+		// Dont show featured image if settings say so:
+		if ( $this->get_options_value( 'show_featured_image' ) != 'yes' ) {
+			return null;
+		}
+
 		// Assuming there is no slider or video
 		$is_video_or_slider = false;
 
@@ -65,6 +70,11 @@ class Boorecipe_Single_Template_Functions extends Boorecipe_Template_Functions {
 	 * @param       object $item A post object
 	 */
 	public function the_title( $item ) {
+
+		// Dont show if settings say so:
+		if ( $this->get_options_value( 'show_recipe_title' ) == 'no' ) {
+			return null;
+		}
 
 		include boorecipe_get_template( 'sub-section-head-title', 'single' );
 
@@ -108,6 +118,11 @@ class Boorecipe_Single_Template_Functions extends Boorecipe_Template_Functions {
 	 * @param array $meta
 	 */
 	public function sub_section_publish_info( $item, $meta ) {
+
+		// Dont show if settings say so:
+		if ( $this->get_options_value( 'show_recipe_publish_info' ) == 'no' ) {
+			return null;
+		}
 
 		include boorecipe_get_template( 'sub-section-publish-info', 'single' );
 

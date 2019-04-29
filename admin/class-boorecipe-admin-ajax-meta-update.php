@@ -69,28 +69,14 @@ class Boorecipe_Admin_Ajax_Meta_Update {
 			'fields'     => $this->get_settings_fields(),
 			'form'       => array(
 				'submit_label' => 'Update Meta',
-//				'id' => 'ajax-update',
-//				'class' => 'ajax-update-class'
 			)
 		);
 
 
 		$this->settings_api = new Boo_Settings_Helper( $config_array );
 
-		//set menu settings
-//			$this->settings_api->set_menu( $this->get_settings_menu() );
-
-
-		//set the settings
-//			$this->settings_api->set_sections( $this->get_settings_sections_new() );
-
-		// set fields
-//			$this->settings_api->set_fields( $this->get_settings_fields_new() );
-
 		//initialize settings
 		$this->settings_api->admin_init();
-
-//			add_options_page( 'WeDevs Settings API', 'WeDevs Settings API', 'delete_posts', 'settings_api_test', array($this, 'plugin_page') );
 
 
 	}
@@ -187,17 +173,8 @@ class Boorecipe_Admin_Ajax_Meta_Update {
 	 */
 	function get_settings_fields() {
 
-//		var_dump( array_keys( $this->get_recipes() ) );
-//		die();
-
 
 		$update_meta_fields             = array(
-//				array(
-//					'name'  => 'ajax_trigger',
-//					'desc'  => __( '<a class="update_recipe_meta" href="#">Update Recipe Meta</a>', 'boorecipe' ),
-//					'label' => __( 'Click the Button', 'boorecipe' ),
-//					'type'  => 'html'
-//				),
 
 			array(
 				'name'    => 'recipes',
@@ -275,9 +252,6 @@ class Boorecipe_Admin_Ajax_Meta_Update {
 
 		unset( $query, $posts );
 
-//		var_dump( $recipes); die();
-
-
 		return $recipes;
 
 	}
@@ -302,9 +276,6 @@ class Boorecipe_Admin_Ajax_Meta_Update {
 		// localize script
 		wp_localize_script( $this->plugin_name . '-ajax-admin', 'ajax_admin', $script );
 
-
-//		var_dump( $this->is_update_required( 954 )); die();
-
 	}
 
 
@@ -325,15 +296,6 @@ class Boorecipe_Admin_Ajax_Meta_Update {
 		 * Do your magic here
 		 */
 		$response = array();
-
-//			$params = array();
-//			parse_str($_POST['data'], $params);
-
-
-//			$params = array();
-//			parse_str($_POST['id'], $params);
-
-//			var_dump( $_POST['id']);
 
 		$post_id = absint( $_POST['id'] );
 

@@ -274,6 +274,29 @@ class Boorecipe_Admin {
 					'default' => 'yes',
 				),
 
+				array(
+					'id'      => 'show_featured_image',
+					'type'    => 'switcher',
+					'title'   => __( 'Show Featured Image?', 'boorecipe' ),
+					'label'   => __( 'Some Themes add this to header, you may want to hide the one added by this plugin to avoid duplicated contents', 'boorecipe' ),
+					'default' => $this->get_default_options( 'show_featured_image' ),
+				),
+
+				array(
+					'id'      => 'show_recipe_title',
+					'type'    => 'switcher',
+					'title'   => __( 'Show Recipe Title?', 'boorecipe' ),
+					'label'   => __( 'Some Themes add this to header, you may want to hide the one added by this plugin to avoid duplicated contents', 'boorecipe' ),
+					'default' => $this->get_default_options( 'show_recipe_title' ),
+				),
+
+				array(
+					'id'      => 'show_recipe_publish_info',
+					'type'    => 'switcher',
+					'title'   => __( 'Show Recipe Publish info?', 'boorecipe' ),
+					'label'   => __( 'Some Themes add this to header, you may want to hide the one added by this plugin to avoid duplicated contents', 'boorecipe' ),
+					'default' => $this->get_default_options( 'show_recipe_publish_info' ),
+				),
 
 				array(
 					'id'      => 'show_share_buttons',

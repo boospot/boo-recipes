@@ -3,10 +3,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-//var_dump( $meta); die();
-//var_dump( get_post_meta( get_the_ID(),  'boorecipe_short_description', true )); die();
 ?>
-<div class="posttype-sub-section recipe-description" itemprop="description"><p><?php
-//		echo get_post_meta( get_the_ID(),  'boorecipe_short_description', true );
-        echo $meta['short_description'];
-		?></p></div>
+<div class="posttype-sub-section recipe-description" itemprop="description"><div><?php
+		echo apply_filters('the_content', $meta['short_description']);
+		?></div></div>
