@@ -1,9 +1,10 @@
 === Boo Recipes ===
+
 Contributors: boospot
 Tags: recipe, recipes, rich snippet, schema.org
 Donate link: https://www.buymeacoffee.com/raoabid
 Requires at least: 4.5
-Tested up to: 5.1
+Tested up to: 5.2
 Requires PHP: 5.6
 Stable tag: trunk
 License: GPL-2.0+
@@ -12,8 +13,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 Easily add Recipes in user friendly way that generates SEO optimized recipes using Schema.org microdata.
 
 == Description ==
-
-** NOTE: If you are upgrading from 1.0.1 and have not updated Recipes meta yet, you will need to update database using Dashboard > Recipes > Update Recipes Meta **
 
 What makes Boo Recipes so impressive is how easy it is to add new recipes, and it creates schema markups automatically.
 
@@ -24,8 +23,8 @@ If you are entering a new recipe from scratch, all you need to do is separate th
 This plugin makes it simple what Google and other search engines need to understand your recipes better. This is how you get your recipe thumbnails in Google search page.
 Whatever layout you select recipes added using Boo Recipes are correctly formatted on the front end so that search engines can pull in additional information.
 
-[Archive Page Demo](https://boorecipes.com/recipe/) | [Single Recipe Demo](https://boorecipes.com/recipe/peri-peri-chicken-kabobs/) | [Documentation](https://boorecipes.com/documentation/)
-[Archive Page Options](https://boorecipes.com/recipe-archive/) | [Single Recipe Options](https://boorecipes.com/single-recipe/) | [Features](https://boorecipes.com/features/)
+[Archive Page Demo](https://boorecipes.com/recipe-archive/) | [Single Recipe Demo](https://boorecipes.com/single-recipe/) | [Documentation](https://boorecipes.com/documentation/)
+| [Features](https://boorecipes.com/)
 
 **Features include:**
 
@@ -112,6 +111,10 @@ For more details, read: [https://codex.wordpress.org/Managing_Plugins](https://c
 = Does it have documentation =
 For more details answers, please refer to [Documentation](http://boorecipes.com/documentation/)
 
+= My Recipe meta is not showing after update =
+**BACKUP your database** if you are upgrading from version 1.0.1 or earlier. Version 1.1.0 is optimized for speed, you will need to update your recipes data using new option available in Dashboard > Recipes > Update Recipes Meta
+
+
 == Screenshots ==
 1. Look on the Tablet screen
 2. Settings Page
@@ -119,12 +122,20 @@ For more details answers, please refer to [Documentation](http://boorecipes.com/
 
 == Changelog ==
 
+= 1.2.2 =
+- Fix: Additional notes not spaning to full width
+- Fix: Adding Recipes required only admin rights, now it fallback to post capabilities i.e. users who can add/edit posts, can add/edit recipes post type.
+- Fix: External Author fields toggle not working
+- New: Additional notes and Short Description field now supports html and shortcode
+- New: POT file updated with translations
+- New: Ability to hide Featured image and publish info if its already added by Theme header
+
 = 1.2.1 =
 - Fix: file not found error resolved
 
 = 1.2 =
 - Fix: Some minor issues
-- Improve: Added two new single recipe style in premium
+- Improve: Added two new single recipe style
 
 = 1.1.2 =
 - Fix: Archive recipes not loading image from settings
@@ -149,4 +160,4 @@ Initial Release of plugin
 
 == Upgrade Notice ==
 
-**BACKUP your database** if you are upgrading from version 1.0.1 or earlier. Version 1.1.0 is optimized for speed, you will need to update your recipes data using new option available in Dashboard > Recipes > Update Recipes Meta
+fixing some issues and adding new features.
