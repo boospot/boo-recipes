@@ -122,6 +122,9 @@ For more details answers, please refer to [Documentation](http://boorecipes.com/
 
 == Changelog ==
 
+= 1.2.3 =
+- Fix: Search form position fix in archive page
+
 = 1.2.2 =
 - Fix: Additional notes not spaning to full width
 - Fix: Adding Recipes required only admin rights, now it fallback to post capabilities i.e. users who can add/edit posts, can add/edit recipes post type.
