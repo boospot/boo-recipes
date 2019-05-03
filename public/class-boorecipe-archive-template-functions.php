@@ -97,7 +97,11 @@ class Boorecipe_Archive_Template_Functions extends Boorecipe_Template_Functions 
 	 */
 	public function insert_search_form() {
 
-		if ( $this->get_options_value( 'show_search_form' ) === 'yes' && ! boorecipe_is_search_form_submitted() ) {
+		if (
+			$this->get_options_value( 'show_search_form' ) === 'yes'
+//			&&
+//			! boorecipe_is_search_form_submitted()
+		) {
 
 			$submit_button_label = $this->get_options_value( 'recipe_submit_button_label' );
 
@@ -281,7 +285,6 @@ class Boorecipe_Archive_Template_Functions extends Boorecipe_Template_Functions 
 		if ( $this->get_options_value( 'show_in_masonry' ) === 'yes' ) {
 			$classes_array[] = 'masonry-grid-item';
 		}
-
 
 
 		return $classes_array;

@@ -491,7 +491,7 @@ class Boorecipe {
 		$this->loader->add_action( 'boorecipe_archive_no_result', $plugin_archive_template, 'archive_no_result' );
 		$this->loader->add_action( 'boorecipe_archive_wrap_start_inside', $plugin_archive_template, 'insert_layout_switcher' );
 		$this->loader->add_action( 'boorecipe_archive_wrap_start_inside', $plugin_archive_template, 'insert_search_form', 11 );
-		$this->loader->add_action( 'boorecipe_archive_wrap_end_inside', $plugin_archive_template, 'insert_search_form_at_end', 11 );
+//		$this->loader->add_action( 'boorecipe_archive_wrap_end_inside', $plugin_archive_template, 'insert_search_form_at_end', 11 );
 		$this->loader->add_action( 'boorecipe_archive_wrap_end_inside', $plugin_archive_template, 'archive_pagination_links', 10 );
 
 
