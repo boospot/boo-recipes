@@ -11,19 +11,23 @@
     color: #000000 !important;
     margin: 0;
     max-width: 100%;
+  }
 
-    .recipe-img-cont,
-    .responsive-video-container,
-    .wp-video,
-    .single-featured-image-header,
-    .subsection-icon,
-    aside#secondary,
-    img.avatar,
-    .recipe-rating,
-    i {
-      display: none !important;
-    }
-
+  .recipe-img-cont,
+  .recipe-share-buttons,
+  .responsive-video-container,
+  .wp-video,
+  .single-featured-image-header,
+  .subsection-icon,
+  aside#secondary,
+  img.avatar,
+  .recipe-rating,
+  .boorecipe-print-link,
+  .recipe-author-name-box,
+  .related-recipes-section,
+  .recipe-comments,
+  i {
+    display: none !important;
   }
 
 }

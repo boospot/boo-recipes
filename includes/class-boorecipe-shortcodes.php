@@ -103,19 +103,19 @@ class Boorecipe_Shortcodes {
 	 */
 	public function boorecipe_search_form() {
 
-		if ( $this->get_options_value( 'show_search_form' ) === 'yes' && ! boorecipe_is_search_form_submitted() ) :
+//		if ( $this->get_options_value( 'show_search_form' ) === 'yes' && ! boorecipe_is_search_form_submitted() ) :
 
 			ob_start();
 
 			include boorecipe_get_template( 'search-form', 'widgets' );
 
 			return ob_get_clean();
-
-		else:
-
-			return false;
-
-		endif;
+//
+//		else:
+//
+//			return false;
+//
+//		endif;
 
 
 	}

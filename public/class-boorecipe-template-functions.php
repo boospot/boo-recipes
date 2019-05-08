@@ -213,7 +213,7 @@ class Boorecipe_Template_Functions {
 		if ( ! empty( $post_terms ) && ! is_wp_error( $post_terms ) ) {
 
 			// Separator between links.
-			$separator = ', ';
+			$separator = ' ';
 
 			$term_ids = implode( ',', $post_terms );
 

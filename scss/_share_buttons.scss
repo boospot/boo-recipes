@@ -2,8 +2,7 @@
   padding: 1em 0;
 
   .share-link-button {
-    padding: 8px 10px;
-    display: inline-flex;
+    padding: 8px 10px 4px;
     margin-right: 3px;
     //border: 1px solid #999999;
     border-radius: 3px;
@@ -12,6 +11,9 @@
     color: #fff !important;
     margin-bottom: 6px;
     text-decoration: none;
+    grid-template-columns: 1fr 2fr;
+    align-items: center;
+    display: grid;
 
     &:hover {
       background: #777777;
@@ -20,15 +22,18 @@
 
     }
 
-    span {
-      display: flex;
-      flex: 1;
-
-      &.share-icon {
-        padding-right: 0.5em;
-      }
-
+    .share-icon {
+      padding: 0 4px;
     }
+    //span {
+    //  display: flex;
+    //  flex: 1;
+    //
+    //  &.share-icon {
+    //    padding-right: 0.5em;
+    //  }
+    //
+    //}
 
     &.facebook-share {
       background-color: #3B5998;

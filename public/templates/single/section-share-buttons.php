@@ -47,12 +47,6 @@ $icon_googleplus = Boorecipe_Globals::get_svg( 'googleplus', 'icon-size-16' );
             <span class="share-icon"><?php echo $icon_linkedin; ?></span>
             <span class="share-text"><?php echo _x( 'Share', 'facebook, linkedin etc', 'boorecipe' ); ?></span>
         </a>
-        <a class="share-link-button google-plus-share"
-           target="_blank"
-           href="<?php echo "https://plus.google.com/share?url=" . esc_url_raw( get_the_permalink( $item->ID ) ); ?>">
-            <span class="share-icon"><?php echo $icon_googleplus; ?></span>
-            <span class="share-text"><?php echo _x( 'Share', 'facebook, linkedin etc', 'boorecipe' ); ?></span>
-        </a>
         <a class="share-link-button email-share" target="_blank"
            href="mailto:?&subject=<?php echo get_the_title( $item->ID ) . " recipe"; ?>&body=<?php echo $excerpt . PHP_EOL . PHP_EOL . "%0A%0A" . esc_url_raw( get_the_permalink( $item->ID ) ); ?>">
             <span class="share-icon"><?php echo $icon_email; ?></span>

@@ -118,6 +118,10 @@
 	        flex: 0 0 15%;
 }
 
+.posttype-container .recipe-taxonomy div .subsection-value a:not(:last-of-type):after {
+	content: ',';
+}
+
 .posttype-container .recipe-description {
 	text-align: unset;
 }
@@ -537,6 +541,12 @@
 		background-color: #35b518;
 		color: #ffffff;
 	}
+	.recipe-layout-style1 .recipe-ingredients {
+		-ms-grid-column: 1 / 2 span;
+		    grid-column: 1 / 2 span;
+		-ms-grid-row: 2;
+		    grid-row: 2;
+	}
 	.recipe-layout-style1 .recipe-ingredients .select-item {
 		padding-left: 0px;
 		margin-right: 0px;
@@ -619,10 +629,7 @@ video.wp-video-shortcode {
 }
 
 .share-buttons-cont .share-link-button {
-	padding: 8px 10px;
-	display: -webkit-inline-box;
-	display: -ms-inline-flexbox;
-	display: inline-flex;
+	padding: 8px 10px 4px;
 	margin-right: 3px;
 	border-radius: 3px;
 	line-height: 1em;
@@ -630,6 +637,13 @@ video.wp-video-shortcode {
 	color: #fff !important;
 	margin-bottom: 6px;
 	text-decoration: none;
+	-ms-grid-columns: 1fr 2fr;
+	    grid-template-columns: 1fr 2fr;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	display: -ms-grid;
+	display: grid;
 }
 
 .share-buttons-cont .share-link-button:hover {
@@ -638,17 +652,8 @@ video.wp-video-shortcode {
 	border-color: #777777;
 }
 
-.share-buttons-cont .share-link-button span {
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-flex: 1;
-	    -ms-flex: 1;
-	        flex: 1;
-}
-
-.share-buttons-cont .share-link-button span.share-icon {
-	padding-right: 0.5em;
+.share-buttons-cont .share-link-button .share-icon {
+	padding: 0 4px;
 }
 
 .share-buttons-cont .share-link-button.facebook-share {
@@ -774,15 +779,20 @@ video.wp-video-shortcode {
 		margin: 0;
 		max-width: 100%;
 	}
-	.single-recipe .recipe-img-cont,
-	.single-recipe .responsive-video-container,
-	.single-recipe .wp-video,
-	.single-recipe .single-featured-image-header,
-	.single-recipe .subsection-icon,
-	.single-recipe aside#secondary,
-	.single-recipe img.avatar,
-	.single-recipe .recipe-rating,
-	.single-recipe i {
+	.recipe-img-cont,
+	.recipe-share-buttons,
+	.responsive-video-container,
+	.wp-video,
+	.single-featured-image-header,
+	.subsection-icon,
+	aside#secondary,
+	img.avatar,
+	.recipe-rating,
+	.boorecipe-print-link,
+	.recipe-author-name-box,
+	.related-recipes-section,
+	.recipe-comments,
+	i {
 		display: none !important;
 	}
 }

@@ -114,6 +114,9 @@ For more details answers, please refer to [Documentation](http://boorecipes.com/
 = My Recipe meta is not showing after update =
 **BACKUP your database** if you are upgrading from version 1.0.1 or earlier. Version 1.1.0 is optimized for speed, you will need to update your recipes data using new option available in Dashboard > Recipes > Update Recipes Meta
 
+= Is this plugin translated in other languages =
+The Following Translations are available at the moment:
+- **German (de_DE)**: Thanks to Andreas. 
 
 == Screenshots ==
 1. Look on the Tablet screen
@@ -121,6 +124,15 @@ For more details answers, please refer to [Documentation](http://boorecipes.com/
 3. Mobile View
 
 == Changelog ==
+
+= 1.2.4 =
+- New: Search Form shortcode available now `[boorecipe_search_form]`
+- New: German (de_DE) translation added for the plugin
+- Fix: Removed Google plus from share buttons
+- Fix: Share buttons minor style changes  
+- Fix: Search form position fix in archive page
+- Fix: Print Stylesheet optimization and tweaks
+- Fix: Separator between taxonomy terms is now added using CSS instead of hard coding  
 
 = 1.2.3 =
 - Fix: Search form position fix in archive page
