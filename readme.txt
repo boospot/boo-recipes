@@ -125,6 +125,9 @@ The Following Translations are available at the moment:
 
 == Changelog ==
 
+= 1.2.4.2 =
+Fix: Comments in Divi theme not showing
+
 = 1.2.4 =
 - New: Search Form shortcode available now `[boorecipe_search_form]`
 - New: German (de_DE) translation added for the plugin

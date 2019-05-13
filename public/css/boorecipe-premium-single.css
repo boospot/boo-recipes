@@ -541,12 +541,6 @@
 		background-color: #35b518;
 		color: #ffffff;
 	}
-	.recipe-layout-style1 .recipe-ingredients {
-		-ms-grid-column: 1 / 2 span;
-		    grid-column: 1 / 2 span;
-		-ms-grid-row: 2;
-		    grid-row: 2;
-	}
 	.recipe-layout-style1 .recipe-ingredients .select-item {
 		padding-left: 0px;
 		margin-right: 0px;

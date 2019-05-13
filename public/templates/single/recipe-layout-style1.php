@@ -27,7 +27,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div class="posttype-section recipe-comments">
 	<?php
 	do_action( 'boorecipe_single_comments_before', $item, $meta );
-	comments_template();
+	comments_template('', true);
 	do_action( 'boorecipe_single_comments_after', $item, $meta );
 	?>
 </div><!--    div.recipe-comments-->
