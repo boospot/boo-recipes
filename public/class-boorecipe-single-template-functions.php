@@ -376,7 +376,7 @@ class Boorecipe_Single_Template_Functions extends Boorecipe_Template_Functions {
 	public function nutrition( $item, $meta ) {
 
 		// If the Option is set to show nutrition
-		if ( $this->get_options_value( 'show_nutrition' ) === 'yes' && $meta['show_nutrition'] === 'yes' ) {
+		if ( $this->get_options_value( 'show_nutrition' ) === 'yes' && $meta['show_nutrition'] == 1 ) {
 
 			$meta_key = 'nutrition';
 			include boorecipe_get_template( 'section-recipe-nutrition', 'single' );

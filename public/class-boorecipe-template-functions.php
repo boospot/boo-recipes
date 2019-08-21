@@ -315,9 +315,11 @@ class Boorecipe_Template_Functions {
 	 */
 	public function is_show_image_slider( $meta ) {
 
-		return ( $this->is_recipe_have_attached_images()
-		         && isset( $meta['show_image_slider'] )
-		         && $meta['show_image_slider'] === 'yes'
+		return (
+//				$this->is_recipe_have_attached_images()
+//		         &&
+		         isset( $meta['show_image_slider'] )
+		         && $meta['show_image_slider'] == 1
 		) ? true : false;
 	} // is_show_image_slider
 
@@ -345,7 +347,7 @@ class Boorecipe_Template_Functions {
 	public function is_video_recipe( $meta ) {
 
 		return ( isset( $meta['is_video_recipe'] )
-		         && $meta['is_video_recipe'] === 'yes'
+		         && $meta['is_video_recipe'] == 1
 		         && isset( $meta['video_recipe_url'] )
 		         && ( ! filter_var( $meta['video_recipe_url'], FILTER_VALIDATE_URL ) === false )
 		) ? true : false;

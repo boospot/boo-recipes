@@ -17,7 +17,7 @@ class Boorecipe_Globals {
 
 	public static $default_language_code;
 	public static $current_language_code;
-	protected static $meta_fields;
+	protected static $meta_fields = array();
 	/**
 	 * The ID of this plugin.
 	 *
@@ -361,22 +361,27 @@ class Boorecipe_Globals {
 //		echo"</pre>";
 //
 //die();
-
-		foreach ( $meta_fields as $key => $value ) {
-			if ( isset( $value['fields'] ) ) {
-
-				foreach ( $value['fields'] as $field ) {
-					$fields_array[] = $field['id'];
-				}
-
+		foreach ( $meta_fields as $field ) {
+			if ( isset( $field['id'] ) ) {
+				$fields_array[] = $field['id'];
 			}
 		}
+
+//		foreach ( $meta_fields as $key => $value ) {
+//			if ( isset( $value['fields'] ) ) {
+//
+//				foreach ( $value['fields'] as $field ) {
+//					$fields_array[] = $field['id'];
+//				}
+//
+//			}
+//		}
 
 		return $fields_array;
 	}
 
 	public static function set_meta_fields( $meta_fields_array ) {
-		self::$meta_fields = $meta_fields_array;
+		self::$meta_fields = array_merge( self::$meta_fields, $meta_fields_array );
 	}
 
 	public static function get_current_language_code() {

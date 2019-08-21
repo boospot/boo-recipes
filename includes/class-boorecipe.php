@@ -115,6 +115,13 @@ class Boorecipe {
 	 */
 	private function load_dependencies() {
 
+
+		/**
+		 * Composer Auto Loader
+		 */
+
+		require plugin_dir_path( dirname( __FILE__ ) ) . 'vendor/autoload.php';
+
 		/**
 		 * Arguments
 		 */
@@ -272,32 +279,13 @@ class Boorecipe {
 		 */
 		$this->loader->add_action( 'init', $plugin_admin, 'create_plugin_menu', 999 );
 
+
 		/*
 		 * Added the plugin options menu and page
 		 */
 		$this->loader->add_action( 'widgets_init', $plugin_admin, 'register_sidebar_widgets', 999 );
 
 		$this->loader->add_filter( 'jupiter_register_metabox_post_type_array', $plugin_admin, 'include_jupiter_options' );
-
-	}
-
-
-	/**
-	 * Register all of the hooks related to the admin area functionality
-	 * of the plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 */
-	private function define_ajax_recipe_meta_update() {
-
-
-		$ajax_meta = new Boorecipe_Admin_Ajax_Meta_Update( $this->get_plugin_name(), $this->get_version() );
-
-
-		$this->loader->add_action( 'admin_enqueue_scripts', $ajax_meta, 'ajax_admin_enqueue_scripts', 10 );
-		$this->loader->add_action( 'wp_ajax_admin_hook', $ajax_meta, 'ajax_admin_handler', 10 );
-
 
 	}
 
@@ -320,7 +308,7 @@ class Boorecipe {
 	 */
 	public function get_version() {
 		return $this->version;
-	} // get_version()
+	}
 
 	/**
 	 * Register all of the hooks related to the public-facing functionality
@@ -347,7 +335,7 @@ class Boorecipe {
 		$this->loader->add_action( 'pre_get_posts', $plugin_public, 'alter_query_to_add_recipe_posttype' );
 
 
-	} // define_public_hooks()
+	} // get_version()
 
 	/**
 	 * Register all of the hooks related to the custom post types functionality
@@ -357,19 +345,76 @@ class Boorecipe {
 	 * @access   private
 	 */
 	private function define_custom_post_types_hooks() {
+
+//		add_filter( 'rwmb_meta_boxes', 'mb_composer_example_register_meta_boxes' );
+//		function mb_composer_example_register_meta_boxes( $meta_boxes ) {
+//
+//			$prefix = 'boorecipe_';
+//
+//			$meta_boxes[] = array(
+//				'title'      => 'A sample meta box',
+//				'post_types' => array( 'boo_recipe' ),
+//				'fields'     => array(
+//					array(
+//						'name' => 'Name',
+//						'id'   => 'name',
+//						'type' => 'text',
+//					),
+//					array(
+//						'name' => 'my_number',
+//						'id'   => 'my_number',
+//						'type' => 'number',
+//					),
+//					array(
+//						'id'   => $prefix . 'short_description',
+//						'name' => esc_html__( 'Short Description', 'boorecipe' ),
+//						'type' => 'textarea',
+//						'desc' => esc_html__( 'Describe your recipe in a few words', 'boorecipe' ),
+//						'rows' => 2,
+//					),
+//				),
+//			);
+//
+//			return $meta_boxes;
+//		}
+
+
 		/*
 		 * Creating Custom Post types
 		 */
 		$plugin_post_types = new Boorecipe_Post_Types();
 
+		$this->loader->add_filter( 'rwmb_meta_boxes', $plugin_post_types, 'register_meta_box_primary' );
+		$this->loader->add_filter( 'rwmb_meta_boxes', $plugin_post_types, 'register_meta_box_nutrition', 12 );
+
+
 		$this->loader->add_action( 'init', $plugin_post_types, 'create_custom_post_type', 999 );
 
-		$this->loader->add_action( 'init', $plugin_post_types, 'create_meta_box', 999 );
+//		$this->loader->add_action( 'init', $plugin_post_types, 'create_meta_box', 999 );
 
 
 //		$this->loader->add_action( 'boorecipe_before_author_recipes_link', $plugin_post_types, 'boorecipe_before_author_recipes_link' );
 
 		$this->loader->add_action( 'save_post', $plugin_post_types, 'update_contents_of_post_with_title', 999, 3 );
+
+
+	} // define_public_hooks()
+
+	/**
+	 * Register all of the hooks related to the admin area functionality
+	 * of the plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 */
+	private function define_ajax_recipe_meta_update() {
+
+
+		$ajax_meta = new Boorecipe_Admin_Ajax_Meta_Update( $this->get_plugin_name(), $this->get_version() );
+
+
+		$this->loader->add_action( 'admin_enqueue_scripts', $ajax_meta, 'ajax_admin_enqueue_scripts', 10 );
+		$this->loader->add_action( 'wp_ajax_admin_hook', $ajax_meta, 'ajax_admin_handler', 10 );
 
 
 	} //define_custom_post_types_hooks
@@ -468,10 +513,10 @@ class Boorecipe {
 		$this->loader->add_action( 'boorecipe_single_head_after', $single_template, 'section_sharing_buttons_style_1', 10, 2 );
 
 
-		$this->loader->add_filter( 'boorecipe_single_recipe_wrapper_classes', $single_template, 'add_single_recipe_style_class');
+		$this->loader->add_filter( 'boorecipe_single_recipe_wrapper_classes', $single_template, 'add_single_recipe_style_class' );
 
 
-		$this->loader->add_filter('body_class' , $single_template , 'add_recipe_style_class');
+		$this->loader->add_filter( 'body_class', $single_template, 'add_recipe_style_class' );
 	}
 
 	/**

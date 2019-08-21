@@ -15,10 +15,15 @@ if ( class_exists( 'Boorecipe_Post_Types' ) ) {
  */
 class Boorecipe_Post_Types {
 
+	protected $prefix;
 	/**
 	 * @var : it will be the id used for $meta
 	 */
 	private $meta_id;
+
+	public function __construct() {
+		$this->prefix = Boorecipe_Globals::get_meta_prefix();
+	}
 
 	/**
 	 * Create post types
@@ -67,8 +72,8 @@ class Boorecipe_Post_Types {
 					'author',
 					'thumbnail',
 					'comments',
-					'trackbacks',
-					'custom-fields',
+//					'trackbacks',
+//					'custom-fields',
 					'revisions',
 					'page-attributes',
 				),
@@ -142,7 +147,7 @@ class Boorecipe_Post_Types {
 				'height' => 100,
 				'crop'   => true
 			),
-			'recipe_landscape_image_archive'           => array(
+			'recipe_landscape_image_archive'   => array(
 				'name'   => 'recipe_landscape_image_archive',
 				'width'  => 350,
 				'height' => 300,
@@ -161,6 +166,15 @@ class Boorecipe_Post_Types {
 			);
 		}
 
+	}
+
+	/**
+	 * @param $option_id
+	 *
+	 * @return mixed
+	 */
+	public function get_options_value( $option_id ) {
+		return Boorecipe_Globals::get_options_value( $option_id );
 	}
 
 	/**
@@ -224,7 +238,7 @@ class Boorecipe_Post_Types {
 				'thumbnail',
 				'comments',
 				'trackbacks',
-				'custom-fields',
+//				'custom-fields',
 				'revisions',
 				'page-attributes',
 				'post-formats',
@@ -389,218 +403,23 @@ class Boorecipe_Post_Types {
 
 	}
 
-	/**
-	 * @param $option_id
-	 *
-	 * @return mixed
-	 */
-	public function get_options_value( $option_id ) {
-		return Boorecipe_Globals::get_options_value( $option_id );
-	}
 
 	/**
-	 *  Create Recipe Meta Box
+	 * @return  array configuration for metabox.io metabox array
 	 */
-	public function create_meta_box() {
+	public function register_meta_box_nutrition( $meta_boxes ) {
 
-		global $post;
-
-		$prefix = Boorecipe_Globals::get_meta_prefix();
-
-		$this->meta_id = 'boorecipe-recipe-meta';
-
-		$config_recipe_metabox = apply_filters( 'boorecipe_config_recipe_metabox', array(
-
-			/*
-			* METABOX
-			*/
-			'type'       => 'metabox',                       // Required, menu or metabox
-			'id'         => $this->meta_id,    // Required, meta box id, unique, for saving meta: id[field-id]
-			'post_types' => array( 'boo_recipe' ),         // Post types to display meta box
-			'context'    => 'normal',
-			'priority'   => 'high',
-			'title'      => __( 'Recipe Schema Options', 'boorecipe' ),                 // The name of this page
-			'capability' => 'edit_posts',                    // The capability needed to view the page
-			'tabbed'     => true,
-			'multilang'  => true,
-			'options'    => 'simple'
-
-		) );
-
-
-		$recipe_meta_fields[] = array(
-
-			'id'     => 'recipe-meta-primary',
-			'name'   => 'recipe-meta-primary',
-			'title'  => __( 'Primary Information', 'boorecipe' ),
-			'icon'   => 'dashicons-carrot',
-			'tabbed' => true,
-			'fields' => apply_filters( 'boorecipe_recipe_metabox_fields', array(
-
-				array(
-					'id'       => $prefix . 'short_description',
-					'type'     => 'editor',
-					'title'    => __( 'Short Description', 'boorecipe' ),
-					'after'    => __( 'Describe your recipe in a few words', 'boorecipe' ),
-					'teeny'    => true,
-					'sanitize' => 'wp_kses_post'
-				),
-
-				array(
-					'id'       => $prefix . 'recipe_time_format',
-					'type'     => 'radio',
-					'title'    => __( 'Time Format', 'boorecipe' ),
-					'options'  => array(
-						'time_format_minutes' => __( 'Minutes', 'boorecipe' ),
-						'time_format_hours'   => __( 'Hours', 'boorecipe' ),
-					),
-					'default'  => 'time_format_minutes',
-					'style'    => 'fancy',
-					'sanitize' => 'sanitize_text_field'
-
-				),
-
-				array(
-					'id'         => $prefix . 'prep_time',
-					'type'       => 'number',
-					'title'      => __( 'Prep Time', 'boorecipe' ),
-					'after'      => ' <i class="text-muted">' .
-					                __( 'Hours or Minutes depending upon the options selected above', 'boorecipe' )
-					                . '</i>',
-					'attributes' => array(
-						'class' => 'recipe_prep_time',
-					),
-					'sanitize'   => 'boorecipe_sanitize_int'
-
-				),
-
-				array(
-					'id'         => $prefix . 'cook_time',
-					'type'       => 'number',
-					'title'      => __( 'Cook Time', 'boorecipe' ),
-					'after'      => ' <i class="text-muted">' .
-					                __( 'Hours or Minutes depending upon the options selected above', 'boorecipe' )
-					                . '</i>',
-					'attributes' => array(
-						'class' => 'recipe_cook_time',
-					),
-					'sanitize'   => 'boorecipe_sanitize_int'
-
-				),
-				array(
-					'id'         => $prefix . 'total_time',
-					'type'       => 'number',
-					'title'      => __( 'Total Time', 'boorecipe' ),
-					'after'      => ' <i class="text-muted">' .
-					                __( 'Hours or Minutes depending upon the options selected above', 'boorecipe' )
-					                . '</i>',
-					'attributes' => array(
-						'class' => 'recipe_total_time',
-					),
-					'sanitize'   => 'boorecipe_sanitize_int'
-				),
-
-
-				array(
-					'id'          => $prefix . 'yields',
-					'type'        => 'text',
-					'title'       => __( 'Yields', 'boorecipe' ),
-					'description' => __( 'e.g. 6 bowls, 2 cakes, three ice-creams', 'boorecipe' ),
-					'attributes'  => array(
-						'placeholder' => __( 'Text input expected', 'boorecipe' ),
-					),
-					'sanitize'    => 'sanitize_text_field'
-				),
-
-				array(
-					'id'       => $prefix . 'is_external_author',
-					'type'     => 'checkbox',
-					'title'    => __( 'Is External Author?', 'boorecipe' ),
-					'label'    => __( 'Check this box if the recipe author is not a registered user on this site', 'boorecipe' ),
-					'style'    => 'fancy',
-					'sanitize' => 'sanitize_text_field'
-				),
-
-
-				array(
-					'id'         => $prefix . 'external_author_name',
-					'type'       => 'text',
-					'title'      => __( 'External author name', 'boorecipe' ),
-					'dependency' => array( $prefix . 'is_external_author', '==', 'true' ),
-					'attributes' => array(
-						'placeholder' => __( 'External author name', 'boorecipe' ),
-					),
-					'sanitize'   => 'sanitize_text_field'
-				),
-
-				array(
-					'id'         => $prefix . 'external_author_link',
-					'type'       => 'text',
-					'title'      => __( 'External author link', 'boorecipe' ),
-					'dependency' => array( $prefix . 'is_external_author', '==', 'true' ),
-					'attributes' => array(
-						'placeholder' => __( 'External author link', 'boorecipe' ),
-					),
-					'sanitize'   => 'esc_url_raw'
-				),
-
-				array(
-					'id'          => $prefix . 'ingredients',
-					'type'        => 'textarea',
-					'title'       => __( 'Ingredients', 'boorecipe' ),
-					'description' => __( 'If you need to add ingredient group, place ** before the group heading like: <br/> **Cake<br/>ingredient 1<br/>ingredient 2  ', 'boorecipe' ),
-					'after'       => __( 'One ingredient per line.', 'boorecipe' ),
-					'sanitize'    => 'wp_kses_post'
-				),
-
-				array(
-					'id'          => $prefix . 'directions',
-					'type'        => 'textarea',
-					'title'       => __( 'Directions', 'boorecipe' ),
-					'description' => __( 'If you need to add directions group, place ** before the group heading like: <br/> **How to Make Crust<br/>Direction 1<br/>Direction 2', 'boorecipe' ),
-					'after'       => __( 'One Step per line', 'boorecipe' ),
-					'sanitize'    => 'wp_kses_post'
-				),
-
-				array(
-					'id'          => $prefix . 'list_excerpt',
-					'type'        => 'textarea',
-					'title'       => __( 'Excerpt for List view', 'boorecipe' ),
-					'description' => __( 'This will show in archive view of recipes', 'boorecipe' ),
-					'sanitize'    => 'wp_kses_post'
-				),
-
-				array(
-					'id'       => $prefix . 'additional_notes',
-					'type'     => 'editor',
-					'title'    => __( 'Additional Notes', 'boorecipe' ),
-					'after'    => __( 'Add additional notes to the recipe. it will show at the end of recipe', 'boorecipe' ),
-					'teeny'    => true,
-					'sanitize' => 'wp_kses_post'
-				),
-
-				array(
-					'id'       => $prefix . 'recipe_title',
-					'type'     => 'hidden',
-					'sanitize' => 'sanitize_title'
-				),
-
-
-			) )
-		);
-
-
-		// initialize array for nutrition fields
-		$recipe_meta_nutrition_fields = array();
+		$prefix = $this->prefix;
 
 		// Check if the user want to show nutrition info
 		$recipe_meta_nutrition_fields[] = array(
-			'id'       => $prefix . 'show_nutrition',
-			'type'     => 'switcher',
-			'title'    => __( 'Show Nutrition', 'boorecipe' ),
-			'label'    => __( 'Do you want to show nutrition info for this recipe? Its required by Schema.org', 'boorecipe' ),
-			'default'  => 'yes',
-			'sanitize' => 'sanitize_key'
+			'id'                => $prefix . 'show_nutrition',
+			'type'              => 'switch',
+			'name'              => __( 'Show Nutrition', 'boorecipe' ),
+			'desc'              => __( 'Do you want to show nutrition info for this recipe? Its required by Schema.org', 'boorecipe' ),
+			'std'               => 1,
+			'sanitize_callback' => 'sanitize_key'
+
 		);
 
 
@@ -637,28 +456,445 @@ class Boorecipe_Post_Types {
 						$recipe_meta_nutrition_fields[] = array(
 							'id'          => $prefix . $itemprop,
 							'type'        => 'text',
-							'title'       => $display,
-							'description' => $description,
-							'dependency'  => array( $prefix . 'show_nutrition', '==', true ),
-							'attributes'  => array(
-								'placeholder' => $measurement,
-							),
-							'sanitize'    => 'sanitize_text_field'
+							'name'        => $display,
+							'desc'        => $description,
+							'visible'     => array( $prefix . 'show_nutrition', '=', 1 ),
+							'placeholder' => $measurement,
+
+							'sanitize' => 'sanitize_text_field'
 						);
 
 						break;
 
 					default:
 						$recipe_meta_nutrition_fields[] = array(
-							'id'          => $prefix . $itemprop,
-							'type'        => 'text',
-							'title'       => $display,
-							'description' => $description,
-							'attributes'  => array(
+							'id'                => $prefix . $itemprop,
+							'type'              => 'number',
+							'name'              => $display,
+							'desc'              => $description,
+							'placeholder'       => $measurement,
+							'visible'           => array( $prefix . 'show_nutrition', '=', 1 ),
+							'step'              => 'any',
+//							'sanitize_callback' => 'boorecipe_sanitize_float'
+						);
+
+				}
+
+
+			} //End foreach
+		endif; //is_array( $nutrition_meta)
+
+		$nutrition_meta_box_array = array(
+			'id'         => 'boorecipe-recipe-meta-nutrition',
+			'title'      => esc_html__( 'Nutrition', 'boorecipe' ),
+			'post_types' => array( 'boo_recipe' ),
+			'context'    => 'normal',
+			'priority'   => 'high',
+			'autosave'   => 'false',
+//			'style'      => 'seamless',
+			'fields'     => $recipe_meta_nutrition_fields,
+
+
+		);
+
+//		$recipe_meta_fields = apply_filters( 'boorecipe_recipe_post_type_meta_fields', $recipe_meta_fields );
+		Boorecipe_Globals::set_meta_fields( $recipe_meta_nutrition_fields );
+
+		$meta_boxes[] = $nutrition_meta_box_array;
+
+		return $meta_boxes;
+	}
+
+	/**
+	 *
+	 */
+	public function register_meta_box_primary( $meta_boxes ) {
+
+
+		$prefix = $this->prefix;
+
+		$recipe_primary_fields = apply_filters( 'boorecipe_recipe_metabox_fields', array(
+			array(
+				'id'   => $prefix . 'short_description',
+				'name' => esc_html__( 'Short Description', 'boorecipe' ),
+				'type' => 'textarea',
+				'desc' => esc_html__( 'Describe your recipe in a few words', 'boorecipe' ),
+				'rows' => 3,
+
+			),
+			array(
+				'id'      => $prefix . 'recipe_time_format',
+				'name'    => esc_html__( 'Time Format', 'boorecipe' ),
+				'type'    => 'radio',
+				'options' => array(
+					'time_format_minutes' => esc_html__( 'Minutes', 'boorecipe' ),
+					'time_format_hours'   => esc_html__( 'Hours', 'boorecipe' ),
+				),
+				'inline'  => 'true',
+				'std'     => 'time_format_minutes',
+			),
+			array(
+				'id'    => $prefix . 'prep_time',
+				'type'  => 'number',
+				'name'  => esc_html__( 'Prep Time', 'boorecipe' ),
+				'desc'  => esc_html__( 'Hours or Minutes depending upon the options selected above', 'boorecipe' ),
+				'class' => 'recipe_prep_time',
+			),
+			array(
+				'id'    => $prefix . 'cook_time',
+				'name'  => esc_html__( 'Cook Time', 'boorecipe' ),
+				'type'  => 'time',
+				'desc'  => esc_html__( 'Format is HH:MM', 'boorecipe' ),
+				'class' => 'recipe_cook_time',
+			),
+			array(
+				'id'    => $prefix . 'total_time',
+				'name'  => esc_html__( 'Total Time', 'boorecipe' ),
+				'type'  => 'time',
+				'desc'  => esc_html__( 'Hours or Minutes depending upon the options selected above', 'boorecipe' ),
+				'class' => 'recipe_total_time',
+			),
+			array(
+				'id'          => $prefix . 'yields',
+				'type'        => 'text',
+				'name'        => esc_html__( 'Yields', 'boorecipe' ),
+				'desc'        => esc_html__( 'e.g. 6 bowls, 2 cakes, three ice-creams', 'boorecipe' ),
+				'placeholder' => esc_html__( 'Text input expected', 'boorecipe' ),
+			),
+			array(
+				'id'   => $prefix . 'is_external_author',
+				'name' => esc_html__( 'Is External Author?', 'boorecipe' ),
+				'type' => 'switch',
+				'desc' => esc_html__( 'Check this box if the recipe author is not a registered user on this site', 'boorecipe' ),
+			),
+			array(
+				'id'          => $prefix . 'external_author_name',
+				'type'        => 'text',
+				'name'        => esc_html__( 'External author name', 'boorecipe' ),
+				'std'         => 'small',
+				'placeholder' => esc_html__( 'External author name', 'boorecipe' ),
+				'visible'     => array( "{$prefix}is_external_author", '=', 1 ),
+			),
+			array(
+				'id'          => $prefix . 'external_author_link',
+				'type'        => 'url',
+				'name'        => esc_html__( 'External author link', 'boorecipe' ),
+				'placeholder' => esc_html__( 'External author link', 'boorecipe' ),
+				'visible'     => array( "{$prefix}is_external_author", '=', 1 ),
+			),
+			array(
+				'id'          => $prefix . 'ingredients',
+				'type'        => 'textarea',
+				'name'        => esc_html__( 'Ingredients', 'boorecipe' ),
+				'desc'        => __( 'If you need to add ingredient group, place ** before the group heading like: **Cakeingredient 1ingredient 2', 'boorecipe' ),
+				'placeholder' => esc_html__( 'One ingredient per line.', 'boorecipe' ),
+				'rows'        => 8,
+			),
+			array(
+				'id'          => $prefix . 'directions',
+				'type'        => 'textarea',
+				'name'        => esc_html__( 'Directions', 'boorecipe' ),
+				'desc'        => __( 'If you need to add directions group, place ** before the group heading like: <br/> **How to Make Crust<br/>Direction 1<br/>Direction 2', 'boorecipe' ),
+				'placeholder' => esc_html__( 'One Step per line', 'boorecipe' ),
+				'rows'        => 8,
+			),
+			array(
+				'id'   => $prefix . 'list_excerpt',
+				'type' => 'textarea',
+				'name' => esc_html__( 'Excerpt for List view', 'boorecipe' ),
+				'desc' => __( 'This will show in archive view of recipes', 'boorecipe' ),
+				'rows' => 4,
+			),
+			array(
+				'id'                => $prefix . 'additional_notes',
+				'type'              => 'textarea',
+				'name'              => esc_html__( 'Additional Notes', 'boorecipe' ),
+				'desc'              => esc_html__( 'Add additional notes to the recipe. it will show at the end of recipe', 'boorecipe' ),
+				'rows'              => 4,
+				'sanitize_callback' => 'wp_kses_post'
+			),
+		) );
+
+		$primary_metabox_array = array(
+			'id'         => 'boorecipe-recipe-meta-primary',
+			'title'      => esc_html__( 'Recipe Schema Information', 'boorecipe' ),
+			'post_types' => array( 'boo_recipe' ),
+			'context'    => 'normal',
+			'priority'   => 'high',
+			'autosave'   => 'false',
+			'style'      => 'seamless',
+			'fields'     => $recipe_primary_fields,
+		);
+
+		Boorecipe_Globals::set_meta_fields( $recipe_primary_fields );
+
+		$meta_boxes[] = $primary_metabox_array;
+
+		return $meta_boxes;
+
+	}
+
+	/**
+	 *  Create Recipe Meta Box
+	 */
+	public function create_meta_box() {
+
+		global $post;
+
+		$prefix = Boorecipe_Globals::get_meta_prefix();
+
+		$this->meta_id = 'boorecipe-recipe-meta-old';
+
+		$config_recipe_metabox = apply_filters( 'boorecipe_config_recipe_metabox', array(
+
+			/*
+			* METABOX
+			*/
+			'type'       => 'metabox',                       // Required, menu or metabox
+			'id'         => $this->meta_id,    // Required, meta box id, unique, for saving meta: id[field-id]
+			'post_types' => array( 'boo_recipe' ),         // Post types to display meta box
+			'context'    => 'normal',
+			'priority'   => 'high',
+			'title'      => __( 'Recipe Schema Options', 'boorecipe' ),                 // The name of this page
+			'capability' => 'edit_posts',                    // The capability needed to view the page
+			'tabbed'     => true,
+			'multilang'  => true,
+			'options'    => 'simple'
+
+		) );
+
+
+		$recipe_meta_fields[] = array(
+
+			'id'     => 'recipe-meta-primary',
+			'name'   => 'recipe-meta-primary',
+			'title'  => __( 'Primary Information', 'boorecipe' ),
+			'icon'   => 'dashicons-carrot',
+			'tabbed' => true,
+			'fields' => apply_filters( 'boorecipe_recipe_metabox_fields', array(
+				/*
+				//				array(
+				//					'id'       => $prefix . 'short_description',
+				//					'type'     => 'editor',
+				//					'title'    => __( 'Short Description', 'boorecipe' ),
+				//					'after'    => __( 'Describe your recipe in a few words', 'boorecipe' ),
+				//					'teeny'    => true,
+				//					'sanitize' => 'wp_kses_post'
+				//				),
+
+				//				array(
+				//					'id'       => $prefix . 'recipe_time_format',
+				//					'type'     => 'radio',
+				//					'title'    => __( 'Time Format', 'boorecipe' ),
+				//					'options'  => array(
+				//						'time_format_minutes' => __( 'Minutes', 'boorecipe' ),
+				//						'time_format_hours'   => __( 'Hours', 'boorecipe' ),
+				//					),
+				//					'default'  => 'time_format_minutes',
+				//					'style'    => 'fancy',
+				//					'sanitize' => 'sanitize_text_field'
+				//
+				//				),
+
+				//				array(
+				//					'id'         => $prefix . 'prep_time',
+				//					'type'       => 'number',
+				//					'title'      => __( 'Prep Time', 'boorecipe' ),
+				//					'after'      => ' <i class="text-muted">' .
+				//					                __( 'Hours or Minutes depending upon the options selected above', 'boorecipe' )
+				//					                . '</i>',
+				//					'attributes' => array(
+				//						'class' => 'recipe_prep_time',
+				//					),
+				//					'sanitize'   => 'boorecipe_sanitize_int'
+				//
+				//				),
+				//
+				//				array(
+				//					'id'         => $prefix . 'cook_time',
+				//					'type'       => 'number',
+				//					'title'      => __( 'Cook Time', 'boorecipe' ),
+				//					'after'      => ' <i class="text-muted">' .
+				//					                __( 'Hours or Minutes depending upon the options selected above', 'boorecipe' )
+				//					                . '</i>',
+				//					'attributes' => array(
+				//						'class' => 'recipe_cook_time',
+				//					),
+				//					'sanitize'   => 'boorecipe_sanitize_int'
+				//
+				//				),
+				//				array(
+				//					'id'         => $prefix . 'total_time',
+				//					'type'       => 'number',
+				//					'title'      => __( 'Total Time', 'boorecipe' ),
+				//					'after'      => ' <i class="text-muted">' .
+				//					                __( 'Hours or Minutes depending upon the options selected above', 'boorecipe' )
+				//					                . '</i>',
+				//					'attributes' => array(
+				//						'class' => 'recipe_total_time',
+				//					),
+				//					'sanitize'   => 'boorecipe_sanitize_int'
+				//				),
+
+
+				//				array(
+				//					'id'          => $prefix . 'yields',
+				//					'type'        => 'text',
+				//					'title'       => __( 'Yields', 'boorecipe' ),
+				//					'description' => __( 'e.g. 6 bowls, 2 cakes, three ice-creams', 'boorecipe' ),
+				//					'attributes'  => array(
+				//						'placeholder' => __( 'Text input expected', 'boorecipe' ),
+				//					),
+				//					'sanitize'    => 'sanitize_text_field'
+				//				),
+				*/
+//				array(
+//					'id'       => $prefix . 'is_external_author',
+//					'type'     => 'checkbox',
+//					'title'    => __( 'Is External Author?', 'boorecipe' ),
+//					'label'    => __( 'Check this box if the recipe author is not a registered user on this site', 'boorecipe' ),
+//					'style'    => 'fancy',
+//					'sanitize' => 'sanitize_text_field'
+//				),
+
+
+//				array(
+//					'id'         => $prefix . 'external_author_name',
+//					'type'       => 'text',
+//					'title'      => __( 'External author name', 'boorecipe' ),
+//					'dependency' => array( $prefix . 'is_external_author', '==', 'true' ),
+//					'attributes' => array(
+//						'placeholder' => __( 'External author name', 'boorecipe' ),
+//					),
+//					'sanitize'   => 'sanitize_text_field'
+//				),
+
+//				array(
+//					'id'         => $prefix . 'external_author_link',
+//					'type'       => 'text',
+//					'title'      => __( 'External author link', 'boorecipe' ),
+//					'dependency' => array( $prefix . 'is_external_author', '==', 'true' ),
+//					'attributes' => array(
+//						'placeholder' => __( 'External author link', 'boorecipe' ),
+//					),
+//					'sanitize'   => 'esc_url_raw'
+//				),
+
+//				array(
+//					'id'          => $prefix . 'ingredients',
+//					'type'        => 'textarea',
+//					'title'       => __( 'Ingredients', 'boorecipe' ),
+//					'description' => __( 'If you need to add ingredient group, place ** before the group heading like: <br/> **Cake<br/>ingredient 1<br/>ingredient 2  ', 'boorecipe' ),
+//					'after'       => __( 'One ingredient per line.', 'boorecipe' ),
+//					'sanitize'    => 'wp_kses_post'
+//				),
+
+//				array(
+//					'id'          => $prefix . 'directions',
+//					'type'        => 'textarea',
+//					'title'       => __( 'Directions', 'boorecipe' ),
+//					'description' => __( 'If you need to add directions group, place ** before the group heading like: <br/> **How to Make Crust<br/>Direction 1<br/>Direction 2', 'boorecipe' ),
+//					'after'       => __( 'One Step per line', 'boorecipe' ),
+//					'sanitize'    => 'wp_kses_post'
+//				),
+//
+//				array(
+//					'id'          => $prefix . 'list_excerpt',
+//					'type'        => 'textarea',
+//					'title'       => __( 'Excerpt for List view', 'boorecipe' ),
+//					'description' => __( 'This will show in archive view of recipes', 'boorecipe' ),
+//					'sanitize'    => 'wp_kses_post'
+//				),
+
+//				array(
+//					'id'       => $prefix . 'additional_notes',
+//					'type'     => 'editor',
+//					'title'    => __( 'Additional Notes', 'boorecipe' ),
+//					'after'    => __( 'Add additional notes to the recipe. it will show at the end of recipe', 'boorecipe' ),
+//					'teeny'    => true,
+//					'sanitize' => 'wp_kses_post'
+//				),
+
+				array(
+					'id'       => $prefix . 'recipe_title',
+					'type'     => 'hidden',
+					'sanitize' => 'sanitize_title'
+				),
+
+
+			) )
+		);
+
+
+		// initialize array for nutrition fields
+		$recipe_meta_nutrition_fields = array();
+
+		// Check if the user want to show nutrition info
+		$recipe_meta_nutrition_fields[] = array(
+			'id'                => $prefix . 'show_nutrition',
+			'type'              => 'switch',
+			'title'             => __( 'Show Nutrition', 'boorecipe' ),
+			'label'             => __( 'Do you want to show nutrition info for this recipe? Its required by Schema.org', 'boorecipe' ),
+			'std'               => 1,
+			'sanitize_callback' => 'sanitize_key'
+		);
+
+
+		// Get nutrition meta to populate in foreach
+		$nutrition_meta = boorecipe_get_nutrition_meta();
+
+//		update $recipe_meta_nutrition_fields with the help of nutrition meta
+
+		if ( is_array( $nutrition_meta ) ):
+			foreach ( $nutrition_meta as $key => $nutrition ) {
+
+				$itemprop    = $nutrition['itemprop'];
+				$display     = $nutrition['display'];
+				$description = $nutrition['description'];
+				$measurement = ! empty( $nutrition['measurement'] ) ? $nutrition['measurement'] : '';
+
+				switch ( $measurement ) {
+					case 'g':
+						$measurement = __( 'in grams', 'boorecipe' );
+						break;
+
+					case 'mg':
+						$measurement = __( 'in milligrams', 'boorecipe' );
+						break;
+
+					default:
+						$measurement = __( 'Text input expected', 'boorecipe' );
+				}
+
+				// Using the right sanitization function
+				switch ( $itemprop ) {
+
+					case 'servingSize':
+						$recipe_meta_nutrition_fields[] = array(
+							'id'                => $prefix . $itemprop,
+							'type'              => 'text',
+							'title'             => $display,
+							'description'       => $description,
+							'visible'           => array( $prefix . 'show_nutrition', '==', true ),
+							'attributes'        => array(
 								'placeholder' => $measurement,
 							),
-							'dependency'  => array( $prefix . 'show_nutrition', '==', true ),
-							'sanitize'    => 'boorecipe_sanitize_float'
+							'sanitize_callback' => 'sanitize_text_field'
+						);
+
+						break;
+
+					default:
+						$recipe_meta_nutrition_fields[] = array(
+							'id'                => $prefix . $itemprop,
+							'type'              => 'text',
+							'title'             => $display,
+							'description'       => $description,
+							'attributes'        => array(
+								'placeholder' => $measurement,
+							),
+							'visible'           => array( $prefix . 'show_nutrition', '==', true ),
+							'sanitize_callback' => 'boorecipe_sanitize_float'
 						);
 
 				}

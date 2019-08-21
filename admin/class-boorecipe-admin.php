@@ -101,8 +101,7 @@ class Boorecipe_Admin {
 	/**
 	 * Shall use this to add data update functionality
 	 */
-	public function data_update_menu(){
-
+	public function data_update_menu() {
 
 
 	}
@@ -118,25 +117,6 @@ class Boorecipe_Admin {
 		* Create a submenu page under Plugins.
 		* Framework also add "Settings" to your plugin in plugins list.
 		*/
-//		$config_submenu = array(
-//
-//			// Required, menu or metabox
-//			'type'            => 'menu',
-//			// Required, meta box id, unique per page, to save: get_option( id )
-//			'id'              => $this->plugin_name . '-options',
-//			// Required, sub page to your options page
-//			'menu'            => 'options-general.php',
-//			// Required for submenu
-//			'submenu'         => true,
-//			//The name of this page
-//			'title'           => __( 'Boo Recipe Settings', 'boorecipe' ),
-//			// The capability needed to view the page
-//			'capability'      => 'manage_options',
-//			'plugin_basename' => plugin_basename( plugin_dir_path( __DIR__ ) . $this->plugin_name . '.php' ),
-//			'settings_link'   => 'https://google.com'
-//
-//		);
-
 
 		$config_submenu = array(
 
@@ -705,69 +685,9 @@ class Boorecipe_Admin {
 					),
 
 
-
 				)
 			)
 		);
-
-
-//
-//		$options_fields['group'] =  array(
-//			'type'    => 'group',
-//			'id'      => 'my_group',
-//			'name'    => 'my_group',
-//			'icon'   => 'dashicons-dismiss',
-//			'title'   => esc_html__( 'Gruop field', 'plugin-name' ),
-//			'options' => array(
-//				'repeater'          => false,
-//				'accordion'         => true,
-//				'button_title'      => 'Add new',
-//				'accordion_title'   => esc_html__( 'Accordion Title', 'plugin-name' ),
-//				'limit'             => 50,
-//				'sortable'          => true,
-//			),
-//			'fields'  => array(
-//				array(
-//					'id'      => 'text_group',
-//					'type'    => 'text',
-//					'title'   => esc_html__( 'Text', 'plugin-name' ),
-//					'attributes' => array(
-//						// mark this field az title, on type this will change group item title
-//						'data-title' => 'title',
-//						'placeholder' => esc_html__( 'Some text', 'plugin-name' ),
-//					),
-//				),
-//				array(
-//					'id'      => 'switcher_group',
-//					'type'    => 'switcher',
-//					'title'   => esc_html__( 'Switcher', 'plugin-name' ),
-//					'default' => 'yes',
-//				),
-//				array(
-//					'id'             => 'emails',
-//					'type'           => 'select',
-//					'title'          => esc_html__( 'Users Email (callback)', 'plugin-name' ),
-//					'query'          => array(
-//						'type'          => 'callback',
-//						'function'      => array( $this, 'get_all_emails' ),
-//						'args'          => array() // WordPress query args
-//					),
-//					'attributes' => array(
-//						'multiple' => 'multiple',
-//						'style'    => 'width: 200px; height: 56px;',
-//					),
-//					'class'       => 'chosen',
-//				),
-//				array(
-//					'id'      => 'textarea_group',
-//					'type'    => 'textarea',
-//					'class'   => 'some-class',
-//					'title'   => esc_html__( 'Textarea', 'plugin-name' ),
-//					'default' => esc_html__( 'Some text', 'plugin-name' ),
-//					'after'   => '<mute>' . esc_html__( 'Some info: ', 'plugin-name' ) . '</mute>',
-//				),
-//			),
-//		);
 
 
 		/**
