@@ -468,13 +468,13 @@ class Boorecipe_Post_Types {
 
 					default:
 						$recipe_meta_nutrition_fields[] = array(
-							'id'                => $prefix . $itemprop,
-							'type'              => 'number',
-							'name'              => $display,
-							'desc'              => $description,
-							'placeholder'       => $measurement,
-							'visible'           => array( $prefix . 'show_nutrition', '=', 1 ),
-							'step'              => 'any',
+							'id'          => $prefix . $itemprop,
+							'type'        => 'number',
+							'name'        => $display,
+							'desc'        => $description,
+							'placeholder' => $measurement,
+							'visible'     => array( $prefix . 'show_nutrition', '=', 1 ),
+							'step'        => 'any',
 //							'sanitize_callback' => 'boorecipe_sanitize_float'
 						);
 

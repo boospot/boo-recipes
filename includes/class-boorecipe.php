@@ -279,6 +279,19 @@ class Boorecipe {
 		 */
 		$this->loader->add_action( 'init', $plugin_admin, 'create_plugin_menu', 999 );
 
+		
+//		add_action('wp_footer', function(){
+//
+//			var_dump_pretty(get_option( 'boorecipe-options'), 'red');
+//
+//		},99);
+		
+
+		/*
+		 * Added the plugin options menu and page
+		 */
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'admin_menu_simple', 999 );
+
 
 		/*
 		 * Added the plugin options menu and page

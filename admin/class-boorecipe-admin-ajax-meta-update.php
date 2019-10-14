@@ -177,7 +177,7 @@ class Boorecipe_Admin_Ajax_Meta_Update {
 		$update_meta_fields             = array(
 
 			array(
-				'name'    => 'recipes',
+				'id'    => 'recipes',
 				'label'   => __( 'Recipes', 'boorecipe' ),
 				'type'    => 'multicheck',
 				'default' => $this->get_recipes_checkbox_default(),
@@ -185,7 +185,7 @@ class Boorecipe_Admin_Ajax_Meta_Update {
 			),
 
 			array(
-				'name' => 'html',
+				'id' => 'html',
 				'desc' => __( '<style>
 							.ajax-form-wrap { width: 100%; overflow: hidden; margin: 0 0 20px 0; }
 							.ajax-form { float: left; width: 400px; }

@@ -262,12 +262,12 @@ function boorecipe_get_array_from_csv( $csv_string ) {
 /**
  * @param $var
  */
-//function rao_var_export( $var ) {
-//	echo "<pre>";
-//	var_export( $var );
-//	echo "<pre>";
+function var_dump_pretty( $var, $color='black' ) {
+	echo "<pre color:{$color}>";
+	var_export( $var );
+	echo "<pre>";
 //	die();
-//}
+}
 
 /**
  * @param $slugs_csv

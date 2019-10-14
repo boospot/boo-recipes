@@ -277,7 +277,7 @@ class Boorecipe_Globals {
 			'show_recipe_title'                 => 'yes',
 			'show_recipe_publish_info'          => 'yes',
 			'show_share_buttons'                => 'yes',
-			'uninstall_delete_options'          => 'yes',
+			'uninstall_delete_options'          => 'no',
 			'uninstall_delete_mata'             => 'no',
 		);
 
