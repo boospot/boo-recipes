@@ -169,6 +169,7 @@ class Boorecipe {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-boorecipe-admin.php';
 
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-boorecipe-admin-simple.php';
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
@@ -271,8 +272,8 @@ class Boorecipe {
 
 		$plugin_admin = new Boorecipe_Admin( $this->get_plugin_name(), $this->get_version() );
 
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+//		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
+//		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
 		/*
 		 * Added the plugin options menu and page
@@ -287,18 +288,25 @@ class Boorecipe {
 //		},99);
 		
 
+
+
+		$plugin_admin_simple = new Boorecipe_Admin_Simple( $this->get_plugin_name(), $this->get_version() );
+
+		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin_simple, 'enqueue_styles' );
+		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin_simple, 'enqueue_scripts' );
 		/*
 		 * Added the plugin options menu and page
 		 */
-		$this->loader->add_action( 'admin_menu', $plugin_admin, 'admin_menu_simple', 999 );
-
+		$this->loader->add_action( 'admin_menu', $plugin_admin_simple, 'admin_menu_simple', 999 );
 
 		/*
-		 * Added the plugin options menu and page
-		 */
-		$this->loader->add_action( 'widgets_init', $plugin_admin, 'register_sidebar_widgets', 999 );
+ * Added the plugin options menu and page
+ */
+		$this->loader->add_action( 'widgets_init', $plugin_admin_simple, 'register_sidebar_widgets', 999 );
 
-		$this->loader->add_filter( 'jupiter_register_metabox_post_type_array', $plugin_admin, 'include_jupiter_options' );
+		$this->loader->add_filter( 'jupiter_register_metabox_post_type_array', $plugin_admin_simple, 'include_jupiter_options' );
+
+
 
 	}
 
