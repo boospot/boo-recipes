@@ -141,58 +141,41 @@ class Boorecipe_Globals {
 	 */
 	public static function get_options_value( $option_id ) {
 
-		$options_array = self::get_options();
+		$options_as_separate_key = true;
 
-		$options_array = apply_filters( 'boorecipe_options_array_from_db', $options_array );
+		if ( $options_as_separate_key ) {
 
-		$get_options_value = (
-			isset( $options_array[ $option_id ] )
-			&& ! empty( $options_array[ $option_id ] )
-		)
-			? $options_array[ $option_id ]
-			: self::get_default_options( $option_id );
+			$get_options_value = get_option( self::get_meta_prefix() . $option_id );
 
-		return $get_options_value;
-	}
+			if ( ! empty( $get_options_value ) ) {
+				return $get_options_value;
+			} else {
+				return self::get_default_options( $option_id );
+			}
 
-	/**
-	 * @return mixed
-	 */
-	public static function get_options() {
+		} else {
 
+			// This is Pre Metabox and boo-settings-helper
+			$options_array = self::get_options();
 
-//		if ( empty( self::$current_language_code ) ) {
-//			self::set_current_language_code();
-////			var_dump( self::$current_language_code);
-//
-//		}
+			$options_array = apply_filters( 'boorecipe_options_array_from_db', $options_array );
 
+			$get_options_value = (
+				isset( $options_array[ $option_id ] )
+				&& ! empty( $options_array[ $option_id ] )
+			)
+				? $options_array[ $option_id ]
+				: self::get_default_options( $option_id );
 
-		return isset( self::$options[ self::$current_language_code ] ) ? self::$options[ self::$current_language_code ] : self::$options;
-	}
+			return $get_options_value;
 
-	/**
-	 * Sets the private var $options
-	 */
-	protected static function set_options() {
-
-		// Only set options if not already set
-		if ( empty( self::$options ) ) {
-			$option_name = self::$plugin_name . '-options';
-
-//			$options_for_all_languages = get_option( $option_name );
-//
-//			self::set_current_language_code();
-//
-//			$options_for_current_language = $options_for_all_languages[ self::$current_language_code ];
-//
-////			var_dump( $options_for_current_language); die();
-
-			self::$options = get_option( $option_name );
 		}
 
-		self::$registered_shortcodes_option_name = self::$plugin_name . '-registered-shortcodes';
 
+	}
+
+	public static function get_meta_prefix() {
+		return 'boorecipe_';
 	}
 
 	/**
@@ -328,6 +311,46 @@ class Boorecipe_Globals {
 
 	}
 
+	/**
+	 * @return mixed
+	 */
+	public static function get_options() {
+
+
+//		if ( empty( self::$current_language_code ) ) {
+//			self::set_current_language_code();
+////			var_dump( self::$current_language_code);
+//
+//		}
+
+
+		return isset( self::$options[ self::$current_language_code ] ) ? self::$options[ self::$current_language_code ] : self::$options;
+	}
+
+	/**
+	 * Sets the private var $options
+	 */
+	protected static function set_options() {
+
+		// Only set options if not already set
+		if ( empty( self::$options ) ) {
+			$option_name = self::$plugin_name . '-options';
+
+//			$options_for_all_languages = get_option( $option_name );
+//
+//			self::set_current_language_code();
+//
+//			$options_for_current_language = $options_for_all_languages[ self::$current_language_code ];
+//
+////			var_dump( $options_for_current_language); die();
+
+			self::$options = get_option( $option_name );
+		}
+
+		self::$registered_shortcodes_option_name = self::$plugin_name . '-registered-shortcodes';
+
+	}
+
 	public static function get_recipe_meta( $item_id ) {
 
 
@@ -345,10 +368,6 @@ class Boorecipe_Globals {
 
 		return $meta;
 
-	}
-
-	public static function get_meta_prefix() {
-		return 'boorecipe_';
 	}
 
 	public static function get_meta_fields() {
@@ -504,7 +523,7 @@ class Boorecipe_Globals {
 	/**
 	 * Returns the count of the largest arrays
 	 *
-	 * @param        array $array An array of arrays to count
+	 * @param array $array An array of arrays to count
 	 *
 	 * @return        int                    The count of the largest array
 	 */
@@ -531,8 +550,8 @@ class Boorecipe_Globals {
 	/**
 	 * Returns the requested SVG.
 	 *
-	 * @param        string $svg The name of an SVG
-	 * @param        string $svg_class this class will be added to svg
+	 * @param string $svg The name of an SVG
+	 * @param string $svg_class this class will be added to svg
 	 *
 	 * @return        mixed                    The SVG code
 	 */
@@ -811,7 +830,7 @@ class Boorecipe_Globals {
 	 * plugin will automatically use your custom template file instead
 	 * of the ones included in the plugin.
 	 *
-	 * @param    string $name The name of a template file
+	 * @param string $name The name of a template file
 	 * @param
 	 *
 	 * @return    string                        The path to the template
@@ -824,7 +843,7 @@ class Boorecipe_Globals {
 		/**
 		 * Filter the locations to search for a template file
 		 *
-		 * @param    array $locations File names and/or paths to check
+		 * @param array $locations File names and/or paths to check
 		 */
 		$locations = apply_filters( 'boorecipe_template_paths', $locations );
 
