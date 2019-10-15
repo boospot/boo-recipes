@@ -52,6 +52,58 @@ class Boorecipe_Admin_Simple {
 
 		add_action( 'wp_ajax_admin_convert_settings', array( $this, 'admin_convert_settings_handler' ) );
 
+		add_action( 'wp_ajax_admin_delete_settings', array( $this, 'admin_delete_settings_handler' ) );
+
+	}
+
+	/**
+	 *
+	 */
+	public function admin_delete_settings_handler() {
+
+		// Check Admin referrer
+//		check_admin_referer( 'delete_existing_settings_using_ajax' );
+
+		// Verify Nonce
+		if ( ! wp_verify_nonce( $_REQUEST['_wpnonce'], 'delete_existing_settings_using_ajax' ) ) {
+			wp_send_json_error( __( 'Security token is invalid' . $_REQUEST['_wpnonce'], 'boorecipe' ) );
+			die();
+		}
+		// Check capabilities
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( __( 'Sorry, You do not have sufficient permissions to do this action.', 'boorecipe' ) );
+			die();
+		}
+
+		// Get old options
+		$old_settings = get_option( 'boorecipe-options' );
+
+		// if no old settings found, send error
+		if ( ! $old_settings ) {
+			wp_send_json_error( __( 'Sorry, We could not find any old settings', 'boorecipe' ) );
+			die();
+		}
+
+		$result = delete_option( 'boorecipe-options' );
+
+		if ( $result ) {
+			$response = array(
+				'success' => true,
+				'data'    => __( 'Old Settings have been successfully deleted.', 'boorecipe' ) . " " .
+				             sprintf( __( 'Page shall reload automatically after %s seconds', 'boorecipe' ), 10 ),
+			);
+		} else {
+			$response = array(
+				'success' => false,
+				'data'    => __( 'Sorry, There was an error while deleting old settings. Please try again later', 'boorecipe' ),
+			);
+
+		}
+
+
+		wp_send_json( json_encode( $response ) );
+		die();
+
 	}
 
 	/**
@@ -68,6 +120,13 @@ class Boorecipe_Admin_Simple {
 			die();
 		}
 
+		// Check capabilities
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( __( 'Sorry, You dont have sufficient permissions to do this action.', 'boorecipe' ) );
+			die();
+		}
+
+
 		// Get old options
 		$old_settings = get_option( 'boorecipe-options' );
 
@@ -81,12 +140,12 @@ class Boorecipe_Admin_Simple {
 		$site_lang = mb_substr( get_locale(), 0, 2 );
 
 		if ( ! isset( $old_settings[ $site_lang ] ) ) {
-			wp_send_json_error( __( 'Sorry, Settings related to site language is not found. Old settings worked on the basis of site language. We cant do much in this regard. Please contact plugin support to resolve this issue.', 'boorecipe' ) );
+			wp_send_json_error( __( 'Sorry, Settings related to site language is not found. Old settings worked on the basis of site language. We cant do much in this regard. Please contact plugin support to resolve this site-specific issue.', 'boorecipe' ) );
 			die();
 		}
 
 		if ( ! is_array( $old_settings[ $site_lang ] ) ) {
-			wp_send_json_error( __( 'Sorry, Settings related to site language is not found. Old settings worked on the basis of site language. We cant do much in this regard. Please contact plugin support to resolve this issue.', 'boorecipe' ) );
+			wp_send_json_error( __( 'Sorry, Settings related to site language is not found. Old settings worked on the basis of site language. We cant do much in this regard. Please contact plugin support to resolve this site-specific issue.', 'boorecipe' ) );
 			die();
 		}
 
@@ -118,7 +177,9 @@ class Boorecipe_Admin_Simple {
 		// update for default
 		$response = array(
 			'success' => true,
-			'data'    => sprintf( __( 'Settings have been successfully converted. Total changes made to database are %s. Page shall reload automatically after %s  seconds', 'boorecipe' ), $count, 10 ),
+			'data'    =>
+				sprintf( __( 'Settings have been successfully converted. Total changes made to database are %s.', 'boorecipe' ), $count ) . " " .
+				sprintf( __( 'Page shall reload automatically after %s seconds', 'boorecipe' ), 10 ),
 //			'options' => $updated_options
 		);
 
@@ -187,6 +248,7 @@ class Boorecipe_Admin_Simple {
 			 * @link https://codex.wordpress.org/Function_Reference/wp_create_nonce
 			 */
 			'_nonce_settings_convert' => wp_create_nonce( 'convert_existing_settings_using_ajax' ),
+			'_nonce_settings_delete'  => wp_create_nonce( 'delete_existing_settings_using_ajax' ),
 		) );
 
 	}
@@ -239,9 +301,9 @@ class Boorecipe_Admin_Simple {
 	function get_settings_menu() {
 		$config_menu = array(
 			//The name of this page
-			'page_title'      => __( 'New Settings', 'boorecipe' ),
+			'page_title'      => __( 'Settings', 'boorecipe' ),
 			// //The Menu Title in Wp Admin
-			'menu_title'      => __( 'New Settings', 'boorecipe' ),
+			'menu_title'      => __( 'Settings', 'boorecipe' ),
 			// The capability needed to view the page
 			'capability'      => 'manage_options',
 			// Slug for the Menu page
@@ -809,20 +871,19 @@ class Boorecipe_Admin_Simple {
 		);
 
 		if ( boorecipe_is_old_settings_available() ) {
+
 			$special_section_fields[] = array(
 				'id'    => $this->prefix . 'settings_converter',
 				'type'  => 'html',
-				'label' => __( 'Convert Settings', 'boorecipe' ),
-//				'desc'  => __( 'From old screen to new screen', 'boorecipe' ),
-				'desc'  => '<input type="button" name="boorecipes-convert-settings" id="boorecipes-convert-settings" class="button button-secondary" value="Convert Settings"><div id="boorecipes-convert-settings-response"></div>'
+				'label' => esc_html__( 'Convert Old Settings', 'boorecipe' ),
+				'desc'  => '<input type="button" name="boorecipes-convert-settings" id="boorecipes-convert-settings" class="button button-secondary" value="' . esc_html__( 'Convert Old Settings', 'boorecipe' ) . '"><div id="boorecipes-convert-settings-response"></div>'
 			);
 
 			$special_section_fields[] = array(
 				'id'    => $this->prefix . 'settings_delete_old',
 				'type'  => 'html',
 				'label' => __( 'Delete Old Settings', 'boorecipe' ),
-//				'desc'  => __( 'From old screen to new screen', 'boorecipe' ),
-				'desc'  => '<input type="button" name="boorecipes-delete-old-settings" id="boorecipes-delete-old-settings" class="button button-secondary" value="Delete Old Settings"><div id="boorecipes-delete-old-settings-response"></div>'
+				'desc'  => '<input type="button" name="boorecipes-delete-old-settings" id="boorecipes-delete-old-settings" class="button button-secondary" value="' . esc_html__( 'Delete Old Settings', 'boorecipe' ) . '"><div id="boorecipes-delete-old-settings-response"></div>'
 			);
 		}
 
@@ -890,11 +951,5 @@ class Boorecipe_Admin_Simple {
 
 	}
 
-	public function include_jupiter_options( $post_array ) {
-
-		$post_array[] = 'boo_recipe';
-
-		return $post_array;
-	}
 
 }

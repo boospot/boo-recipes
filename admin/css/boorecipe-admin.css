@@ -22,3 +22,8 @@
     margin-top: 1rem;
     padding: 1em;
 }
+
+select.regular-text option { color: green; }
+select.regular-text option[value="no"] { color: red; }
+select.regular-text option[value="yes"] { color: green; }
+select.regular-text:invalid { color: red; }

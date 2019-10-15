@@ -127,17 +127,6 @@ class Boorecipe {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/arguments.php';
 
-		/*
- * The class responsible for Exopite options framework
- */
-
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/Exopite-Simple-Options-Framework/exopite-simple-options/exopite-simple-options-framework-class.php';
-
-
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/libraries/boo-settings-helper/class-boo-settings-helper.php';
-
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-boorecipe-admin-ajax-meta-update.php';
-
 		/**
 		 * The class responsible for all global functions.
 		 */
@@ -150,6 +139,18 @@ class Boorecipe {
 		 * Helper Functions
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/helper-functions.php';
+
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/libraries/boo-settings-helper/class-boo-settings-helper.php';
+
+		if ( boorecipe_is_old_settings_available() ) {
+			/*
+			 * The class responsible for Exopite options framework
+			 */
+
+			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/Exopite-Simple-Options-Framework/exopite-simple-options/exopite-simple-options-framework-class.php';
+
+			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-boorecipe-admin-ajax-meta-update.php';
+		}
 
 
 		/**
@@ -269,25 +270,11 @@ class Boorecipe {
 	 */
 	private function define_admin_hooks() {
 
-
-		$plugin_admin = new Boorecipe_Admin( $this->get_plugin_name(), $this->get_version() );
-
-//		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
-//		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-
-		/*
-		 * Added the plugin options menu and page
-		 */
-		$this->loader->add_action( 'init', $plugin_admin, 'create_plugin_menu', 999 );
-
-		
 //		add_action('wp_footer', function(){
 //
 //			var_dump_pretty(get_option( 'boorecipe-options'), 'red');
 //
 //		},99);
-		
-
 
 
 		$plugin_admin_simple = new Boorecipe_Admin_Simple( $this->get_plugin_name(), $this->get_version() );
@@ -297,16 +284,26 @@ class Boorecipe {
 		/*
 		 * Added the plugin options menu and page
 		 */
-		$this->loader->add_action( 'admin_menu', $plugin_admin_simple, 'admin_menu_simple', 999 );
+		$this->loader->add_action( 'admin_menu', $plugin_admin_simple, 'admin_menu_simple', 99 );
 
 		/*
  * Added the plugin options menu and page
  */
 		$this->loader->add_action( 'widgets_init', $plugin_admin_simple, 'register_sidebar_widgets', 999 );
 
-		$this->loader->add_filter( 'jupiter_register_metabox_post_type_array', $plugin_admin_simple, 'include_jupiter_options' );
 
+		if ( boorecipe_is_old_settings_available() ) {
 
+			$plugin_admin = new Boorecipe_Admin( $this->get_plugin_name(), $this->get_version() );
+
+//		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
+//		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+
+			/*
+			 * Added the plugin options menu and page
+			 */
+			$this->loader->add_action( 'init', $plugin_admin, 'create_plugin_menu', 999 );
+		}
 
 	}
 
@@ -314,8 +311,8 @@ class Boorecipe {
 	 * The name of the plugin used to uniquely identify it within the context of
 	 * WordPress and to define internationalization functionality.
 	 *
-	 * @since     1.0.0
 	 * @return    string    The name of the plugin.
+	 * @since     1.0.0
 	 */
 	public function get_plugin_name() {
 		return $this->plugin_name;
@@ -324,8 +321,8 @@ class Boorecipe {
 	/**
 	 * Retrieve the version number of the plugin.
 	 *
-	 * @since     1.0.0
 	 * @return    string    The version number of the plugin.
+	 * @since     1.0.0
 	 */
 	public function get_version() {
 		return $this->version;
@@ -367,38 +364,6 @@ class Boorecipe {
 	 */
 	private function define_custom_post_types_hooks() {
 
-//		add_filter( 'rwmb_meta_boxes', 'mb_composer_example_register_meta_boxes' );
-//		function mb_composer_example_register_meta_boxes( $meta_boxes ) {
-//
-//			$prefix = 'boorecipe_';
-//
-//			$meta_boxes[] = array(
-//				'title'      => 'A sample meta box',
-//				'post_types' => array( 'boo_recipe' ),
-//				'fields'     => array(
-//					array(
-//						'name' => 'Name',
-//						'id'   => 'name',
-//						'type' => 'text',
-//					),
-//					array(
-//						'name' => 'my_number',
-//						'id'   => 'my_number',
-//						'type' => 'number',
-//					),
-//					array(
-//						'id'   => $prefix . 'short_description',
-//						'name' => esc_html__( 'Short Description', 'boorecipe' ),
-//						'type' => 'textarea',
-//						'desc' => esc_html__( 'Describe your recipe in a few words', 'boorecipe' ),
-//						'rows' => 2,
-//					),
-//				),
-//			);
-//
-//			return $meta_boxes;
-//		}
-
 
 		/*
 		 * Creating Custom Post types
@@ -430,12 +395,13 @@ class Boorecipe {
 	 */
 	private function define_ajax_recipe_meta_update() {
 
+		if ( boorecipe_is_old_settings_available() ) {
 
-		$ajax_meta = new Boorecipe_Admin_Ajax_Meta_Update( $this->get_plugin_name(), $this->get_version() );
+			$ajax_meta = new Boorecipe_Admin_Ajax_Meta_Update( $this->get_plugin_name(), $this->get_version() );
 
-
-		$this->loader->add_action( 'admin_enqueue_scripts', $ajax_meta, 'ajax_admin_enqueue_scripts', 10 );
-		$this->loader->add_action( 'wp_ajax_admin_hook', $ajax_meta, 'ajax_admin_handler', 10 );
+			$this->loader->add_action( 'admin_enqueue_scripts', $ajax_meta, 'ajax_admin_enqueue_scripts', 10 );
+			$this->loader->add_action( 'wp_ajax_admin_hook', $ajax_meta, 'ajax_admin_handler', 10 );
+		}
 
 
 	} //define_custom_post_types_hooks
@@ -669,8 +635,8 @@ class Boorecipe {
 	/**
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
-	 * @since     1.0.0
 	 * @return    Boorecipe_Loader    Orchestrates the hooks of the plugin.
+	 * @since     1.0.0
 	 */
 	public function get_loader() {
 		return $this->loader;

@@ -137,7 +137,7 @@ class Boorecipe_Admin {
 			// Required for submenu
 			'submenu'         => true,
 			//The name of this page
-			'title'           => __( 'Settings', 'boorecipe' ),
+			'title'           => __( 'Old Settings', 'boorecipe' ),
 			// The capability needed to view the page
 			'capability'      => 'manage_options',
 			// plugin_basename required to add plugin action links
