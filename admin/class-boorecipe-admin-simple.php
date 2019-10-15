@@ -50,6 +50,81 @@ class Boorecipe_Admin_Simple {
 
 		$this->prefix = Boorecipe_Globals::get_meta_prefix();
 
+		add_action( 'wp_ajax_admin_convert_settings', array( $this, 'admin_convert_settings_handler' ) );
+
+	}
+
+	/**
+	 *
+	 */
+	public function admin_convert_settings_handler() {
+
+		// Check Admin referrer
+		check_admin_referer( 'convert_existing_settings_using_ajax' );
+
+		// Verify Nonce
+		if ( ! wp_verify_nonce( $_REQUEST['_wpnonce'], 'convert_existing_settings_using_ajax' ) ) {
+			wp_send_json_error( __( 'Security token is invalid' . $_REQUEST['_wpnonce'], 'boorecipe' ) );
+			die();
+		}
+
+		// Get old options
+		$old_settings = get_option( 'boorecipe-options' );
+
+		// if no old settings found, send error
+		if ( ! $old_settings ) {
+			wp_send_json_error( __( 'Sorry, We could not find any old settings', 'boorecipe' ) );
+			die();
+		}
+
+
+		$site_lang = mb_substr( get_locale(), 0, 2 );
+
+		if ( ! isset( $old_settings[ $site_lang ] ) ) {
+			wp_send_json_error( __( 'Sorry, Settings related to site language is not found. Old settings worked on the basis of site language. We cant do much in this regard. Please contact plugin support to resolve this issue.', 'boorecipe' ) );
+			die();
+		}
+
+		if ( ! is_array( $old_settings[ $site_lang ] ) ) {
+			wp_send_json_error( __( 'Sorry, Settings related to site language is not found. Old settings worked on the basis of site language. We cant do much in this regard. Please contact plugin support to resolve this issue.', 'boorecipe' ) );
+			die();
+		}
+
+		$lang_specific_settings = $old_settings[ $site_lang ];
+//		$updated_options        = array();
+		$count = 0;
+		foreach ( $lang_specific_settings as $option_id => $option_value ) {
+			update_option( 'boorecipe_' . $option_id, $option_value );
+//			$updated_options[ 'boorecipe_' . $option_id ] =  $option_value ;
+			$count ++;
+		}
+
+		/**
+		 * Special cases
+		 */
+		// default image
+		$default_image_path = isset( $lang_specific_settings['recipe_default_img_url'] ) ? $lang_specific_settings['recipe_default_img_url'] : false;
+		if ( $default_image_path ) {
+			update_option( 'boorecipe_recipe_default_img_url', attachment_url_to_postid( $default_image_path ) );
+		}
+
+		// Select Filters to include in Search Form
+		$search_filters = isset( $lang_specific_settings['search_form_filters'] ) ? $lang_specific_settings['search_form_filters'] : array();
+		if ( is_array( $search_filters ) ) {
+			$search_filters_combined = array_combine( $search_filters, $search_filters );
+			update_option( 'boorecipe_search_form_filters', $search_filters_combined );
+		}
+
+		// update for default
+		$response = array(
+			'success' => true,
+			'data'    => sprintf( __( 'Settings have been successfully converted. Total changes made to database are %s. Page shall reload automatically after %s  seconds', 'boorecipe' ), $count, 10 ),
+//			'options' => $updated_options
+		);
+
+		wp_send_json( json_encode( $response ) );
+		die();
+
 	}
 
 	/**
@@ -71,7 +146,7 @@ class Boorecipe_Admin_Simple {
 		 * class.
 		 */
 
-//		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/boorecipe-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/boorecipe-admin.css', array(), $this->version, 'all' );
 
 	}
 
@@ -95,8 +170,24 @@ class Boorecipe_Admin_Simple {
 		 */
 
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/boorecipe-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script(
+			$this->plugin_name,
+			plugin_dir_url( __FILE__ ) . 'js/boorecipe-admin.js',
+			array( 'jquery' ),
+			$this->version,
+			false
+		);
 
+
+		wp_localize_script( $this->plugin_name, 'wp_ajax', array(
+			'ajax_url'                => admin_url( 'admin-ajax.php' ),
+			/**
+			 * Create nonce for security.
+			 *
+			 * @link https://codex.wordpress.org/Function_Reference/wp_create_nonce
+			 */
+			'_nonce_settings_convert' => wp_create_nonce( 'convert_existing_settings_using_ajax' ),
+		) );
 
 	}
 
@@ -154,7 +245,7 @@ class Boorecipe_Admin_Simple {
 			// The capability needed to view the page
 			'capability'      => 'manage_options',
 			// Slug for the Menu page
-			'slug'            => 'boo-helper-slug',
+			'slug'            => 'boorecipe-settings',
 			// dashicons id or url to icon
 			// https://developer.wordpress.org/resource/dashicons/
 			'icon'            => 'dashicons-performance',
@@ -246,8 +337,8 @@ class Boorecipe_Admin_Simple {
 				'title' => __( 'Premium Plugin', 'boorecipe' ),
 			),
 			array(
-				'id'    => 'custom_css_section',
-				'title' => __( 'Custom CSS', 'boorecipe' ),
+				'id'    => 'special_section',
+				'title' => __( 'Special', 'boorecipe' ),
 			),
 			array(
 				'id'    => 'uninstall_section',
@@ -263,7 +354,7 @@ class Boorecipe_Admin_Simple {
 		/*
 		* Recipe Individual
 		*/
-		$options_fields['recipe_single' ] = apply_filters( 'boorecipe_filter_options_fields_array_single', array(
+		$options_fields['recipe_single'] = apply_filters( 'boorecipe_filter_options_fields_array_single', array(
 
 			array(
 				'id'          => $this->prefix . 'color_accent',
@@ -305,7 +396,7 @@ class Boorecipe_Admin_Simple {
 				'type'    => 'select',
 				'label'   => __( 'Recipe Style', 'boorecipe' ),
 				'options' => apply_filters( 'boorecipe_filter_options_fields_array_single_style', array(
-					'style1' => sprintf (__( 'Style %s', 'boorecipe' ), 1)
+					'style1' => sprintf( __( 'Style %s', 'boorecipe' ), 1 )
 				) ),
 				'radio'   => true,
 				'default' => 'style1',
@@ -677,11 +768,11 @@ class Boorecipe_Admin_Simple {
 				'rgba'    => true,
 			),
 
-		));
+		) );
 		/*
 		 * Settings Backup
 		 */
-		$options_fields['recipe_options_backup_restore'] = apply_filters( 'boorecipe_filter_options_fields_array_backup',array(
+		$options_fields['recipe_options_backup_restore'] = apply_filters( 'boorecipe_filter_options_fields_array_backup', array(
 
 			array(
 				'id'    => $this->prefix . 'boorecipe_options_backup_restore',
@@ -689,7 +780,7 @@ class Boorecipe_Admin_Simple {
 				'label' => __( 'Settings Backup and/or Restore', 'boorecipe' ),
 			),
 
-		));
+		) );
 
 		/*
 		 * Premium Plugin
@@ -707,48 +798,36 @@ class Boorecipe_Admin_Simple {
 		/*
 		 * Special
 		 */
-		$options_fields['special_section'] = apply_filters( 'boorecipe_filter_options_fields_array_special', array(
+		$special_section_fields = array(
 
 			array(
-				'id'          => $this->prefix . 'custom_css_editor',
-				'type'        => 'textarea',
-				'label'       => __( 'Your Custom CSS', 'boorecipe' ),
-				'options'     => array(
-					'theme'                     => 'ace/theme/monokai',
-					'mode'                      => 'ace/mode/css',
-					'showGutter'                => true,
-					'showPrintMargin'           => true,
-					'enableBasicAutocompletion' => true,
-					'enableSnippets'            => true,
-					'enableLiveAutocompletion'  => true,
-				),
-				'attributes'  => array(
-					'style' => 'height: 300px; max-width: 700px;',
-				),
-				'description' => __( 'Add your custom CSS here', 'boorecipe' ),
+				'id'    => $this->prefix . 'custom_css_editor',
+				'type'  => 'textarea',
+				'label' => __( 'Your Custom CSS', 'boorecipe' ),
+				'desc'  => __( 'Add your custom CSS here', 'boorecipe' ),
 			),
+		);
 
-			array(
-				'id'          => $this->prefix . 'settings_converter',
-				'type'        => 'textarea',
-				'label'       => __( 'Your Custom CSS', 'boorecipe' ),
-				'options'     => array(
-					'theme'                     => 'ace/theme/monokai',
-					'mode'                      => 'ace/mode/css',
-					'showGutter'                => true,
-					'showPrintMargin'           => true,
-					'enableBasicAutocompletion' => true,
-					'enableSnippets'            => true,
-					'enableLiveAutocompletion'  => true,
-				),
-				'attributes'  => array(
-					'style' => 'height: 300px; max-width: 700px;',
-				),
-				'description' => __( 'Add your custom CSS here', 'boorecipe' ),
-			),
-//
+		if ( boorecipe_is_old_settings_available() ) {
+			$special_section_fields[] = array(
+				'id'    => $this->prefix . 'settings_converter',
+				'type'  => 'html',
+				'label' => __( 'Convert Settings', 'boorecipe' ),
+//				'desc'  => __( 'From old screen to new screen', 'boorecipe' ),
+				'desc'  => '<input type="button" name="boorecipes-convert-settings" id="boorecipes-convert-settings" class="button button-secondary" value="Convert Settings"><div id="boorecipes-convert-settings-response"></div>'
+			);
 
-		) );
+			$special_section_fields[] = array(
+				'id'    => $this->prefix . 'settings_delete_old',
+				'type'  => 'html',
+				'label' => __( 'Delete Old Settings', 'boorecipe' ),
+//				'desc'  => __( 'From old screen to new screen', 'boorecipe' ),
+				'desc'  => '<input type="button" name="boorecipes-delete-old-settings" id="boorecipes-delete-old-settings" class="button button-secondary" value="Delete Old Settings"><div id="boorecipes-delete-old-settings-response"></div>'
+			);
+		}
+
+
+		$options_fields['special_section'] = apply_filters( 'boorecipe_filter_options_fields_array_special', $special_section_fields );
 
 		/*
 		 * Uninstall

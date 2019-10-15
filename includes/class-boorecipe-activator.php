@@ -30,7 +30,7 @@ class Boorecipe_Activator {
 	public static function activate() {
 
 		// Set Default Options
-		self::set_default_options();
+//		self::set_default_options();
 
 
 		/**

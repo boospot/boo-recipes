@@ -43,10 +43,11 @@ class Boorecipe_Admin_Ajax_Meta_Update {
 	/**
 	 * Initialize the class and set its properties.
 	 *
+	 * @param string $plugin_name The name of this plugin.
+	 * @param string $version The version of this plugin.
+	 *
 	 * @since    1.0.0
 	 *
-	 * @param      string $plugin_name The name of this plugin.
-	 * @param      string $version The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 
@@ -177,7 +178,7 @@ class Boorecipe_Admin_Ajax_Meta_Update {
 		$update_meta_fields             = array(
 
 			array(
-				'id'    => 'recipes',
+				'id'      => 'recipes',
 				'label'   => __( 'Recipes', 'boorecipe' ),
 				'type'    => 'multicheck',
 				'default' => $this->get_recipes_checkbox_default(),
@@ -185,7 +186,7 @@ class Boorecipe_Admin_Ajax_Meta_Update {
 			),
 
 			array(
-				'id' => 'html',
+				'id'   => 'html',
 				'desc' => __( '<style>
 							.ajax-form-wrap { width: 100%; overflow: hidden; margin: 0 0 20px 0; }
 							.ajax-form { float: left; width: 400px; }
@@ -257,9 +258,12 @@ class Boorecipe_Admin_Ajax_Meta_Update {
 	}
 
 	public function ajax_admin_enqueue_scripts( $hook ) {
+		
+//		var_dump_pretty( $hook);
+//		die();
 
 		// check if our page
-		if ( 'boo_recipe_page_boorecipe-update-meta' !== $hook ) {
+		if ( 'boo_recipe_page_boorecipe-update-meta' !== $hook || 'boo_recipe_page_boo-helper-slug' !== $hook ) {
 			return;
 		}
 

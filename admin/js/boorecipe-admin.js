@@ -12,14 +12,14 @@
      * This enables you to define handlers, for when the DOM is ready:
      *
      * $(function() {
-	 *
-	 * });
+     *
+     * });
      *
      * When the window is loaded:
      *
      * $( window ).load(function() {
-	 *
-	 * });
+     *
+     * });
      *
      * ...and/or other possibilities.
      *
@@ -28,6 +28,77 @@
      * Although scripts in the WordPress core, Plugins and Themes may be
      * practising this, we should strive to set a better example in our own work.
      */
+    var ajax_settings_convert = [];
+
+    ajax_settings_convert.main = function () {
+
+        this.bind_button_click = function () {
+
+            var converter_button = $('#boorecipes-convert-settings');
+            var response_cont = $('#boorecipes-convert-settings-response');
+
+            $(converter_button).on('click', function (event) {
+                // prevent form submission
+                event.preventDefault();
+                // Prevent re-click
+                $(this).attr("disabled", true);
+
+                $(response_cont).removeClass('ajax-error ajax-success');
+
+                console.log($(this));
+                // add loading message
+                $(response_cont).html('Loading...');
+
+                $.post(ajaxurl, {
+                    _wpnonce: wp_ajax._nonce_settings_convert,
+                    action: 'admin_convert_settings',
+                    timeout: 1000,
+
+                }, function (response) {
+
+                    response = $.parseJSON(response);
+                    // log data
+                    console.log(response);
+                    if (response.success) {
+                        $(response_cont).addClass('ajax-success').html(response.data);
+                        setTimeout(() => window.location.reload(), 10000);
+                    } else {
+                        $(response_cont).addClass('ajax-error').html(response.data);
+                    }
+
+
+                    // var body = data.body;
+                    //
+                    // if (1 == data.body) {
+                    //     $('.ajax-response').html('Successfully Subscribed!').addClass('success-subscribe');
+                    // } else {
+                    //     $('.ajax-response').html(data.body).addClass('error-subscribe');
+                    // }
+
+                    // display data
+                    // $('.ajax-response').html(data);
+
+                });
+
+            });
+
+
+        };
+
+        this.init = function () {
+
+            // var converter_button = $('#boorecipes-convert-settings');
+
+            if ($('#boorecipes-convert-settings')) {
+                this.bind_button_click();
+            }
+
+        };
+
+        this.init();
+    };
+
+
     $(window).load(function () {
 
         if ($('body').hasClass('post-type-recipe')) {
@@ -45,45 +116,10 @@
                 // var $total_tim = $('.recipe_total_time');
                 $('.recipe_total_time').val($cook_time + $prep_time);
 
-                // if (isNaN($cook_time) || isNaN($prep_time)) {
-                //     $('.recipe_total_time').text('Both inputs must be numbers');
-                // } else {
-                //     $('.recipe_total_time').val($cook_time + $prep_time);
-                // }
-                //
-                // console.log($cook_time);
-                // console.log($prep_time);
-                // console.log($total_time);
-
-
             });
         } // if ($('body').hasClass('post-type-recipe'))
 
-
-        //
-        // var boorecipe_plugin = $(".plugins").find("[data-slug='boo-recipes']");
-        // var boorecipe_plugin_delete_button  = boorecipe_plugin.find('a.delete');
-        //
-        // $(boorecipe_plugin_delete_button).click(function(evt){
-        //
-        //     evt.preventDefault();
-        //
-        //     confirm("Do You Want to Delete Rao's Plugin???");
-        //
-        // });
-
-
-        //
-        // var boorecipe_plugin = jQuery(".plugins").find("[data-slug='boo-recipes']");
-        // var boorecipe_plugin_delete_button  = boorecipe_plugin.find('a.delete');
-        //
-        // jQuery(boorecipe_plugin_delete_button).click(function(evt){
-        //
-        //     evt.preventDefault();
-        //
-        //     confirm("Do You Want to Delete Rao's Plugin???");
-        //
-        // });
+        ajax_settings_convert.main();
 
     }); //window).load(function ()
 

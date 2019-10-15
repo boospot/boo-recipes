@@ -195,6 +195,25 @@ function boorecipe_is_active_shortcode( $shortcode_tag ) {
 }
 
 
+if ( ! function_exists( 'boorecipe_is_old_settings_available' ) ) :
+
+	function boorecipe_is_old_settings_available() {
+
+		// Get old options
+		$old_settings = get_option( 'boorecipe-options' );
+
+		// if no old settings found, send error
+		if ( $old_settings ) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+
+endif;
+
+
 /**
  * @return bool
  */
@@ -262,7 +281,7 @@ function boorecipe_get_array_from_csv( $csv_string ) {
 /**
  * @param $var
  */
-function var_dump_pretty( $var, $color='black' ) {
+function var_dump_pretty( $var, $color = 'black' ) {
 	echo "<pre color:{$color}>";
 	var_export( $var );
 	echo "<pre>";
