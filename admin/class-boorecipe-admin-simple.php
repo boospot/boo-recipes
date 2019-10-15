@@ -221,7 +221,7 @@ class Boorecipe_Admin_Simple {
 	function get_settings_sections() {
 		$sections = array(
 			array(
-				'id'    => $this->prefix . 'recipe_single',
+				'id'    => 'recipe_single',
 				'title' => __( 'Recipe Single', 'boorecipe' ),
 //				'desc'  => 'this is sweet'
 			),
@@ -241,7 +241,7 @@ class Boorecipe_Admin_Simple {
 				'id'    => 'recipe_options_backup_restore',
 				'title' => __( 'Settings Backup', 'boorecipe' ),
 			),
-			array(
+			'recipe_plugin_activation' => array(
 				'id'    => 'recipe_plugin_activation',
 				'title' => __( 'Premium Plugin', 'boorecipe' ),
 			),
@@ -255,15 +255,15 @@ class Boorecipe_Admin_Simple {
 			)
 		);
 
-		return $sections;
+		return apply_filters( 'boorecipe_filter_options_sections_array', $sections );
 	}
 
 	function get_settings_fields() {
 		$options_fields = array();
 		/*
-* Recipe Individual
-*/
-		$options_fields[ $this->prefix . 'recipe_single' ] = apply_filters( 'boorecipe_filter_options_recipe_single', array(
+		* Recipe Individual
+		*/
+		$options_fields['recipe_single' ] = apply_filters( 'boorecipe_filter_options_fields_array_single', array(
 
 			array(
 				'id'          => $this->prefix . 'color_accent',
@@ -304,8 +304,8 @@ class Boorecipe_Admin_Simple {
 				'id'      => $this->prefix . 'recipe_style',
 				'type'    => 'select',
 				'label'   => __( 'Recipe Style', 'boorecipe' ),
-				'options' => apply_filters( 'boorecipe_filter_options_recipe_single_style', array(
-					'style1' => __( 'Style 1', 'boorecipe' )
+				'options' => apply_filters( 'boorecipe_filter_options_fields_array_single_style', array(
+					'style1' => sprintf (__( 'Style %s', 'boorecipe' ), 1)
 				) ),
 				'radio'   => true,
 				'default' => 'style1',
@@ -478,7 +478,7 @@ class Boorecipe_Admin_Simple {
 		/*
 		 * Recipe Archive
 		 */
-		$options_fields['recipe_archive'] = apply_filters( 'boorecipe_filter_options_recipe_archive', array(
+		$options_fields['recipe_archive'] = apply_filters( 'boorecipe_filter_options_fields_array_archive', array(
 
 			array(
 				'id'       => $this->prefix . 'recipes_per_page',
@@ -509,7 +509,7 @@ class Boorecipe_Admin_Simple {
 				'id'      => $this->prefix . 'recipe_archive_layout',
 				'type'    => 'select',
 				'label'   => __( 'Recipes Archive Layout', 'boorecipe' ),
-				'options' => apply_filters( 'boorecipe_filter_options_recipe_archive_layout', array(
+				'options' => apply_filters( 'boorecipe_filter_options_fields_array_archive_layout', array(
 					'grid' => __( 'Grid', 'boorecipe' ),
 					'list' => __( 'List', 'boorecipe' ),
 				) ),
@@ -626,7 +626,7 @@ class Boorecipe_Admin_Simple {
 		/*
 	 * Search Form
 	 */
-		$options_fields['recipe_search_form'] = apply_filters( 'recipe_options_search_form_section_fields_array', array(
+		$options_fields['recipe_search_form'] = apply_filters( 'boorecipe_filter_options_fields_array_search', array(
 
 			array(
 				'id'      => $this->prefix . 'form_bg_color',
@@ -656,7 +656,7 @@ class Boorecipe_Admin_Simple {
 		/*
 		 * Widget Settings
 		 */
-		$options_fields['recipe_widgets'] = array(
+		$options_fields['recipe_widgets'] = apply_filters( 'boorecipe_filter_options_fields_array_widgets', array(
 
 			array(
 				'id'          => $this->prefix . 'recipe_widget_img_width',
@@ -677,11 +677,11 @@ class Boorecipe_Admin_Simple {
 				'rgba'    => true,
 			),
 
-		);
+		));
 		/*
 		 * Settings Backup
 		 */
-		$options_fields['recipe_options_backup_restore'] = array(
+		$options_fields['recipe_options_backup_restore'] = apply_filters( 'boorecipe_filter_options_fields_array_backup',array(
 
 			array(
 				'id'    => $this->prefix . 'boorecipe_options_backup_restore',
@@ -689,12 +689,12 @@ class Boorecipe_Admin_Simple {
 				'label' => __( 'Settings Backup and/or Restore', 'boorecipe' ),
 			),
 
-		);
+		));
 
 		/*
 		 * Premium Plugin
 		 */
-		$options_fields['recipe_plugin_activation'] = apply_filters( 'boorecipe_options_plugin_activation_section', array(
+		$options_fields['recipe_plugin_activation'] = apply_filters( 'boorecipe_filter_options_fields_array_activation', array(
 			array(
 				'id'    => $this->prefix . 'plugin_activation_content',
 				'type'  => 'html',
@@ -705,12 +705,31 @@ class Boorecipe_Admin_Simple {
 
 		) );
 		/*
-		 * Custom CSS
+		 * Special
 		 */
-		$options_fields['custom_css_section'] = apply_filters( 'boorecipe_filter_options_custom_css_section', array(
+		$options_fields['special_section'] = apply_filters( 'boorecipe_filter_options_fields_array_special', array(
 
 			array(
 				'id'          => $this->prefix . 'custom_css_editor',
+				'type'        => 'textarea',
+				'label'       => __( 'Your Custom CSS', 'boorecipe' ),
+				'options'     => array(
+					'theme'                     => 'ace/theme/monokai',
+					'mode'                      => 'ace/mode/css',
+					'showGutter'                => true,
+					'showPrintMargin'           => true,
+					'enableBasicAutocompletion' => true,
+					'enableSnippets'            => true,
+					'enableLiveAutocompletion'  => true,
+				),
+				'attributes'  => array(
+					'style' => 'height: 300px; max-width: 700px;',
+				),
+				'description' => __( 'Add your custom CSS here', 'boorecipe' ),
+			),
+
+			array(
+				'id'          => $this->prefix . 'settings_converter',
 				'type'        => 'textarea',
 				'label'       => __( 'Your Custom CSS', 'boorecipe' ),
 				'options'     => array(
@@ -734,7 +753,7 @@ class Boorecipe_Admin_Simple {
 		/*
 		 * Uninstall
 		 */
-		$options_fields['uninstall_section'] = apply_filters( 'boorecipe_filter_options_uninstall_section', array(
+		$options_fields['uninstall_section'] = apply_filters( 'boorecipe_filter_options_fields_array_uninstall', array(
 
 			array(
 				'id'          => $this->prefix . 'uninstall_delete_options',
@@ -759,7 +778,7 @@ class Boorecipe_Admin_Simple {
 
 		) );
 
-		return $options_fields;
+		return apply_filters( 'boorecipe_filter_options_fields_array', $options_fields );
 	}
 
 
