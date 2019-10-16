@@ -1,6 +1,11 @@
 .single-recipe-style2 {
 
+  .posttype-section {
+    display: block;
+  }
+
   .posttype-section-box {
+
     width: 100%;
     flex-basis: 100%;
     display: flex;
@@ -44,12 +49,14 @@
           p {
             margin-bottom: 0;
           }
+
           //
           //> div:last-of-type {
           //  justify-content: flex-end;
           //}
 
         }
+
         //
         //.posttype-sub-section > div:not(.subsection-icon) {
         //  //flex: 0 1 33%;
@@ -116,6 +123,7 @@
       &:not(:last-of-type) {
         border-right: 0px !important;
       }
+
       > span {
         flex-basis: unset;
 
@@ -131,7 +139,7 @@
 @media screen and (min-width: 767px) {
   .single-recipe-style2 {
 
-    .posttype-section-box{
+    .posttype-section-box {
 
       .recipe-media {
         max-width: 50%;
@@ -163,4 +171,5 @@
 
 
   }
+
 }

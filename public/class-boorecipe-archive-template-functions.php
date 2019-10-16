@@ -250,10 +250,10 @@ class Boorecipe_Archive_Template_Functions extends Boorecipe_Template_Functions 
 
 		$recipes_per_row = $this->get_options_value( 'recipes_per_row' );
 
-		if ( is_post_type_archive( 'boo_recipe' ) ) {
-			$classes_array['per_row'] = 'per-row-' . sanitize_html_class( $recipes_per_row );
+//		if ( is_post_type_archive( 'boo_recipe' ) ) {
+		$classes_array['per_row'] = 'per-row-' . sanitize_html_class( $recipes_per_row );
 
-		}
+//		}
 
 
 		return $classes_array;

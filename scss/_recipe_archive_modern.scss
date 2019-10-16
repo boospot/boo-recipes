@@ -1,5 +1,4 @@
-$key_points_section_height:33px;
-
+$key_points_section_height: 33px;
 
 
 &.modern-archive {
@@ -25,8 +24,8 @@ $key_points_section_height:33px;
     display: flex;
     flex-direction: column;
     flex: 1;
-    position: absolute;
-    bottom: $key_points_section_height;
+    //position: absolute;
+    //bottom: $key_points_section_height;
     height: 4em;
     overflow: hidden;
     //background: #ffffff9c;
@@ -44,7 +43,7 @@ $key_points_section_height:33px;
   .recipe-keypoints {
     display: flex;
     justify-items: center;
-    flex: 0 1 $key_points_section_height;
+    //flex: 0 1 $key_points_section_height;
 
     .archive-key-point {
       padding: 5px 0PX;
@@ -81,8 +80,10 @@ $key_points_section_height:33px;
     }
 
     .recipe-card-content {
-      @include get_deducted_height($key_points_section_height);
+      height: 100%;
+      transition: all ease 0.7s;
     }
+
     .recipe-archive-excerpt {
       display: inherit;
 
@@ -94,13 +95,13 @@ $key_points_section_height:33px;
   }
 
   /* the following apply only if parent is some mentioned tag */
-  .per-row-5 &{
+  .per-row-5 & {
     .key-point-yields {
       display: none;
     }
 
     .recipe-archive-title {
-     font-size: 0.8em;
+      font-size: 0.8em;
     }
 
 

@@ -86,12 +86,6 @@ form.boorecipe-search-form .select2-selection__clear {
 .recipe-card .recipe-link:hover {
   box-shadow: 3px 3px 8px #b3b3b3;
 }
-.recipe-card .recipe-card-recipe-details {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  transition: all ease 0.7s;
-}
 .recipe-cards .recipe-card .recipe-img-cont {
   margin-bottom: 0;
 }
@@ -130,6 +124,8 @@ form.boorecipe-search-form .select2-selection__clear {
   display: flex;
   flex-direction: column;
   flex: 1;
+  position: absolute;
+  bottom: 33px;
   height: 4em;
   overflow: hidden;
   width: 100%;
@@ -144,6 +140,7 @@ form.boorecipe-search-form .select2-selection__clear {
 .recipe-card.modern-archive .recipe-keypoints {
   display: flex;
   justify-items: center;
+  flex: 0 1 33px;
 }
 .recipe-card.modern-archive .recipe-keypoints .archive-key-point {
   padding: 5px 0PX;
@@ -170,8 +167,7 @@ form.boorecipe-search-form .select2-selection__clear {
   transform: scale(1.1) rotate(3deg);
 }
 .recipe-card.modern-archive:hover .recipe-card-content {
-  height: 100%;
-  transition: all ease 0.7s;
+  height: calc(100% - 33px);
 }
 .recipe-card.modern-archive:hover .recipe-archive-excerpt {
   display: inherit;
@@ -353,28 +349,22 @@ form.boorecipe-search-form .select2-selection__clear {
   }
 }
 @media screen and (min-width: 768px) {
-  .archive .per-row-5:not(.recipes-layout-list):not(.recipes-layout-overlay) .recipe-card,
-.related-recipes-section .per-row-5:not(.recipes-layout-list):not(.recipes-layout-overlay) .recipe-card {
+  .post-type-archive-boo_recipe .per-row-5:not(.recipes-layout-list):not(.recipes-layout-overlay) .recipe-card {
     width: 20%;
   }
-  .archive .per-row-4:not(.recipes-layout-list):not(.recipes-layout-overlay) .recipe-card,
-.related-recipes-section .per-row-4:not(.recipes-layout-list):not(.recipes-layout-overlay) .recipe-card {
+  .post-type-archive-boo_recipe .per-row-4:not(.recipes-layout-list):not(.recipes-layout-overlay) .recipe-card {
     width: 25%;
   }
-  .archive .per-row-3:not(.recipes-layout-list):not(.recipes-layout-overlay) .recipe-card,
-.related-recipes-section .per-row-3:not(.recipes-layout-list):not(.recipes-layout-overlay) .recipe-card {
+  .post-type-archive-boo_recipe .per-row-3:not(.recipes-layout-list):not(.recipes-layout-overlay) .recipe-card {
     width: 33.33%;
   }
-  .archive .per-row-2:not(.recipes-layout-list) .recipe-card,
-.related-recipes-section .per-row-2:not(.recipes-layout-list) .recipe-card {
+  .post-type-archive-boo_recipe .per-row-2:not(.recipes-layout-list) .recipe-card {
     width: 50%;
   }
-  .archive .per-row-1 .recipe-card,
-.related-recipes-section .per-row-1 .recipe-card {
+  .post-type-archive-boo_recipe .per-row-1 .recipe-card {
     width: 100%;
   }
-  .archive .per-row-1 .recipe-img-cont img,
-.related-recipes-section .per-row-1 .recipe-img-cont img {
+  .post-type-archive-boo_recipe .per-row-1 .recipe-img-cont img {
     width: 100%;
   }
 }
