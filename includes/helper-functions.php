@@ -606,6 +606,21 @@ function boorecipe_return_markup_recipe_author_name() {
 	return $posttype_author;
 }
 
+/**
+ * @param $post_type
+ *
+ * @return string
+ */
+function boorecipe_default_posttype_image( $post_type ) {
+
+	$options = get_option( 'boorecipe-options' );
+
+	if ( isset( $options['recipe_default_img_url'] ) && ! empty( $options['recipe_default_img_url'] ) ) {
+		return esc_url_raw( $options['recipe_default_img_url'] );
+	}
+
+	return BOORECIPE_PLUGIN_URL . "assets/images/{$post_type}-default-image.png";
+}
 
 /**
  * @param null $post_id
@@ -624,7 +639,7 @@ function boorecipe_get_posttype_image_url( $post_id = null, $size = null ) {
 	if ( ! empty( $posttype_featured_image ) && ! false ) {
 		return $posttype_featured_image;
 	} else {
-		return boorecipe_default_posttype_image( get_post_type() );
+		return boorecipe_default_posttype_image( get_post_type( $post_id ) );
 	}
 
 }
@@ -658,22 +673,6 @@ function boorecipe_get_recipe_registered_taxonomy_array() {
 	) );
 
 	return $registered_taxonomy_array;
-}
-
-/**
- * @param $post_type
- *
- * @return string
- */
-function boorecipe_default_posttype_image( $post_type ) {
-
-	$options = get_exopite_sof_option( 'boorecipe-options' );
-
-	if ( isset( $options['recipe_default_img_url'] ) && ! empty( $options['recipe_default_img_url'] ) ) {
-		return esc_url_raw( $options['recipe_default_img_url'] );
-	}
-
-	return BOORECIPE_PLUGIN_URL . "assets/images/{$post_type}-default-image.png";
 }
 
 
