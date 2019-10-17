@@ -24,8 +24,8 @@ $key_points_section_height: 33px;
     display: flex;
     flex-direction: column;
     flex: 1;
-    //position: absolute;
-    //bottom: $key_points_section_height;
+    position: absolute;
+    bottom: $key_points_section_height;
     height: 4em;
     overflow: hidden;
     //background: #ffffff9c;
@@ -43,7 +43,7 @@ $key_points_section_height: 33px;
   .recipe-keypoints {
     display: flex;
     justify-items: center;
-    //flex: 0 1 $key_points_section_height;
+    flex: 0 1 $key_points_section_height;
 
     .archive-key-point {
       padding: 5px 0PX;

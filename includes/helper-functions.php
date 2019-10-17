@@ -854,7 +854,13 @@ function boorecipe_is_archive_query() {
 
 	$taxonomy_template = false;
 	if ( get_class( $queried_object ) == 'WP_Term' ) {
-		$taxonomy_template = ( ( $queried_object->taxonomy == 'recipe_category' || $queried_object->taxonomy == 'recipe_cuisine' ) || $queried_object->taxonomy == 'recipe_tags' ) ? true : false;
+		$taxonomy_template = (
+			$queried_object->taxonomy == 'recipe_category' ||
+			$queried_object->taxonomy == 'recipe_cuisine' ||
+			$queried_object->taxonomy == 'recipe_tags' ||
+			$queried_object->taxonomy == 'skill_level' ||
+			$queried_object->taxonomy == 'cooking_method'
+		) ? true : false;
 	}
 
 	return $taxonomy_template;

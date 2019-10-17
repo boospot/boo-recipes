@@ -8,7 +8,6 @@ $meta = Boorecipe_Globals::get_recipe_meta($post->ID);
 
 $archive_card_classes = implode( ' ', apply_filters( 'boorecipe_filter_archive_recipe_card_classes', array( 'recipe-card' ) ) );
 ?>
-
 <article class="<?php echo $archive_card_classes; ?>">
     <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" class="recipe-link">
 		<?php do_action( 'boorecipe_archive_recipe_media', $post ); ?>

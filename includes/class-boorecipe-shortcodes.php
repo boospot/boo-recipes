@@ -73,10 +73,11 @@ class Boorecipe_Shortcodes {
 	/**
 	 * Initialize the class and set its properties.
 	 *
+	 * @param string $plugin_name The name of the plugin.
+	 * @param string $version The version of this plugin.
+	 *
 	 * @since    1.0.0
 	 *
-	 * @param      string $plugin_name The name of the plugin.
-	 * @param      string $version The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 
@@ -105,11 +106,11 @@ class Boorecipe_Shortcodes {
 
 //		if ( $this->get_options_value( 'show_search_form' ) === 'yes' && ! boorecipe_is_search_form_submitted() ) :
 
-			ob_start();
+		ob_start();
 
-			include boorecipe_get_template( 'search-form', 'widgets' );
+		include boorecipe_get_template( 'search-form', 'widgets' );
 
-			return ob_get_clean();
+		return ob_get_clean();
 //
 //		else:
 //
@@ -118,15 +119,6 @@ class Boorecipe_Shortcodes {
 //		endif;
 
 
-	}
-
-	/**
-	 * @param $option_id
-	 *
-	 * @return bool|mixed
-	 */
-	protected function get_options_value( $option_id ) {
-		return Boorecipe_Globals::get_options_value( $option_id );
 	}
 
 	/**
@@ -147,6 +139,15 @@ class Boorecipe_Shortcodes {
 		$print_icon = Boorecipe_Globals::get_svg( 'print', 'icon-size-' . $this->get_options_value( 'general_icon_size' ) );
 
 		return "<a class='boorecipe-print-link' style = 'text-align:{$args['align']}' href='javascript:window.print()'>{$print_icon} {$args['text']}</a>";
+	}
+
+	/**
+	 * @param $option_id
+	 *
+	 * @return bool|mixed
+	 */
+	protected function get_options_value( $option_id ) {
+		return Boorecipe_Globals::get_options_value( $option_id );
 	}
 
 	/**
@@ -241,6 +242,7 @@ class Boorecipe_Shortcodes {
 			'recipes_browse'
 		);
 
+
 		$this->setup_shortcode_data( $atts, 'recipes_browse', 'archive' );
 
 
@@ -255,19 +257,19 @@ class Boorecipe_Shortcodes {
 			'posts_per_page' => absint( $atts['limit'] ),
 		);
 
-
 		$query_args = $this->setup_posts_query_with_shortcode_atts( $query_args, $atts );
 
 		$loop = new WP_Query( $query_args );
 
+
 		$archive_layout = sanitize_key( $atts['recipe_archive_layout'] );
+
 
 		// $archive_template is required in included file
 		$archive_template = ( is_file( boorecipe_get_template( "archive-recipe-content-{$archive_layout}", 'archive' ) ) )
 
 			? boorecipe_get_template( "archive-recipe-content-{$archive_layout}", 'archive' )
 			: boorecipe_get_template( "archive-recipe-content-grid", 'archive' );
-
 
 		ob_start();
 
@@ -290,6 +292,17 @@ class Boorecipe_Shortcodes {
 		$this->shortcode_called = $shortcode_name;
 
 		add_filter( 'boorecipe_options_array_from_db', array( $this, 'override_options_value_for_shortcodes' ) );
+
+		add_filter( 'boorecipe_filter_archive_recipe_wrap_classes', array(
+			$this,
+			'filter_archive_recipe_wrap_classes'
+		) );
+
+
+		add_filter( 'boorecipe_filter_archive_recipe_card_classes', array(
+			$this,
+			'filter_archive_recipe_card_classes'
+		) );
 
 		// Check to see if CSS related method exists
 		if ( method_exists( $this, "add_shortcode_css_{$shortcode_name}" ) ) {
@@ -556,6 +569,28 @@ class Boorecipe_Shortcodes {
 	}
 
 	/**
+	 *
+	 */
+	public function filter_archive_recipe_wrap_classes( $classes_array ) {
+
+		$recipe_archive_layout = $this->shortcode_atts['recipe_archive_layout'];
+
+		$classes_array[] = 'recipes-layout-' . $recipe_archive_layout;
+
+
+		if ( $this->shortcode_atts['show_in_masonry'] === 'yes' ) {
+			$classes_array['masonry'] = 'masonry-grid';
+		}
+
+		$recipes_per_row = $this->shortcode_atts['recipes_per_row'];
+
+		$classes_array['per_row'] = 'per-row-' . sanitize_html_class( $recipes_per_row );
+
+		return $classes_array;
+
+	}
+
+	/**
 	 * @param $classes_array
 	 *
 	 * @return mixed
@@ -575,6 +610,47 @@ class Boorecipe_Shortcodes {
 		$prefix_class = $this->shortcode_called . "-" . $this->shortcode_counter;
 
 		return $prefix_class;
+	}
+
+	/**
+	 *
+	 */
+	public function filter_archive_recipe_card_classes( $classes_array ) {
+
+
+		$recipe_archive_layout = $this->shortcode_atts['recipe_archive_layout'];
+
+		switch ( $recipe_archive_layout ) {
+			case( 'grid' ):
+				$classes_array[] = 'grid-archive';
+				break;
+
+			case( 'list' ):
+				$classes_array[] = 'list-archive';
+				break;
+
+			case( 'modern' ):
+				$classes_array[] = 'modern-archive';
+				break;
+
+			case( 'overlay' ):
+				$classes_array[] = 'overlay-archive';
+				break;
+
+			default:
+		}
+
+		if ( $this->get_options_value( 'show_in_masonry' ) === 'yes' ) {
+			$classes_array[] = 'masonry-grid-item';
+		}
+
+
+		return $classes_array;
+
+
+		return $classes_array;
+
+
 	}
 
 	/**
@@ -599,7 +675,6 @@ class Boorecipe_Shortcodes {
 		$prefix_class = $this->get_prefix_class();
 
 		add_filter( 'boorecipe_filter_archive_recipe_wrap_classes', array( $this, 'set_prefix_class' ) );
-
 
 		$color_archive_title = isset( $atts['color_archive_title'] )
 			? boorecipe_sanitize_color( $atts['color_archive_title'] )

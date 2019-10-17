@@ -513,6 +513,7 @@ class Boorecipe {
 	 * @access   private
 	 */
 	private function define_archive_template_hooks() {
+
 		$plugin_archive_template = new Boorecipe_Archive_Template_Functions( $this->get_plugin_name(), $this->get_version() );
 		// Loop Archive Pages
 		$this->loader->add_action( 'boorecipe_archive_wrap_start', $plugin_archive_template, 'archive_wrap_start' );

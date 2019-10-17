@@ -49,13 +49,6 @@
     }
   }
 
-  .recipe-card-recipe-details {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    transition: all ease 0.7s;
-  }
-
   .recipe-img-cont {
 
     .recipe-cards & {
@@ -253,8 +246,6 @@
 @media screen and (min-width: 768px) {
 
 
-  .archive,
-  .related-recipes-section {
     .per-row-5 {
       //&:not(.recipes-layout-overlay),
       &:not(.recipes-layout-list):not(.recipes-layout-overlay) {
@@ -303,9 +294,6 @@
         }
       }
     }
-
-  }
-
 }
 
 span.recipe-archive-key:after {

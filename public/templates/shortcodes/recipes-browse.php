@@ -3,6 +3,8 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
+//var_dump_pretty( $archive_template);
 /*
  * This file requires $archive_template be already defined where this is included.
  * $archive_template = path to the archive template
