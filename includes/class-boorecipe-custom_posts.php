@@ -36,7 +36,21 @@ class Boorecipe_Post_Types {
 		 * @link https://codex.wordpress.org/Function_Reference/register_post_type
 		 */
 
-		$recipe_slug = ( ! empty( $this->get_options_value( 'recipe_slug' ) ) ) ? $this->get_options_value( 'recipe_slug' ) : 'recipe';
+		$recipe_slug = ( ! empty( $this->get_options_value( 'recipe_slug' ) ) )
+			? sanitize_key( $this->get_options_value( 'recipe_slug' ) )
+			: 'recipe';
+
+		$recipe_category_slug = ( ! empty( $this->get_options_value( 'recipe_category_slug' ) ) )
+			? sanitize_key( $this->get_options_value( 'recipe_category_slug' ) )
+			: 'recipe-category';
+
+		$skill_level_slug = ( ! empty( $this->get_options_value( 'skill_level_slug' ) ) )
+			? sanitize_key( $this->get_options_value( 'skill_level_slug' ) )
+			: 'skill-level';
+
+		$recipe_tags_slug = ( ! empty( $this->get_options_value( 'recipe_tags_slug' ) ) )
+			? sanitize_key( $this->get_options_value( 'recipe_tags_slug' ) )
+			: 'recipe-tags';
 
 		$post_types_fields = apply_filters( 'boorecipe_post_type_create_args', array(
 
@@ -89,7 +103,7 @@ class Boorecipe_Post_Types {
 						'plural'              => __( 'Recipe Categories', 'boorecipe' ),
 						'single'              => __( 'Recipe Category', 'boorecipe' ),
 						'post_types'          => array( 'boo_recipe' ),
-						'rewrite'             => array( 'slug' => 'recipe_category', 'with_front' => false ),
+						'rewrite'             => array( 'slug' => $recipe_category_slug, 'with_front' => false ),
 						'exclude_from_search' => false
 					),
 
@@ -99,7 +113,7 @@ class Boorecipe_Post_Types {
 						'plural'              => __( 'Skill Levels', 'boorecipe' ),
 						'single'              => __( 'Skill Level', 'boorecipe' ),
 						'post_types'          => array( 'boo_recipe' ),
-						'rewrite'             => array( 'slug' => 'skill_level', 'with_front' => false ),
+						'rewrite'             => array( 'slug' => $skill_level_slug, 'with_front' => false ),
 						'exclude_from_search' => false
 					),
 
@@ -110,8 +124,7 @@ class Boorecipe_Post_Types {
 						'single'       => __( 'Recipe Tag', 'boorecipe' ),
 						'post_types'   => array( 'boo_recipe' ),
 						'hierarchical' => false,
-						'rewrite'      => array( 'slug' => 'recipe_tags', 'with_front' => false )
-
+						'rewrite'      => array( 'slug' => $recipe_tags_slug, 'with_front' => false )
 					),
 
 				) ),

@@ -614,7 +614,7 @@ class Boorecipe_Admin_Simple {
 				'id'          => $this->prefix . 'recipe_slug',
 				'type'        => 'text',
 				'label'       => __( 'Recipe Slug', 'boorecipe' ),
-				'after'       => sprintf( __( "You will need to re-save %spermalinks%s after changing this value", "boorecipe" ), '<a href=' . get_admin_url() . "options-permalink.php" . ' target="_blank">', '</a>' ),
+				'desc'       => sprintf( __( "You will need to re-save %spermalinks%s after changing this value", "boorecipe" ), '<a href=' . get_admin_url() . "options-permalink.php" . ' target="_blank">', '</a>' ),
 				'class'       => 'text-class',
 				'description' => __( 'the term that appears in url', 'boorecipe' ),
 				'default'     => 'recipe',
@@ -772,6 +772,30 @@ class Boorecipe_Admin_Simple {
 				'label_description' => __( 'If enabled, Search form will be added to recipes archive page ', 'boorecipe' ),
 				'default'           => $this->get_default_options( 'show_search_form' ),
 				'options'           => array( 'yes' => 'Yes', 'no' => 'No' ),
+			),
+
+			array(
+				'id'      => $this->prefix . 'recipe_category_slug',
+				'type'    => 'text',
+				'label'   => __( 'Recipe Category Slug', 'boorecipe-premium' ),
+				'default' => $this->get_default_options( 'recipe_category_slug' ),
+				'desc'       => sprintf( __( "You will need to re-save %spermalinks%s after changing this value", "boorecipe" ), '<a href=' . get_admin_url() . "options-permalink.php" . ' target="_blank">', '</a>' ),
+			),
+
+			array(
+				'id'      => $this->prefix . 'skill_level_slug',
+				'type'    => 'text',
+				'label'   => __( 'Skill Level Slug', 'boorecipe-premium' ),
+				'default' => $this->get_default_options( 'skill_level_slug' ),
+				'desc'       => sprintf( __( "You will need to re-save %spermalinks%s after changing this value", "boorecipe" ), '<a href=' . get_admin_url() . "options-permalink.php" . ' target="_blank">', '</a>' ),
+			),
+
+			array(
+				'id'      => $this->prefix . 'recipe_tags_slug',
+				'type'    => 'text',
+				'label'   => __( 'Recipe Category Slug', 'boorecipe-premium' ),
+				'default' => $this->get_default_options( 'recipe_tags_slug' ),
+				'desc'       => sprintf( __( "You will need to re-save %spermalinks%s after changing this value", "boorecipe" ), '<a href=' . get_admin_url() . "options-permalink.php" . ' target="_blank">', '</a>' ),
 			)
 
 

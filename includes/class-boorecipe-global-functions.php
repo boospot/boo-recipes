@@ -262,6 +262,9 @@ class Boorecipe_Globals {
 			'show_share_buttons'                => 'yes',
 			'uninstall_delete_options'          => 'no',
 			'uninstall_delete_mata'             => 'no',
+			'recipe_category_slug'              => 'recipe-category',
+			'skill_level_slug'                  => 'skill-level',
+			'recipe_tags_slug'                  => 'recipe-tags',
 		);
 
 
