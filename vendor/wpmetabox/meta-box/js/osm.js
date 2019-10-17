@@ -114,7 +114,7 @@
 			$( window ).on( 'rwmb_map_refresh', that.refresh );
 
 			// Refresh on meta box hide and show
-			$( document ).on( 'postbox-toggled', that.refresh );
+			rwmb.$document.on( 'postbox-toggled', that.refresh );
 			// Refresh on sorting meta boxes
 			$( '.meta-box-sortables' ).on( 'sortstop', that.refresh );
 		},
@@ -181,7 +181,7 @@
 		// Update coordinate to input field
 		updateCoordinate: function ( latLng ) {
 			var zoom = this.map.getZoom();
-			this.$coordinate.val( latLng.lat + ',' + latLng.lng + ',' + zoom );
+			this.$coordinate.val( latLng.lat + ',' + latLng.lng + ',' + zoom ).trigger( 'change' );
 		},
 
 		// Find coordinates by address

@@ -66,9 +66,12 @@
 	file.sort = function () {
 		$( this ).sortable( {
 			items: 'li',
-			start: function ( e, ui ) {
+			start: function ( event, ui ) {
 				ui.placeholder.height( ui.helper.outerHeight() );
 				ui.placeholder.width( ui.helper.outerWidth() );
+			},
+			update: function( event, ui ) {
+				ui.item.find( rwmb.inputSelectors ).first().trigger( 'mb_change' );
 			}
 		} );
 	};
@@ -96,9 +99,17 @@
 	// Reset field when cloning.
 	file.resetClone = function() {
 		var $this = $( this ),
-			$clone = $this.closest( '.rwmb-clone' );
-		$clone.find( '.rwmb-uploaded' ).remove();
-		$clone.find( '.rwmb-file-input' ).not( ':first' ).remove();
+			$clone = $this.closest( '.rwmb-clone' ),
+			$list = $clone.find( '.rwmb-uploaded' ),
+			$key = $clone.find( '.rwmb-file-index' ),
+			inputName = '_file_' + rwmb.uniqid();
+
+		$list.empty();
+		$clone.find( '.rwmb-file-input' ).attr( 'name', inputName + '[]' ).not( ':first' ).remove();
+
+		$key.val( inputName );
+
+		file.updateVisibility.call( $list );
 	};
 
 	// Set 'required' attribute. 'this' is the wrapper field input.

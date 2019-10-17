@@ -31,7 +31,7 @@ class RWMB_Update_Checker {
 	 * @param object $option  Update option object.
 	 */
 	public function __construct( $option ) {
-		$this->option  = $option;
+		$this->option = $option;
 	}
 
 	/**
@@ -92,8 +92,8 @@ class RWMB_Update_Checker {
 			'meta-box-tabs',
 			'meta-box-template',
 		);
-		$plugins = get_plugins();
-		$plugins = array_map( 'dirname', array_keys( $plugins ) );
+		$plugins    = get_plugins();
+		$plugins    = array_map( 'dirname', array_keys( $plugins ) );
 
 		return array_intersect( $extensions, $plugins );
 	}
@@ -107,6 +107,13 @@ class RWMB_Update_Checker {
 	 */
 	public function check_updates( $data ) {
 		static $response = null;
+
+		$request = rwmb_request();
+
+		// Bypass embed plugins via TGMPA.
+		if ( $request->get( 'tgmpa-update' ) || 'tgmpa-bulk-update' === $request->post( 'action' ) ) {
+			return $data;
+		}
 
 		// Make sure to send remote request once.
 		if ( null === $response ) {
@@ -176,7 +183,7 @@ class RWMB_Update_Checker {
 		$args = wp_parse_args(
 			$args,
 			array(
-				'api_key' => $this->get_api_key(),
+				'api_key' => $this->option->get_api_key(),
 			)
 		);
 		$args = array_filter( $args );
@@ -203,14 +210,5 @@ class RWMB_Update_Checker {
 		$plugins = get_plugins();
 
 		return isset( $plugins[ $plugin_data->plugin ] ) && version_compare( $plugins[ $plugin_data->plugin ]['Version'], $plugin_data->new_version, '<' );
-	}
-
-	/**
-	 * Get the API key.
-	 *
-	 * @return string
-	 */
-	public function get_api_key() {
-		return defined( 'META_BOX_KEY' ) ? META_BOX_KEY : $this->option->get( 'api_key' );
 	}
 }

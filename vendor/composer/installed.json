@@ -1,20 +1,20 @@
 [
     {
         "name": "wpmetabox/meta-box",
-        "version": "5.1.0",
-        "version_normalized": "5.1.0.0",
+        "version": "5.2.2",
+        "version_normalized": "5.2.2.0",
         "source": {
             "type": "git",
             "url": "https://github.com/wpmetabox/meta-box.git",
-            "reference": "21d531c96330b4f5dac47866b46cea5f800ae548"
+            "reference": "1ae16d47a23bf4e59244f48e61f29dba7e6069dc"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/wpmetabox/meta-box/zipball/21d531c96330b4f5dac47866b46cea5f800ae548",
-            "reference": "21d531c96330b4f5dac47866b46cea5f800ae548",
+            "url": "https://api.github.com/repos/wpmetabox/meta-box/zipball/1ae16d47a23bf4e59244f48e61f29dba7e6069dc",
+            "reference": "1ae16d47a23bf4e59244f48e61f29dba7e6069dc",
             "shasum": ""
         },
-        "time": "2019-08-19T03:27:07+00:00",
+        "time": "2019-10-09T08:36:43+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -29,9 +29,9 @@
         "authors": [
             {
                 "name": "Tran Ngoc Tuan Anh",
-                "role": "Developer",
                 "email": "anhtnt@elightup.com",
-                "homepage": "https://deluxeblogtips.com"
+                "homepage": "https://deluxeblogtips.com",
+                "role": "Developer"
             }
         ],
         "description": "A powerful, professional developer toolkit to create custom meta boxes and custom fields for WordPress websites.",

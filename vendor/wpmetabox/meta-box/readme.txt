@@ -4,8 +4,8 @@ Donate link: https://metabox.io/pricing/
 Tags: meta-box, custom fields, custom field, meta, meta-boxes, admin, advanced, custom, edit, field, file, image, magic fields, matrix, more fields, Post, repeater, simple fields, text, textarea, type, cms, fields post
 Requires at least: 4.3
 Requires PHP: 5.3
-Tested up to: 5.2.2
-Stable tag: 5.1.0
+Tested up to: 5.2.3
+Stable tag: 5.2.2
 License: GPLv2 or later
 
 Meta Box plugin is a powerful, professional developer toolkit to create custom meta boxes and custom fields for WordPress.
@@ -166,6 +166,72 @@ To getting started with the plugin, please read the [Quick Start Guide](https://
 1. Post Taxonomy Fields
 
 == Changelog ==
+
+= 5.2.2 - 2019-10-09 =
+
+**Fixed**
+
+- Fix sanitizing empty post field
+- Fix post thumbnail not saving in MB Frontend Submission
+- Fix undefined index for `image_select` field when using helper functions with no value.
+- Fix JQMIGRATE: 'ready' event is deprecated
+
+**Changed**
+
+- Add styling for date picker, autocomplete, select2 to show in the Customizer (for MB Settings Page)
+
+= 5.2.1 - 2019-09-26 =
+
+**Fixed**
+
+- Fix object fields show only selected items when field type is not select advanced
+- Fix background field not saving position, attachment & size
+- Fix undefined variable in media modal
+- Fix non-unique input name for a non-cloneable file in a cloneable group
+
+= 5.2.0 - 2019-09-18 =
+
+**Added**
+
+- Add ajax support for object fields.
+- Add custom CSS class for meta box wrapper div.
+
+**Changed**
+
+- Improve file upload, making it works in groups.
+- Optimize performance for cloning wysiwyg field.
+- Bypass updates for embed extensions via TGMPA.
+
+**Fixed**
+
+- Fix PHP warning when using clone with date formatting.
+- Fix file upload input not visible when clone a file field with uploaded files = max_file_uploads.
+
+= 5.1.2 - 2019-08-29 =
+
+**Fixed**
+
+- Fix adding >= 2 blocks containing a wysiwyg field not rendering
+- Fix CSS for wyswigy field in Gutenberg
+- Do not show upgrade message in the Dashboard for premium users
+- Fix media field is blank
+- Fix cannot access to license page in Multisite
+
+**Changed**
+
+- Fire `change` and/or `mb_change` events when fields change to update custom blocks in real-time (requires [MB Blocks](https://metabox.io/plugins/mb-blocks/) extension)
+
+= 5.1.1 - 2019-08-23 =
+
+**Fixed**
+
+- Fix sanitizing number always return 0 if it's blank
+- Fix sanitizing URL
+
+**Changed**
+
+- Set default field 'type' to 'text', make it optional and help you write less code
+- File/image fields: do not show add new file link if max_file_uploads = 1
 
 = 5.1.0 - 2019-08-19 =
 

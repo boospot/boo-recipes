@@ -7,11 +7,18 @@
 	function transform() {
 		var $this = $( this ),
 			$wrapper = $this.closest( '.wp-editor-wrap' ),
-			id = $this.attr( 'id' );
+			id = $this.attr( 'id' ),
+			isInBlock = $this.closest( '.wp-block' ).length > 0;
 
 		// Ignore existing editor.
-		if ( tinyMCEPreInit.mceInit[id] ) {
+		if ( ! isInBlock && tinyMCEPreInit.mceInit[id] ) {
 			return;
+		}
+
+		// Update the ID attribute if the editor is in a new block.
+		if ( isInBlock ) {
+			id = id + '_' + rwmb.uniqid();
+			$this.attr( 'id', id );
 		}
 
 		// Update the DOM
@@ -136,5 +143,12 @@
 	ensureSave();
 	rwmb.$document
 		.on( 'mb_blocks_edit', init )
-		.on( 'clone', '.rwmb-wysiwyg', transform );
+		.on( 'mb_init_editors', init )
+		.on( 'clone', '.rwmb-wysiwyg', function() {
+			/*
+			 * Transform a textarea to an editor is a heavy task.
+			 * Moving it to the end of task queue with setTimeout makes cloning faster.
+			 */
+			setTimeout( transform.bind( this ), 0 );
+		} );
 } )( jQuery, wp, window, rwmb );

@@ -42,7 +42,7 @@ class RWMB_Update_Notification {
 		$this->checker = $checker;
 		$this->option  = $option;
 
-		$this->settings_page = is_multisite() ? network_admin_url( 'settings.php?page=meta-box-updater' ) : admin_url( 'admin.php?page=meta-box-updater' );
+		$this->settings_page = $option->is_network_activated() ? network_admin_url( 'settings.php?page=meta-box-updater' ) : admin_url( 'admin.php?page=meta-box-updater' );
 	}
 
 	/**
@@ -66,7 +66,7 @@ class RWMB_Update_Notification {
 			return;
 		}
 
-		$admin_notices_hook = is_multisite() ? 'network_admin_notices' : 'admin_notices';
+		$admin_notices_hook = $this->option->is_network_activated() ? 'network_admin_notices' : 'admin_notices';
 		add_action( $admin_notices_hook, array( $this, 'notify' ) );
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue' ) );
@@ -103,7 +103,7 @@ class RWMB_Update_Notification {
 	public function notify() {
 		// Do not show notification on License page.
 		$screen = get_current_screen();
-		if ( 'meta-box_page_meta-box-updater' === $screen->id ) {
+		if ( in_array( $screen->id, array( 'meta-box_page_meta-box-updater', 'settings_page_meta-box-updater-network' ), true ) ) {
 			return;
 		}
 
@@ -117,7 +117,7 @@ class RWMB_Update_Notification {
 			// Translators: %3$s - URL to the My Account page.
 			'expired' => __( 'Your license key for Meta Box is <b>expired</b>. Please <a href="%3$s" target="_blank">renew your license</a> to get automatic updates and premium support.', 'meta-box' ),
 		);
-		$status   = $this->get_license_status();
+		$status   = $this->option->get_license_status();
 		if ( ! isset( $messages[ $status ] ) ) {
 			return;
 		}
@@ -147,7 +147,7 @@ class RWMB_Update_Notification {
 			// Translators: %3$s - URL to the My Account page.
 			'expired' => __( 'Your license key is <b>expired</b>. Please <a href="%3$s" target="_blank">renew your license</a>.', 'meta-box' ),
 		);
-		$status = $this->get_license_status();
+		$status   = $this->option->get_license_status();
 		if ( ! isset( $messages[ $status ] ) ) {
 			return;
 		}
@@ -163,22 +163,15 @@ class RWMB_Update_Notification {
 	 * @return array
 	 */
 	public function plugin_links( $links ) {
-		$status = $this->get_license_status();
+		$status = $this->option->get_license_status();
 		if ( 'active' === $status ) {
 			return $links;
 		}
 
 		$text    = 'no_key' === $status ? __( 'Activate License', 'meta-box' ) : __( 'Update License', 'meta-box' );
-		$links[] = '<a href="' . esc_url( $this->settings_page ) . '" style="color: #39b54a; font-weight: bold">' . esc_html( $text ) . '</a>';
+		$links[] = '<a href="' . esc_url( $this->settings_page ) . '" class="rwmb-activate-license" style="color: #39b54a; font-weight: bold">' . esc_html( $text ) . '</a>';
 
 		return $links;
-	}
-
-	/**
-	 * Get license status.
-	 */
-	private function get_license_status() {
-		return $this->checker->get_api_key() ? $this->option->get( 'status', 'active' ) : 'no_key';
 	}
 
 	/**

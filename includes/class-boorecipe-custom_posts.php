@@ -622,7 +622,7 @@ class Boorecipe_Post_Types {
 			'context'    => 'normal',
 			'priority'   => 'high',
 			'autosave'   => 'false',
-			'style'      => 'seamless',
+//			'style'      => 'seamless',
 			'fields'     => $recipe_primary_fields,
 		);
 
