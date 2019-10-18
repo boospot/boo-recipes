@@ -58,11 +58,6 @@ Whatever layout you select recipes added using Boo Recipes are correctly formatt
 
 *Available only in Premium Version
 
-**Free Premium Plugin for Lifetime**
-Become Beta Tester for premium plugin and get the premium plugin free with lifetime updates.
-To get the plugin, go to: [https://boospot.com/product/boorecipes-premium-plugin/](https://boospot.com/product/boorecipes-premium-plugin/)
-Use promo code: *BETATESTER* to get 100% discount. Complete details [here](https://boospot.com/product/boorecipes-premium-plugin/#beta-tester)
-Note: option valid for only first 25 beta testers.
 
 ### Documentation
 Extensive Documentation is available at[http://boorecipes.com/documentation/](http://boorecipes.com/documentation/)
@@ -125,8 +120,22 @@ The Following Translations are available at the moment:
 
 == Changelog ==
 
+= 2.0 =
+
+**Major Update**
+- Optimization in framework for metabox and settings
+- Optimized how options are stored in database
+- Recipe Edit page is now more like WordPress way
+- Settings page is now more like WordPress way
+- Compatibility with plugins:
+    - Duplicate Post
+    - Wp All import 
+    - Wp All Export
+    - WPML - Multilingual plugin
+- Stay tuned for more updates coming with new features
+
 = 1.2.4.2 =
-Fix: Comments in Divi theme not showing
+- Fix: Comments in Divi theme not showing
 
 = 1.2.4 =
 - New: Search Form shortcode available now `[boorecipe_search_form]`
@@ -178,4 +187,4 @@ Initial Release of plugin
 
 == Upgrade Notice ==
 
-fixing some issues and adding new features. 
+Please convert your old settings to New settings after this update. Always **BACKUP your database** before running conversion.
