@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Boo Recipe\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-29 13:02+0000\n"
+"POT-Creation-Date: 2019-10-18 16:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -14,17 +14,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/"
 
-#: admin/class-boorecipe-admin-ajax-meta-update.php:87
-#: admin/class-boorecipe-admin-ajax-meta-update.php:89
-#: admin/class-boorecipe-admin-ajax-meta-update.php:124
+#: admin/class-boorecipe-admin-ajax-meta-update.php:88
+#: admin/class-boorecipe-admin-ajax-meta-update.php:90
+#: admin/class-boorecipe-admin-ajax-meta-update.php:125
 msgid "Update Recipes Meta"
 msgstr ""
 
-#: admin/class-boorecipe-admin-ajax-meta-update.php:114
+#: admin/class-boorecipe-admin-ajax-meta-update.php:115
 msgid "Why Update Meta"
 msgstr ""
 
-#: admin/class-boorecipe-admin-ajax-meta-update.php:115
+#: admin/class-boorecipe-admin-ajax-meta-update.php:116
 msgid ""
 "You need to update recipes if you have updated from version 1.0.1. We have "
 "changed recipe meta storage mechanism for optimization. If your recipes are "
@@ -34,432 +34,631 @@ msgid ""
 "as expected."
 msgstr ""
 
-#: admin/class-boorecipe-admin-ajax-meta-update.php:125
+#: admin/class-boorecipe-admin-ajax-meta-update.php:126
 msgid "List of Recipes requiring update"
 msgstr ""
 
-#: admin/class-boorecipe-admin-ajax-meta-update.php:131
+#: admin/class-boorecipe-admin-ajax-meta-update.php:132
 msgid "Congratulations"
 msgstr ""
 
-#: admin/class-boorecipe-admin-ajax-meta-update.php:181
-#: includes/class-boorecipe-custom_posts.php:41
-#: includes/class-boorecipe-custom_posts.php:42
-#: includes/class-boorecipe-custom_posts.php:43
-#: includes/class-boorecipe-global-functions.php:301
+#: admin/class-boorecipe-admin-ajax-meta-update.php:182
+#: includes/class-boorecipe-custom_posts.php:60
+#: includes/class-boorecipe-custom_posts.php:61
+#: includes/class-boorecipe-custom_posts.php:62
+#: includes/class-boorecipe-global-functions.php:310
 #: includes/widgets/class-boorecipe-widget-recipes.php:19
 #: includes/widgets/class-boorecipe-widget-recipes.php:23
 msgid "Recipes"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:148
-msgid "Boo Recipe"
+#: admin/class-boorecipe-admin-simple.php:75
+msgid "Sorry, You do not have sufficient permissions to do this action."
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:152 admin/class-boorecipe-admin.php:160
+#: admin/class-boorecipe-admin-simple.php:84
+#: admin/class-boorecipe-admin-simple.php:136
+msgid "Sorry, We could not find any old settings"
+msgstr ""
+
+#: admin/class-boorecipe-admin-simple.php:93
+msgid "Old Settings have been successfully deleted."
+msgstr ""
+
+#: admin/class-boorecipe-admin-simple.php:94
+#: admin/class-boorecipe-admin-simple.php:183
+#, php-format
+msgid "Page shall reload automatically after %s seconds"
+msgstr ""
+
+#: admin/class-boorecipe-admin-simple.php:99
+msgid ""
+"Sorry, There was an error while deleting old settings. Please try again later"
+msgstr ""
+
+#: admin/class-boorecipe-admin-simple.php:126
+msgid "Sorry, You dont have sufficient permissions to do this action."
+msgstr ""
+
+#: admin/class-boorecipe-admin-simple.php:144
+#: admin/class-boorecipe-admin-simple.php:149
+msgid ""
+"Sorry, Settings related to site language is not found. Old settings worked "
+"on the basis of site language. We cant do much in this regard. Please "
+"contact plugin support to resolve this site-specific issue."
+msgstr ""
+
+#: admin/class-boorecipe-admin-simple.php:182
+#, php-format
+msgid ""
+"Settings have been successfully converted. Total changes made to database "
+"are %s."
+msgstr ""
+
+#: admin/class-boorecipe-admin-simple.php:327
+#: admin/class-boorecipe-admin-simple.php:329
+#: admin/class-boorecipe-admin.php:157
 msgid "Settings"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:164 admin/class-boorecipe-admin.php:631
-msgid "Premium Plugin"
-msgstr ""
-
-#: admin/class-boorecipe-admin.php:184
+#: admin/class-boorecipe-admin-simple.php:401
+#: admin/class-boorecipe-admin.php:181
 msgid "Recipe Single"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:191
+#: admin/class-boorecipe-admin-simple.php:406
+#: admin/class-boorecipe-admin.php:390
+msgid "Recipe Archive"
+msgstr ""
+
+#: admin/class-boorecipe-admin-simple.php:410
+#: admin/class-boorecipe-admin.php:540
+msgid "Search Form"
+msgstr ""
+
+#: admin/class-boorecipe-admin-simple.php:414
+#: admin/class-boorecipe-admin.php:577
+msgid "Widget Settings"
+msgstr ""
+
+#: admin/class-boorecipe-admin-simple.php:418
+#: admin/class-boorecipe-admin.php:609
+msgid "Settings Backup"
+msgstr ""
+
+#: admin/class-boorecipe-admin-simple.php:422
+#: admin/class-boorecipe-admin.php:161 admin/class-boorecipe-admin.php:628
+msgid "Premium Plugin"
+msgstr ""
+
+#: admin/class-boorecipe-admin-simple.php:426
+msgid "Special"
+msgstr ""
+
+#: admin/class-boorecipe-admin-simple.php:430
+#: admin/class-boorecipe-admin.php:682
+msgid "Uninstall"
+msgstr ""
+
+#: admin/class-boorecipe-admin-simple.php:447
+#: admin/class-boorecipe-admin.php:188
 msgid "Accent Color"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:192
+#: admin/class-boorecipe-admin-simple.php:448
+#: admin/class-boorecipe-admin.php:189
 msgid "This will the theme color for the recipe"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:199
+#: admin/class-boorecipe-admin-simple.php:455
+#: admin/class-boorecipe-admin.php:196
 msgid "Secondary Color"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:200
+#: admin/class-boorecipe-admin-simple.php:456
+#: admin/class-boorecipe-admin.php:197
 msgid ""
 "This will be the color for secondary elements (usually in contrast of accent)"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:208
+#: admin/class-boorecipe-admin-simple.php:464
+#: admin/class-boorecipe-admin.php:205
 msgid "Icon Color"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:209
+#: admin/class-boorecipe-admin-simple.php:465
+#: admin/class-boorecipe-admin.php:206
 msgid "This will be the color for icons"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:218
+#: admin/class-boorecipe-admin-simple.php:473
+#: admin/class-boorecipe-admin.php:215
 msgid "Border Color"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:219
+#: admin/class-boorecipe-admin-simple.php:474
+#: admin/class-boorecipe-admin.php:216
 msgid "This will be the color for borders in elements"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:227
+#: admin/class-boorecipe-admin-simple.php:482
+#: admin/class-boorecipe-admin.php:224
 msgid "Recipe Style"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:233
+#: admin/class-boorecipe-admin-simple.php:484
+#, php-format
+msgid "Style %s"
+msgstr ""
+
+#: admin/class-boorecipe-admin-simple.php:488
+#: admin/class-boorecipe-admin.php:230
 msgid "More Styles in Premium Version"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:239
+#: admin/class-boorecipe-admin-simple.php:494
+#: admin/class-boorecipe-admin.php:236
 msgid "Show Nutrition? (Global)"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:240
+#: admin/class-boorecipe-admin-simple.php:495
+#: admin/class-boorecipe-admin.php:237
 msgid "Do you want to show Nutrition info in individual Recipe?"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:247
+#: admin/class-boorecipe-admin-simple.php:503
+#: admin/class-boorecipe-admin.php:244
 msgid "Show Icons?"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:248
+#: admin/class-boorecipe-admin-simple.php:504
+#: admin/class-boorecipe-admin.php:245
 msgid "Do you want to show icons in individual Recipe?"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:255
+#: admin/class-boorecipe-admin-simple.php:512
+#: admin/class-boorecipe-admin.php:252
 msgid "Show Labels for Key Points?"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:256
+#: admin/class-boorecipe-admin-simple.php:513
+#: admin/class-boorecipe-admin.php:253
 msgid "Do you want to show labels for key points in individual Recipe?"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:264
+#: admin/class-boorecipe-admin-simple.php:522
+#: admin/class-boorecipe-admin.php:261
 msgid "Ingredients by the Side"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:265
+#: admin/class-boorecipe-admin-simple.php:523
+#: admin/class-boorecipe-admin.php:262
 msgid "Do you Want to show ingredients by the side?"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:272
+#: admin/class-boorecipe-admin-simple.php:531
+#: admin/class-boorecipe-admin.php:269
 msgid "Nutrition by the Side"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:273
+#: admin/class-boorecipe-admin-simple.php:532
+#: admin/class-boorecipe-admin.php:270
 msgid "Do you Want to show nutrition by the side?"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:280
+#: admin/class-boorecipe-admin-simple.php:540
+#: admin/class-boorecipe-admin.php:277
 msgid "Show Featured Image?"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:281 admin/class-boorecipe-admin.php:289
-#: admin/class-boorecipe-admin.php:297
+#: admin/class-boorecipe-admin-simple.php:541
+#: admin/class-boorecipe-admin-simple.php:550
+#: admin/class-boorecipe-admin-simple.php:559
+#: admin/class-boorecipe-admin.php:278 admin/class-boorecipe-admin.php:286
+#: admin/class-boorecipe-admin.php:294
 msgid ""
 "Some Themes add this to header, you may want to hide the one added by this "
 "plugin to avoid duplicated contents"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:288
+#: admin/class-boorecipe-admin-simple.php:549
+#: admin/class-boorecipe-admin.php:285
 msgid "Show Recipe Title?"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:296
+#: admin/class-boorecipe-admin-simple.php:558
+#: admin/class-boorecipe-admin.php:293
 msgid "Show Recipe Publish info?"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:304
+#: admin/class-boorecipe-admin-simple.php:567
+#: admin/class-boorecipe-admin.php:301
 msgid "Show Share Buttons?"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:305
+#: admin/class-boorecipe-admin-simple.php:568
+#: admin/class-boorecipe-admin.php:302
 msgid "Do you Want to show share buttons on recipe page?"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:312
+#: admin/class-boorecipe-admin-simple.php:576
+#: admin/class-boorecipe-admin.php:309
 msgid "Show Author"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:313
+#: admin/class-boorecipe-admin-simple.php:577
+#: admin/class-boorecipe-admin.php:310
 msgid "Do you Want to show author name on recipe page?"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:320
+#: admin/class-boorecipe-admin-simple.php:585
+#: admin/class-boorecipe-admin.php:317
 msgid "Show Published Date"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:321
+#: admin/class-boorecipe-admin-simple.php:586
+#: admin/class-boorecipe-admin.php:318
 msgid "Do you want to show published date on recipe page?"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:328
+#: admin/class-boorecipe-admin-simple.php:594
+#: admin/class-boorecipe-admin.php:325
 msgid "Featured image height"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:330
+#: admin/class-boorecipe-admin-simple.php:596
+#: admin/class-boorecipe-admin.php:327
 msgid "Maximum height of the recipe image"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:339
+#: admin/class-boorecipe-admin-simple.php:605
+#: admin/class-boorecipe-admin.php:336
 msgid "Recipe default image"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:340
+#: admin/class-boorecipe-admin-simple.php:606
+#: admin/class-boorecipe-admin.php:337
 msgid "Paste the full url to the image you want to use"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:346
+#: admin/class-boorecipe-admin-simple.php:615
+#: admin/class-boorecipe-admin.php:343
 msgid "Layout Max Width"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:348 admin/class-boorecipe-admin.php:502
-#: admin/class-boorecipe-admin.php:588
+#: admin/class-boorecipe-admin-simple.php:617
+#: admin/class-boorecipe-admin-simple.php:766
+#: admin/class-boorecipe-admin-simple.php:865
+#: admin/class-boorecipe-admin.php:345 admin/class-boorecipe-admin.php:499
+#: admin/class-boorecipe-admin.php:585
 msgid "in pixels"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:357
+#: admin/class-boorecipe-admin-simple.php:626
+#: admin/class-boorecipe-admin.php:354
 msgid "Recipe Layout"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:370
+#: admin/class-boorecipe-admin-simple.php:628
+msgid "Full"
+msgstr ""
+
+#: admin/class-boorecipe-admin-simple.php:629
+msgid "Left"
+msgstr ""
+
+#: admin/class-boorecipe-admin-simple.php:630
+msgid "Right"
+msgstr ""
+
+#: admin/class-boorecipe-admin-simple.php:639
+#: admin/class-boorecipe-admin.php:367
 msgid "Recipe Slug"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:371
+#: admin/class-boorecipe-admin-simple.php:640
+#: admin/class-boorecipe-admin-simple.php:805
+#: admin/class-boorecipe-admin-simple.php:813
+#: admin/class-boorecipe-admin-simple.php:821
+#: admin/class-boorecipe-admin.php:368
 #, php-format
 msgid "You will need to re-save %spermalinks%s after changing this value"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:373
+#: admin/class-boorecipe-admin-simple.php:642
+#: admin/class-boorecipe-admin.php:370
 msgid "the term that appears in url"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:393
-msgid "Recipe Archive"
-msgstr ""
-
-#: admin/class-boorecipe-admin.php:400
+#: admin/class-boorecipe-admin-simple.php:662
+#: admin/class-boorecipe-admin.php:397
 msgid "Recipes Per Page"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:409
+#: admin/class-boorecipe-admin-simple.php:671
+#: admin/class-boorecipe-admin.php:406
 msgid "Recipes Per Row"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:411
+#: admin/class-boorecipe-admin-simple.php:673
+#: admin/class-boorecipe-admin.php:408
 msgid "1"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:412
+#: admin/class-boorecipe-admin-simple.php:674
+#: admin/class-boorecipe-admin.php:409
 msgid "2"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:413
+#: admin/class-boorecipe-admin-simple.php:675
+#: admin/class-boorecipe-admin.php:410
 msgid "3"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:414
+#: admin/class-boorecipe-admin-simple.php:676
+#: admin/class-boorecipe-admin.php:411
 msgid "4"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:415
+#: admin/class-boorecipe-admin-simple.php:677
+#: admin/class-boorecipe-admin.php:412
 msgid "5"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:417
+#: admin/class-boorecipe-admin-simple.php:679
+#: admin/class-boorecipe-admin.php:414
 msgid "This option will not take affect for ALL archie layouts"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:425
+#: admin/class-boorecipe-admin-simple.php:687
+#: admin/class-boorecipe-admin.php:422
 msgid "Recipes Archive Layout"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:427
+#: admin/class-boorecipe-admin-simple.php:689
+#: admin/class-boorecipe-admin.php:424
 msgid "Grid"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:428
+#: admin/class-boorecipe-admin-simple.php:690
+#: admin/class-boorecipe-admin.php:425
 msgid "List"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:436
+#: admin/class-boorecipe-admin-simple.php:698
+#: admin/class-boorecipe-admin.php:433
 msgid "Show Recipe cards in Masonry?"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:438
+#: admin/class-boorecipe-admin-simple.php:700
+#: admin/class-boorecipe-admin.php:435
 msgid "If enabled, Layout Switcher will auto disable on front end"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:444
+#: admin/class-boorecipe-admin-simple.php:707
+#: admin/class-boorecipe-admin.php:441
 msgid "Show Layout Switcher?"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:445
+#: admin/class-boorecipe-admin-simple.php:708
+#: admin/class-boorecipe-admin.php:442
 msgid "This option only available for List and Grid view"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:452
+#: admin/class-boorecipe-admin-simple.php:716
+#: admin/class-boorecipe-admin.php:449
 msgid "Heading Tag for Recipes Archive"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:454 includes/arguments.php:24
+#: admin/class-boorecipe-admin-simple.php:718
+#: admin/class-boorecipe-admin.php:451 includes/arguments.php:24
 msgid "h2"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:455 includes/arguments.php:25
+#: admin/class-boorecipe-admin-simple.php:719
+#: admin/class-boorecipe-admin.php:452 includes/arguments.php:25
 msgid "h3"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:456 includes/arguments.php:26
+#: admin/class-boorecipe-admin-simple.php:720
+#: admin/class-boorecipe-admin.php:453 includes/arguments.php:26
 msgid "h4"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:457 includes/arguments.php:27
+#: admin/class-boorecipe-admin-simple.php:721
+#: admin/class-boorecipe-admin.php:454 includes/arguments.php:27
 msgid "h5"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:458 includes/arguments.php:28
+#: admin/class-boorecipe-admin-simple.php:722
+#: admin/class-boorecipe-admin.php:455 includes/arguments.php:28
 msgid "h6"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:467
+#: admin/class-boorecipe-admin-simple.php:731
+#: admin/class-boorecipe-admin.php:464
 msgid "Recipe Title Color"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:468
+#: admin/class-boorecipe-admin-simple.php:732
+#: admin/class-boorecipe-admin.php:465
 msgid "This will default to theme link color"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:475
+#: admin/class-boorecipe-admin-simple.php:739
+#: admin/class-boorecipe-admin.php:472
 msgid "Recipe Excerpt Color"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:483
+#: admin/class-boorecipe-admin-simple.php:747
+#: admin/class-boorecipe-admin.php:480
 msgid "Cards Background Color"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:491
+#: admin/class-boorecipe-admin-simple.php:755
+#: admin/class-boorecipe-admin.php:488
 msgid "Key Points Text Color"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:501
+#: admin/class-boorecipe-admin-simple.php:765
+#: admin/class-boorecipe-admin.php:498
 msgid "Archive Layout Max Width"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:512
+#: admin/class-boorecipe-admin-simple.php:776
+#: admin/class-boorecipe-admin.php:509
 msgid "Override Pagination Styling?"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:513
+#: admin/class-boorecipe-admin-simple.php:777
+#: admin/class-boorecipe-admin.php:510
 msgid "Do you want to override theme styling for pagination?"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:520
+#: admin/class-boorecipe-admin-simple.php:785
+#: admin/class-boorecipe-admin.php:517
 msgid "Show Archive Excerpt"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:521
+#: admin/class-boorecipe-admin-simple.php:786
+#: admin/class-boorecipe-admin.php:518
 msgid "Do you want to show archive excerpt?"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:528
+#: admin/class-boorecipe-admin-simple.php:794
+#: admin/class-boorecipe-admin.php:525
 msgid "Show Search Form on archive page?"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:529
+#: admin/class-boorecipe-admin-simple.php:795
+#: admin/class-boorecipe-admin.php:526
 msgid "If enabled, Search form will be added to recipes archive page "
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:543
-msgid "Search Form"
-msgstr ""
-
-#: admin/class-boorecipe-admin.php:550
+#: admin/class-boorecipe-admin-simple.php:834
+#: admin/class-boorecipe-admin.php:547
 msgid "Form background Color"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:559
+#: admin/class-boorecipe-admin-simple.php:843
+#: admin/class-boorecipe-admin.php:556
 msgid "Button background color"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:567
+#: admin/class-boorecipe-admin-simple.php:851
+#: admin/class-boorecipe-admin.php:564
 msgid "Button text color"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:580
-msgid "Widget Settings"
-msgstr ""
-
-#: admin/class-boorecipe-admin.php:587
+#: admin/class-boorecipe-admin-simple.php:864
+#: admin/class-boorecipe-admin.php:584
 msgid "Recipe Widget: Image width"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:589
+#: admin/class-boorecipe-admin-simple.php:866
+#: admin/class-boorecipe-admin.php:586
 msgid "its for widget area"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:598
+#: admin/class-boorecipe-admin-simple.php:875
+#: admin/class-boorecipe-admin.php:595
 msgid "Recipe Widget: Background color"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:612
-msgid "Settings Backup"
-msgstr ""
-
-#: admin/class-boorecipe-admin.php:619
+#: admin/class-boorecipe-admin-simple.php:889
+#: admin/class-boorecipe-admin.php:616
 msgid "Settings Backup and/or Restore"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:651
-msgid "Custom CSS"
-msgstr ""
-
-#: admin/class-boorecipe-admin.php:658
+#: admin/class-boorecipe-admin-simple.php:915
+#: admin/class-boorecipe-admin.php:655
 msgid "Your Custom CSS"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:671
+#: admin/class-boorecipe-admin-simple.php:916
+#: admin/class-boorecipe-admin.php:668
 msgid "Add your custom CSS here"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:685
-msgid "Uninstall"
+#: admin/class-boorecipe-admin-simple.php:925
+#: admin/class-boorecipe-admin-simple.php:926
+msgid "Convert Old Settings"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:692
+#: admin/class-boorecipe-admin-simple.php:932
+#: admin/class-boorecipe-admin-simple.php:933
+msgid "Delete Old Settings"
+msgstr ""
+
+#: admin/class-boorecipe-admin-simple.php:948
+#: admin/class-boorecipe-admin.php:689
 msgid "Delete Plugin Options"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:693
+#: admin/class-boorecipe-admin-simple.php:949
+#: admin/class-boorecipe-admin.php:690
 msgid "Delete all plugin options data at uninstall?"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:694 admin/class-boorecipe-admin.php:703
+#: admin/class-boorecipe-admin-simple.php:950
+#: admin/class-boorecipe-admin-simple.php:960
+#: admin/class-boorecipe-admin.php:691 admin/class-boorecipe-admin.php:700
 msgid "green = Yes & red = No"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:701
+#: admin/class-boorecipe-admin-simple.php:958
+#: admin/class-boorecipe-admin.php:698
 msgid "Delete Recipes Data"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:702
+#: admin/class-boorecipe-admin-simple.php:959
+#: admin/class-boorecipe-admin.php:699
 msgid "Delete all recipes meta data at uninstall?"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:814
+#: admin/class-boorecipe-admin-simple.php:987
 msgid "Recipe Single Sidebar"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:816
+#: admin/class-boorecipe-admin-simple.php:989
 msgid "Widgets in this area will be shown on Single Recipe"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:821
+#: admin/class-boorecipe-admin-simple.php:994
 msgid "Recipe Archive Sidebar"
 msgstr ""
 
-#: admin/class-boorecipe-admin.php:823
+#: admin/class-boorecipe-admin-simple.php:996
 msgid "Widgets in this area will be shown on Recipe Archive pages"
+msgstr ""
+
+#. Unique ID.
+#: admin/class-boorecipe-admin.php:113
+msgid "Old Settings Detected!"
+msgstr ""
+
+#: admin/class-boorecipe-admin.php:114
+#, php-format
+msgid ""
+"It looks like you have not updated the new settings page. Please go to %s "
+"and click on \"Special\" tab, then click \"Convert Old Settings\" button. "
+"After Successful conversion, click \"Delete Old Settings\" button."
+msgstr ""
+
+#: admin/class-boorecipe-admin.php:114
+msgid "New Settings Page"
+msgstr ""
+
+#: admin/class-boorecipe-admin.php:145
+msgid "Boo Recipe"
+msgstr ""
+
+#: admin/class-boorecipe-admin.php:149
+msgid "Old Settings"
+msgstr ""
+
+#: admin/class-boorecipe-admin.php:648
+msgid "Custom CSS"
 msgstr ""
 
 #: includes/arguments.php:23
@@ -562,420 +761,432 @@ msgstr ""
 msgid "The number of grams of protein."
 msgstr ""
 
-#: includes/class-boorecipe-custom_posts.php:40
-#: includes/class-boorecipe-global-functions.php:300
+#: includes/class-boorecipe-custom_posts.php:59
+#: includes/class-boorecipe-global-functions.php:309
 msgid "Recipe"
 msgstr ""
 
-#: includes/class-boorecipe-custom_posts.php:84
+#: includes/class-boorecipe-custom_posts.php:103
 #: includes/widgets/class-boorecipe-widget-recipe-categories.php:24
 #: includes/widgets/class-boorecipe-widget-recipe-categories.php:28
 msgid "Recipe Categories"
 msgstr ""
 
-#: includes/class-boorecipe-custom_posts.php:85
+#: includes/class-boorecipe-custom_posts.php:104
 msgid "Recipe Category"
 msgstr ""
 
-#: includes/class-boorecipe-custom_posts.php:94
-#: includes/class-boorecipe-global-functions.php:304
+#: includes/class-boorecipe-custom_posts.php:113
+#: includes/class-boorecipe-global-functions.php:313
 msgid "Skill Levels"
 msgstr ""
 
-#: includes/class-boorecipe-custom_posts.php:95
-#: includes/class-boorecipe-global-functions.php:303
+#: includes/class-boorecipe-custom_posts.php:114
 #: includes/class-boorecipe-global-functions.php:312
+#: includes/class-boorecipe-global-functions.php:321
 msgid "Skill Level"
 msgstr ""
 
-#: includes/class-boorecipe-custom_posts.php:104
+#: includes/class-boorecipe-custom_posts.php:123
 #: includes/widgets/class-boorecipe-widget-recipe-tags-cloud.php:24
 msgid "Recipe Tags"
 msgstr ""
 
-#: includes/class-boorecipe-custom_posts.php:105
+#: includes/class-boorecipe-custom_posts.php:124
 msgid "Recipe Tag"
 msgstr ""
 
-#: includes/class-boorecipe-custom_posts.php:184
+#: includes/class-boorecipe-custom_posts.php:211
 #, php-format
 msgid "New %s"
 msgstr ""
 
-#: includes/class-boorecipe-custom_posts.php:185
+#: includes/class-boorecipe-custom_posts.php:212
 #, php-format
 msgid "Add new %s"
 msgstr ""
 
-#: includes/class-boorecipe-custom_posts.php:186
-#: includes/class-boorecipe-custom_posts.php:351
+#: includes/class-boorecipe-custom_posts.php:213
+#: includes/class-boorecipe-custom_posts.php:378
 #, php-format
 msgid "Edit %s"
 msgstr ""
 
-#: includes/class-boorecipe-custom_posts.php:187
-#: includes/class-boorecipe-custom_posts.php:188
-#: includes/class-boorecipe-custom_posts.php:352
+#: includes/class-boorecipe-custom_posts.php:214
+#: includes/class-boorecipe-custom_posts.php:215
+#: includes/class-boorecipe-custom_posts.php:379
 #, php-format
 msgid "View %s"
 msgstr ""
 
-#: includes/class-boorecipe-custom_posts.php:189
-#: includes/class-boorecipe-custom_posts.php:358
+#: includes/class-boorecipe-custom_posts.php:216
+#: includes/class-boorecipe-custom_posts.php:385
 #, php-format
 msgid "Search %s"
 msgstr ""
 
-#: includes/class-boorecipe-custom_posts.php:190
-#: includes/class-boorecipe-custom_posts.php:363
+#: includes/class-boorecipe-custom_posts.php:217
+#: includes/class-boorecipe-custom_posts.php:390
 #, php-format
 msgid "No %s found"
 msgstr ""
 
-#: includes/class-boorecipe-custom_posts.php:191
+#: includes/class-boorecipe-custom_posts.php:218
 #, php-format
 msgid "No %s found in trash"
 msgstr ""
 
-#: includes/class-boorecipe-custom_posts.php:192
-#: includes/class-boorecipe-custom_posts.php:350
+#: includes/class-boorecipe-custom_posts.php:219
+#: includes/class-boorecipe-custom_posts.php:377
 #, php-format
 msgid "All %s"
 msgstr ""
 
-#: includes/class-boorecipe-custom_posts.php:193
+#: includes/class-boorecipe-custom_posts.php:220
 #, php-format
 msgid "%s Archives"
 msgstr ""
 
-#: includes/class-boorecipe-custom_posts.php:194
+#: includes/class-boorecipe-custom_posts.php:221
 #, php-format
 msgid "%s Attributes"
 msgstr ""
 
-#: includes/class-boorecipe-custom_posts.php:195
+#: includes/class-boorecipe-custom_posts.php:222
 #, php-format
 msgid "Insert into %s"
 msgstr ""
 
-#: includes/class-boorecipe-custom_posts.php:196
+#: includes/class-boorecipe-custom_posts.php:223
 #, php-format
 msgid "Uploaded to this %s"
 msgstr ""
 
-#: includes/class-boorecipe-custom_posts.php:199
-#: includes/class-boorecipe-custom_posts.php:356
+#: includes/class-boorecipe-custom_posts.php:226
+#: includes/class-boorecipe-custom_posts.php:383
 #, php-format
 msgid "Parent %s"
 msgstr ""
 
-#: includes/class-boorecipe-custom_posts.php:200
-#: includes/class-boorecipe-custom_posts.php:357
+#: includes/class-boorecipe-custom_posts.php:227
+#: includes/class-boorecipe-custom_posts.php:384
 #, php-format
 msgid "Parent %s:"
 msgstr ""
 
-#: includes/class-boorecipe-custom_posts.php:353
+#: includes/class-boorecipe-custom_posts.php:380
 #, php-format
 msgid "Update %s"
 msgstr ""
 
-#: includes/class-boorecipe-custom_posts.php:354
+#: includes/class-boorecipe-custom_posts.php:381
 #, php-format
 msgid "Add New %s"
 msgstr ""
 
-#: includes/class-boorecipe-custom_posts.php:355
+#: includes/class-boorecipe-custom_posts.php:382
 #, php-format
 msgid "New %s Name"
 msgstr ""
 
-#: includes/class-boorecipe-custom_posts.php:359
+#: includes/class-boorecipe-custom_posts.php:386
 #, php-format
 msgid "Popular %s"
 msgstr ""
 
-#: includes/class-boorecipe-custom_posts.php:360
+#: includes/class-boorecipe-custom_posts.php:387
 #, php-format
 msgid "Separate %s with commas"
 msgstr ""
 
-#: includes/class-boorecipe-custom_posts.php:361
+#: includes/class-boorecipe-custom_posts.php:388
 #, php-format
 msgid "Add or remove %s"
 msgstr ""
 
-#: includes/class-boorecipe-custom_posts.php:362
+#: includes/class-boorecipe-custom_posts.php:389
 #, php-format
 msgid "Choose from the most used %s"
 msgstr ""
 
-#: includes/class-boorecipe-custom_posts.php:422
-msgid "Recipe Schema Options"
-msgstr ""
-
-#: includes/class-boorecipe-custom_posts.php:435
-msgid "Primary Information"
-msgstr ""
-
-#: includes/class-boorecipe-custom_posts.php:443
-msgid "Short Description"
-msgstr ""
-
-#: includes/class-boorecipe-custom_posts.php:444
-msgid "Describe your recipe in a few words"
-msgstr ""
-
-#: includes/class-boorecipe-custom_posts.php:452
-msgid "Time Format"
-msgstr ""
-
-#: includes/class-boorecipe-custom_posts.php:454
-msgid "Minutes"
-msgstr ""
-
-#: includes/class-boorecipe-custom_posts.php:455
-msgid "Hours"
-msgstr ""
-
-#: includes/class-boorecipe-custom_posts.php:466
-msgid "Prep Time"
-msgstr ""
-
-#: includes/class-boorecipe-custom_posts.php:468
-#: includes/class-boorecipe-custom_posts.php:482
-#: includes/class-boorecipe-custom_posts.php:495
-msgid "Hours or Minutes depending upon the options selected above"
-msgstr ""
-
-#: includes/class-boorecipe-custom_posts.php:480
-msgid "Cook Time"
-msgstr ""
-
-#: includes/class-boorecipe-custom_posts.php:493
-msgid "Total Time"
-msgstr ""
-
-#: includes/class-boorecipe-custom_posts.php:507
-#: includes/class-boorecipe-global-functions.php:311
-msgid "Yields"
-msgstr ""
-
-#: includes/class-boorecipe-custom_posts.php:508
-msgid "e.g. 6 bowls, 2 cakes, three ice-creams"
-msgstr ""
-
-#: includes/class-boorecipe-custom_posts.php:510
-#: includes/class-boorecipe-custom_posts.php:630
-msgid "Text input expected"
-msgstr ""
-
-#: includes/class-boorecipe-custom_posts.php:518
-msgid "Is External Author?"
-msgstr ""
-
-#: includes/class-boorecipe-custom_posts.php:519
-msgid ""
-"Check this box if the recipe author is not a registered user on this site"
-msgstr ""
-
-#: includes/class-boorecipe-custom_posts.php:528
-#: includes/class-boorecipe-custom_posts.php:531
-msgid "External author name"
-msgstr ""
-
-#: includes/class-boorecipe-custom_posts.php:539
-#: includes/class-boorecipe-custom_posts.php:542
-msgid "External author link"
-msgstr ""
-
-#: includes/class-boorecipe-custom_posts.php:550
-#: includes/class-boorecipe-global-functions.php:314
-msgid "Ingredients"
-msgstr ""
-
-#: includes/class-boorecipe-custom_posts.php:551
-msgid ""
-"If you need to add ingredient group, place ** before the group heading like: "
-"<br/> **Cake<br/>ingredient 1<br/>ingredient 2  "
-msgstr ""
-
-#: includes/class-boorecipe-custom_posts.php:552
-msgid "One ingredient per line."
-msgstr ""
-
-#: includes/class-boorecipe-custom_posts.php:559
-msgid "Directions"
-msgstr ""
-
-#: includes/class-boorecipe-custom_posts.php:560
-msgid ""
-"If you need to add directions group, place ** before the group heading like: "
-"<br/> **How to Make Crust<br/>Direction 1<br/>Direction 2"
-msgstr ""
-
-#: includes/class-boorecipe-custom_posts.php:561
-msgid "One Step per line"
-msgstr ""
-
-#: includes/class-boorecipe-custom_posts.php:568
-msgid "Excerpt for List view"
-msgstr ""
-
-#: includes/class-boorecipe-custom_posts.php:569
-msgid "This will show in archive view of recipes"
-msgstr ""
-
-#: includes/class-boorecipe-custom_posts.php:576
-#: includes/class-boorecipe-global-functions.php:316
-msgid "Additional Notes"
-msgstr ""
-
-#: includes/class-boorecipe-custom_posts.php:577
-msgid "Add additional notes to the recipe. it will show at the end of recipe"
-msgstr ""
-
-#: includes/class-boorecipe-custom_posts.php:600
+#: includes/class-boorecipe-custom_posts.php:431
+#: includes/class-boorecipe-custom_posts.php:849
 msgid "Show Nutrition"
 msgstr ""
 
-#: includes/class-boorecipe-custom_posts.php:601
+#: includes/class-boorecipe-custom_posts.php:432
+#: includes/class-boorecipe-custom_posts.php:850
 msgid ""
 "Do you want to show nutrition info for this recipe? Its required by Schema."
 "org"
 msgstr ""
 
-#: includes/class-boorecipe-custom_posts.php:622
+#: includes/class-boorecipe-custom_posts.php:454
+#: includes/class-boorecipe-custom_posts.php:871
 msgid "in grams"
 msgstr ""
 
-#: includes/class-boorecipe-custom_posts.php:626
+#: includes/class-boorecipe-custom_posts.php:458
+#: includes/class-boorecipe-custom_posts.php:875
 msgid "in milligrams"
 msgstr ""
 
-#: includes/class-boorecipe-custom_posts.php:673
-#: includes/class-boorecipe-global-functions.php:317
+#: includes/class-boorecipe-custom_posts.php:462
+#: includes/class-boorecipe-custom_posts.php:575
+#: includes/class-boorecipe-custom_posts.php:879
+msgid "Text input expected"
+msgstr ""
+
+#: includes/class-boorecipe-custom_posts.php:502
+#: includes/class-boorecipe-custom_posts.php:922
+#: includes/class-boorecipe-global-functions.php:326
 msgid "Nutrition"
 msgstr ""
 
-#: includes/class-boorecipe-global-functions.php:219
-#: includes/class-boorecipe-global-functions.php:221
-#: includes/class-boorecipe-global-functions.php:309
+#: includes/class-boorecipe-custom_posts.php:532
+msgid "Short Description"
+msgstr ""
+
+#: includes/class-boorecipe-custom_posts.php:534
+msgid "Describe your recipe in a few words"
+msgstr ""
+
+#: includes/class-boorecipe-custom_posts.php:540
+msgid "Time Format"
+msgstr ""
+
+#: includes/class-boorecipe-custom_posts.php:543
+msgid "Minutes"
+msgstr ""
+
+#: includes/class-boorecipe-custom_posts.php:544
+msgid "Hours"
+msgstr ""
+
+#: includes/class-boorecipe-custom_posts.php:552
+msgid "Prep Time"
+msgstr ""
+
+#: includes/class-boorecipe-custom_posts.php:553
+#: includes/class-boorecipe-custom_posts.php:567
+msgid "Hours or Minutes depending upon the options selected above"
+msgstr ""
+
+#: includes/class-boorecipe-custom_posts.php:558
+msgid "Cook Time"
+msgstr ""
+
+#: includes/class-boorecipe-custom_posts.php:560
+msgid "Format is HH:MM"
+msgstr ""
+
+#: includes/class-boorecipe-custom_posts.php:565
+msgid "Total Time"
+msgstr ""
+
+#: includes/class-boorecipe-custom_posts.php:573
+#: includes/class-boorecipe-global-functions.php:320
+msgid "Yields"
+msgstr ""
+
+#: includes/class-boorecipe-custom_posts.php:574
+msgid "e.g. 6 bowls, 2 cakes, three ice-creams"
+msgstr ""
+
+#: includes/class-boorecipe-custom_posts.php:579
+msgid "Is External Author?"
+msgstr ""
+
+#: includes/class-boorecipe-custom_posts.php:581
+msgid ""
+"Check this box if the recipe author is not a registered user on this site"
+msgstr ""
+
+#: includes/class-boorecipe-custom_posts.php:586
+#: includes/class-boorecipe-custom_posts.php:588
+msgid "External author name"
+msgstr ""
+
+#: includes/class-boorecipe-custom_posts.php:594
+#: includes/class-boorecipe-custom_posts.php:595
+msgid "External author link"
+msgstr ""
+
+#: includes/class-boorecipe-custom_posts.php:601
+#: includes/class-boorecipe-global-functions.php:323
+msgid "Ingredients"
+msgstr ""
+
+#: includes/class-boorecipe-custom_posts.php:602
+msgid ""
+"If you need to add ingredient group, place ** before the group heading like: "
+"**Cakeingredient 1ingredient 2"
+msgstr ""
+
+#: includes/class-boorecipe-custom_posts.php:603
+msgid "One ingredient per line."
+msgstr ""
+
+#: includes/class-boorecipe-custom_posts.php:609
+msgid "Directions"
+msgstr ""
+
+#: includes/class-boorecipe-custom_posts.php:610
+msgid ""
+"If you need to add directions group, place ** before the group heading like: "
+"<br/> **How to Make Crust<br/>Direction 1<br/>Direction 2"
+msgstr ""
+
+#: includes/class-boorecipe-custom_posts.php:611
+msgid "One Step per line"
+msgstr ""
+
+#: includes/class-boorecipe-custom_posts.php:617
+msgid "Excerpt for List view"
+msgstr ""
+
+#: includes/class-boorecipe-custom_posts.php:618
+msgid "This will show in archive view of recipes"
+msgstr ""
+
+#: includes/class-boorecipe-custom_posts.php:624
+#: includes/class-boorecipe-global-functions.php:325
+msgid "Additional Notes"
+msgstr ""
+
+#: includes/class-boorecipe-custom_posts.php:625
+msgid "Add additional notes to the recipe. it will show at the end of recipe"
+msgstr ""
+
+#: includes/class-boorecipe-custom_posts.php:633
+msgid "Recipe Schema Information"
+msgstr ""
+
+#: includes/class-boorecipe-custom_posts.php:671
+msgid "Recipe Schema Options"
+msgstr ""
+
+#: includes/class-boorecipe-custom_posts.php:684
+msgid "Primary Information"
+msgstr ""
+
+#: includes/class-boorecipe-global-functions.php:225
+#: includes/class-boorecipe-global-functions.php:227
+#: includes/class-boorecipe-global-functions.php:318
 msgid "mins"
 msgstr ""
 
-#: includes/class-boorecipe-global-functions.php:220
-#: includes/class-boorecipe-global-functions.php:222
-#: includes/class-boorecipe-global-functions.php:310
+#: includes/class-boorecipe-global-functions.php:226
+#: includes/class-boorecipe-global-functions.php:228
+#: includes/class-boorecipe-global-functions.php:319
 msgid "hours"
 msgstr ""
 
-#: includes/class-boorecipe-global-functions.php:228
+#: includes/class-boorecipe-global-functions.php:234
 msgid "Failed security check"
 msgstr ""
 
-#: includes/class-boorecipe-global-functions.php:229
+#: includes/class-boorecipe-global-functions.php:235
 msgid "Enter Keyword Here..."
 msgstr ""
 
-#: includes/class-boorecipe-global-functions.php:230
+#: includes/class-boorecipe-global-functions.php:236
 #: public/templates/single/section-share-buttons.php:32
 #: public/templates/single/section-share-buttons.php:48
-#: public/templates/single/section-share-buttons.php:54
 msgctxt "facebook, linkedin etc"
 msgid "Share"
 msgstr ""
 
-#: includes/class-boorecipe-global-functions.php:231
+#: includes/class-boorecipe-global-functions.php:237
 #: public/templates/single/section-share-buttons.php:42
 msgctxt "pinterest etc"
 msgid "Save"
 msgstr ""
 
-#: includes/class-boorecipe-global-functions.php:232
+#: includes/class-boorecipe-global-functions.php:238
 #: public/templates/single/section-share-buttons.php:37
 msgctxt "twitter tweet"
 msgid "Tweet"
 msgstr ""
 
-#: includes/class-boorecipe-global-functions.php:233
-#: public/templates/single/section-share-buttons.php:59
+#: includes/class-boorecipe-global-functions.php:239
+#: public/templates/single/section-share-buttons.php:53
 msgctxt "Send Email"
 msgid "Email"
 msgstr ""
 
-#: includes/class-boorecipe-global-functions.php:302
+#: includes/class-boorecipe-global-functions.php:311
 msgid "Category"
 msgstr ""
 
-#: includes/class-boorecipe-global-functions.php:305
+#: includes/class-boorecipe-global-functions.php:314
 msgid "Usage"
 msgstr ""
 
-#: includes/class-boorecipe-global-functions.php:306
+#: includes/class-boorecipe-global-functions.php:315
 msgid "Prep"
 msgstr ""
 
-#: includes/class-boorecipe-global-functions.php:307
+#: includes/class-boorecipe-global-functions.php:316
 msgid "Cook"
 msgstr ""
 
-#: includes/class-boorecipe-global-functions.php:308
+#: includes/class-boorecipe-global-functions.php:317
 msgid "Ready-in"
 msgstr ""
 
-#: includes/class-boorecipe-global-functions.php:313
+#: includes/class-boorecipe-global-functions.php:322
 msgid "Keyword"
 msgstr ""
 
-#: includes/class-boorecipe-global-functions.php:315
+#: includes/class-boorecipe-global-functions.php:324
 msgid "Instructions"
 msgstr ""
 
-#: includes/class-boorecipe-global-functions.php:318
+#: includes/class-boorecipe-global-functions.php:327
 msgid "Nutrition Facts"
 msgstr ""
 
-#: includes/class-boorecipe-global-functions.php:319
+#: includes/class-boorecipe-global-functions.php:328
 msgid "Search"
 msgstr ""
 
-#: includes/class-boorecipe-global-functions.php:320
+#: includes/class-boorecipe-global-functions.php:329
 msgid "Any"
 msgstr ""
 
-#: includes/class-boorecipe-global-functions.php:321
+#: includes/class-boorecipe-global-functions.php:330
 msgid "All"
 msgstr ""
 
-#: includes/class-boorecipe-global-functions.php:322
+#: includes/class-boorecipe-global-functions.php:331
 msgctxt "Post Archive Layout"
 msgid "Grid"
 msgstr ""
 
-#: includes/class-boorecipe-global-functions.php:323
+#: includes/class-boorecipe-global-functions.php:332
 msgctxt "Post Archive Layout"
 msgid "List"
 msgstr ""
 
-#: includes/class-boorecipe-shortcodes.php:141
+#: includes/class-boorecipe-shortcodes.php:133
 msgid "Print"
 msgstr ""
 
-#: includes/helper-functions.php:566
-#: public/class-boorecipe-template-functions.php:122
+#: includes/helper-functions.php:711
+#: public/class-boorecipe-template-functions.php:123
 msgid "Anonymous"
 msgstr ""
 
-#: includes/helper-functions.php:782
+#: includes/helper-functions.php:968
 msgid "Easy"
 msgstr ""
 
-#: includes/helper-functions.php:783
+#: includes/helper-functions.php:969
 msgid "Medium"
 msgstr ""
 
-#: includes/helper-functions.php:784
+#: includes/helper-functions.php:970
 msgid "Hard"
 msgstr ""
 
