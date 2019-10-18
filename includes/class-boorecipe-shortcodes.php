@@ -195,6 +195,58 @@ class Boorecipe_Shortcodes {
 	}
 
 	/**
+	 * @param $options_array
+	 *
+	 * @return array
+	 */
+	public function inactive_override_single_option_value_for_shortcodes( $get_options_value, $option_id ) {
+
+
+		$options_array = array(
+			$option_id => $get_options_value
+		);
+
+
+		if ( $this->shortcode_atts === null ) {
+			return $options_array;
+		}
+
+		$shortcode_atts = $this->shortcode_atts;
+
+		/*
+		 * Loop Method
+		 */
+//		foreach ( $options_array as $key => $value ) {
+//
+//			if ( isset( $shortcode_atts[ $key ] ) ) {
+//				$options_array[ $key ] = $shortcode_atts[ $key ];
+//			} else {
+//				continue;
+//			}
+//
+//		}
+
+
+		/*
+		 * Shortcode_atts method
+		 */
+//		$options_array = shortcode_atts(
+//			$options_array,
+//			$shortcode_atts
+//		);
+
+		/*
+		 * wp_parse_args() method
+		 */
+
+		$options_array = wp_parse_args( $shortcode_atts, $options_array );
+
+		return $options_array[ $option_id ];
+
+	}
+
+
+	/**
 	 * @param $atts
 	 *
 	 * @hooked recipes_browse shortcode registered
@@ -292,17 +344,18 @@ class Boorecipe_Shortcodes {
 		$this->shortcode_called = $shortcode_name;
 
 		add_filter( 'boorecipe_options_array_from_db', array( $this, 'override_options_value_for_shortcodes' ) );
-
-		add_filter( 'boorecipe_filter_archive_recipe_wrap_classes', array(
-			$this,
-			'filter_archive_recipe_wrap_classes'
-		) );
-
-
-		add_filter( 'boorecipe_filter_archive_recipe_card_classes', array(
-			$this,
-			'filter_archive_recipe_card_classes'
-		) );
+//		add_filter( 'boorecipe_option_from_db', array( $this, 'override_single_option_value_for_shortcodes' ), 10, 2 );
+//
+//		add_filter( 'boorecipe_filter_archive_recipe_wrap_classes', array(
+//			$this,
+//			'filter_archive_recipe_wrap_classes'
+//		) );
+//
+//
+//		add_filter( 'boorecipe_filter_archive_recipe_card_classes', array(
+//			$this,
+//			'filter_archive_recipe_card_classes'
+//		) );
 
 		// Check to see if CSS related method exists
 		if ( method_exists( $this, "add_shortcode_css_{$shortcode_name}" ) ) {
@@ -571,8 +624,11 @@ class Boorecipe_Shortcodes {
 	/**
 	 *
 	 */
-	public function filter_archive_recipe_wrap_classes( $classes_array ) {
+	public function inactive_filter_archive_recipe_wrap_classes( $classes_array ) {
 
+		if ( 'recipes_browse' != $this->shortcode_called ) {
+			return null;
+		}
 		$recipe_archive_layout = $this->shortcode_atts['recipe_archive_layout'];
 
 		$classes_array[] = 'recipes-layout-' . $recipe_archive_layout;
@@ -615,8 +671,11 @@ class Boorecipe_Shortcodes {
 	/**
 	 *
 	 */
-	public function filter_archive_recipe_card_classes( $classes_array ) {
+	public function inactive_filter_archive_recipe_card_classes( $classes_array ) {
 
+		if ( 'recipes_browse' != $this->shortcode_called ) {
+			return null;
+		}
 
 		$recipe_archive_layout = $this->shortcode_atts['recipe_archive_layout'];
 

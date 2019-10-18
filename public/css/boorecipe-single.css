@@ -337,6 +337,31 @@
 }
 
 @media only screen and (min-width: 50em) {
+  .recipe-instructions {
+    grid-column: 1/2 span;
+    grid-row: 1;
+  }
+  .recipe-instructions .instructions-list {
+    padding-left: 5px;
+  }
+  .recipe-instructions .recipe-single-instruction:before {
+    border-radius: 0px;
+    background-color: #155724;
+    color: #ffffff;
+  }
+
+  .recipe-ingredients .select-item {
+    padding-left: 0px;
+    margin-right: 0px;
+    margin-left: 30px;
+  }
+  .recipe-ingredients .select-item:before {
+    position: absolute;
+    left: -25px;
+    top: 5px;
+    border: 2px solid #35b518;
+  }
+
   .recipe-layout-style1 .recipe-body .recipe-main-body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -353,38 +378,6 @@
       letter-spacing: .05em;
       text-transform: uppercase;
     }*/
-  }
-  .recipe-layout-style1 .recipe-instructions {
-    grid-column: 1/2 span;
-    grid-row: 1;
-  }
-  .recipe-layout-style1 .recipe-instructions .instructions-list {
-    padding-left: 5px;
-  }
-  .recipe-layout-style1 .recipe-instructions .recipe-single-instruction {
-    /*
-    span {
-      background: #35b51812;
-      padding: 10px;
-      flex-basis: 100%;
-    }
-    */
-  }
-  .recipe-layout-style1 .recipe-instructions .recipe-single-instruction:before {
-    border-radius: 0px;
-    background-color: #35b518;
-    color: #ffffff;
-  }
-  .recipe-layout-style1 .recipe-ingredients .select-item {
-    padding-left: 0px;
-    margin-right: 0px;
-    margin-left: 30px;
-  }
-  .recipe-layout-style1 .recipe-ingredients .select-item:before {
-    position: absolute;
-    left: -25px;
-    top: 5px;
-    border: 2px solid #35b518;
   }
   .recipe-layout-style1 .recipe-nutrition {
     grid-row: 1/2 span;

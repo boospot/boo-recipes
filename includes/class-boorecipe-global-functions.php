@@ -147,11 +147,34 @@ class Boorecipe_Globals {
 
 			$get_options_value = get_option( self::get_meta_prefix() . $option_id );
 
-			if ( ! empty( $get_options_value ) ) {
-				return $get_options_value;
-			} else {
-				return self::get_default_options( $option_id );
-			}
+			$options_array = array(
+				$option_id => $get_options_value
+			);
+
+			$options_array = apply_filters( 'boorecipe_options_array_from_db', $options_array );
+
+			$get_options_value = (
+				isset( $options_array[ $option_id ] )
+				&& ! empty( $options_array[ $option_id ] )
+			)
+				? $options_array[ $option_id ]
+				: self::get_default_options( $option_id );
+
+			return $get_options_value;
+
+//			if ( ! empty( $get_options_value ) ) {
+//
+//				$options_array = array(
+//					$option_id => $get_options_value
+//				);
+//
+//				$options_array = apply_filters( 'boorecipe_options_array_from_db', $options_array );
+//				$get_options_value = apply_filters( 'boorecipe_option_from_db', $get_options_value, $option_id );
+//				return $get_options_value;
+////				return apply_filters( 'boorecipe_option_from_db_' . $option_id, $option_id, $get_options_value );
+//			} else {
+//				return self::get_default_options( $option_id );
+//			}
 
 		} else {
 
