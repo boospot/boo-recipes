@@ -1,4 +1,7 @@
 <?php
+
+use WPTRT\AdminNotices\Notices;
+
 // exit if file is called directly
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -53,6 +56,28 @@ class Boorecipe_Admin_Simple {
 		add_action( 'wp_ajax_admin_convert_settings', array( $this, 'admin_convert_settings_handler' ) );
 
 		add_action( 'wp_ajax_admin_delete_settings', array( $this, 'admin_delete_settings_handler' ) );
+
+	}
+
+	/**
+	 * @hooked admin_head
+	 */
+	public function display_old_settings_admin_notice() {
+
+		$admin_notice = new Notices();
+
+		$admin_notice->add(
+			'old_settings_notice',                           // Unique ID.
+			false,  // The title for this notice.
+			esc_html__( 'It looks like you have not updated the new settings page. Please go to Dashboard > Recipes > Settings > Special and click "Convert Old Settings" button. After Successful conversion, click "Delete Old Settings" buttons', 'boorecipe' ), // The content for this notice.
+			[
+				// Only show notice in the recipe
+				'type'    => 'warning',
+				'screens' => [ 'boo_recipe_page_boorecipe-options', 'boo_recipe_page_boorecipe-settings' ],
+			]
+		);
+
+		$admin_notice->boot();
 
 	}
 
@@ -614,7 +639,7 @@ class Boorecipe_Admin_Simple {
 				'id'          => $this->prefix . 'recipe_slug',
 				'type'        => 'text',
 				'label'       => __( 'Recipe Slug', 'boorecipe' ),
-				'desc'       => sprintf( __( "You will need to re-save %spermalinks%s after changing this value", "boorecipe" ), '<a href=' . get_admin_url() . "options-permalink.php" . ' target="_blank">', '</a>' ),
+				'desc'        => sprintf( __( "You will need to re-save %spermalinks%s after changing this value", "boorecipe" ), '<a href=' . get_admin_url() . "options-permalink.php" . ' target="_blank">', '</a>' ),
 				'class'       => 'text-class',
 				'description' => __( 'the term that appears in url', 'boorecipe' ),
 				'default'     => 'recipe',
@@ -779,7 +804,7 @@ class Boorecipe_Admin_Simple {
 				'type'    => 'text',
 				'label'   => __( 'Recipe Category Slug', 'boorecipe-premium' ),
 				'default' => $this->get_default_options( 'recipe_category_slug' ),
-				'desc'       => sprintf( __( "You will need to re-save %spermalinks%s after changing this value", "boorecipe" ), '<a href=' . get_admin_url() . "options-permalink.php" . ' target="_blank">', '</a>' ),
+				'desc'    => sprintf( __( "You will need to re-save %spermalinks%s after changing this value", "boorecipe" ), '<a href=' . get_admin_url() . "options-permalink.php" . ' target="_blank">', '</a>' ),
 			),
 
 			array(
@@ -787,7 +812,7 @@ class Boorecipe_Admin_Simple {
 				'type'    => 'text',
 				'label'   => __( 'Skill Level Slug', 'boorecipe-premium' ),
 				'default' => $this->get_default_options( 'skill_level_slug' ),
-				'desc'       => sprintf( __( "You will need to re-save %spermalinks%s after changing this value", "boorecipe" ), '<a href=' . get_admin_url() . "options-permalink.php" . ' target="_blank">', '</a>' ),
+				'desc'    => sprintf( __( "You will need to re-save %spermalinks%s after changing this value", "boorecipe" ), '<a href=' . get_admin_url() . "options-permalink.php" . ' target="_blank">', '</a>' ),
 			),
 
 			array(
@@ -795,7 +820,7 @@ class Boorecipe_Admin_Simple {
 				'type'    => 'text',
 				'label'   => __( 'Recipe Category Slug', 'boorecipe-premium' ),
 				'default' => $this->get_default_options( 'recipe_tags_slug' ),
-				'desc'       => sprintf( __( "You will need to re-save %spermalinks%s after changing this value", "boorecipe" ), '<a href=' . get_admin_url() . "options-permalink.php" . ' target="_blank">', '</a>' ),
+				'desc'    => sprintf( __( "You will need to re-save %spermalinks%s after changing this value", "boorecipe" ), '<a href=' . get_admin_url() . "options-permalink.php" . ' target="_blank">', '</a>' ),
 			)
 
 

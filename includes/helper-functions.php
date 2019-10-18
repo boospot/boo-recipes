@@ -243,7 +243,6 @@ endif;
 if ( ! function_exists( 'boorecipe_is_old_settings_available' ) ) :
 
 	function boorecipe_is_old_settings_available() {
-
 		// Get old options
 		$old_settings = get_option( 'boorecipe-options' );
 
