@@ -400,10 +400,10 @@ class Boorecipe_Admin_Simple {
 				'id'    => 'recipe_widgets',
 				'title' => __( 'Widget Settings', 'boorecipe' ),
 			),
-			array(
-				'id'    => 'recipe_options_backup_restore',
-				'title' => __( 'Settings Backup', 'boorecipe' ),
-			),
+//			array(
+//				'id'    => 'recipe_options_backup_restore',
+//				'title' => __( 'Settings Backup', 'boorecipe' ),
+//			),
 			'recipe_plugin_activation' => array(
 				'id'    => 'recipe_plugin_activation',
 				'title' => __( 'Premium Plugin', 'boorecipe' ),
@@ -865,18 +865,18 @@ class Boorecipe_Admin_Simple {
 			),
 
 		) );
-		/*
-		 * Settings Backup
-		 */
-		$options_fields['recipe_options_backup_restore'] = apply_filters( 'boorecipe_filter_options_fields_array_backup', array(
-
-			array(
-				'id'    => $this->prefix . 'boorecipe_options_backup_restore',
-				'type'  => 'backup',
-				'label' => __( 'Settings Backup and/or Restore', 'boorecipe' ),
-			),
-
-		) );
+//		/*
+//		 * Settings Backup
+//		 */
+//		$options_fields['recipe_options_backup_restore'] = apply_filters( 'boorecipe_filter_options_fields_array_backup', array(
+//
+//			array(
+//				'id'    => $this->prefix . 'boorecipe_options_backup_restore',
+//				'type'  => 'backup',
+//				'label' => __( 'Settings Backup and/or Restore', 'boorecipe' ),
+//			),
+//
+//		) );
 
 		/*
 		 * Premium Plugin
