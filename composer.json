@@ -1,5 +1,6 @@
 {
   "require": {
-    "wpmetabox/meta-box": "5.*"
+    "wpmetabox/meta-box": "5.*",
+    "wptrt/admin-notices": "^1.0"
   }
 }
