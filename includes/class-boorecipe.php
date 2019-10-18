@@ -405,7 +405,7 @@ class Boorecipe {
 			$ajax_meta = new Boorecipe_Admin_Ajax_Meta_Update( $this->get_plugin_name(), $this->get_version() );
 
 			$this->loader->add_action( 'admin_enqueue_scripts', $ajax_meta, 'ajax_admin_enqueue_scripts', 10 );
-			$this->loader->add_action( 'wp_ajax_admin_hook', $ajax_meta, 'ajax_admin_handler', 10 );
+			$this->loader->add_action( 'wp_ajax_update_recipe_meta', $ajax_meta, 'ajax_admin_handler', 10 );
 		}
 
 

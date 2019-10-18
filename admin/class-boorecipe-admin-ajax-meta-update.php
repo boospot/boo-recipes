@@ -54,8 +54,6 @@ class Boorecipe_Admin_Ajax_Meta_Update {
 		$this->plugin_name = $plugin_name;
 		$this->version     = $version;
 		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
-
-
 	}
 
 
@@ -113,7 +111,7 @@ class Boorecipe_Admin_Ajax_Meta_Update {
 		$sections[] = array(
 			'id'    => 'update_meta_help',
 			'title' => __( 'Why Update Meta', 'boorecipe' ),
-			'desc'  => __( 'You need to update recipes if you have updated from version 1.0.1. We have changed recipe meta storage mechanism for optimization. If your recipes are not showing properly, you need to select the recipes below and click the [Update Now] button. It is strongly recommended you take backup of your existing database in case you need to restore it if something does not work as expected.', 'boorecipe' ),
+			'desc'  => __( 'You need to update recipes that are using image sliders. No Need to update if slider is working fine after update. Its only required in some special cases.', 'boorecipe' ),
 		);
 
 		$query = $this->get_recipes_query();
@@ -130,7 +128,7 @@ class Boorecipe_Admin_Ajax_Meta_Update {
 			$sections[] = array(
 				'id'    => 'no_recipes_to_update',
 				'title' => __( 'Congratulations', 'boorecipe' ),
-				'desc'  => '<div>All your Recipes are updated. You dont need to do anything for recipes meta update.</div>'
+				'desc'  => __( 'All your Recipes are updated. You dont need to do anything for recipes meta update.', 'boorecipe' )
 			);
 
 
@@ -142,22 +140,31 @@ class Boorecipe_Admin_Ajax_Meta_Update {
 
 	public function get_recipes_query() {
 
-
 		if ( empty( $this->recipe_query ) ) {
 
 			$this->recipe_query = new WP_Query( array(
 				'post_type'      => 'boo_recipe',
 				'posts_per_page' => - 1,
 				'meta_query'     => array(
-					'relation' => 'OR',
+					'relation' => 'AND',
+
 					array(
-						'key'     => 'boorecipe_meta_updated',
-						'compare' => 'NOT EXISTS', // works!
-						'value'   => '' // This is ignored, but is necessary...
+						'relation' => 'OR',
+						array(
+							'key'     => 'boorecipe_show_image_slider',
+							'value'   => 1,
+							'compare' => '='
+						),
+						array(
+							'key'   => 'boorecipe_show_image_slider',
+							'value' => 'yes'
+						),
 					),
+
 					array(
-						'key'   => 'boorecipe_meta_updated',
-						'value' => 'anything'
+						'key'     => 'boorecipe_recipe_image_slider_items_attached',
+//						'value'   => true,
+						'compare' => 'NOT EXISTS'
 					)
 				)
 			) );
@@ -246,7 +253,6 @@ class Boorecipe_Admin_Ajax_Meta_Update {
 
 		$posts = $query->posts;
 
-
 		foreach ( $posts as $recipe ) {
 			$recipes[ $recipe->ID ] = $recipe->post_title;
 		}
@@ -258,12 +264,12 @@ class Boorecipe_Admin_Ajax_Meta_Update {
 	}
 
 	public function ajax_admin_enqueue_scripts( $hook ) {
-		
+
 //		var_dump_pretty( $hook);
 //		die();
 
-		// check if our page
-		if ( 'boo_recipe_page_boorecipe-update-meta' !== $hook || 'boo_recipe_page_boo-helper-slug' !== $hook ) {
+//		 check if our page
+		if ( 'boo_recipe_page_boorecipe-update-meta' !== $hook ) {
 			return;
 		}
 
@@ -272,7 +278,7 @@ class Boorecipe_Admin_Ajax_Meta_Update {
 
 
 		// create nonce
-		$nonce = wp_create_nonce( 'ajax_admin' );
+		$nonce = wp_create_nonce( 'update_recipe_meta' );
 
 		// define script
 		$script = array( 'nonce' => $nonce );
@@ -288,7 +294,7 @@ class Boorecipe_Admin_Ajax_Meta_Update {
 	public function ajax_admin_handler() {
 
 		// check nonce
-		check_ajax_referer( 'ajax_admin', 'nonce' );
+		check_ajax_referer( 'update_recipe_meta', 'nonce' );
 
 		// check user
 		if ( ! current_user_can( 'manage_options' ) ) {
@@ -312,10 +318,7 @@ class Boorecipe_Admin_Ajax_Meta_Update {
 			$try_to_update = $this->update_post_meta( $post_id );
 
 			if ( $try_to_update ) {
-
 				$response['status'] = 'success';
-
-
 			} else {
 				$response['status'] = 'fail';
 			}
@@ -331,15 +334,11 @@ class Boorecipe_Admin_Ajax_Meta_Update {
 		$response['post']['id']    = $post->ID;
 		$response['post']['title'] = $post->post_title;
 
-
-		echo json_encode( $response );
-//			echo 'No results. Please check the URL and try again.';
-
+		wp_send_json( json_encode( $response ) );
 
 		/**
 		 * End your magic here
 		 */
-
 
 		// end processing
 		wp_die();
@@ -348,35 +347,26 @@ class Boorecipe_Admin_Ajax_Meta_Update {
 
 	private function is_update_required( $post_id ) {
 
+		$existing_meta = get_post_meta( $post_id, 'boorecipe_recipe_image_slider_items_attached' );
 
-		$existing_meta = get_post_meta( $post_id, 'boorecipe_meta_updated', true );
-
-		return ( $existing_meta == true ) ? false : true;
+		return ( ! $existing_meta ) ? true : false;
 
 	}
 
 	private function update_post_meta( $post_id ) {
+		// Start : Recipe post metadata conversion
+		$updated = false;
 
-		$prefix = Boorecipe_Globals::get_meta_prefix();
+		$images = get_attached_media( 'image', $post_id );
 
-		$existing_meta = get_post_meta( $post_id, 'boorecipe-recipe-meta', true );
-
-		foreach ( $existing_meta as $meta_key => $meta_value ) {
-
-			$prev_value = get_post_meta( $post_id, $prefix . $meta_key, true );
-
-			if ( $prev_value == $meta_value ) {
-				continue;
+		if ( count( $images ) > 1 ) {
+			foreach ( $images as $image_id => $image_object ) {
+				$attached_images = get_post_meta( $post_id, 'boorecipe_recipe_image_slider_items_attached' );
+				if ( ! in_array( $image_id, $attached_images ) ) {
+					$updated = add_post_meta( $post_id, 'boorecipe_recipe_image_slider_items_attached', $image_id );
+				}
 			}
-			$updated = update_post_meta( $post_id, $prefix . $meta_key, $meta_value );
-
-			if ( $updated == false ) {
-				return false;
-			}
-
 		}
-		$updated = delete_post_meta( $post_id, 'boorecipe-recipe-meta' );
-		$updated = update_post_meta( $post_id, 'boorecipe_meta_updated', true );
 
 		return ( $updated != false ) ? true : false;
 

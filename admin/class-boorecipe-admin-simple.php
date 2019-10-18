@@ -175,6 +175,14 @@ class Boorecipe_Admin_Simple {
 			update_option( 'boorecipe_search_form_filters', $search_filters_combined );
 		}
 
+		// Update uninstall settings, change default
+		update_option( 'boorecipe_uninstall_delete_options', 'no' );
+
+
+		/**
+		 * END special cases
+		 */
+
 		// update for default
 		$response = array(
 			'success' => true,
@@ -185,29 +193,8 @@ class Boorecipe_Admin_Simple {
 		);
 
 		// Options Processing Done here
-
-		// Start : Recipe post metadata conversion
-
-		$all_recipes = get_posts( 'numberposts=-1&post_type=boo_recipe&post_status=any' );
-
-		foreach ( $all_recipes as $item ) {
-
-			$images = get_attached_media( 'image', $item->ID );
-
-			if ( count( $images ) > 1 ) {
-				foreach ( $images as $image_id => $image_object ) {
-					$attached_images = get_post_meta( $item->ID, 'boorecipe_recipe_image_slider_items_attached' );
-					if ( ! in_array( $image_id, $attached_images ) ) {
-						add_post_meta( $item->ID, 'boorecipe_recipe_image_slider_items_attached', $image_id );
-					}
-				}
-			}
-
-		}
-
-
 		wp_send_json( json_encode( $response ) );
-		die();
+		wp_die();
 
 	}
 
@@ -925,6 +912,19 @@ class Boorecipe_Admin_Simple {
 				'label' => esc_html__( 'Convert Old Settings', 'boorecipe' ),
 				'desc'  => '<input type="button" name="boorecipes-convert-settings" id="boorecipes-convert-settings" class="button button-secondary" value="' . esc_html__( 'Convert Old Settings', 'boorecipe' ) . '"><div id="boorecipes-convert-settings-response"></div>'
 			);
+
+			$special_section_fields[] = array(
+				'id'    => $this->prefix . 'update_recipes_meta',
+				'type'  => 'html',
+				'label' => __( 'Update Recipes Meta', 'boorecipe' ),
+				'desc'  => sprintf( '<input 
+				type="button" 
+				class="button button-secondary" 
+				value="' . esc_html__( 'Update Recipes Meta', 'boorecipe' ) . '"
+				onclick="window.location.href=\'%s\'"
+				>', admin_url( 'edit.php?post_type=boo_recipe&page=boorecipe-update-meta' ) )
+			);
+//			' . . '
 
 			$special_section_fields[] = array(
 				'id'    => $this->prefix . 'settings_delete_old',

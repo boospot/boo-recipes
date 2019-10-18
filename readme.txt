@@ -4,7 +4,7 @@ Contributors: boospot
 Tags: recipe, recipes, rich snippet, schema.org
 Donate link: https://www.buymeacoffee.com/raoabid
 Requires at least: 4.5
-Tested up to: 5.2
+Tested up to: 5.2.4
 Requires PHP: 5.6
 Stable tag: trunk
 License: GPL-2.0+
@@ -120,6 +120,10 @@ The Following Translations are available at the moment:
 
 == Changelog ==
 
+= 2.0.1 =
+
+- Fix: Recipe Meta updater optimized for slider
+
 = 2.0 =
 
 **Major Update**
@@ -135,9 +139,11 @@ The Following Translations are available at the moment:
 - Stay tuned for more updates coming with new features
 
 = 1.2.4.2 =
+
 - Fix: Comments in Divi theme not showing
 
 = 1.2.4 =
+
 - New: Search Form shortcode available now `[boorecipe_search_form]`
 - New: German (de_DE) translation added for the plugin
 - Fix: Removed Google plus from share buttons
@@ -147,9 +153,11 @@ The Following Translations are available at the moment:
 - Fix: Separator between taxonomy terms is now added using CSS instead of hard coding
 
 = 1.2.3 =
+
 - Fix: Search form position fix in archive page
 
 = 1.2.2 =
+
 - Fix: Additional notes not spaning to full width
 - Fix: Adding Recipes required only admin rights, now it fallback to post capabilities i.e. users who can add/edit posts, can add/edit recipes post type.
 - Fix: External Author fields toggle not working
@@ -158,31 +166,38 @@ The Following Translations are available at the moment:
 - New: Ability to hide Featured image and publish info if its already added by Theme header
 
 = 1.2.1 =
+
 - Fix: file not found error resolved
 
 = 1.2 =
+
 - Fix: Some minor issues
 - Improve: Added two new single recipe style
 
 = 1.1.2 =
+
 - Fix: Archive recipes not loading image from settings
 - Fix: Default image if not not featured image set was not loading
 - Improve: New image size for recipes archive created for speed optimization, may need to regenerate thumbnails
 
 = 1.1.1 =
+
 - Uninstall function updated to allow to remove all data related to recipes on uninstall including taxonomy related data
 
 = 1.1.0 =
+
 - Post metadata structure changed,
 - Will need to update database using Dashboard > Recipes > Update Recipes Meta
 - Uninstall function updated to allow to remove all data related to recipes on uninstall
 
 = 1.0.1 =
+
 - Renaming main plugin file to be consistent with directory name
 - You may need to reactivate the plugin after update. All options or data will remain safe.
 
 
 = 1.0.0 =
+
 Initial Release of plugin
 
 == Upgrade Notice ==

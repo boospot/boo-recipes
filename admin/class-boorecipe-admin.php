@@ -111,7 +111,12 @@ class Boorecipe_Admin {
 		$admin_notice->add(
 			'old_settings_notice',                           // Unique ID.
 			esc_html__( 'Old Settings Detected!', 'boorecipe' ),  // The title for this notice.
-			sprintf( esc_html__( 'It looks like you have not updated the new settings page. Please go to %s and click on "Special" tab, then click "Convert Old Settings" button. After Successful conversion, click "Delete Old Settings" button.', 'boorecipe' ), '<a href="' . admin_url( 'edit.php?post_type=boo_recipe&page=boorecipe-settings' ) . '">' . esc_html__( 'New Settings Page', 'boorecipe' ) . '</a>' ), // The content for this notice.
+			sprintf(
+				esc_html__( 'It looks like you have not updated the new settings page. Please go to %s and on "Special" tab, then click "Convert Old Settings" button. After Successful conversion, go to %s screen and update meta. Once both steps are done, click "Delete Old Settings" button.', 'boorecipe' ),
+				'<a href="' . admin_url( 'edit.php?post_type=boo_recipe&page=boorecipe-settings&tab=special_section' ) . '">' . esc_html__( 'New Settings Page', 'boorecipe' ) . '</a>',
+				'<a href="' . admin_url( 'edit.php?post_type=boo_recipe&page=boorecipe-update-meta' ) . '">' . esc_html__( 'Update Recipes Meta', 'boorecipe' ) . '</a>'
+			),
+			// The content for this notice.
 			[
 				// Only show notice in the recipe
 				'type'    => 'warning',

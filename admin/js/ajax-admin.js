@@ -1,6 +1,3 @@
-// This is test
-
-
 /*
 
 	Ajax Example - JavaScript for Admin Area
@@ -34,7 +31,7 @@
                 $.post(ajaxurl, {
 
                     nonce: ajax_admin.nonce,
-                    action: 'admin_hook',
+                    action: 'update_recipe_meta',
                     id: this,
 
 
@@ -59,31 +56,8 @@
             });
 
             $(document).ajaxStop(function() {
-                location.reload();
+                setTimeout(() => window.location.reload(), 10000);
             });
-
-
-
-
-            // console.log($(this));
-
-            // // submit the data
-            // $.post(ajaxurl, {
-            //
-            //     nonce:  ajax_admin.nonce,
-            //     action: 'admin_hook',
-            //     data:    data,
-            //
-            //
-            // }, function(data) {
-            //
-            //     // log data
-            //     // console.log(data);
-            //
-            //     // display data
-            //     $('.ajax-response').html(data);
-            //
-            // });
 
         });
 

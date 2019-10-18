@@ -48,12 +48,12 @@
 
                 // console.log($(this));
                 // add loading message
-                $(response_cont).html('Loading...');
+                $(response_cont).html('Processing... It may take a few minutes depending upon the number of recipes. Please be patient.');
 
                 $.post(ajaxurl, {
                     _wpnonce: wp_ajax._nonce_settings_convert,
                     action: 'admin_convert_settings',
-                    timeout: 1000,
+                    timeout: 10000,
 
                 }, function (response) {
 
