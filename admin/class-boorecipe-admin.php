@@ -100,24 +100,33 @@ class Boorecipe_Admin {
 //
 //	}
 
-	/*
-	 * Adding Function for Plugin Menu and options page
+
+	/**
+	 * @hooked admin_head
 	 */
+	public function display_old_settings_admin_notice() {
 
-	public function get_default_options( $key ) {
+		$admin_notice = new \WPTRT\AdminNotices\Notices();
 
-		return Boorecipe_Globals::get_default_options( $key );
+		$admin_notice->add(
+			'old_settings_notice',                           // Unique ID.
+			esc_html__( 'Old Settings Detected!', 'boorecipe' ),  // The title for this notice.
+			sprintf( esc_html__( 'It looks like you have not updated the new settings page. Please go to %s and click on "Special" tab, then click "Convert Old Settings" button. After Successful conversion, click "Delete Old Settings" button.', 'boorecipe' ), '<a href="' . admin_url( 'edit.php?post_type=boo_recipe&page=boorecipe-settings' ) . '">' . esc_html__( 'New Settings Page', 'boorecipe' ) . '</a>' ), // The content for this notice.
+			[
+				// Only show notice in the recipe
+				'type'    => 'warning',
+				'screens' => [ 'boo_recipe_page_boorecipe-options', 'boo_recipe_page_boorecipe-settings' ],
+			]
+		);
+
+		$admin_notice->boot();
 
 	}
 
 	/*
-	 * Get Default Options
-	 *
-	 * @param string $key
-	 *
-	 * @return string $key
-	 *
+	 * Adding Function for Plugin Menu and options page
 	 */
+
 	public function create_plugin_menu() {
 
 		$options_fields = array();
@@ -703,6 +712,21 @@ class Boorecipe_Admin {
 		 */
 		new Exopite_Simple_Options_Framework( $config_submenu, apply_filters( 'boorecipe_options_args_array', $options_fields ) );
 //
+	}
+
+	/*
+	 * Get Default Options
+	 *
+	 * @param string $key
+	 *
+	 * @return string $key
+	 *
+	 */
+
+	public function get_default_options( $key ) {
+
+		return Boorecipe_Globals::get_default_options( $key );
+
 	}
 //
 //	/*

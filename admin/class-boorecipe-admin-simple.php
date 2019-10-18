@@ -1,6 +1,6 @@
 <?php
 
-use WPTRT\AdminNotices\Notices;
+
 
 // exit if file is called directly
 if ( ! defined( 'ABSPATH' ) ) {
@@ -59,27 +59,7 @@ class Boorecipe_Admin_Simple {
 
 	}
 
-	/**
-	 * @hooked admin_head
-	 */
-	public function display_old_settings_admin_notice() {
 
-		$admin_notice = new Notices();
-
-		$admin_notice->add(
-			'old_settings_notice',                           // Unique ID.
-			false,  // The title for this notice.
-			esc_html__( 'It looks like you have not updated the new settings page. Please go to Dashboard > Recipes > Settings > Special and click "Convert Old Settings" button. After Successful conversion, click "Delete Old Settings" buttons', 'boorecipe' ), // The content for this notice.
-			[
-				// Only show notice in the recipe
-				'type'    => 'warning',
-				'screens' => [ 'boo_recipe_page_boorecipe-options', 'boo_recipe_page_boorecipe-settings' ],
-			]
-		);
-
-		$admin_notice->boot();
-
-	}
 
 	/**
 	 *

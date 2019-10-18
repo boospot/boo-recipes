@@ -294,12 +294,10 @@ class Boorecipe {
 
 		if ( boorecipe_is_old_settings_available() ) {
 
-			$this->loader->add_action( 'admin_head', $plugin_admin_simple, 'display_old_settings_admin_notice', 999 );
-
-
-
-
 			$plugin_admin = new Boorecipe_Admin( $this->get_plugin_name(), $this->get_version() );
+
+			$this->loader->add_action( 'admin_head', $plugin_admin, 'display_old_settings_admin_notice' );
+
 
 //		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 //		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
@@ -308,8 +306,6 @@ class Boorecipe {
 			 * Added the plugin options menu and page
 			 */
 			$this->loader->add_action( 'init', $plugin_admin, 'create_plugin_menu', 999 );
-
-
 
 
 		}
