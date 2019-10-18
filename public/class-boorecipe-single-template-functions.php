@@ -67,7 +67,7 @@ class Boorecipe_Single_Template_Functions extends Boorecipe_Template_Functions {
 	 *
 	 * @hooked      boorecipe_single_head        10
 	 *
-	 * @param       object $item A post object
+	 * @param object $item A post object
 	 */
 	public function the_title( $item ) {
 
@@ -86,8 +86,8 @@ class Boorecipe_Single_Template_Functions extends Boorecipe_Template_Functions {
 	 *
 	 * @hooked       boorecipe_single_head_publish_info        10
 	 *
-	 * @param        object $item A post object
-	 * @param        array $meta The post metadata
+	 * @param object $item A post object
+	 * @param array $meta The post metadata
 	 */
 	public function the_author( $item, $meta ) {
 
@@ -277,8 +277,8 @@ class Boorecipe_Single_Template_Functions extends Boorecipe_Template_Functions {
 	 *
 	 * @hooked      boorecipe_single_meta_key_point_style_1        9
 	 *
-	 * @param        object $item A post object
-	 * @param        array $meta The post metadata
+	 * @param object $item A post object
+	 * @param array $meta The post metadata
 	 */
 	public function yields( $item, $meta ) {
 
@@ -324,8 +324,8 @@ class Boorecipe_Single_Template_Functions extends Boorecipe_Template_Functions {
 	 *
 	 * @hooked      boorecipe_single_body        9
 	 *
-	 * @param        object $item A post object
-	 * @param        array $meta The post metadata
+	 * @param object $item A post object
+	 * @param array $meta The post metadata
 	 */
 	public function ingredients( $item, $meta ) {
 
@@ -338,8 +338,8 @@ class Boorecipe_Single_Template_Functions extends Boorecipe_Template_Functions {
 	 *
 	 * @hooked      boorecipe_single_body        10
 	 *
-	 * @param        object $item A post object
-	 * @param        array $meta The post metadata
+	 * @param object $item A post object
+	 * @param array $meta The post metadata
 	 */
 	public function instructions( $item, $meta ) {
 
@@ -352,8 +352,8 @@ class Boorecipe_Single_Template_Functions extends Boorecipe_Template_Functions {
 	 *
 	 * @hooked      boorecipe_single_body        10
 	 *
-	 * @param        object $item A post object
-	 * @param        array $meta The post metadata
+	 * @param object $item A post object
+	 * @param array $meta The post metadata
 	 */
 	public function additional_notes( $item, $meta ) {
 
@@ -370,13 +370,13 @@ class Boorecipe_Single_Template_Functions extends Boorecipe_Template_Functions {
 	 *
 	 * @hooked       boorecipe_single_body        11
 	 *
-	 * @param        object $item A post object
-	 * @param        array $meta The post metadata
+	 * @param object $item A post object
+	 * @param array $meta The post metadata
 	 */
 	public function nutrition( $item, $meta ) {
 
 		// If the Option is set to show nutrition
-		if ( $this->get_options_value( 'show_nutrition' ) === 'yes' && $meta['show_nutrition'] == 1 ) {
+		if ( $this->get_options_value( 'show_nutrition' ) === 'yes' && ( $meta['show_nutrition'] == 1 || 'yes' === $meta['show_nutrition'] ) ) {
 
 			$meta_key = 'nutrition';
 			include boorecipe_get_template( 'section-recipe-nutrition', 'single' );
@@ -451,8 +451,8 @@ class Boorecipe_Single_Template_Functions extends Boorecipe_Template_Functions {
 	 *
 	 * @hooked       boorecipe_single_meta_taxonomy        9
 	 *
-	 * @param        object $item A post object
-	 * @param        array $meta The post metadata
+	 * @param object $item A post object
+	 * @param array $meta The post metadata
 	 */
 	public function the_taxonomy_category( $item, $meta ) {
 
@@ -474,8 +474,8 @@ class Boorecipe_Single_Template_Functions extends Boorecipe_Template_Functions {
 	 *
 	 * @hooked       boorecipe_single_meta_taxonomy        11
 	 *
-	 * @param        object $item A post object
-	 * @param        array $meta The post metadata
+	 * @param object $item A post object
+	 * @param array $meta The post metadata
 	 */
 	public function the_taxonomy_tags( $item, $meta ) {
 		$taxonomy       = 'recipe_tags';
@@ -494,8 +494,8 @@ class Boorecipe_Single_Template_Functions extends Boorecipe_Template_Functions {
 	 *
 	 * @hooked       boorecipe_single_head_publish_info        10
 	 *
-	 * @param        object $item A post object
-	 * @param        array $meta The post metadata
+	 * @param object $item A post object
+	 * @param array $meta The post metadata
 	 */
 	public function the_date( $item, $meta ) {
 

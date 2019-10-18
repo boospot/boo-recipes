@@ -346,16 +346,16 @@ class Boorecipe_Shortcodes {
 		add_filter( 'boorecipe_options_array_from_db', array( $this, 'override_options_value_for_shortcodes' ) );
 //		add_filter( 'boorecipe_option_from_db', array( $this, 'override_single_option_value_for_shortcodes' ), 10, 2 );
 //
-//		add_filter( 'boorecipe_filter_archive_recipe_wrap_classes', array(
-//			$this,
-//			'filter_archive_recipe_wrap_classes'
-//		) );
+		add_filter( 'boorecipe_filter_archive_recipe_wrap_classes', array(
+			$this,
+			'filter_archive_recipe_wrap_classes'
+		) );
 //
 //
-//		add_filter( 'boorecipe_filter_archive_recipe_card_classes', array(
-//			$this,
-//			'filter_archive_recipe_card_classes'
-//		) );
+		add_filter( 'boorecipe_filter_archive_recipe_card_classes', array(
+			$this,
+			'filter_archive_recipe_card_classes'
+		) );
 
 		// Check to see if CSS related method exists
 		if ( method_exists( $this, "add_shortcode_css_{$shortcode_name}" ) ) {
@@ -624,14 +624,14 @@ class Boorecipe_Shortcodes {
 	/**
 	 *
 	 */
-	public function inactive_filter_archive_recipe_wrap_classes( $classes_array ) {
+	public function filter_archive_recipe_wrap_classes( $classes_array ) {
 
-		if ( 'recipes_browse' != $this->shortcode_called ) {
-			return null;
-		}
+//		if ( 'recipes_browse' != $this->shortcode_called ) {
+//			return null;
+//		}
 		$recipe_archive_layout = $this->shortcode_atts['recipe_archive_layout'];
 
-		$classes_array[] = 'recipes-layout-' . $recipe_archive_layout;
+		$classes_array['layout'] = 'recipes-layout-' . $recipe_archive_layout;
 
 
 		if ( $this->shortcode_atts['show_in_masonry'] === 'yes' ) {
@@ -671,11 +671,11 @@ class Boorecipe_Shortcodes {
 	/**
 	 *
 	 */
-	public function inactive_filter_archive_recipe_card_classes( $classes_array ) {
+	public function filter_archive_recipe_card_classes( $classes_array ) {
 
-		if ( 'recipes_browse' != $this->shortcode_called ) {
-			return null;
-		}
+//		if ( 'recipes_browse' != $this->shortcode_called ) {
+//			return null;
+//		}
 
 		$recipe_archive_layout = $this->shortcode_atts['recipe_archive_layout'];
 

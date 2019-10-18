@@ -58,10 +58,11 @@ class Boorecipe_Template_Functions {
 	/**
 	 * Initialize the class and set its properties.
 	 *
+	 * @param string $plugin_name The name of the plugin.
+	 * @param string $version The version of this plugin.
+	 *
 	 * @since    1.0.0
 	 *
-	 * @param      string $plugin_name The name of the plugin.
-	 * @param      string $version The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 
@@ -176,6 +177,17 @@ class Boorecipe_Template_Functions {
 		include boorecipe_get_template( 'author-avatar', 'archive' );
 	} //get_author_avatar
 
+/**
+	 * @param $taxonomy
+	 *
+	 * @return bool|mixed
+	 */
+	public function get_taxonomy_label( $taxonomy ) {
+
+		$taxonomy_label = $this->get_options_value( $taxonomy . '_label' );
+
+		return $taxonomy_label;
+	} // get_recipe_featured_image_default
 
 	/**
 	 * Get plugin options from Global class
@@ -186,18 +198,6 @@ class Boorecipe_Template_Functions {
 	 */
 	public function get_options_value( $option_id ) {
 		return Boorecipe_Globals::get_options_value( $option_id );
-	} // get_recipe_featured_image_default
-
-	/**
-	 * @param $taxonomy
-	 *
-	 * @return bool|mixed
-	 */
-	public function get_taxonomy_label( $taxonomy ) {
-
-		$taxonomy_label = $this->get_options_value( $taxonomy . '_label' );
-
-		return $taxonomy_label;
 	}   // get_recipe_meta_label
 
 	/**
@@ -275,7 +275,7 @@ class Boorecipe_Template_Functions {
 	/**
 	 * Returns an array of the featured image details
 	 *
-	 * @param    int $post_id The post ID
+	 * @param int $post_id The post ID
 	 *
 	 * @return    array |false   Array of info about the featured image
 	 */
@@ -305,6 +305,7 @@ class Boorecipe_Template_Functions {
 		if ( ! empty( $this->get_options_value( 'recipe_default_img_url' ) ) ) {
 			return esc_url_raw( $this->get_options_value( 'recipe_default_img_url' ) );
 		}
+
 		return BOORECIPE_PLUGIN_URL . "assets/images/default-recipe-image.png";
 	}
 
@@ -318,8 +319,8 @@ class Boorecipe_Template_Functions {
 		return (
 //				$this->is_recipe_have_attached_images()
 //		         &&
-		         isset( $meta['show_image_slider'] )
-		         && $meta['show_image_slider'] == 1
+			isset( $meta['show_image_slider'] )
+			&& ( $meta['show_image_slider'] == 1 || 'yes' === $meta['show_image_slider'] )
 		) ? true : false;
 	} // is_show_image_slider
 
@@ -347,7 +348,7 @@ class Boorecipe_Template_Functions {
 	public function is_video_recipe( $meta ) {
 
 		return ( isset( $meta['is_video_recipe'] )
-		         && $meta['is_video_recipe'] == 1
+		         && ( $meta['is_video_recipe'] == 1 || 'yes' === $meta['is_video_recipe'] )
 		         && isset( $meta['video_recipe_url'] )
 		         && ( ! filter_var( $meta['video_recipe_url'], FILTER_VALIDATE_URL ) === false )
 		) ? true : false;

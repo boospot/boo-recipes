@@ -57,7 +57,6 @@ class Boorecipe_Admin_Simple {
 	}
 
 
-
 	/**
 	 *
 	 */
@@ -184,6 +183,28 @@ class Boorecipe_Admin_Simple {
 				sprintf( __( 'Page shall reload automatically after %s seconds', 'boorecipe' ), 10 ),
 //			'options' => $updated_options
 		);
+
+		// Options Processing Done here
+
+		// Start : Recipe post metadata conversion
+
+		$all_recipes = get_posts( 'numberposts=-1&post_type=boo_recipe&post_status=any' );
+
+		foreach ( $all_recipes as $item ) {
+
+			$images = get_attached_media( 'image', $item->ID );
+
+			if ( count( $images ) > 1 ) {
+				foreach ( $images as $image_id => $image_object ) {
+					$attached_images = get_post_meta( $item->ID, 'boorecipe_recipe_image_slider_items_attached' );
+					if ( ! in_array( $image_id, $attached_images ) ) {
+						add_post_meta( $item->ID, 'boorecipe_recipe_image_slider_items_attached', $image_id );
+					}
+				}
+			}
+
+		}
+
 
 		wp_send_json( json_encode( $response ) );
 		die();
