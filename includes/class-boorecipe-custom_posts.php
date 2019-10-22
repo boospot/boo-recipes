@@ -951,17 +951,7 @@ class Boorecipe_Post_Types {
 	 */
 	public function update_contents_of_post_with_title( $post_id, $post, $update ) {
 
-
-		$recipe_meta = get_post_meta( $post->ID, $this->meta_id, true );
-
-
-		if ( ! empty( $recipe_meta ) && is_array( $recipe_meta ) ) {
-
-			$recipe_meta['recipe_title'] = get_the_title( $post_id );
-
-			update_post_meta( $post_id, $this->meta_id, $recipe_meta );
-
-		}
+		update_post_meta( $post_id, $this->prefix . 'recipe_title', get_the_title( $post_id ) );
 
 	}
 

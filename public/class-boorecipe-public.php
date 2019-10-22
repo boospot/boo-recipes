@@ -53,10 +53,11 @@ class Boorecipe_Public {
 	/**
 	 * Initialize the class and set its properties.
 	 *
+	 * @param string $plugin_name The name of the plugin.
+	 * @param string $version The version of this plugin.
+	 *
 	 * @since    1.0.0
 	 *
-	 * @param      string $plugin_name The name of the plugin.
-	 * @param      string $version The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 
@@ -156,7 +157,7 @@ class Boorecipe_Public {
 	/**
 	 * Adds a default single view template for a job opening
 	 *
-	 * @param    string $template The name of the template
+	 * @param string $template The name of the template
 	 *
 	 * @return    mixed                        The single template
 	 */
@@ -206,6 +207,7 @@ class Boorecipe_Public {
 
 			$query->set( 'post_type', 'boo_recipe' );
 
+
 			// Set Recipes Per Page
 			$recipes_per_page = ( absint( $this->get_options_value( 'recipes_per_page' ) ) > 0 ) ? absint( $this->get_options_value( 'recipes_per_page' ) ) : 9;
 
@@ -226,6 +228,7 @@ class Boorecipe_Public {
 
 
 					$meta_fields_to_include_in_search = apply_filters( 'boorecipe_filter_search_meta_fields', array(
+						'boorecipe_recipe_title',
 						'boorecipe_directions',
 						'boorecipe_ingredient',
 						'boorecipe_short_description'
