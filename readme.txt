@@ -120,6 +120,10 @@ The Following Translations are available at the moment:
 
 == Changelog ==
 
+= 2.0.2 =
+
+- Feature: ability to activate WYSIWYG editor for Short Descriptions and Additional Notes.
+
 = 2.0.1 =
 
 - Fix: Recipe Meta updater optimized for slider
@@ -202,4 +206,4 @@ Initial Release of plugin
 
 == Upgrade Notice ==
 
-Please convert your old settings to New settings after this update. Always **BACKUP your database** before running conversion.
+Please convert your old settings to New settings if you are upgrading from version 1.x. Always **BACKUP your database** before running conversion.

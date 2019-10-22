@@ -288,7 +288,7 @@ class Boorecipe_Globals {
 			'recipe_category_slug'              => 'recipe-category',
 			'skill_level_slug'                  => 'skill-level',
 			'recipe_tags_slug'                  => 'recipe-tags',
-			'editor_for_short_desc'             => 'no'
+			'enable_wysiwyg_editor'             => 'no'
 		);
 
 

@@ -526,15 +526,15 @@ class Boorecipe_Post_Types {
 
 		$prefix = $this->prefix;
 
-		$editor_for_short_desc = $this->get_options_value( 'editor_for_short_desc' );
+		$enable_wysiwyg_editor = $this->get_options_value( 'enable_wysiwyg_editor' );
 
-		$short_desc_type = ( 'yes' === $editor_for_short_desc ) ? 'wysiwyg' : 'textarea';
+		$editor_type = ( 'yes' === $enable_wysiwyg_editor ) ? 'wysiwyg' : 'textarea';
 
 		$recipe_primary_fields = apply_filters( 'boorecipe_recipe_metabox_fields', array(
 			array(
 				'id'      => $prefix . 'short_description',
 				'name'    => esc_html__( 'Short Description', 'boorecipe' ),
-				'type'    => $short_desc_type,
+				'type'    => $editor_type,
 				'desc'    => esc_html__( 'Describe your recipe in a few words', 'boorecipe' ),
 				'rows'    => 5,
 				'options' => array(
@@ -627,7 +627,7 @@ class Boorecipe_Post_Types {
 			),
 			array(
 				'id'      => $prefix . 'additional_notes',
-				'type'    => $short_desc_type,
+				'type'    => $editor_type,
 				'name'    => esc_html__( 'Additional Notes', 'boorecipe' ),
 				'desc'    => esc_html__( 'Add additional notes to the recipe. it will show at the end of recipe', 'boorecipe' ),
 				'rows'    => 5,
