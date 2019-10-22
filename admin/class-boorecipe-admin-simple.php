@@ -476,6 +476,16 @@ class Boorecipe_Admin_Simple {
 			),
 
 			array(
+				'id'      => $this->prefix . 'editor_for_short_desc',
+				'type'    => 'select',
+				'label'   => __( 'Enable WYSIWYG Editor?', 'boorecipe' ),
+				'options' => array( 'yes' => 'Yes', 'no' => 'No' ),
+				'radio'   => true,
+				'default' => 'no',
+				'desc'    => __( 'This will only be available for Short Description and Additional Notes', 'boorecipe' ),
+			),
+
+			array(
 				'id'                => $this->prefix . 'show_nutrition',
 				'type'              => 'select',
 				'label'             => __( 'Show Nutrition? (Global)', 'boorecipe' ),
