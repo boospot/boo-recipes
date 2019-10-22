@@ -353,10 +353,7 @@ class Boorecipe {
 		$this->loader->add_filter( 'single_template', $plugin_public, 'single_recipe_template' );
 		$this->loader->add_filter( 'archive_template', $plugin_public, 'archive_recipe_template' );
 
-
-		// Update Query for custom post type
 		$this->loader->add_action( 'pre_get_posts', $plugin_public, 'alter_query_to_add_recipe_posttype' );
-
 
 	} // get_version()
 

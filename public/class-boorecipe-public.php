@@ -195,7 +195,7 @@ class Boorecipe_Public {
 
 	}
 
-	public function alter_query_to_add_recipe_posttype( $query ) {
+	public function alter_query_to_add_recipe_posttype( \WP_Query $query ) {
 
 		if ( is_admin() ) {
 			return $query;
@@ -205,6 +205,7 @@ class Boorecipe_Public {
 		     ( is_post_type_archive( 'boo_recipe' ) || boorecipe_is_recipe_taxonomy() )
 		) {
 
+			// Update Query for custom post type
 			$query->set( 'post_type', 'boo_recipe' );
 
 
@@ -258,7 +259,6 @@ class Boorecipe_Public {
 					$meta_query = $current_meta = $custom_meta;
 
 					$query->set( 'meta_query', array( $meta_query ) );
-
 				}
 
 			}
