@@ -113,6 +113,10 @@ For more details answers, please refer to [Documentation](http://boorecipes.com/
 The Following Translations are available at the moment:
 - **German (de_DE)**: Thanks to Andreas.
 
+= Search is not working for recipe title =
+you need to re-save your recipes. Quickest way is to "Bulk Edit" all recipes without changing anything, just select all recipes in recipes admin index and click on "Bulk Edit". Then click "Update" without changing anything.
+
+
 == Screenshots ==
 1. Look on the Tablet screen
 2. Settings Page
@@ -122,6 +126,7 @@ The Following Translations are available at the moment:
 
 = 2.0.2 =
 
+- Fix: search form not working for recipe title
 - Feature: ability to activate WYSIWYG editor for Short Descriptions and Additional Notes.
 
 = 2.0.1 =
