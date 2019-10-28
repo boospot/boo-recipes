@@ -124,6 +124,11 @@ you need to re-save your recipes. Quickest way is to "Bulk Edit" all recipes wit
 
 == Changelog ==
 
+= 2.1.0 =
+
+- Optimization: Code optimization
+- Feature: Option to add wysiwyg editor for instructions and directions in premium version.
+
 = 2.0.2 =
 
 - Fix: search form not working for recipe title

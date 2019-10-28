@@ -111,10 +111,10 @@ For more details answers, please refer to [Documentation](http://boorecipes.com/
 
 = Is this plugin translated in other languages =
 The Following Translations are available at the moment:
-- **German (de_DE)**: Thanks to Andreas. 
+- **German (de_DE)**: Thanks to Andreas.
 
 = Search is not working for recipe title =
-you need to re-save your recipes. Quickest way is to "Bulk Edit" all recipes without changing anything, just select all recipes in recipes admin index and click on "Bulk Edit". Then click "Update" without changing anything. 
+you need to re-save your recipes. Quickest way is to "Bulk Edit" all recipes without changing anything, just select all recipes in recipes admin index and click on "Bulk Edit". Then click "Update" without changing anything.
 
 
 == Screenshots ==
@@ -123,6 +123,11 @@ you need to re-save your recipes. Quickest way is to "Bulk Edit" all recipes wit
 3. Mobile View
 
 == Changelog ==
+
+= 2.1.0 =
+
+- Optimization: Code optimization
+- Feature: Option to add wysiwyg editor for instructions and directions in premium version.
 
 = 2.0.2 =
 
@@ -142,7 +147,7 @@ you need to re-save your recipes. Quickest way is to "Bulk Edit" all recipes wit
 - Settings page is now more like WordPress way
 - Compatibility with plugins:
     - Duplicate Post
-    - Wp All import 
+    - Wp All import
     - Wp All Export
     - WPML - Multilingual plugin
 - Stay tuned for more updates coming with new features
@@ -156,10 +161,10 @@ you need to re-save your recipes. Quickest way is to "Bulk Edit" all recipes wit
 - New: Search Form shortcode available now `[boorecipe_search_form]`
 - New: German (de_DE) translation added for the plugin
 - Fix: Removed Google plus from share buttons
-- Fix: Share buttons minor style changes  
+- Fix: Share buttons minor style changes
 - Fix: Search form position fix in archive page
 - Fix: Print Stylesheet optimization and tweaks
-- Fix: Separator between taxonomy terms is now added using CSS instead of hard coding  
+- Fix: Separator between taxonomy terms is now added using CSS instead of hard coding
 
 = 1.2.3 =
 
@@ -169,11 +174,11 @@ you need to re-save your recipes. Quickest way is to "Bulk Edit" all recipes wit
 
 - Fix: Additional notes not spaning to full width
 - Fix: Adding Recipes required only admin rights, now it fallback to post capabilities i.e. users who can add/edit posts, can add/edit recipes post type.
-- Fix: External Author fields toggle not working 
+- Fix: External Author fields toggle not working
 - New: Additional notes and Short Description field now supports html and shortcode
 - New: POT file updated with translations
 - New: Ability to hide Featured image and publish info if its already added by Theme header
- 
+
 = 1.2.1 =
 
 - Fix: file not found error resolved
@@ -185,9 +190,9 @@ you need to re-save your recipes. Quickest way is to "Bulk Edit" all recipes wit
 
 = 1.1.2 =
 
-- Fix: Archive recipes not loading image from settings 
+- Fix: Archive recipes not loading image from settings
 - Fix: Default image if not not featured image set was not loading
-- Improve: New image size for recipes archive created for speed optimization, may need to regenerate thumbnails   
+- Improve: New image size for recipes archive created for speed optimization, may need to regenerate thumbnails
 
 = 1.1.1 =
 
