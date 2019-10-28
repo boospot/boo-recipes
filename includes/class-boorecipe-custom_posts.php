@@ -609,6 +609,7 @@ class Boorecipe_Post_Types {
 				'desc'        => __( 'If you need to add ingredient group, place ** before the group heading like: **Cakeingredient 1ingredient 2', 'boorecipe' ),
 				'placeholder' => esc_html__( 'One ingredient per line.', 'boorecipe' ),
 				'rows'        => 8,
+				'visible'     => array( $prefix . 'ingredients_type', 'not in', array( 'wysiwyg' ) ),
 			),
 			array(
 				'id'          => $prefix . 'directions',
@@ -617,6 +618,7 @@ class Boorecipe_Post_Types {
 				'desc'        => __( 'If you need to add directions group, place ** before the group heading like: <br/> **How to Make Crust<br/>Direction 1<br/>Direction 2', 'boorecipe' ),
 				'placeholder' => esc_html__( 'One Step per line', 'boorecipe' ),
 				'rows'        => 8,
+				'visible'     => array( $prefix . 'directions_type', 'not in', array( 'wysiwyg' ) ),
 			),
 			array(
 				'id'   => $prefix . 'list_excerpt',

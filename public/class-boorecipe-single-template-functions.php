@@ -329,6 +329,7 @@ class Boorecipe_Single_Template_Functions extends Boorecipe_Template_Functions {
 	 */
 	public function ingredients( $item, $meta ) {
 
+
 		include boorecipe_get_template( 'section-recipe-ingredients', 'single' );
 
 	} // ingredients()

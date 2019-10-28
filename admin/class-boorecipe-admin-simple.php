@@ -512,6 +512,17 @@ class Boorecipe_Admin_Simple {
 				'options'           => array( 'yes' => 'Yes', 'no' => 'No' ),
 			),
 
+			array(
+				'id'      => $this->prefix . 'ingredients_editor',
+				'type'    => 'select',
+				'label'   => __( 'Ingredients Editor', 'boorecipe' ),
+				'desc'    => __( 'More Styles in Premium Version', 'boorecipe' ),
+				'default' => 'textarea',
+				'options' => apply_filters( 'boorecipe_filter_options_field_ingredients_editor', array(
+					'textarea' => __( 'Simple Textarea', 'boorecipe' )
+				) )
+
+			),
 
 			array(
 				'id'                => $this->prefix . 'ingredient_side',
@@ -646,6 +657,7 @@ class Boorecipe_Admin_Simple {
 				'sanitize'    => 'sanitize_key',
 
 			),
+
 
 		) );
 		/*
@@ -912,6 +924,8 @@ class Boorecipe_Admin_Simple {
 				'label' => __( 'Your Custom CSS', 'boorecipe' ),
 				'desc'  => __( 'Add your custom CSS here', 'boorecipe' ),
 			),
+
+
 		);
 
 		if ( boorecipe_is_old_settings_available() ) {
