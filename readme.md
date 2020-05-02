@@ -4,7 +4,7 @@ Contributors: boospot
 Tags: recipe, recipes, rich snippet, schema.org
 Donate link: https://www.buymeacoffee.com/raoabid
 Requires at least: 4.5
-Tested up to: 5.2.4
+Tested up to: 5.4.1
 Requires PHP: 5.6
 Stable tag: trunk
 License: GPL-2.0+
@@ -123,6 +123,10 @@ you need to re-save your recipes. Quickest way is to "Bulk Edit" all recipes wit
 3. Mobile View
 
 == Changelog ==
+
+= 2.2.1 =
+
+- minor css fix for layout 
 
 = 2.2.0 =
 
