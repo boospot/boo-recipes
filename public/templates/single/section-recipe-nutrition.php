@@ -64,7 +64,7 @@ foreach ( $nutrition_meta as $key => $nutrition ) {
 					$display,
 					$itemprop,
 					$value,
-					__( 'Calories from Fat', 'boorecipe' ),
+					__( 'Calories from Fat', 'boo-recipes' ),
 					$calories_from_fat
 
 				);

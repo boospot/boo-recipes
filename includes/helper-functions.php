@@ -708,7 +708,7 @@ if ( ! function_exists( 'boorecipe_return_markup_external_author' ) ) :
 			}
 
 		} else {
-			$html .= __( 'Anonymous', 'boorecipe' );
+			$html .= __( 'Anonymous', 'boo-recipes' );
 		}
 
 		return $html;
@@ -965,9 +965,9 @@ if ( ! function_exists( 'boorecipe_get_skill_level_options_markup' ) ) :
 
 
 		$skill_levels = array(
-			'easy'   => __( 'Easy', 'boorecipe' ),
-			'medium' => __( 'Medium', 'boorecipe' ),
-			'hard'   => __( 'Hard', 'boorecipe' ),
+			'easy'   => __( 'Easy', 'boo-recipes' ),
+			'medium' => __( 'Medium', 'boo-recipes' ),
+			'hard'   => __( 'Hard', 'boo-recipes' ),
 		);
 
 

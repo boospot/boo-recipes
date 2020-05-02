@@ -52,7 +52,7 @@ class Boorecipe_Archive_Template_Functions extends Boorecipe_Template_Functions 
 	 */
 	public function archive_no_result() {
 
-		echo wpautop( __( 'Sorry, no recipes were found for this search criteria', 'boorecipe' ) );
+		echo wpautop( __( 'Sorry, no recipes were found for this search criteria', 'boo-recipes' ) );
 
 	} // archive_no_result
 

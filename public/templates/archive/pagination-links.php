@@ -13,8 +13,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		the_posts_pagination( array(
 			'mid_size'  => 2,
-			'prev_text' => __( '« prev', 'boorecipe' ),
-			'next_text' => __( 'next »', 'boorecipe' ),
+			'prev_text' => __( '« prev', 'boo-recipes' ),
+			'next_text' => __( 'next »', 'boo-recipes' ),
 		) );
 
 	} else {

@@ -83,9 +83,9 @@ class Boorecipe_Admin_Ajax_Meta_Update {
 	function get_settings_menu() {
 		$config_menu = array(
 			//The name of this page
-			'page_title' => __( 'Update Recipes Meta', 'boorecipe' ),
+			'page_title' => __( 'Update Recipes Meta', 'boo-recipes' ),
 			// //The Menu Title in Wp Admin
-			'menu_title' => __( 'Update Recipes Meta', 'boorecipe' ),
+			'menu_title' => __( 'Update Recipes Meta', 'boo-recipes' ),
 			// The capability needed to view the page
 			'capability' => 'manage_options',
 			// Slug for the Menu page
@@ -110,8 +110,8 @@ class Boorecipe_Admin_Ajax_Meta_Update {
 
 		$sections[] = array(
 			'id'    => 'update_meta_help',
-			'title' => __( 'Why Update Meta', 'boorecipe' ),
-			'desc'  => __( 'You need to update recipes that are using image sliders. No Need to update if slider is working fine after update. Its only required in some special cases.', 'boorecipe' ),
+			'title' => __( 'Why Update Meta', 'boo-recipes' ),
+			'desc'  => __( 'You need to update recipes that are using image sliders. No Need to update if slider is working fine after update. Its only required in some special cases.', 'boo-recipes' ),
 		);
 
 		$query = $this->get_recipes_query();
@@ -120,15 +120,15 @@ class Boorecipe_Admin_Ajax_Meta_Update {
 
 			$sections[] = array(
 				'id'    => 'update_meta',
-				'title' => __( 'Update Recipes Meta', 'boorecipe' ),
-				'desc'  => __( 'List of Recipes requiring update', 'boorecipe' ),
+				'title' => __( 'Update Recipes Meta', 'boo-recipes' ),
+				'desc'  => __( 'List of Recipes requiring update', 'boo-recipes' ),
 			);
 
 		} else {
 			$sections[] = array(
 				'id'    => 'no_recipes_to_update',
-				'title' => __( 'Congratulations', 'boorecipe' ),
-				'desc'  => __( 'All your Recipes are updated. You dont need to do anything for recipes meta update.', 'boorecipe' )
+				'title' => __( 'Congratulations', 'boo-recipes' ),
+				'desc'  => __( 'All your Recipes are updated. You dont need to do anything for recipes meta update.', 'boo-recipes' )
 			);
 
 
@@ -186,7 +186,7 @@ class Boorecipe_Admin_Ajax_Meta_Update {
 
 			array(
 				'id'      => 'recipes',
-				'label'   => __( 'Recipes', 'boorecipe' ),
+				'label'   => __( 'Recipes', 'boo-recipes' ),
 				'type'    => 'multicheck',
 				'default' => $this->get_recipes_checkbox_default(),
 				'options' => $this->get_recipes()
@@ -215,7 +215,7 @@ class Boorecipe_Admin_Ajax_Meta_Update {
 							</style>
 							<div class="admin-instruction-for-update recipe-update-fail"><strong>DO NOT RELOAD</strong> this page after clicking the button, Page will refresh Automatically once process is complete</div>
 							<div class="ajax-response"></div>' ),
-//					'label' => __( 'Click the Button', 'boorecipe' ),
+//					'label' => __( 'Click the Button', 'boo-recipes' ),
 				'type' => 'html'
 			),
 

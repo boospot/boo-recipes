@@ -124,6 +124,11 @@ you need to re-save your recipes. Quickest way is to "Bulk Edit" all recipes wit
 
 == Changelog ==
 
+= 2.2.0 =
+
+- text-domain of plugin is changed to be compatible with wordpress.org translation mechanism
+- updated .pot, .po and .mo files
+
 = 2.1.0 =
 
 - Optimization: Code optimization
@@ -216,4 +221,6 @@ Initial Release of plugin
 
 == Upgrade Notice ==
 
-Please convert your old settings to New settings if you are upgrading from version 1.x. Always **BACKUP your database** before running conversion.
+If you are using translated plugin in a language other than English, then you shall need to update the translation file names. For instance:
+boorecipe-de_DE.po should be renamed to boo-recipes-de_DE.po
+Same goes with .mo files. ie. boorecipe-de_DE.mo should be renamed to boo-recipes-de_DE.mo

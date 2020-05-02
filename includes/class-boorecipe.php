@@ -68,7 +68,7 @@ class Boorecipe {
 		} else {
 			$this->version = '1.0.0';
 		}
-		$this->plugin_name = 'boorecipe';
+		$this->plugin_name = 'boo-recipes';
 
 		$this->load_dependencies();
 		$this->set_locale();

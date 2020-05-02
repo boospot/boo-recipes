@@ -15,14 +15,14 @@ class BoorecipeWidgetRecipeSkillLevel extends Boorecipe_Widget_Master {
 	public function __construct() {
 
 		$this->widget_cssclass    = 'boorecipe widget_recipe_skill_level';
-		$this->widget_description = __( "A list of Recipe skill levels", 'boorecipe' );
+		$this->widget_description = __( "A list of Recipe skill levels", 'boo-recipes' );
 		$this->widget_id          = 'boorecipe_recipe_skill_level';
-		$this->widget_name        = __( 'Recipe Skill Level', 'boorecipe' );
+		$this->widget_name        = __( 'Recipe Skill Level', 'boo-recipes' );
 		$this->settings           = array(
 			'title'      => array(
 				'type'  => 'text',
-				'std'   => __( 'Recipe Skill Levels', 'boorecipe' ),
-				'label' => __( 'Title', 'boorecipe' ),
+				'std'   => __( 'Recipe Skill Levels', 'boo-recipes' ),
+				'label' => __( 'Title', 'boo-recipes' ),
 			),
 			'number'     => array(
 				'type'  => 'number',
@@ -30,32 +30,32 @@ class BoorecipeWidgetRecipeSkillLevel extends Boorecipe_Widget_Master {
 				'min'   => 1,
 				'max'   => '',
 				'std'   => 5,
-				'label' => __( 'Max Number of skill levels to show', 'boorecipe' ),
+				'label' => __( 'Max Number of skill levels to show', 'boo-recipes' ),
 			),
 			'orderby'    => array(
 				'type'    => 'select',
 				'std'     => 'date',
-				'label'   => __( 'Order by', 'boorecipe' ),
+				'label'   => __( 'Order by', 'boo-recipes' ),
 				'options' => array(
-					'count'   => __( 'Number of Recipes in Skill Levels', 'boorecipe' ),
-					'term_id' => __( 'ID', 'boorecipe' ),
-					'name'    => __( 'Name', 'boorecipe' ),
+					'count'   => __( 'Number of Recipes in Skill Levels', 'boo-recipes' ),
+					'term_id' => __( 'ID', 'boo-recipes' ),
+					'name'    => __( 'Name', 'boo-recipes' ),
 
 				),
 			),
 			'order'      => array(
 				'type'    => 'select',
 				'std'     => 'desc',
-				'label'   => _x( 'Order', 'Sorting order', 'boorecipe' ),
+				'label'   => _x( 'Order', 'Sorting order', 'boo-recipes' ),
 				'options' => array(
-					'asc'  => __( 'ASC', 'boorecipe' ),
-					'desc' => __( 'DESC', 'boorecipe' ),
+					'asc'  => __( 'ASC', 'boo-recipes' ),
+					'desc' => __( 'DESC', 'boo-recipes' ),
 				),
 			),
 			'hide_empty' => array(
 				'type'  => 'checkbox',
 				'std'   => 1,
-				'label' => __( 'Hide if no recipe in skill levels?', 'boorecipe' ),
+				'label' => __( 'Hide if no recipe in skill levels?', 'boo-recipes' ),
 			),
 
 		);

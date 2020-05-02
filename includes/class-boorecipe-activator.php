@@ -80,7 +80,7 @@ class Boorecipe_Activator {
 
 			require_once BOORECIPE_BASE_DIR . 'includes/class-boorecipe-global-functions.php';
 
-			$plugin_global = new Boorecipe_Globals( 'boorecipe', '1.0.0' );
+			$plugin_global = new Boorecipe_Globals( 'boo-recipes', '1.0.0' );
 
 			$plugin_default_options = $plugin_global::get_default_options_array();
 

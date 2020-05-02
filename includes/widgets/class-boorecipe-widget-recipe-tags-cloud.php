@@ -15,14 +15,14 @@ class BoorecipeWidgetRecipeTagsCloud extends Boorecipe_Widget_Master {
 	public function __construct() {
 
 		$this->widget_cssclass    = 'boorecipe widget_recipe_tags_cloud';
-		$this->widget_description = __( "This widget has no options", 'boorecipe' );
+		$this->widget_description = __( "This widget has no options", 'boo-recipes' );
 		$this->widget_id          = 'boorecipe_recipe_tag_cloud';
-		$this->widget_name        = __( 'Recipe Tags Cloud', 'boorecipe' );
+		$this->widget_name        = __( 'Recipe Tags Cloud', 'boo-recipes' );
 		$this->settings           = array(
 			'title' => array(
 				'type'  => 'text',
-				'std'   => __( 'Recipe Tags', 'boorecipe' ),
-				'label' => __( 'Title', 'boorecipe' ),
+				'std'   => __( 'Recipe Tags', 'boo-recipes' ),
+				'label' => __( 'Title', 'boo-recipes' ),
 			),
 		);
 

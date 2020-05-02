@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Verify nonce if search form is submitted.
 if ( boorecipe_is_search_form_submitted() ) {
 	if ( ! wp_verify_nonce( $_GET['recipe_search_form'], 'recipe_search_form_submitted' ) ) {
-		die( __( 'Security Validation Failed', 'boorecipe' ) );
+		die( __( 'Security Validation Failed', 'boo-recipes' ) );
 	}
 }
 

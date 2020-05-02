@@ -130,7 +130,7 @@ class Boorecipe_Shortcodes {
 
 		$args = shortcode_atts(
 			array(
-				'text'  => __( 'Print', 'boorecipe' ),
+				'text'  => __( 'Print', 'boo-recipes' ),
 				'align' => ''
 			),
 			$atts

@@ -120,7 +120,7 @@ class Boorecipe_Template_Functions {
 	 */
 	public function get_external_author( $meta, $link = true ) {
 
-		$external_author_name = ( isset( $meta['external_author_name'] ) && ! empty( $meta['external_author_name'] ) ) ? $meta['external_author_name'] : __( 'Anonymous', 'boorecipe' );
+		$external_author_name = ( isset( $meta['external_author_name'] ) && ! empty( $meta['external_author_name'] ) ) ? $meta['external_author_name'] : __( 'Anonymous', 'boo-recipes' );
 		$external_author_url  = isset( $meta['external_author_link'] ) ? esc_url_raw( $meta['external_author_link'] ) : false;
 
 

@@ -110,11 +110,11 @@ class Boorecipe_Admin {
 
 		$admin_notice->add(
 			'old_settings_notice',                           // Unique ID.
-			esc_html__( 'Old Settings Detected!', 'boorecipe' ),  // The title for this notice.
+			esc_html__( 'Old Settings Detected!', 'boo-recipes' ),  // The title for this notice.
 			sprintf(
-				esc_html__( 'It looks like you have not updated the new settings page. Please go to %s and on "Special" tab, then click "Convert Old Settings" button. After Successful conversion, go to %s screen and update meta. Once both steps are done, click "Delete Old Settings" button.', 'boorecipe' ),
-				'<a href="' . admin_url( 'edit.php?post_type=boo_recipe&page=boorecipe-settings&tab=special_section' ) . '">' . esc_html__( 'New Settings Page', 'boorecipe' ) . '</a>',
-				'<a href="' . admin_url( 'edit.php?post_type=boo_recipe&page=boorecipe-update-meta' ) . '">' . esc_html__( 'Update Recipes Meta', 'boorecipe' ) . '</a>'
+				esc_html__( 'It looks like you have not updated the new settings page. Please go to %s and on "Special" tab, then click "Convert Old Settings" button. After Successful conversion, go to %s screen and update meta. Once both steps are done, click "Delete Old Settings" button.', 'boo-recipes' ),
+				'<a href="' . admin_url( 'edit.php?post_type=boo_recipe&page=boorecipe-settings&tab=special_section' ) . '">' . esc_html__( 'New Settings Page', 'boo-recipes' ) . '</a>',
+				'<a href="' . admin_url( 'edit.php?post_type=boo_recipe&page=boorecipe-update-meta' ) . '">' . esc_html__( 'Update Recipes Meta', 'boo-recipes' ) . '</a>'
 			),
 			// The content for this notice.
 			[
@@ -147,11 +147,11 @@ class Boorecipe_Admin {
 			// Required, meta box id, unique per page, to save: get_option( id )
 			'id'              => $this->plugin_name . '-options',
 			// //The Menu Title in Wp Admin
-			'menu_title'      => __( 'Boo Recipe', 'boorecipe' ),
+			'menu_title'      => __( 'Boo Recipe', 'boo-recipes' ),
 			// Required for submenu
 			'submenu'         => true,
 			//The name of this page
-			'title'           => __( 'Old Settings', 'boorecipe' ),
+			'title'           => __( 'Old Settings', 'boo-recipes' ),
 			// The capability needed to view the page
 			'capability'      => 'manage_options',
 			// plugin_basename required to add plugin action links
@@ -159,11 +159,11 @@ class Boorecipe_Admin {
 			// Settings Link in Plugin Action Links
 			'settings_link'   => array(
 				array(
-					'text' => __( 'Settings', 'boorecipe' ),
+					'text' => __( 'Settings', 'boo-recipes' ),
 					'type' => 'default',
 				),
 				array(
-					'text' => __( 'Premium Plugin', 'boorecipe' ),
+					'text' => __( 'Premium Plugin', 'boo-recipes' ),
 					'url'  => 'https://boorecipes.com/',
 					'type' => 'external',
 				),
@@ -183,23 +183,23 @@ class Boorecipe_Admin {
 
 			'id'     => 'recipe_single',
 			'name'   => 'recipe_single',
-			'title'  => __( 'Recipe Single', 'boorecipe' ),
+			'title'  => __( 'Recipe Single', 'boo-recipes' ),
 			'icon'   => 'dashicons-carrot',
 			'fields' => apply_filters( 'boorecipe_filter_options_recipe_single', array(
 
 				array(
 					'id'          => 'color_accent',
 					'type'        => 'color',
-					'title'       => __( 'Accent Color', 'boorecipe' ),
-					'description' => __( 'This will the theme color for the recipe', 'boorecipe' ),
+					'title'       => __( 'Accent Color', 'boo-recipes' ),
+					'description' => __( 'This will the theme color for the recipe', 'boo-recipes' ),
 					'default'     => '#71A866',
 				),
 
 				array(
 					'id'          => 'color_secondary',
 					'type'        => 'color',
-					'title'       => __( 'Secondary Color', 'boorecipe' ),
-					'description' => __( 'This will be the color for secondary elements (usually in contrast of accent)', 'boorecipe' ),
+					'title'       => __( 'Secondary Color', 'boo-recipes' ),
+					'description' => __( 'This will be the color for secondary elements (usually in contrast of accent)', 'boo-recipes' ),
 					'default'     => '#e8f1e6',
 					'rgba'        => true,
 				),
@@ -207,8 +207,8 @@ class Boorecipe_Admin {
 				array(
 					'id'      => 'color_icon',
 					'type'    => 'color',
-					'title'   => __( 'Icon Color', 'boorecipe' ),
-					'label'   => __( 'This will be the color for icons', 'boorecipe' ),
+					'title'   => __( 'Icon Color', 'boo-recipes' ),
+					'label'   => __( 'This will be the color for icons', 'boo-recipes' ),
 					'default' => '#71A866',
 					'rgba'    => true,
 				),
@@ -217,8 +217,8 @@ class Boorecipe_Admin {
 				array(
 					'id'      => 'color_border',
 					'type'    => 'color',
-					'title'   => __( 'Border Color', 'boorecipe' ),
-					'label'   => __( 'This will be the color for borders in elements', 'boorecipe' ),
+					'title'   => __( 'Border Color', 'boo-recipes' ),
+					'label'   => __( 'This will be the color for borders in elements', 'boo-recipes' ),
 					'default' => '#e5e5e5',
 					'rgba'    => true,
 				),
@@ -226,36 +226,36 @@ class Boorecipe_Admin {
 				array(
 					'id'          => 'recipe_style',
 					'type'        => 'image_select',
-					'title'       => __( 'Recipe Style', 'boorecipe' ),
+					'title'       => __( 'Recipe Style', 'boo-recipes' ),
 					'options'     => apply_filters( 'boorecipe_filter_options_recipe_single_style', array(
 						'style1' => 'https://dummyimage.com/100x80/2ecc70/fff.gif&text=Style1',
 					) ),
 					'radio'       => true,
 					'default'     => 'style1',
-					'description' => __( 'More Styles in Premium Version', 'boorecipe' ),
+					'description' => __( 'More Styles in Premium Version', 'boo-recipes' ),
 				),
 
 				array(
 					'id'      => 'show_nutrition',
 					'type'    => 'switcher',
-					'title'   => __( 'Show Nutrition? (Global)', 'boorecipe' ),
-					'label'   => __( 'Do you want to show Nutrition info in individual Recipe?', 'boorecipe' ),
+					'title'   => __( 'Show Nutrition? (Global)', 'boo-recipes' ),
+					'label'   => __( 'Do you want to show Nutrition info in individual Recipe?', 'boo-recipes' ),
 					'default' => 'yes',
 				),
 
 				array(
 					'id'      => 'show_icons',
 					'type'    => 'switcher',
-					'title'   => __( 'Show Icons?', 'boorecipe' ),
-					'label'   => __( 'Do you want to show icons in individual Recipe?', 'boorecipe' ),
+					'title'   => __( 'Show Icons?', 'boo-recipes' ),
+					'label'   => __( 'Do you want to show icons in individual Recipe?', 'boo-recipes' ),
 					'default' => 'yes',
 				),
 
 				array(
 					'id'      => 'show_key_point_label',
 					'type'    => 'switcher',
-					'title'   => __( 'Show Labels for Key Points?', 'boorecipe' ),
-					'label'   => __( 'Do you want to show labels for key points in individual Recipe?', 'boorecipe' ),
+					'title'   => __( 'Show Labels for Key Points?', 'boo-recipes' ),
+					'label'   => __( 'Do you want to show labels for key points in individual Recipe?', 'boo-recipes' ),
 					'default' => 'yes',
 				),
 
@@ -263,73 +263,73 @@ class Boorecipe_Admin {
 				array(
 					'id'      => 'ingredient_side',
 					'type'    => 'switcher',
-					'title'   => __( 'Ingredients by the Side', 'boorecipe' ),
-					'label'   => __( 'Do you Want to show ingredients by the side?', 'boorecipe' ),
+					'title'   => __( 'Ingredients by the Side', 'boo-recipes' ),
+					'label'   => __( 'Do you Want to show ingredients by the side?', 'boo-recipes' ),
 					'default' => 'no',
 				),
 
 				array(
 					'id'      => 'nutrition_side',
 					'type'    => 'switcher',
-					'title'   => __( 'Nutrition by the Side', 'boorecipe' ),
-					'label'   => __( 'Do you Want to show nutrition by the side?', 'boorecipe' ),
+					'title'   => __( 'Nutrition by the Side', 'boo-recipes' ),
+					'label'   => __( 'Do you Want to show nutrition by the side?', 'boo-recipes' ),
 					'default' => 'yes',
 				),
 
 				array(
 					'id'      => 'show_featured_image',
 					'type'    => 'switcher',
-					'title'   => __( 'Show Featured Image?', 'boorecipe' ),
-					'label'   => __( 'Some Themes add this to header, you may want to hide the one added by this plugin to avoid duplicated contents', 'boorecipe' ),
+					'title'   => __( 'Show Featured Image?', 'boo-recipes' ),
+					'label'   => __( 'Some Themes add this to header, you may want to hide the one added by this plugin to avoid duplicated contents', 'boo-recipes' ),
 					'default' => $this->get_default_options( 'show_featured_image' ),
 				),
 
 				array(
 					'id'      => 'show_recipe_title',
 					'type'    => 'switcher',
-					'title'   => __( 'Show Recipe Title?', 'boorecipe' ),
-					'label'   => __( 'Some Themes add this to header, you may want to hide the one added by this plugin to avoid duplicated contents', 'boorecipe' ),
+					'title'   => __( 'Show Recipe Title?', 'boo-recipes' ),
+					'label'   => __( 'Some Themes add this to header, you may want to hide the one added by this plugin to avoid duplicated contents', 'boo-recipes' ),
 					'default' => $this->get_default_options( 'show_recipe_title' ),
 				),
 
 				array(
 					'id'      => 'show_recipe_publish_info',
 					'type'    => 'switcher',
-					'title'   => __( 'Show Recipe Publish info?', 'boorecipe' ),
-					'label'   => __( 'Some Themes add this to header, you may want to hide the one added by this plugin to avoid duplicated contents', 'boorecipe' ),
+					'title'   => __( 'Show Recipe Publish info?', 'boo-recipes' ),
+					'label'   => __( 'Some Themes add this to header, you may want to hide the one added by this plugin to avoid duplicated contents', 'boo-recipes' ),
 					'default' => $this->get_default_options( 'show_recipe_publish_info' ),
 				),
 
 				array(
 					'id'      => 'show_share_buttons',
 					'type'    => 'switcher',
-					'title'   => __( 'Show Share Buttons?', 'boorecipe' ),
-					'label'   => __( 'Do you Want to show share buttons on recipe page?', 'boorecipe' ),
+					'title'   => __( 'Show Share Buttons?', 'boo-recipes' ),
+					'label'   => __( 'Do you Want to show share buttons on recipe page?', 'boo-recipes' ),
 					'default' => $this->get_default_options( 'show_share_buttons' ),
 				),
 
 				array(
 					'id'      => 'show_author',
 					'type'    => 'switcher',
-					'title'   => __( 'Show Author', 'boorecipe' ),
-					'label'   => __( 'Do you Want to show author name on recipe page?', 'boorecipe' ),
+					'title'   => __( 'Show Author', 'boo-recipes' ),
+					'label'   => __( 'Do you Want to show author name on recipe page?', 'boo-recipes' ),
 					'default' => 'yes',
 				),
 
 				array(
 					'id'      => 'show_published_date',
 					'type'    => 'switcher',
-					'title'   => __( 'Show Published Date', 'boorecipe' ),
-					'label'   => __( 'Do you want to show published date on recipe page?', 'boorecipe' ),
+					'title'   => __( 'Show Published Date', 'boo-recipes' ),
+					'label'   => __( 'Do you want to show published date on recipe page?', 'boo-recipes' ),
 					'default' => 'no',
 				),
 
 				array(
 					'id'          => 'featured_image_height',
 					'type'        => 'text',
-					'title'       => __( 'Featured image height', 'boorecipe' ),
+					'title'       => __( 'Featured image height', 'boo-recipes' ),
 //					'after'       => __("You will need to re-generate thumbnails after changing this value for existing recipes", "boorecipe"),
-					'description' => __( 'Maximum height of the recipe image', 'boorecipe' ),
+					'description' => __( 'Maximum height of the recipe image', 'boo-recipes' ),
 					'default'     => '576',
 					'sanitize'    => 'boorecipe_sanitize_absint',
 
@@ -338,16 +338,16 @@ class Boorecipe_Admin {
 				array(
 					'id'          => 'recipe_default_img_url',
 					'type'        => 'image',
-					'title'       => __( 'Recipe default image', 'boorecipe' ),
-					'description' => __( 'Paste the full url to the image you want to use', 'boorecipe' ),
+					'title'       => __( 'Recipe default image', 'boo-recipes' ),
+					'description' => __( 'Paste the full url to the image you want to use', 'boo-recipes' ),
 				),
 
 				array(
 					'id'          => 'layout_max_width',
 					'type'        => 'number',
-					'title'       => __( 'Layout Max Width', 'boorecipe' ),
+					'title'       => __( 'Layout Max Width', 'boo-recipes' ),
 //					'after'       => __("You will need to re-generate thumbnails after changing this value for existing recipes", "boorecipe"),
-					'description' => __( 'in pixels', 'boorecipe' ),
+					'description' => __( 'in pixels', 'boo-recipes' ),
 					'default'     => '1048',
 					'sanitize'    => 'boorecipe_sanitize_absint',
 
@@ -356,7 +356,7 @@ class Boorecipe_Admin {
 				array(
 					'id'      => 'recipe_layout',
 					'type'    => 'image_select',
-					'title'   => __( 'Recipe Layout', 'boorecipe' ),
+					'title'   => __( 'Recipe Layout', 'boo-recipes' ),
 					'options' => array(
 						'full'  => 'https://dummyimage.com/100x80/2ecc70/fff.gif&text=Full',
 						'left'  => 'https://dummyimage.com/100x80/e74c3c/fff.gif&text=Left',
@@ -369,10 +369,10 @@ class Boorecipe_Admin {
 				array(
 					'id'          => 'recipe_slug',
 					'type'        => 'text',
-					'title'       => __( 'Recipe Slug', 'boorecipe' ),
+					'title'       => __( 'Recipe Slug', 'boo-recipes' ),
 					'after'       => sprintf( __( "You will need to re-save %spermalinks%s after changing this value", "boorecipe" ), '<a href=' . get_admin_url() . "options-permalink.php" . ' target="_blank">', '</a>' ),
 					'class'       => 'text-class',
-					'description' => __( 'the term that appears in url', 'boorecipe' ),
+					'description' => __( 'the term that appears in url', 'boo-recipes' ),
 					'default'     => 'recipe',
 					'attributes'  => array(
 						'rows' => 10,
@@ -392,14 +392,14 @@ class Boorecipe_Admin {
 		$options_fields['recipe_archive'] = array(
 			'id'     => 'recipe_archive',
 			'name'   => 'recipe_archive',
-			'title'  => __( 'Recipe Archive', 'boorecipe' ),
+			'title'  => __( 'Recipe Archive', 'boo-recipes' ),
 			'icon'   => 'dashicons-layout',
 			'fields' => apply_filters( 'boorecipe_filter_options_recipe_archive', array(
 
 				array(
 					'id'       => 'recipes_per_page',
 					'type'     => 'number',
-					'title'    => __( 'Recipes Per Page', 'boorecipe' ),
+					'title'    => __( 'Recipes Per Page', 'boo-recipes' ),
 					'default'  => $this->get_default_options( 'recipes_per_page' ),
 					'sanitize' => 'boorecipe_sanitize_absint',
 
@@ -408,15 +408,15 @@ class Boorecipe_Admin {
 				array(
 					'id'       => 'recipes_per_row',
 					'type'     => 'select',
-					'title'    => __( 'Recipes Per Row', 'boorecipe' ),
+					'title'    => __( 'Recipes Per Row', 'boo-recipes' ),
 					'options'  => array(
-						'1' => __( '1', 'boorecipe' ),
-						'2' => __( '2', 'boorecipe' ),
-						'3' => __( '3', 'boorecipe' ),
-						'4' => __( '4', 'boorecipe' ),
-						'5' => __( '5', 'boorecipe' ),
+						'1' => __( '1', 'boo-recipes' ),
+						'2' => __( '2', 'boo-recipes' ),
+						'3' => __( '3', 'boo-recipes' ),
+						'4' => __( '4', 'boo-recipes' ),
+						'5' => __( '5', 'boo-recipes' ),
 					),
-					'after'    => __( 'This option will not take affect for ALL archie layouts', 'boorecipe' ),
+					'after'    => __( 'This option will not take affect for ALL archie layouts', 'boo-recipes' ),
 					'default'  => $this->get_default_options( 'recipes_per_row' ),
 					'sanitize' => 'boorecipe_sanitize_absint'
 				),
@@ -424,10 +424,10 @@ class Boorecipe_Admin {
 				array(
 					'id'      => 'recipe_archive_layout',
 					'type'    => 'select',
-					'title'   => __( 'Recipes Archive Layout', 'boorecipe' ),
+					'title'   => __( 'Recipes Archive Layout', 'boo-recipes' ),
 					'options' => apply_filters( 'boorecipe_filter_options_recipe_archive_layout', array(
-						'grid' => __( 'Grid', 'boorecipe' ),
-						'list' => __( 'List', 'boorecipe' ),
+						'grid' => __( 'Grid', 'boo-recipes' ),
+						'list' => __( 'List', 'boo-recipes' ),
 					) ),
 					'default' => $this->get_default_options( 'recipe_archive_layout' ),
 				),
@@ -435,29 +435,29 @@ class Boorecipe_Admin {
 				array(
 					'id'          => 'show_in_masonry',
 					'type'        => 'switcher',
-					'title'       => __( 'Show Recipe cards in Masonry?', 'boorecipe' ),
+					'title'       => __( 'Show Recipe cards in Masonry?', 'boo-recipes' ),
 					'default'     => $this->get_default_options( 'show_in_masonry' ),
-					'description' => __( 'If enabled, Layout Switcher will auto disable on front end', 'boorecipe' ),
+					'description' => __( 'If enabled, Layout Switcher will auto disable on front end', 'boo-recipes' ),
 				),
 
 				array(
 					'id'          => 'show_layout_switcher',
 					'type'        => 'switcher',
-					'title'       => __( 'Show Layout Switcher?', 'boorecipe' ),
-					'description' => __( 'This option only available for List and Grid view', 'boorecipe' ),
+					'title'       => __( 'Show Layout Switcher?', 'boo-recipes' ),
+					'description' => __( 'This option only available for List and Grid view', 'boo-recipes' ),
 					'default'     => $this->get_default_options( 'show_layout_switcher' ),
 				),
 
 				array(
 					'id'      => 'heading_for_archive_title',
 					'type'    => 'select',
-					'title'   => __( 'Heading Tag for Recipes Archive', 'boorecipe' ),
+					'title'   => __( 'Heading Tag for Recipes Archive', 'boo-recipes' ),
 					'options' => array(
-						'h2' => __( 'h2', 'boorecipe' ),
-						'h3' => __( 'h3', 'boorecipe' ),
-						'h4' => __( 'h4', 'boorecipe' ),
-						'h5' => __( 'h5', 'boorecipe' ),
-						'h6' => __( 'h6', 'boorecipe' ),
+						'h2' => __( 'h2', 'boo-recipes' ),
+						'h3' => __( 'h3', 'boo-recipes' ),
+						'h4' => __( 'h4', 'boo-recipes' ),
+						'h5' => __( 'h5', 'boo-recipes' ),
+						'h6' => __( 'h6', 'boo-recipes' ),
 					),
 					'default' => $this->get_default_options( 'heading_for_archive_title' ),
 				),
@@ -466,15 +466,15 @@ class Boorecipe_Admin {
 				array(
 					'id'          => 'color_archive_title',
 					'type'        => 'color',
-					'title'       => __( 'Recipe Title Color', 'boorecipe' ),
-					'description' => __( 'This will default to theme link color', 'boorecipe' ),
+					'title'       => __( 'Recipe Title Color', 'boo-recipes' ),
+					'description' => __( 'This will default to theme link color', 'boo-recipes' ),
 					'default'     => $this->get_default_options( 'color_archive_title' ),
 				),
 
 				array(
 					'id'      => 'color_archive_excerpt',
 					'type'    => 'color',
-					'title'   => __( 'Recipe Excerpt Color', 'boorecipe' ),
+					'title'   => __( 'Recipe Excerpt Color', 'boo-recipes' ),
 					'default' => $this->get_default_options( 'color_archive_excerpt' ),
 
 				),
@@ -482,7 +482,7 @@ class Boorecipe_Admin {
 				array(
 					'id'      => 'color_card_bg',
 					'type'    => 'color',
-					'title'   => __( 'Cards Background Color', 'boorecipe' ),
+					'title'   => __( 'Cards Background Color', 'boo-recipes' ),
 					'default' => $this->get_default_options( 'color_card_bg' ),
 					'rgba'    => true,
 				),
@@ -490,7 +490,7 @@ class Boorecipe_Admin {
 				array(
 					'id'      => 'color_archive_keys',
 					'type'    => 'color',
-					'title'   => __( 'Key Points Text Color', 'boorecipe' ),
+					'title'   => __( 'Key Points Text Color', 'boo-recipes' ),
 					'default' => $this->get_default_options( 'color_archive_keys' ),
 
 				),
@@ -500,8 +500,8 @@ class Boorecipe_Admin {
 				array(
 					'id'          => 'archive_layout_max_width',
 					'type'        => 'number',
-					'title'       => __( 'Archive Layout Max Width', 'boorecipe' ),
-					'description' => __( 'in pixels', 'boorecipe' ),
+					'title'       => __( 'Archive Layout Max Width', 'boo-recipes' ),
+					'description' => __( 'in pixels', 'boo-recipes' ),
 					'default'     => $this->get_default_options( 'archive_layout_max_width' ),
 					'sanitize'    => 'boorecipe_sanitize_absint',
 
@@ -511,24 +511,24 @@ class Boorecipe_Admin {
 				array(
 					'id'      => 'override_theme_pagination_style',
 					'type'    => 'switcher',
-					'title'   => __( 'Override Pagination Styling?', 'boorecipe' ),
-					'label'   => __( 'Do you want to override theme styling for pagination?', 'boorecipe' ),
+					'title'   => __( 'Override Pagination Styling?', 'boo-recipes' ),
+					'label'   => __( 'Do you want to override theme styling for pagination?', 'boo-recipes' ),
 					'default' => $this->get_default_options( 'override_theme_pagination_style' ),
 				),
 
 				array(
 					'id'      => 'show_archive_excerpt',
 					'type'    => 'switcher',
-					'title'   => __( 'Show Archive Excerpt', 'boorecipe' ),
-					'label'   => __( 'Do you want to show archive excerpt?', 'boorecipe' ),
+					'title'   => __( 'Show Archive Excerpt', 'boo-recipes' ),
+					'label'   => __( 'Do you want to show archive excerpt?', 'boo-recipes' ),
 					'default' => $this->get_default_options( 'show_archive_excerpt' ),
 				),
 
 				array(
 					'id'      => 'show_search_form',
 					'type'    => 'switcher',
-					'title'   => __( 'Show Search Form on archive page?', 'boorecipe' ),
-					'label'   => __( 'If enabled, Search form will be added to recipes archive page ', 'boorecipe' ),
+					'title'   => __( 'Show Search Form on archive page?', 'boo-recipes' ),
+					'label'   => __( 'If enabled, Search form will be added to recipes archive page ', 'boo-recipes' ),
 					'default' => $this->get_default_options( 'show_search_form' ),
 				)
 
@@ -542,23 +542,23 @@ class Boorecipe_Admin {
 		$options_fields['recipe_search_form'] = array(
 			'id'     => 'recipe_search_form',
 			'name'   => 'recipe_search_form',
-			'title'  => __( 'Search Form', 'boorecipe' ),
+			'title'  => __( 'Search Form', 'boo-recipes' ),
 			'icon'   => 'dashicons-search',
 			'fields' => apply_filters( 'recipe_options_search_form_section_fields_array', array(
 
 				array(
 					'id'      => 'form_bg_color',
 					'type'    => 'color',
-					'title'   => __( 'Form background Color', 'boorecipe' ),
+					'title'   => __( 'Form background Color', 'boo-recipes' ),
 					'default' => $this->get_default_options( 'form_bg_color' ),
 					'rgba'    => true,
-//					'description'   => __('This will default to theme link color','boorecipe'),
+//					'description'   => __('This will default to theme link color','boo-recipes'),
 				),
 
 				array(
 					'id'      => 'form_button_bg_color',
 					'type'    => 'color',
-					'title'   => __( 'Button background color', 'boorecipe' ),
+					'title'   => __( 'Button background color', 'boo-recipes' ),
 					'default' => $this->get_default_options( 'form_button_bg_color' ),
 					'rgba'    => true,
 				),
@@ -566,7 +566,7 @@ class Boorecipe_Admin {
 				array(
 					'id'      => 'form_button_text_color',
 					'type'    => 'color',
-					'title'   => __( 'Button text color', 'boorecipe' ),
+					'title'   => __( 'Button text color', 'boo-recipes' ),
 					'default' => $this->get_default_options( 'form_button_text_color' ),
 				),
 
@@ -579,16 +579,16 @@ class Boorecipe_Admin {
 		$options_fields['recipe_widgets'] = array(
 			'id'     => 'recipe_widgets',
 			'name'   => 'recipe_widgets',
-			'title'  => __( 'Widget Settings', 'boorecipe' ),
+			'title'  => __( 'Widget Settings', 'boo-recipes' ),
 			'icon'   => 'dashicons-list-view',
 			'fields' => array(
 
 				array(
 					'id'          => 'recipe_widget_img_width',
 					'type'        => 'number',
-					'title'       => __( 'Recipe Widget: Image width', 'boorecipe' ),
+					'title'       => __( 'Recipe Widget: Image width', 'boo-recipes' ),
 					'after'       => __( "in pixels", "boorecipe" ),
-					'description' => __( 'its for widget area', 'boorecipe' ),
+					'description' => __( 'its for widget area', 'boo-recipes' ),
 					'default'     => $this->get_default_options( 'recipe_widget_img_width' ),
 					'sanitize'    => 'boorecipe_sanitize_absint',
 
@@ -597,7 +597,7 @@ class Boorecipe_Admin {
 				array(
 					'id'      => 'recipe_widget_bg_color',
 					'type'    => 'color',
-					'title'   => __( 'Recipe Widget: Background color', 'boorecipe' ),
+					'title'   => __( 'Recipe Widget: Background color', 'boo-recipes' ),
 					'default' => $this->get_default_options( 'recipe_widget_bg_color' ),
 					'rgba'    => true,
 				),
@@ -611,14 +611,14 @@ class Boorecipe_Admin {
 		$options_fields['recipe_options_backup_restore'] = array(
 			'id'     => 'recipe_options_backup_restore',
 			'name'   => 'recipe_options_backup_restore',
-			'title'  => __( 'Settings Backup', 'boorecipe' ),
+			'title'  => __( 'Settings Backup', 'boo-recipes' ),
 			'icon'   => 'dashicons-controls-repeat',
 			'fields' => array(
 
 				array(
 					'id'    => 'boorecipe_options_backup_restore',
 					'type'  => 'backup',
-					'title' => __( 'Settings Backup and/or Restore', 'boorecipe' ),
+					'title' => __( 'Settings Backup and/or Restore', 'boo-recipes' ),
 				),
 
 			)
@@ -630,7 +630,7 @@ class Boorecipe_Admin {
 		$options_fields['recipe_plugin_activation'] = array(
 			'id'     => 'recipe_plugin_activation',
 			'name'   => 'recipe_plugin_activation',
-			'title'  => __( 'Premium Plugin', 'boorecipe' ),
+			'title'  => __( 'Premium Plugin', 'boo-recipes' ),
 			'icon'   => 'dashicons-admin-network',
 			'fields' => apply_filters( 'boorecipe_options_plugin_activation_section', array(
 					array(
@@ -650,14 +650,14 @@ class Boorecipe_Admin {
 		$options_fields['custom_css_section'] = array(
 			'id'     => 'custom_css_section',
 			'name'   => 'custom_css_section',
-			'title'  => __( 'Custom CSS', 'boorecipe' ),
+			'title'  => __( 'Custom CSS', 'boo-recipes' ),
 			'icon'   => 'dashicons-editor-code',
 			'fields' => apply_filters( 'boorecipe_filter_options_custom_css_section', array(
 
 					array(
 						'id'          => 'custom_css_editor',
 						'type'        => 'ace_editor',
-						'title'       => __( 'Your Custom CSS', 'boorecipe' ),
+						'title'       => __( 'Your Custom CSS', 'boo-recipes' ),
 						'options'     => array(
 							'theme'                     => 'ace/theme/monokai',
 							'mode'                      => 'ace/mode/css',
@@ -670,7 +670,7 @@ class Boorecipe_Admin {
 						'attributes'  => array(
 							'style' => 'height: 300px; max-width: 700px;',
 						),
-						'description' => __( 'Add your custom CSS here', 'boorecipe' ),
+						'description' => __( 'Add your custom CSS here', 'boo-recipes' ),
 					),
 //
 
@@ -684,25 +684,25 @@ class Boorecipe_Admin {
 		$options_fields['uninstall_section'] = array(
 			'id'     => 'uninstall_section',
 			'name'   => 'uninstall_section',
-			'title'  => __( 'Uninstall', 'boorecipe' ),
+			'title'  => __( 'Uninstall', 'boo-recipes' ),
 			'icon'   => 'dashicons-dismiss',
 			'fields' => apply_filters( 'boorecipe_filter_options_uninstall_section', array(
 
 					array(
 						'id'          => 'uninstall_delete_options',
 						'type'        => 'switcher',
-						'title'       => __( 'Delete Plugin Options', 'boorecipe' ),
-						'description' => __( 'Delete all plugin options data at uninstall?', 'boorecipe' ),
-						'help'        => __( 'green = Yes & red = No', 'boorecipe' ),
+						'title'       => __( 'Delete Plugin Options', 'boo-recipes' ),
+						'description' => __( 'Delete all plugin options data at uninstall?', 'boo-recipes' ),
+						'help'        => __( 'green = Yes & red = No', 'boo-recipes' ),
 						'default'     => $this->get_default_options( 'uninstall_delete_options' ),
 					),
 
 					array(
 						'id'          => 'uninstall_delete_meta',
 						'type'        => 'switcher',
-						'title'       => __( 'Delete Recipes Data', 'boorecipe' ),
-						'description' => __( 'Delete all recipes meta data at uninstall?', 'boorecipe' ),
-						'help'        => __( 'green = Yes & red = No', 'boorecipe' ),
+						'title'       => __( 'Delete Recipes Data', 'boo-recipes' ),
+						'description' => __( 'Delete all recipes meta data at uninstall?', 'boo-recipes' ),
+						'help'        => __( 'green = Yes & red = No', 'boo-recipes' ),
 						'default'     => $this->get_default_options( 'uninstall_delete_mata' ),
 					),
 

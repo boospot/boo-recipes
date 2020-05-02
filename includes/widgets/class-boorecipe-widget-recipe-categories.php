@@ -15,18 +15,18 @@ class BoorecipeWidgetRecipeCategories extends Boorecipe_Widget_Master {
 		//
 		//		$widget_options = array(
 		//			'classname' =>  'boorecipe-widget-recent-recipes',
-		//			'description' => __('This will display a recipes from your site' , 'boorecipe')
+		//			'description' => __('This will display a recipes from your site' , 'boo-recipes')
 		//		);*/
 
 		$this->widget_cssclass    = 'boorecipe widget_recipe_cats';
-		$this->widget_description = __( "A list of your recipe Categories", 'boorecipe' );
+		$this->widget_description = __( "A list of your recipe Categories", 'boo-recipes' );
 		$this->widget_id          = 'boorecipe_recipe_cat';
-		$this->widget_name        = __( 'Recipe Categories', 'boorecipe' );
+		$this->widget_name        = __( 'Recipe Categories', 'boo-recipes' );
 		$this->settings           = array(
 			'title'      => array(
 				'type'  => 'text',
-				'std'   => __( 'Recipe Categories', 'boorecipe' ),
-				'label' => __( 'Title', 'boorecipe' ),
+				'std'   => __( 'Recipe Categories', 'boo-recipes' ),
+				'label' => __( 'Title', 'boo-recipes' ),
 			),
 			'number'     => array(
 				'type'  => 'number',
@@ -34,34 +34,34 @@ class BoorecipeWidgetRecipeCategories extends Boorecipe_Widget_Master {
 				'min'   => 1,
 				'max'   => '',
 				'std'   => 5,
-				'label' => __( 'Max Number of categories to show', 'boorecipe' ),
+				'label' => __( 'Max Number of categories to show', 'boo-recipes' ),
 			),
 			'orderby'    => array(
 				'type'    => 'select',
 				'std'     => 'date',
-				'label'   => __( 'Order by', 'boorecipe' ),
+				'label'   => __( 'Order by', 'boo-recipes' ),
 				'options' => array(
-					'count'   => __( 'Number of Recipes in Category', 'boorecipe' ),
-					'term_id' => __( 'ID', 'boorecipe' ),
-					'name'    => __( 'Name', 'boorecipe' ),
-					/*//					'menu_order' => __( 'Order field in recipe edit', 'boorecipe' ),
-					//					'modified'  =>  __( 'Modified Date', 'boorecipe' ),*/
+					'count'   => __( 'Number of Recipes in Category', 'boo-recipes' ),
+					'term_id' => __( 'ID', 'boo-recipes' ),
+					'name'    => __( 'Name', 'boo-recipes' ),
+					/*//					'menu_order' => __( 'Order field in recipe edit', 'boo-recipes' ),
+					//					'modified'  =>  __( 'Modified Date', 'boo-recipes' ),*/
 
 				),
 			),
 			'order'      => array(
 				'type'    => 'select',
 				'std'     => 'desc',
-				'label'   => _x( 'Order', 'Sorting order', 'boorecipe' ),
+				'label'   => _x( 'Order', 'Sorting order', 'boo-recipes' ),
 				'options' => array(
-					'asc'  => __( 'ASC', 'boorecipe' ),
-					'desc' => __( 'DESC', 'boorecipe' ),
+					'asc'  => __( 'ASC', 'boo-recipes' ),
+					'desc' => __( 'DESC', 'boo-recipes' ),
 				),
 			),
 			'hide_empty' => array(
 				'type'  => 'checkbox',
 				'std'   => 1,
-				'label' => __( 'Hide if no recipe in category?', 'boorecipe' ),
+				'label' => __( 'Hide if no recipe in category?', 'boo-recipes' ),
 			),
 
 		);

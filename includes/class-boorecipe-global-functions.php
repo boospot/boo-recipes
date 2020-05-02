@@ -222,21 +222,21 @@ class Boorecipe_Globals {
 
 
 		$default_options = array(
-			'time_content_unit_minutes'         => __( 'mins', 'boorecipe' ),
-			'time_content_unit_hours'           => __( 'hours', 'boorecipe' ),
-			'time_format_minutes'               => __( 'mins', 'boorecipe' ),
-			'time_format_hours'                 => __( 'hours', 'boorecipe' ),
+			'time_content_unit_minutes'         => __( 'mins', 'boo-recipes' ),
+			'time_content_unit_hours'           => __( 'hours', 'boo-recipes' ),
+			'time_format_minutes'               => __( 'mins', 'boo-recipes' ),
+			'time_format_hours'                 => __( 'hours', 'boo-recipes' ),
 			'single_recipe_icon_size'           => 32, // available option: 16 20 24 28 32 36 40 44 48
 			'single_recipe_icon_size_2'         => 20, // available option: 16 20 24 28 32 36 40 44 48
 			'layout_switcher_icon_size'         => 16, // available option: 16 20 24 28 32 36 40 44 48
 			'archive_key_point_icon_size'       => 16, // available option: 16 20 24 28 32 36 40 44 48
 			'general_icon_size'                 => 16, // available option: 16 20 24 28 32 36 40 44 48
-			'message_nonce_failed'              => __( 'Failed security check', 'boorecipe' ),
-			'message_placeholder_keyword_field' => __( 'Enter Keyword Here...', 'boorecipe' ),
-			'social_share'                      => _x( 'Share', 'facebook, linkedin etc', 'boorecipe' ),
-			'social_save'                       => _x( 'Save', 'pinterest etc', 'boorecipe' ),
-			'social_tweet'                      => _x( 'Tweet', 'twitter tweet', 'boorecipe' ),
-			'social_email'                      => _x( 'Email', 'Send Email', 'boorecipe' ),
+			'message_nonce_failed'              => __( 'Failed security check', 'boo-recipes' ),
+			'message_placeholder_keyword_field' => __( 'Enter Keyword Here...', 'boo-recipes' ),
+			'social_share'                      => _x( 'Share', 'facebook, linkedin etc', 'boo-recipes' ),
+			'social_save'                       => _x( 'Save', 'pinterest etc', 'boo-recipes' ),
+			'social_tweet'                      => _x( 'Tweet', 'twitter tweet', 'boo-recipes' ),
+			'social_email'                      => _x( 'Email', 'Send Email', 'boo-recipes' ),
 			'recipe_archive_layout'             => 'grid',
 			'grid_view_image_size'              => 'medium_large', // recipe_landscape_image_archive
 			'list_view_image_size'              => 'medium', //recipe_landscape_image_thumbnail
@@ -308,30 +308,30 @@ class Boorecipe_Globals {
 	public static function get_default_labels() {
 
 		$default_labels = array(
-			'recipe_label'              => __( 'Recipe', 'boorecipe' ),
-			'recipe_plural_label'       => __( 'Recipes', 'boorecipe' ),
-			'recipe_category_label'     => __( 'Category', 'boorecipe' ),
-			'skill_level_label'         => __( 'Skill Level', 'boorecipe' ),
-			'skill_level_plural_label'  => __( 'Skill Levels', 'boorecipe' ),
-			'recipe_tags_label'         => __( 'Usage', 'boorecipe' ),
-			'prep_time_label'           => __( 'Prep', 'boorecipe' ),
-			'cook_time_label'           => __( 'Cook', 'boorecipe' ),
-			'total_time_label'          => __( 'Ready-in', 'boorecipe' ),
-			'time_unit_minutes_label'   => __( 'mins', 'boorecipe' ),
-			'time_unit_hours_label'     => __( 'hours', 'boorecipe' ),
-			'yields_label'              => __( 'Yields', 'boorecipe' ),
-			'difficulty_level_label'    => __( 'Skill Level', 'boorecipe' ),
-			'keyword_label'             => __( 'Keyword', 'boorecipe' ),
-			'ingredients_label'         => __( 'Ingredients', 'boorecipe' ),
-			'directions_label'          => __( 'Instructions', 'boorecipe' ),
-			'additional_notes_label'    => __( 'Additional Notes', 'boorecipe' ),
-			'nutrition_label'           => __( 'Nutrition', 'boorecipe' ),
-			'nutrition_facts_label'     => __( 'Nutrition Facts', 'boorecipe' ),
-			'submit_button_label'       => __( 'Search', 'boorecipe' ),
-			'any_label'                 => __( 'Any', 'boorecipe' ),
-			'all_label'                 => __( 'All', 'boorecipe' ),
-			'archive_layout_grid_label' => _x( 'Grid', 'Post Archive Layout', 'boorecipe' ),
-			'archive_layout_list_label' => _x( 'List', 'Post Archive Layout', 'boorecipe' ),
+			'recipe_label'              => __( 'Recipe', 'boo-recipes' ),
+			'recipe_plural_label'       => __( 'Recipes', 'boo-recipes' ),
+			'recipe_category_label'     => __( 'Category', 'boo-recipes' ),
+			'skill_level_label'         => __( 'Skill Level', 'boo-recipes' ),
+			'skill_level_plural_label'  => __( 'Skill Levels', 'boo-recipes' ),
+			'recipe_tags_label'         => __( 'Usage', 'boo-recipes' ),
+			'prep_time_label'           => __( 'Prep', 'boo-recipes' ),
+			'cook_time_label'           => __( 'Cook', 'boo-recipes' ),
+			'total_time_label'          => __( 'Ready-in', 'boo-recipes' ),
+			'time_unit_minutes_label'   => __( 'mins', 'boo-recipes' ),
+			'time_unit_hours_label'     => __( 'hours', 'boo-recipes' ),
+			'yields_label'              => __( 'Yields', 'boo-recipes' ),
+			'difficulty_level_label'    => __( 'Skill Level', 'boo-recipes' ),
+			'keyword_label'             => __( 'Keyword', 'boo-recipes' ),
+			'ingredients_label'         => __( 'Ingredients', 'boo-recipes' ),
+			'directions_label'          => __( 'Instructions', 'boo-recipes' ),
+			'additional_notes_label'    => __( 'Additional Notes', 'boo-recipes' ),
+			'nutrition_label'           => __( 'Nutrition', 'boo-recipes' ),
+			'nutrition_facts_label'     => __( 'Nutrition Facts', 'boo-recipes' ),
+			'submit_button_label'       => __( 'Search', 'boo-recipes' ),
+			'any_label'                 => __( 'Any', 'boo-recipes' ),
+			'all_label'                 => __( 'All', 'boo-recipes' ),
+			'archive_layout_grid_label' => _x( 'Grid', 'Post Archive Layout', 'boo-recipes' ),
+			'archive_layout_list_label' => _x( 'List', 'Post Archive Layout', 'boo-recipes' ),
 
 		);
 

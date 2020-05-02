@@ -56,10 +56,10 @@ class Boorecipe_Post_Types {
 
 			array(
 				'slug'                => 'boo_recipe',
-				'singular'            => __( 'Recipe', 'boorecipe' ),
-				'plural'              => __( 'Recipes', 'boorecipe' ),
-				'menu_name'           => __( 'Recipes', 'boorecipe' ),
-				'description'         => __( 'Recipes', 'boorecipe' ),
+				'singular'            => __( 'Recipe', 'boo-recipes' ),
+				'plural'              => __( 'Recipes', 'boo-recipes' ),
+				'menu_name'           => __( 'Recipes', 'boo-recipes' ),
+				'description'         => __( 'Recipes', 'boo-recipes' ),
 				'has_archive'         => true,
 				'hierarchical'        => false,
 				'menu_icon'           => 'dashicons-carrot',
@@ -100,8 +100,8 @@ class Boorecipe_Post_Types {
 					array(
 						'id'                  => 'recipe_category',
 						'taxonomy'            => 'recipe_category',
-						'plural'              => __( 'Recipe Categories', 'boorecipe' ),
-						'single'              => __( 'Recipe Category', 'boorecipe' ),
+						'plural'              => __( 'Recipe Categories', 'boo-recipes' ),
+						'single'              => __( 'Recipe Category', 'boo-recipes' ),
 						'post_types'          => array( 'boo_recipe' ),
 						'rewrite'             => array( 'slug' => $recipe_category_slug, 'with_front' => false ),
 						'exclude_from_search' => false
@@ -110,8 +110,8 @@ class Boorecipe_Post_Types {
 					array(
 						'id'                  => 'skill_level',
 						'taxonomy'            => 'skill_level',
-						'plural'              => __( 'Skill Levels', 'boorecipe' ),
-						'single'              => __( 'Skill Level', 'boorecipe' ),
+						'plural'              => __( 'Skill Levels', 'boo-recipes' ),
+						'single'              => __( 'Skill Level', 'boo-recipes' ),
 						'post_types'          => array( 'boo_recipe' ),
 						'rewrite'             => array( 'slug' => $skill_level_slug, 'with_front' => false ),
 						'exclude_from_search' => false
@@ -120,8 +120,8 @@ class Boorecipe_Post_Types {
 					array(
 						'id'           => 'recipe_tags',
 						'taxonomy'     => 'recipe_tags',
-						'plural'       => __( 'Recipe Tags', 'boorecipe' ),
-						'single'       => __( 'Recipe Tag', 'boorecipe' ),
+						'plural'       => __( 'Recipe Tags', 'boo-recipes' ),
+						'single'       => __( 'Recipe Tag', 'boo-recipes' ),
 						'post_types'   => array( 'boo_recipe' ),
 						'hierarchical' => false,
 						'rewrite'      => array( 'slug' => $recipe_tags_slug, 'with_front' => false )
@@ -208,23 +208,23 @@ class Boorecipe_Post_Types {
 			'name'                  => $fields['plural'],
 			'singular_name'         => $fields['singular'],
 			'menu_name'             => $fields['menu_name'],
-			'new_item'              => sprintf( __( 'New %s', 'boorecipe' ), $fields['singular'] ),
-			'add_new_item'          => sprintf( __( 'Add new %s', 'boorecipe' ), $fields['singular'] ),
-			'edit_item'             => sprintf( __( 'Edit %s', 'boorecipe' ), $fields['singular'] ),
-			'view_item'             => sprintf( __( 'View %s', 'boorecipe' ), $fields['singular'] ),
-			'view_items'            => sprintf( __( 'View %s', 'boorecipe' ), $fields['plural'] ),
-			'search_items'          => sprintf( __( 'Search %s', 'boorecipe' ), $fields['plural'] ),
-			'not_found'             => sprintf( __( 'No %s found', 'boorecipe' ), strtolower( $fields['plural'] ) ),
-			'not_found_in_trash'    => sprintf( __( 'No %s found in trash', 'boorecipe' ), strtolower( $fields['plural'] ) ),
-			'all_items'             => sprintf( __( 'All %s', 'boorecipe' ), $fields['plural'] ),
-			'archives'              => sprintf( __( '%s Archives', 'boorecipe' ), $fields['singular'] ),
-			'attributes'            => sprintf( __( '%s Attributes', 'boorecipe' ), $fields['singular'] ),
-			'insert_into_item'      => sprintf( __( 'Insert into %s', 'boorecipe' ), strtolower( $fields['singular'] ) ),
-			'uploaded_to_this_item' => sprintf( __( 'Uploaded to this %s', 'boorecipe' ), strtolower( $fields['singular'] ) ),
+			'new_item'              => sprintf( __( 'New %s', 'boo-recipes' ), $fields['singular'] ),
+			'add_new_item'          => sprintf( __( 'Add new %s', 'boo-recipes' ), $fields['singular'] ),
+			'edit_item'             => sprintf( __( 'Edit %s', 'boo-recipes' ), $fields['singular'] ),
+			'view_item'             => sprintf( __( 'View %s', 'boo-recipes' ), $fields['singular'] ),
+			'view_items'            => sprintf( __( 'View %s', 'boo-recipes' ), $fields['plural'] ),
+			'search_items'          => sprintf( __( 'Search %s', 'boo-recipes' ), $fields['plural'] ),
+			'not_found'             => sprintf( __( 'No %s found', 'boo-recipes' ), strtolower( $fields['plural'] ) ),
+			'not_found_in_trash'    => sprintf( __( 'No %s found in trash', 'boo-recipes' ), strtolower( $fields['plural'] ) ),
+			'all_items'             => sprintf( __( 'All %s', 'boo-recipes' ), $fields['plural'] ),
+			'archives'              => sprintf( __( '%s Archives', 'boo-recipes' ), $fields['singular'] ),
+			'attributes'            => sprintf( __( '%s Attributes', 'boo-recipes' ), $fields['singular'] ),
+			'insert_into_item'      => sprintf( __( 'Insert into %s', 'boo-recipes' ), strtolower( $fields['singular'] ) ),
+			'uploaded_to_this_item' => sprintf( __( 'Uploaded to this %s', 'boo-recipes' ), strtolower( $fields['singular'] ) ),
 
 			/* Labels for hierarchical post types only. */
-			'parent_item'           => sprintf( __( 'Parent %s', 'boorecipe' ), $fields['singular'] ),
-			'parent_item_colon'     => sprintf( __( 'Parent %s:', 'boorecipe' ), $fields['singular'] ),
+			'parent_item'           => sprintf( __( 'Parent %s', 'boo-recipes' ), $fields['singular'] ),
+			'parent_item_colon'     => sprintf( __( 'Parent %s:', 'boo-recipes' ), $fields['singular'] ),
 
 			/* Custom archive label.  Must filter 'post_type_archive_title' to use. */
 			'archive_title'         => $fields['plural'],
@@ -374,20 +374,20 @@ class Boorecipe_Post_Types {
 			'name'                       => $tax_fields['plural'],
 			'singular_name'              => $tax_fields['single'],
 			'menu_name'                  => $tax_fields['plural'],
-			'all_items'                  => sprintf( __( 'All %s', 'boorecipe' ), $tax_fields['plural'] ),
-			'edit_item'                  => sprintf( __( 'Edit %s', 'boorecipe' ), $tax_fields['single'] ),
-			'view_item'                  => sprintf( __( 'View %s', 'boorecipe' ), $tax_fields['single'] ),
-			'update_item'                => sprintf( __( 'Update %s', 'boorecipe' ), $tax_fields['single'] ),
-			'add_new_item'               => sprintf( __( 'Add New %s', 'boorecipe' ), $tax_fields['single'] ),
-			'new_item_name'              => sprintf( __( 'New %s Name', 'boorecipe' ), $tax_fields['single'] ),
-			'parent_item'                => sprintf( __( 'Parent %s', 'boorecipe' ), $tax_fields['single'] ),
-			'parent_item_colon'          => sprintf( __( 'Parent %s:', 'boorecipe' ), $tax_fields['single'] ),
-			'search_items'               => sprintf( __( 'Search %s', 'boorecipe' ), $tax_fields['plural'] ),
-			'popular_items'              => sprintf( __( 'Popular %s', 'boorecipe' ), $tax_fields['plural'] ),
-			'separate_items_with_commas' => sprintf( __( 'Separate %s with commas', 'boorecipe' ), $tax_fields['plural'] ),
-			'add_or_remove_items'        => sprintf( __( 'Add or remove %s', 'boorecipe' ), $tax_fields['plural'] ),
-			'choose_from_most_used'      => sprintf( __( 'Choose from the most used %s', 'boorecipe' ), $tax_fields['plural'] ),
-			'not_found'                  => sprintf( __( 'No %s found', 'boorecipe' ), $tax_fields['plural'] ),
+			'all_items'                  => sprintf( __( 'All %s', 'boo-recipes' ), $tax_fields['plural'] ),
+			'edit_item'                  => sprintf( __( 'Edit %s', 'boo-recipes' ), $tax_fields['single'] ),
+			'view_item'                  => sprintf( __( 'View %s', 'boo-recipes' ), $tax_fields['single'] ),
+			'update_item'                => sprintf( __( 'Update %s', 'boo-recipes' ), $tax_fields['single'] ),
+			'add_new_item'               => sprintf( __( 'Add New %s', 'boo-recipes' ), $tax_fields['single'] ),
+			'new_item_name'              => sprintf( __( 'New %s Name', 'boo-recipes' ), $tax_fields['single'] ),
+			'parent_item'                => sprintf( __( 'Parent %s', 'boo-recipes' ), $tax_fields['single'] ),
+			'parent_item_colon'          => sprintf( __( 'Parent %s:', 'boo-recipes' ), $tax_fields['single'] ),
+			'search_items'               => sprintf( __( 'Search %s', 'boo-recipes' ), $tax_fields['plural'] ),
+			'popular_items'              => sprintf( __( 'Popular %s', 'boo-recipes' ), $tax_fields['plural'] ),
+			'separate_items_with_commas' => sprintf( __( 'Separate %s with commas', 'boo-recipes' ), $tax_fields['plural'] ),
+			'add_or_remove_items'        => sprintf( __( 'Add or remove %s', 'boo-recipes' ), $tax_fields['plural'] ),
+			'choose_from_most_used'      => sprintf( __( 'Choose from the most used %s', 'boo-recipes' ), $tax_fields['plural'] ),
+			'not_found'                  => sprintf( __( 'No %s found', 'boo-recipes' ), $tax_fields['plural'] ),
 		);
 
 		$args = array(
@@ -428,8 +428,8 @@ class Boorecipe_Post_Types {
 		$recipe_meta_nutrition_fields[] = array(
 			'id'                => $prefix . 'show_nutrition',
 			'type'              => 'switch',
-			'name'              => __( 'Show Nutrition', 'boorecipe' ),
-			'desc'              => __( 'Do you want to show nutrition info for this recipe? Its required by Schema.org', 'boorecipe' ),
+			'name'              => __( 'Show Nutrition', 'boo-recipes' ),
+			'desc'              => __( 'Do you want to show nutrition info for this recipe? Its required by Schema.org', 'boo-recipes' ),
 			'std'               => 1,
 			'sanitize_callback' => 'sanitize_key'
 
@@ -451,15 +451,15 @@ class Boorecipe_Post_Types {
 
 				switch ( $measurement ) {
 					case 'g':
-						$measurement = __( 'in grams', 'boorecipe' );
+						$measurement = __( 'in grams', 'boo-recipes' );
 						break;
 
 					case 'mg':
-						$measurement = __( 'in milligrams', 'boorecipe' );
+						$measurement = __( 'in milligrams', 'boo-recipes' );
 						break;
 
 					default:
-						$measurement = __( 'Text input expected', 'boorecipe' );
+						$measurement = __( 'Text input expected', 'boo-recipes' );
 				}
 
 				// Using the right sanitization function
@@ -499,7 +499,7 @@ class Boorecipe_Post_Types {
 
 		$nutrition_meta_box_array = array(
 			'id'         => 'boorecipe-recipe-meta-nutrition',
-			'title'      => esc_html__( 'Nutrition', 'boorecipe' ),
+			'title'      => esc_html__( 'Nutrition', 'boo-recipes' ),
 			'post_types' => array( 'boo_recipe' ),
 			'context'    => 'normal',
 			'priority'   => 'high',
@@ -533,9 +533,9 @@ class Boorecipe_Post_Types {
 		$recipe_primary_fields = apply_filters( 'boorecipe_recipe_metabox_fields', array(
 			array(
 				'id'      => $prefix . 'short_description',
-				'name'    => esc_html__( 'Short Description', 'boorecipe' ),
+				'name'    => esc_html__( 'Short Description', 'boo-recipes' ),
 				'type'    => $editor_type,
-				'desc'    => esc_html__( 'Describe your recipe in a few words', 'boorecipe' ),
+				'desc'    => esc_html__( 'Describe your recipe in a few words', 'boo-recipes' ),
 				'rows'    => 5,
 				'options' => array(
 					'textarea_rows' => 5
@@ -544,11 +544,11 @@ class Boorecipe_Post_Types {
 			),
 			array(
 				'id'      => $prefix . 'recipe_time_format',
-				'name'    => esc_html__( 'Time Format', 'boorecipe' ),
+				'name'    => esc_html__( 'Time Format', 'boo-recipes' ),
 				'type'    => 'radio',
 				'options' => array(
-					'time_format_minutes' => esc_html__( 'Minutes', 'boorecipe' ),
-					'time_format_hours'   => esc_html__( 'Hours', 'boorecipe' ),
+					'time_format_minutes' => esc_html__( 'Minutes', 'boo-recipes' ),
+					'time_format_hours'   => esc_html__( 'Hours', 'boo-recipes' ),
 				),
 				'inline'  => 'true',
 				'std'     => 'time_format_minutes',
@@ -556,82 +556,82 @@ class Boorecipe_Post_Types {
 			array(
 				'id'    => $prefix . 'prep_time',
 				'type'  => 'number',
-				'name'  => esc_html__( 'Prep Time', 'boorecipe' ),
-				'desc'  => esc_html__( 'Hours or Minutes depending upon the options selected above', 'boorecipe' ),
+				'name'  => esc_html__( 'Prep Time', 'boo-recipes' ),
+				'desc'  => esc_html__( 'Hours or Minutes depending upon the options selected above', 'boo-recipes' ),
 				'class' => 'recipe_prep_time',
 			),
 			array(
 				'id'    => $prefix . 'cook_time',
-				'name'  => esc_html__( 'Cook Time', 'boorecipe' ),
+				'name'  => esc_html__( 'Cook Time', 'boo-recipes' ),
 				'type'  => 'time',
-				'desc'  => esc_html__( 'Format is HH:MM', 'boorecipe' ),
+				'desc'  => esc_html__( 'Format is HH:MM', 'boo-recipes' ),
 				'class' => 'recipe_cook_time',
 			),
 			array(
 				'id'    => $prefix . 'total_time',
-				'name'  => esc_html__( 'Total Time', 'boorecipe' ),
+				'name'  => esc_html__( 'Total Time', 'boo-recipes' ),
 				'type'  => 'time',
-				'desc'  => esc_html__( 'Hours or Minutes depending upon the options selected above', 'boorecipe' ),
+				'desc'  => esc_html__( 'Hours or Minutes depending upon the options selected above', 'boo-recipes' ),
 				'class' => 'recipe_total_time',
 			),
 			array(
 				'id'          => $prefix . 'yields',
 				'type'        => 'text',
-				'name'        => esc_html__( 'Yields', 'boorecipe' ),
-				'desc'        => esc_html__( 'e.g. 6 bowls, 2 cakes, three ice-creams', 'boorecipe' ),
-				'placeholder' => esc_html__( 'Text input expected', 'boorecipe' ),
+				'name'        => esc_html__( 'Yields', 'boo-recipes' ),
+				'desc'        => esc_html__( 'e.g. 6 bowls, 2 cakes, three ice-creams', 'boo-recipes' ),
+				'placeholder' => esc_html__( 'Text input expected', 'boo-recipes' ),
 			),
 			array(
 				'id'   => $prefix . 'is_external_author',
-				'name' => esc_html__( 'Is External Author?', 'boorecipe' ),
+				'name' => esc_html__( 'Is External Author?', 'boo-recipes' ),
 				'type' => 'switch',
-				'desc' => esc_html__( 'Check this box if the recipe author is not a registered user on this site', 'boorecipe' ),
+				'desc' => esc_html__( 'Check this box if the recipe author is not a registered user on this site', 'boo-recipes' ),
 			),
 			array(
 				'id'          => $prefix . 'external_author_name',
 				'type'        => 'text',
-				'name'        => esc_html__( 'External author name', 'boorecipe' ),
+				'name'        => esc_html__( 'External author name', 'boo-recipes' ),
 				'std'         => 'small',
-				'placeholder' => esc_html__( 'External author name', 'boorecipe' ),
+				'placeholder' => esc_html__( 'External author name', 'boo-recipes' ),
 				'visible'     => array( "{$prefix}is_external_author", '=', 1 ),
 			),
 			array(
 				'id'          => $prefix . 'external_author_link',
 				'type'        => 'url',
-				'name'        => esc_html__( 'External author link', 'boorecipe' ),
-				'placeholder' => esc_html__( 'External author link', 'boorecipe' ),
+				'name'        => esc_html__( 'External author link', 'boo-recipes' ),
+				'placeholder' => esc_html__( 'External author link', 'boo-recipes' ),
 				'visible'     => array( "{$prefix}is_external_author", '=', 1 ),
 			),
 			array(
 				'id'          => $prefix . 'ingredients',
 				'type'        => 'textarea',
-				'name'        => esc_html__( 'Ingredients', 'boorecipe' ),
-				'desc'        => __( 'If you need to add ingredient group, place ** before the group heading like: **Cakeingredient 1ingredient 2', 'boorecipe' ),
-				'placeholder' => esc_html__( 'One ingredient per line.', 'boorecipe' ),
+				'name'        => esc_html__( 'Ingredients', 'boo-recipes' ),
+				'desc'        => __( 'If you need to add ingredient group, place ** before the group heading like: **Cakeingredient 1ingredient 2', 'boo-recipes' ),
+				'placeholder' => esc_html__( 'One ingredient per line.', 'boo-recipes' ),
 				'rows'        => 8,
 				'visible'     => array( $prefix . 'ingredients_type', 'not in', array( 'wysiwyg' ) ),
 			),
 			array(
 				'id'          => $prefix . 'directions',
 				'type'        => 'textarea',
-				'name'        => esc_html__( 'Directions', 'boorecipe' ),
-				'desc'        => __( 'If you need to add directions group, place ** before the group heading like: <br/> **How to Make Crust<br/>Direction 1<br/>Direction 2', 'boorecipe' ),
-				'placeholder' => esc_html__( 'One Step per line', 'boorecipe' ),
+				'name'        => esc_html__( 'Directions', 'boo-recipes' ),
+				'desc'        => __( 'If you need to add directions group, place ** before the group heading like: <br/> **How to Make Crust<br/>Direction 1<br/>Direction 2', 'boo-recipes' ),
+				'placeholder' => esc_html__( 'One Step per line', 'boo-recipes' ),
 				'rows'        => 8,
 				'visible'     => array( $prefix . 'directions_type', 'not in', array( 'wysiwyg' ) ),
 			),
 			array(
 				'id'   => $prefix . 'list_excerpt',
 				'type' => 'textarea',
-				'name' => esc_html__( 'Excerpt for List view', 'boorecipe' ),
-				'desc' => __( 'This will show in archive view of recipes', 'boorecipe' ),
+				'name' => esc_html__( 'Excerpt for List view', 'boo-recipes' ),
+				'desc' => __( 'This will show in archive view of recipes', 'boo-recipes' ),
 				'rows' => 4,
 			),
 			array(
 				'id'      => $prefix . 'additional_notes',
 				'type'    => $editor_type,
-				'name'    => esc_html__( 'Additional Notes', 'boorecipe' ),
-				'desc'    => esc_html__( 'Add additional notes to the recipe. it will show at the end of recipe', 'boorecipe' ),
+				'name'    => esc_html__( 'Additional Notes', 'boo-recipes' ),
+				'desc'    => esc_html__( 'Add additional notes to the recipe. it will show at the end of recipe', 'boo-recipes' ),
 				'rows'    => 5,
 				'options' => array(
 					'textarea_rows' => 5
@@ -641,7 +641,7 @@ class Boorecipe_Post_Types {
 
 		$primary_metabox_array = array(
 			'id'         => 'boorecipe-recipe-meta-primary',
-			'title'      => esc_html__( 'Recipe Schema Information', 'boorecipe' ),
+			'title'      => esc_html__( 'Recipe Schema Information', 'boo-recipes' ),
 			'post_types' => array( 'boo_recipe' ),
 			'context'    => 'normal',
 			'priority'   => 'high',
@@ -679,7 +679,7 @@ class Boorecipe_Post_Types {
 			'post_types' => array( 'boo_recipe' ),         // Post types to display meta box
 			'context'    => 'normal',
 			'priority'   => 'high',
-			'title'      => __( 'Recipe Schema Options', 'boorecipe' ),                 // The name of this page
+			'title'      => __( 'Recipe Schema Options', 'boo-recipes' ),                 // The name of this page
 			'capability' => 'edit_posts',                    // The capability needed to view the page
 			'tabbed'     => true,
 			'multilang'  => true,
@@ -692,7 +692,7 @@ class Boorecipe_Post_Types {
 
 			'id'     => 'recipe-meta-primary',
 			'name'   => 'recipe-meta-primary',
-			'title'  => __( 'Primary Information', 'boorecipe' ),
+			'title'  => __( 'Primary Information', 'boo-recipes' ),
 			'icon'   => 'dashicons-carrot',
 			'tabbed' => true,
 			'fields' => apply_filters( 'boorecipe_recipe_metabox_fields', array(
@@ -700,8 +700,8 @@ class Boorecipe_Post_Types {
 				//				array(
 				//					'id'       => $prefix . 'short_description',
 				//					'type'     => 'editor',
-				//					'title'    => __( 'Short Description', 'boorecipe' ),
-				//					'after'    => __( 'Describe your recipe in a few words', 'boorecipe' ),
+				//					'title'    => __( 'Short Description', 'boo-recipes' ),
+				//					'after'    => __( 'Describe your recipe in a few words', 'boo-recipes' ),
 				//					'teeny'    => true,
 				//					'sanitize' => 'wp_kses_post'
 				//				),
@@ -709,10 +709,10 @@ class Boorecipe_Post_Types {
 				//				array(
 				//					'id'       => $prefix . 'recipe_time_format',
 				//					'type'     => 'radio',
-				//					'title'    => __( 'Time Format', 'boorecipe' ),
+				//					'title'    => __( 'Time Format', 'boo-recipes' ),
 				//					'options'  => array(
-				//						'time_format_minutes' => __( 'Minutes', 'boorecipe' ),
-				//						'time_format_hours'   => __( 'Hours', 'boorecipe' ),
+				//						'time_format_minutes' => __( 'Minutes', 'boo-recipes' ),
+				//						'time_format_hours'   => __( 'Hours', 'boo-recipes' ),
 				//					),
 				//					'default'  => 'time_format_minutes',
 				//					'style'    => 'fancy',
@@ -723,9 +723,9 @@ class Boorecipe_Post_Types {
 				//				array(
 				//					'id'         => $prefix . 'prep_time',
 				//					'type'       => 'number',
-				//					'title'      => __( 'Prep Time', 'boorecipe' ),
+				//					'title'      => __( 'Prep Time', 'boo-recipes' ),
 				//					'after'      => ' <i class="text-muted">' .
-				//					                __( 'Hours or Minutes depending upon the options selected above', 'boorecipe' )
+				//					                __( 'Hours or Minutes depending upon the options selected above', 'boo-recipes' )
 				//					                . '</i>',
 				//					'attributes' => array(
 				//						'class' => 'recipe_prep_time',
@@ -737,9 +737,9 @@ class Boorecipe_Post_Types {
 				//				array(
 				//					'id'         => $prefix . 'cook_time',
 				//					'type'       => 'number',
-				//					'title'      => __( 'Cook Time', 'boorecipe' ),
+				//					'title'      => __( 'Cook Time', 'boo-recipes' ),
 				//					'after'      => ' <i class="text-muted">' .
-				//					                __( 'Hours or Minutes depending upon the options selected above', 'boorecipe' )
+				//					                __( 'Hours or Minutes depending upon the options selected above', 'boo-recipes' )
 				//					                . '</i>',
 				//					'attributes' => array(
 				//						'class' => 'recipe_cook_time',
@@ -750,9 +750,9 @@ class Boorecipe_Post_Types {
 				//				array(
 				//					'id'         => $prefix . 'total_time',
 				//					'type'       => 'number',
-				//					'title'      => __( 'Total Time', 'boorecipe' ),
+				//					'title'      => __( 'Total Time', 'boo-recipes' ),
 				//					'after'      => ' <i class="text-muted">' .
-				//					                __( 'Hours or Minutes depending upon the options selected above', 'boorecipe' )
+				//					                __( 'Hours or Minutes depending upon the options selected above', 'boo-recipes' )
 				//					                . '</i>',
 				//					'attributes' => array(
 				//						'class' => 'recipe_total_time',
@@ -764,10 +764,10 @@ class Boorecipe_Post_Types {
 				//				array(
 				//					'id'          => $prefix . 'yields',
 				//					'type'        => 'text',
-				//					'title'       => __( 'Yields', 'boorecipe' ),
-				//					'description' => __( 'e.g. 6 bowls, 2 cakes, three ice-creams', 'boorecipe' ),
+				//					'title'       => __( 'Yields', 'boo-recipes' ),
+				//					'description' => __( 'e.g. 6 bowls, 2 cakes, three ice-creams', 'boo-recipes' ),
 				//					'attributes'  => array(
-				//						'placeholder' => __( 'Text input expected', 'boorecipe' ),
+				//						'placeholder' => __( 'Text input expected', 'boo-recipes' ),
 				//					),
 				//					'sanitize'    => 'sanitize_text_field'
 				//				),
@@ -775,8 +775,8 @@ class Boorecipe_Post_Types {
 //				array(
 //					'id'       => $prefix . 'is_external_author',
 //					'type'     => 'checkbox',
-//					'title'    => __( 'Is External Author?', 'boorecipe' ),
-//					'label'    => __( 'Check this box if the recipe author is not a registered user on this site', 'boorecipe' ),
+//					'title'    => __( 'Is External Author?', 'boo-recipes' ),
+//					'label'    => __( 'Check this box if the recipe author is not a registered user on this site', 'boo-recipes' ),
 //					'style'    => 'fancy',
 //					'sanitize' => 'sanitize_text_field'
 //				),
@@ -785,10 +785,10 @@ class Boorecipe_Post_Types {
 //				array(
 //					'id'         => $prefix . 'external_author_name',
 //					'type'       => 'text',
-//					'title'      => __( 'External author name', 'boorecipe' ),
+//					'title'      => __( 'External author name', 'boo-recipes' ),
 //					'dependency' => array( $prefix . 'is_external_author', '==', 'true' ),
 //					'attributes' => array(
-//						'placeholder' => __( 'External author name', 'boorecipe' ),
+//						'placeholder' => __( 'External author name', 'boo-recipes' ),
 //					),
 //					'sanitize'   => 'sanitize_text_field'
 //				),
@@ -796,10 +796,10 @@ class Boorecipe_Post_Types {
 //				array(
 //					'id'         => $prefix . 'external_author_link',
 //					'type'       => 'text',
-//					'title'      => __( 'External author link', 'boorecipe' ),
+//					'title'      => __( 'External author link', 'boo-recipes' ),
 //					'dependency' => array( $prefix . 'is_external_author', '==', 'true' ),
 //					'attributes' => array(
-//						'placeholder' => __( 'External author link', 'boorecipe' ),
+//						'placeholder' => __( 'External author link', 'boo-recipes' ),
 //					),
 //					'sanitize'   => 'esc_url_raw'
 //				),
@@ -807,34 +807,34 @@ class Boorecipe_Post_Types {
 //				array(
 //					'id'          => $prefix . 'ingredients',
 //					'type'        => 'textarea',
-//					'title'       => __( 'Ingredients', 'boorecipe' ),
-//					'description' => __( 'If you need to add ingredient group, place ** before the group heading like: <br/> **Cake<br/>ingredient 1<br/>ingredient 2  ', 'boorecipe' ),
-//					'after'       => __( 'One ingredient per line.', 'boorecipe' ),
+//					'title'       => __( 'Ingredients', 'boo-recipes' ),
+//					'description' => __( 'If you need to add ingredient group, place ** before the group heading like: <br/> **Cake<br/>ingredient 1<br/>ingredient 2  ', 'boo-recipes' ),
+//					'after'       => __( 'One ingredient per line.', 'boo-recipes' ),
 //					'sanitize'    => 'wp_kses_post'
 //				),
 
 //				array(
 //					'id'          => $prefix . 'directions',
 //					'type'        => 'textarea',
-//					'title'       => __( 'Directions', 'boorecipe' ),
-//					'description' => __( 'If you need to add directions group, place ** before the group heading like: <br/> **How to Make Crust<br/>Direction 1<br/>Direction 2', 'boorecipe' ),
-//					'after'       => __( 'One Step per line', 'boorecipe' ),
+//					'title'       => __( 'Directions', 'boo-recipes' ),
+//					'description' => __( 'If you need to add directions group, place ** before the group heading like: <br/> **How to Make Crust<br/>Direction 1<br/>Direction 2', 'boo-recipes' ),
+//					'after'       => __( 'One Step per line', 'boo-recipes' ),
 //					'sanitize'    => 'wp_kses_post'
 //				),
 //
 //				array(
 //					'id'          => $prefix . 'list_excerpt',
 //					'type'        => 'textarea',
-//					'title'       => __( 'Excerpt for List view', 'boorecipe' ),
-//					'description' => __( 'This will show in archive view of recipes', 'boorecipe' ),
+//					'title'       => __( 'Excerpt for List view', 'boo-recipes' ),
+//					'description' => __( 'This will show in archive view of recipes', 'boo-recipes' ),
 //					'sanitize'    => 'wp_kses_post'
 //				),
 
 //				array(
 //					'id'       => $prefix . 'additional_notes',
 //					'type'     => 'editor',
-//					'title'    => __( 'Additional Notes', 'boorecipe' ),
-//					'after'    => __( 'Add additional notes to the recipe. it will show at the end of recipe', 'boorecipe' ),
+//					'title'    => __( 'Additional Notes', 'boo-recipes' ),
+//					'after'    => __( 'Add additional notes to the recipe. it will show at the end of recipe', 'boo-recipes' ),
 //					'teeny'    => true,
 //					'sanitize' => 'wp_kses_post'
 //				),
@@ -857,8 +857,8 @@ class Boorecipe_Post_Types {
 		$recipe_meta_nutrition_fields[] = array(
 			'id'                => $prefix . 'show_nutrition',
 			'type'              => 'switch',
-			'title'             => __( 'Show Nutrition', 'boorecipe' ),
-			'label'             => __( 'Do you want to show nutrition info for this recipe? Its required by Schema.org', 'boorecipe' ),
+			'title'             => __( 'Show Nutrition', 'boo-recipes' ),
+			'label'             => __( 'Do you want to show nutrition info for this recipe? Its required by Schema.org', 'boo-recipes' ),
 			'std'               => 1,
 			'sanitize_callback' => 'sanitize_key'
 		);
@@ -879,15 +879,15 @@ class Boorecipe_Post_Types {
 
 				switch ( $measurement ) {
 					case 'g':
-						$measurement = __( 'in grams', 'boorecipe' );
+						$measurement = __( 'in grams', 'boo-recipes' );
 						break;
 
 					case 'mg':
-						$measurement = __( 'in milligrams', 'boorecipe' );
+						$measurement = __( 'in milligrams', 'boo-recipes' );
 						break;
 
 					default:
-						$measurement = __( 'Text input expected', 'boorecipe' );
+						$measurement = __( 'Text input expected', 'boo-recipes' );
 				}
 
 				// Using the right sanitization function
@@ -930,7 +930,7 @@ class Boorecipe_Post_Types {
 		$recipe_meta_fields[] = array(
 			'id'     => 'recipe-meta-nutrition',
 			'name'   => 'recipe-meta-nutrition',
-			'title'  => __( 'Nutrition', 'boorecipe' ),
+			'title'  => __( 'Nutrition', 'boo-recipes' ),
 			'icon'   => 'dashicons-portfolio',
 //			'dependency' => array( 'serving_size_switcher', '==', true ),
 			'fields' => $recipe_meta_nutrition_fields,

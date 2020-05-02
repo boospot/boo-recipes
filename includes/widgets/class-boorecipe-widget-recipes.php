@@ -14,14 +14,14 @@ class BoorecipeWidgetRecipes extends Boorecipe_Widget_Master {
 	 */
 	public function __construct() {
 		$this->widget_cssclass    = 'boorecipe widget_recipes';
-		$this->widget_description = __( "A list of your recipes", 'boorecipe' );
+		$this->widget_description = __( "A list of your recipes", 'boo-recipes' );
 		$this->widget_id          = 'boorecipe_recipes';
-		$this->widget_name        = __( 'Recipes', 'boorecipe' );
+		$this->widget_name        = __( 'Recipes', 'boo-recipes' );
 		$this->settings           = array(
 			'title'  => array(
 				'type'  => 'text',
-				'std'   => __( 'Recipes', 'boorecipe' ),
-				'label' => __( 'Title', 'boorecipe' ),
+				'std'   => __( 'Recipes', 'boo-recipes' ),
+				'label' => __( 'Title', 'boo-recipes' ),
 			),
 			'number' => array(
 				'type'  => 'number',
@@ -29,41 +29,41 @@ class BoorecipeWidgetRecipes extends Boorecipe_Widget_Master {
 				'min'   => 1,
 				'max'   => '',
 				'std'   => 5,
-				'label' => __( 'Number of recipes to show', 'boorecipe' ),
+				'label' => __( 'Number of recipes to show', 'boo-recipes' ),
 			),
 
 			'orderby' => array(
 				'type'    => 'select',
 				'std'     => 'date',
-				'label'   => __( 'Order by', 'boorecipe' ),
+				'label'   => __( 'Order by', 'boo-recipes' ),
 				'options' => array(
-					'date'          => __( 'Date', 'boorecipe' ),
-					'comment_count' => __( 'Comment Count', 'boorecipe' ),
-					'rand'          => __( 'Random (Slow Method)', 'boorecipe' ),
-					'title'         => __( 'Title', 'boorecipe' ),
-					'menu_order'    => __( 'Order field in recipe edit', 'boorecipe' ),
-					'modified'      => __( 'Modified Date', 'boorecipe' ),
+					'date'          => __( 'Date', 'boo-recipes' ),
+					'comment_count' => __( 'Comment Count', 'boo-recipes' ),
+					'rand'          => __( 'Random (Slow Method)', 'boo-recipes' ),
+					'title'         => __( 'Title', 'boo-recipes' ),
+					'menu_order'    => __( 'Order field in recipe edit', 'boo-recipes' ),
+					'modified'      => __( 'Modified Date', 'boo-recipes' ),
 
 				),
 			),
 			'order'   => array(
 				'type'    => 'select',
 				'std'     => 'desc',
-				'label'   => _x( 'Order', 'Sorting order', 'boorecipe' ),
+				'label'   => _x( 'Order', 'Sorting order', 'boo-recipes' ),
 				'options' => array(
-					'asc'  => __( 'ASC', 'boorecipe' ),
-					'desc' => __( 'DESC', 'boorecipe' ),
+					'asc'  => __( 'ASC', 'boo-recipes' ),
+					'desc' => __( 'DESC', 'boo-recipes' ),
 				),
 			),
 //			'hide_free'   => array(
 //				'type'  => 'checkbox',
 //				'std'   => 0,
-//				'label' => __( 'Hide free recipes', 'boorecipe' ),
+//				'label' => __( 'Hide free recipes', 'boo-recipes' ),
 //			),
 //			'show_hidden' => array(
 //				'type'  => 'checkbox',
 //				'std'   => 0,
-//				'label' => __( 'Show hidden recipes', 'boorecipe' ),
+//				'label' => __( 'Show hidden recipes', 'boo-recipes' ),
 //			),
 		);
 

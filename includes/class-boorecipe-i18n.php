@@ -30,7 +30,7 @@ class Boorecipe_i18n {
 	public function load_plugin_textdomain() {
 
 		load_plugin_textdomain(
-			'boorecipe',
+			'boo-recipes',
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);
