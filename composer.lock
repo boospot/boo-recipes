@@ -8,24 +8,19 @@
     "packages": [
         {
             "name": "wpmetabox/meta-box",
-            "version": "5.2.2",
+            "version": "5.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wpmetabox/meta-box.git",
-                "reference": "1ae16d47a23bf4e59244f48e61f29dba7e6069dc"
+                "reference": "c176afe65361c2ada82240f3fe2e006c6af2fa10"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wpmetabox/meta-box/zipball/1ae16d47a23bf4e59244f48e61f29dba7e6069dc",
-                "reference": "1ae16d47a23bf4e59244f48e61f29dba7e6069dc",
+                "url": "https://api.github.com/repos/wpmetabox/meta-box/zipball/c176afe65361c2ada82240f3fe2e006c6af2fa10",
+                "reference": "c176afe65361c2ada82240f3fe2e006c6af2fa10",
                 "shasum": ""
             },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "meta-box.php"
-                ]
-            },
+            "type": "wordpress-plugin",
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "GPL-2.0"
@@ -34,7 +29,7 @@
                 {
                     "name": "Tran Ngoc Tuan Anh",
                     "email": "anhtnt@elightup.com",
-                    "homepage": "https://deluxeblogtips.com",
+                    "homepage": "https://metabox.io",
                     "role": "Developer"
                 }
             ],
@@ -49,20 +44,20 @@
                 "wordpress-plugin",
                 "wp-admin"
             ],
-            "time": "2019-10-09T08:36:43+00:00"
+            "time": "2020-07-21T03:49:58+00:00"
         },
         {
             "name": "wptrt/admin-notices",
-            "version": "v1.0.2",
+            "version": "v1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WPTT/admin-notices.git",
-                "reference": "e7273bc32ac7a8f3e441e9899baedd776bc53b2a"
+                "reference": "3904e0dc087b48289056a77eea3d1dab4ef0dde1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WPTT/admin-notices/zipball/e7273bc32ac7a8f3e441e9899baedd776bc53b2a",
-                "reference": "e7273bc32ac7a8f3e441e9899baedd776bc53b2a",
+                "url": "https://api.github.com/repos/WPTT/admin-notices/zipball/3904e0dc087b48289056a77eea3d1dab4ef0dde1",
+                "reference": "3904e0dc087b48289056a77eea3d1dab4ef0dde1",
                 "shasum": ""
             },
             "require": {
@@ -91,7 +86,7 @@
             "keywords": [
                 "wordpress"
             ],
-            "time": "2019-09-22T14:52:04+00:00"
+            "time": "2020-02-15T10:34:51+00:00"
         }
     ],
     "packages-dev": [],
