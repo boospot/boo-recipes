@@ -56,12 +56,12 @@
             "version": "v1.0.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/WPTRT/admin-notices.git",
+                "url": "https://github.com/WPTT/admin-notices.git",
                 "reference": "e7273bc32ac7a8f3e441e9899baedd776bc53b2a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WPTRT/admin-notices/zipball/e7273bc32ac7a8f3e441e9899baedd776bc53b2a",
+                "url": "https://api.github.com/repos/WPTT/admin-notices/zipball/e7273bc32ac7a8f3e441e9899baedd776bc53b2a",
                 "reference": "e7273bc32ac7a8f3e441e9899baedd776bc53b2a",
                 "shasum": ""
             },

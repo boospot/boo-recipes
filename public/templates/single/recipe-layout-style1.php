@@ -13,21 +13,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 </div><!--    div.posttype-section-box-->
 
 <div class="posttype-section recipe-body">
-	<?php
-	do_action( 'boorecipe_single_body_before', $item, $meta );
-	?>
+	<?php do_action( 'boorecipe_single_body_before', $item, $meta ); ?>
     <div class="recipe-main-body">
 		<?php do_action( 'boorecipe_single_body', $item, $meta ); ?>
     </div>
-	<?php
-	do_action( 'boorecipe_single_body_after', $item, $meta );
-	?>
+	<?php do_action( 'boorecipe_single_body_after', $item, $meta ); ?>
 </div><!--    div.recipe-body-->
 
 <div class="posttype-section recipe-comments">
 	<?php
 	do_action( 'boorecipe_single_comments_before', $item, $meta );
-	comments_template('', true);
+	comments_template( '', true );
 	do_action( 'boorecipe_single_comments_after', $item, $meta );
 	?>
 </div><!--    div.recipe-comments-->
