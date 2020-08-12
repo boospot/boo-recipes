@@ -378,11 +378,6 @@ class Boorecipe {
 
 		$this->loader->add_action( 'init', $plugin_post_types, 'create_custom_post_type', 999 );
 
-//		$this->loader->add_action( 'init', $plugin_post_types, 'create_meta_box', 999 );
-
-
-//		$this->loader->add_action( 'boorecipe_before_author_recipes_link', $plugin_post_types, 'boorecipe_before_author_recipes_link' );
-
 		$this->loader->add_action( 'save_post', $plugin_post_types, 'update_contents_of_post_with_title', 999, 3 );
 
 
