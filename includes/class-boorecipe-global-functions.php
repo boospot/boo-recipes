@@ -364,14 +364,6 @@ class Boorecipe_Globals {
 		if ( empty( self::$options ) ) {
 			$option_name = self::$plugin_name . '-options';
 
-//			$options_for_all_languages = get_option( $option_name );
-//
-//			self::set_current_language_code();
-//
-//			$options_for_current_language = $options_for_all_languages[ self::$current_language_code ];
-//
-////			var_dump( $options_for_current_language); die();
-
 			self::$options = get_option( $option_name );
 		}
 

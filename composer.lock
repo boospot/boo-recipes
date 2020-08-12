@@ -4,8 +4,57 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6aaa256e063713547346653cbe01a55f",
+    "content-hash": "3f8e141ba785075c06cdd67d92680912",
     "packages": [
+        {
+            "name": "boospot/boo-settings-helper",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/boospot/boo-settings-helper.git",
+                "reference": "53601f50ba5f0d4c97c54bf15388af27d1cff496"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/boospot/boo-settings-helper/zipball/53601f50ba5f0d4c97c54bf15388af27d1cff496",
+                "reference": "53601f50ba5f0d4c97c54bf15388af27d1cff496",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "class-boo-settings-helper.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Rao Abid Ali",
+                    "email": "rao@booskills.com",
+                    "homepage": "https://booskills.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Helper class that lets you create options settings page securely and swiftly without dealing with WordPress Settings API.",
+            "homepage": "https://github.com/boospot/boo-settings-helper",
+            "keywords": [
+                "plugin options",
+                "plugin settings",
+                "settings page",
+                "wordpress",
+                "wordpress-plugin",
+                "wp-admin"
+            ],
+            "time": "2020-07-27T13:40:28+00:00"
+        },
         {
             "name": "composer/installers",
             "version": "v1.9.0",
@@ -197,7 +246,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "boospot/boo-settings-helper": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

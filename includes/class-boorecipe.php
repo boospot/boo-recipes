@@ -122,111 +122,12 @@ class Boorecipe {
 
 		require plugin_dir_path( dirname( __FILE__ ) ) . 'vendor/autoload.php';
 
-		/**
-		 * Arguments
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/arguments.php';
-
-		/**
-		 * The class responsible for all global functions.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-boorecipe-global-functions.php';
-
 		new Boorecipe_Globals( $this->plugin_name, $this->version );
-
 
 		/**
 		 * Helper Functions
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/helper-functions.php';
-
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/libraries/boo-settings-helper/class-boo-settings-helper.php';
-
-		if ( boorecipe_is_old_settings_available() ) {
-			/*
-			 * The class responsible for Exopite options framework
-			 */
-
-			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/Exopite-Simple-Options-Framework/exopite-simple-options/exopite-simple-options-framework-class.php';
-
-			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-boorecipe-admin-ajax-meta-update.php';
-		}
-
-
-		/**
-		 * The class responsible for orchestrating the actions and filters of the
-		 * core plugin.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-boorecipe-loader.php';
-
-		/**
-		 * The class responsible for defining internationalization functionality
-		 * of the plugin.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-boorecipe-i18n.php';
-
-		/**
-		 * The class responsible for defining all actions that occur in the admin area.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-boorecipe-admin.php';
-
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-boorecipe-admin-simple.php';
-		/**
-		 * The class responsible for defining all actions that occur in the public-facing
-		 * side of the site.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-boorecipe-public.php';
-
-
-		/**
-		 * The class responsible for defining all actions creating the templates.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-boorecipe-template-functions.php';
-
-		/**
-		 * The class responsible for defining all actions creating the templates.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-boorecipe-single-template-functions.php';
-
-		/**
-		 * The class responsible for defining all actions creating the templates.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-boorecipe-archive-template-functions.php';
-
-
-		/**
-		 * The class responsible for defining all actions creating the templates.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-boorecipe-aside-template-functions.php';
-
-		/**
-		 * The class responsible for defining all actions creating the templates.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-boorecipe-widget-template-functions.php';
-
-		/**
-		 * Custom Post Types and Taxonomies
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-boorecipe-custom_posts.php';
-
-
-		/**
-		 * Plugin Shortcodes
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-boorecipe-shortcodes.php';
-
-
-		/**
-		 * Plugin Widgets
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-boorecipe-widgets.php';
-
-
-		/**
-		 * Plugin Widgets
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-boorecipe-customization.php';
-
 
 		/**
 		 * Initialize custom template loader
@@ -270,13 +171,6 @@ class Boorecipe {
 	 */
 	private function define_admin_hooks() {
 
-//		add_action('wp_footer', function(){
-//
-//			var_dump_pretty(get_option( 'boorecipe-options'), 'red');
-//
-//		},99);
-
-
 		$plugin_admin_simple = new Boorecipe_Admin_Simple( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin_simple, 'enqueue_styles' );
@@ -287,8 +181,8 @@ class Boorecipe {
 		$this->loader->add_action( 'admin_menu', $plugin_admin_simple, 'admin_menu_simple', 99 );
 
 		/*
- * Added the plugin options menu and page
- */
+		 * Added the plugin options menu and page
+		 */
 		$this->loader->add_action( 'widgets_init', $plugin_admin_simple, 'register_sidebar_widgets', 999 );
 
 
@@ -298,15 +192,10 @@ class Boorecipe {
 
 			$this->loader->add_action( 'admin_head', $plugin_admin, 'display_old_settings_admin_notice' );
 
-
-//		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
-//		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-
 			/*
 			 * Added the plugin options menu and page
 			 */
 			$this->loader->add_action( 'init', $plugin_admin, 'create_plugin_menu', 999 );
-
 
 		}
 
@@ -355,7 +244,7 @@ class Boorecipe {
 
 		$this->loader->add_action( 'pre_get_posts', $plugin_public, 'alter_query_to_add_recipe_posttype' );
 
-	} // get_version()
+	} // define_public_hooks()
 
 	/**
 	 * Register all of the hooks related to the custom post types functionality
@@ -381,7 +270,7 @@ class Boorecipe {
 		$this->loader->add_action( 'save_post', $plugin_post_types, 'update_contents_of_post_with_title', 999, 3 );
 
 
-	} // define_public_hooks()
+	} // define_custom_post_types_hooks()
 
 	/**
 	 * Register all of the hooks related to the admin area functionality
@@ -401,7 +290,7 @@ class Boorecipe {
 		}
 
 
-	} //define_custom_post_types_hooks
+	} //define_ajax_recipe_meta_update
 
 	/**
 	 * Register all of the hooks related to the public-facing functionality
@@ -421,11 +310,6 @@ class Boorecipe {
 		$this->loader->add_shortcode( "boorecipe_print_button", $plugin_shortcode, "boorecipe_print_button" );
 
 		$this->loader->add_shortcode( "recipes_browse", $plugin_shortcode, "recipes_browse" );
-
-
-//
-//		$this->loader->add_filter( 'boorecipe_registered_single_shortcodes', $plugin_shortcode, 'register_single_recipe_shortcode' , 99 , 1 );
-
 
 	} //define_shortcode_hooks
 

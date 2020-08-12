@@ -17,9 +17,6 @@
      *
      * When the window is loaded:
      *
-     * $( window ).load(function() {
-     *
-     * });
      *
      * ...and/or other possibilities.
      *
@@ -142,7 +139,7 @@
         this.init();
     };
 
-    $(window).load(function () {
+    $(window).on('load', function () {
 
         if ($('body').hasClass('post-type-recipe')) {
             $('.recipe_prep_time , .recipe_cook_time').change(function () {
