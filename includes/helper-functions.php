@@ -27,30 +27,6 @@ if ( ! function_exists( 'boorecipe_is_recipe_have_attached_images' ) ) :
 
 endif;
 
-
-/**
- * @return bool
- */
-if ( ! function_exists( 'boorecipe_is_special_multilang_plugin_active' ) ) :
-
-	function boorecipe_is_special_multilang_plugin_active() {
-
-		return Boorecipe_Globals::is_special_multilang_plugin_active();
-
-	}
-
-endif;
-
-
-if ( ! function_exists( 'boorecipe_get_current_language_code' ) ) :
-
-	function boorecipe_get_current_language_code() {
-
-		return Boorecipe_Globals::get_current_language_code();
-	}
-
-endif;
-
 if ( ! function_exists( 'boorecipe_get_default_language_code' ) ) :
 
 	function boorecipe_get_default_language_code() {

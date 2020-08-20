@@ -496,13 +496,6 @@ class Boorecipe {
 
 		$this->loader->add_action( 'wp_head', $plugin_customization, 'recipe_global_configurable_styles' );
 
-//		$this->loader->add_action( 'wp_head', $plugin_customization, 'recipe_global_configurable_styles' );
-
-
-		$plugin_globals = new Boorecipe_Globals( $this->get_plugin_name(), $this->get_version() );
-
-		$this->loader->add_action( 'plugins_loaded', $plugin_globals, 'set_current_language_code' );
-
 	}
 
 	/**

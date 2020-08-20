@@ -64,7 +64,6 @@ class Boorecipe_Globals {
 		self::$current_language_code = mb_substr( get_locale(), 0, 2 );
 		self::$default_language_code = self::$current_language_code;
 
-//		self::set_current_language_code();
 		self::set_options();
 
 	} // __construct()
@@ -395,57 +394,19 @@ class Boorecipe_Globals {
 		$fields_array = array();
 
 		$meta_fields = self::$meta_fields;
-//echo"<pre>";
-//var_dump( self::$meta_fields) ;
-//		echo"</pre>";
-//
-//die();
+
 		foreach ( $meta_fields as $field ) {
 			if ( isset( $field['id'] ) ) {
 				$fields_array[] = $field['id'];
 			}
 		}
 
-//		foreach ( $meta_fields as $key => $value ) {
-//			if ( isset( $value['fields'] ) ) {
-//
-//				foreach ( $value['fields'] as $field ) {
-//					$fields_array[] = $field['id'];
-//				}
-//
-//			}
-//		}
 
 		return $fields_array;
 	}
 
 	public static function set_meta_fields( $meta_fields_array ) {
 		self::$meta_fields = array_merge( self::$meta_fields, $meta_fields_array );
-	}
-
-	public static function get_current_language_code() {
-//
-		require_once BOORECIPE_BASE_DIR . 'admin/Exopite-Simple-Options-Framework/exopite-simple-options/multilang-class.php';
-
-		return Exopite_Simple_Options_Framework_Helper::get_current_language_code();
-
-	}
-
-	public static function set_current_language_code() {
-//
-		require_once BOORECIPE_BASE_DIR . 'admin/Exopite-Simple-Options-Framework/exopite-simple-options/multilang-class.php';
-
-		self::$current_language_code = Exopite_Simple_Options_Framework_Helper::get_current_language_code();
-		self::$default_language_code = Exopite_Simple_Options_Framework_Helper::get_default_language_code();
-
-	}
-
-	public static function is_special_multilang_plugin_active() {
-
-		require_once BOORECIPE_BASE_DIR . 'admin/Exopite-Simple-Options-Framework/exopite-simple-options/multilang-class.php';
-
-		return Exopite_Simple_Options_Framework_Helper::is_special_multilang_plugin_active();
-
 	}
 
 	/**
