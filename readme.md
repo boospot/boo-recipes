@@ -3,14 +3,14 @@
 Contributors: boospot
 Tags: recipe, recipes, rich snippet, schema.org
 Donate link: https://www.buymeacoffee.com/raoabid
-Requires at least: 4.5
-Tested up to: 5.4.1
+Requires at least: 4.8
+Tested up to: 5.5
 Requires PHP: 5.6
 Stable tag: trunk
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
-Easily add Recipes in user friendly way that generates SEO optimized recipes using Schema.org microdata.
+Easily add Recipes in user-friendly way that generates SEO optimized recipes using Schema.org microdata.
 
 == Description ==
 
@@ -123,6 +123,12 @@ you need to re-save your recipes. Quickest way is to "Bulk Edit" all recipes wit
 3. Mobile View
 
 == Changelog ==
+
+= 2.3.0 =
+
+- Compatibility with WordPress 5.5
+- Compatibility for jQuery 1.8+
+- Optimization: Code Refactoring and optimization
 
 = 2.2.1 =
 
