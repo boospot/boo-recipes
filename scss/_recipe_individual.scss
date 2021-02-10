@@ -32,6 +32,65 @@
     //background-color: #f5f5f5;
   }
 
+  .recipe-tool-section, .cooking-method-section {
+    grid-column-start: 1;
+    grid-column-end: -1;
+  }
+
+  .recipe-tools-list:not(.tools-images) {
+    display: flex;
+
+    .recipe-tool {
+      margin-right: 5px;
+    }
+
+    .recipe-tool:after {
+      content: ', ';
+    }
+
+  }
+
+  .recipe-tools-list.tools-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 100px));
+    grid-gap: 5px;
+
+    .recipe-tool {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+  }
+
+  .cooking-method-list:not(.tools-images) {
+    display: flex;
+
+    .cooking-method {
+      margin-right: 5px;
+    }
+
+    .cooking-method:after {
+      content: ', ';
+    }
+
+  }
+
+  .cooking-method-list.tools-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 100px));
+    grid-gap: 5px;
+
+    .cooking-method {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+  }
+
+
+
   .recipe-meta {
     > div {
       padding: $_recipe_sections_padding

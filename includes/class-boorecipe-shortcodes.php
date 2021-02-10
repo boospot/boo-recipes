@@ -288,6 +288,10 @@ class Boorecipe_Shortcodes {
 				'skill_level_ids_exclude'   => '',
 				'skill_level_slugs_exclude' => '',
 
+				'recipe_tool_ids'           => '',
+				'recipe_tool_slugs'         => '',
+				'recipe_tool_ids_exclude'   => '',
+				'recipe_tool_slugs_exclude' => '',
 
 			) ),
 			$atts,
@@ -437,6 +441,11 @@ class Boorecipe_Shortcodes {
 			'cooking_method_slugs'         => '',
 			'cooking_method_ids_exclude'   => '',
 			'cooking_method_slugs_exclude' => '',
+
+			'recipe_tool_ids'           => '',
+			'recipe_tool_slugs'         => '',
+			'recipe_tool_ids_exclude'   => '',
+			'recipe_tool_slugs_exclude' => '',
 		);
 
 		/*
@@ -526,6 +535,9 @@ class Boorecipe_Shortcodes {
 						break;
 					case ( 'method' ):
 						$taxonomy = 'cooking_method';
+						break;
+					case ( 'tool' ):
+						$taxonomy = 'recipe_tool';
 						break;
 					default:
 
@@ -626,9 +638,6 @@ class Boorecipe_Shortcodes {
 	 */
 	public function filter_archive_recipe_wrap_classes( $classes_array ) {
 
-//		if ( 'recipes_browse' != $this->shortcode_called ) {
-//			return null;
-//		}
 		$recipe_archive_layout = $this->shortcode_atts['recipe_archive_layout'];
 
 		$classes_array['layout'] = 'recipes-layout-' . $recipe_archive_layout;
@@ -702,9 +711,6 @@ class Boorecipe_Shortcodes {
 		if ( $this->get_options_value( 'show_in_masonry' ) === 'yes' ) {
 			$classes_array[] = 'masonry-grid-item';
 		}
-
-
-		return $classes_array;
 
 
 		return $classes_array;

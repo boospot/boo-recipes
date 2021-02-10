@@ -278,6 +278,50 @@
 .boorecipe-recipe .recipe-ingredients {
   margin-bottom: 1em;
 }
+.boorecipe-recipe .recipe-tool-section, .boorecipe-recipe .cooking-method-section {
+  grid-column-start: 1;
+  grid-column-end: -1;
+}
+.boorecipe-recipe .recipe-tools-list:not(.tools-images) {
+  display: flex;
+}
+.boorecipe-recipe .recipe-tools-list:not(.tools-images) .recipe-tool {
+  margin-right: 5px;
+}
+.boorecipe-recipe .recipe-tools-list:not(.tools-images) .recipe-tool:after {
+  content: ", ";
+}
+.boorecipe-recipe .recipe-tools-list.tools-images {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 100px));
+  grid-gap: 5px;
+}
+.boorecipe-recipe .recipe-tools-list.tools-images .recipe-tool {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.boorecipe-recipe .cooking-method-list:not(.tools-images) {
+  display: flex;
+}
+.boorecipe-recipe .cooking-method-list:not(.tools-images) .cooking-method {
+  margin-right: 5px;
+}
+.boorecipe-recipe .cooking-method-list:not(.tools-images) .cooking-method:after {
+  content: ", ";
+}
+.boorecipe-recipe .cooking-method-list.tools-images {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 100px));
+  grid-gap: 5px;
+}
+.boorecipe-recipe .cooking-method-list.tools-images .cooking-method {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
 .boorecipe-recipe .recipe-meta > div {
   padding: 0.5em 0;
 }

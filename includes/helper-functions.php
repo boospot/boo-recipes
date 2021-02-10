@@ -187,7 +187,8 @@ if ( ! function_exists( 'boorecipe_is_recipe_taxonomy' ) ) :
 			'recipe_cuisine',
 			'recipe_tags',
 			'cooking_method',
-			'skill_level'
+			'skill_level',
+			'recipe_tool'
 		) ) ) {
 			return true;
 		} else {
@@ -736,6 +737,26 @@ if ( ! function_exists( 'boorecipe_default_posttype_image' ) ) :
 
 endif;
 
+/**
+ * @param $post_type
+ *
+ * @return string
+ */
+if ( ! function_exists( 'boorecipe_default_taxonomy_image_recipe_tool' ) ) :
+
+	function boorecipe_default_taxonomy_image( $taxonomy ) {
+
+		$options   = get_option( 'boorecipe-options' );
+		$option_id = $taxonomy . '_default_img_url';
+
+		if ( isset( $options[ $option_id ] ) && ! empty( $options[ $option_id ] ) ) {
+			return esc_url_raw( $options[ $option_id ] );
+		}
+
+		return BOORECIPE_PLUGIN_URL . "assets/images/{$taxonomy}-default-image.jpg";
+	}
+
+endif;
 
 /**
  * @param null $post_id
@@ -797,6 +818,7 @@ if ( ! function_exists( 'boorecipe_get_recipe_registered_taxonomy_array' ) ) :
 			'recipe_tags'     => boorecipe_get_options_value( 'recipe_tags_label' ),
 			'skill_level'     => boorecipe_get_options_value( 'skill_level_label' ),
 			'cooking_method'  => boorecipe_get_options_value( 'cooking_method_label' ),
+			'recipe_tool'     => boorecipe_get_options_value( 'recipe_tool_label' ),
 		) );
 
 		return $registered_taxonomy_array;
