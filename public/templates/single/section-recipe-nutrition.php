@@ -52,6 +52,9 @@ foreach ( $nutrition_meta as $key => $nutrition ) {
 		$percentage = round( $value / $nutrition['2000_cal_total'] * 100 ) . "%";
 	}
 
+	if ( 'yes' === $this->get_options_value( 'hide_empty_nutrition' ) && ! $value ) {
+		continue;
+	}
 
 	// Using the right sprintf Format
 	switch ( $itemprop ) {
@@ -94,23 +97,23 @@ foreach ( $nutrition_meta as $key => $nutrition ) {
         <section class="nutrition-facts">
             <header class="nutrition-facts__header">
                 <h3 class="nutrition-facts__title"><?php echo $this->get_options_value( 'nutrition_facts_label' ); ?></h3>
-				<?php echo $nutrition_variables['servingSize'] ?>
+				<?php echo $nutrition_variables['servingSize'] ?? '' ?>
             </header>
             <p class="amount-serving-text">Amount Per Serving</p>
-			<?php echo $nutrition_variables['calories']; ?>
+			<?php echo $nutrition_variables['calories'] ?? ''; ?>
             <div class="nutrition-dv-section">% Daily Value*</div>
             <div class="nutrition-facts-details">
 				<?php
-				echo $nutrition_variables['fatContent'];
-				echo $nutrition_variables['saturatedFatContent'];
-				echo $nutrition_variables['transFatContent'];
-				echo $nutrition_variables['unsaturatedFatContent'];
-				echo $nutrition_variables['cholesterolContent'];
-				echo $nutrition_variables['sodiumContent'];
-				echo $nutrition_variables['carbohydrateContent'];
-				echo $nutrition_variables['fiberContent'];
-				echo $nutrition_variables['sugarContent'];
-				echo $nutrition_variables['proteinContent'];
+				echo $nutrition_variables['fatContent'] ?? '';
+				echo $nutrition_variables['saturatedFatContent'] ?? '';
+				echo $nutrition_variables['transFatContent'] ?? '';
+				echo $nutrition_variables['unsaturatedFatContent'] ?? '';
+				echo $nutrition_variables['cholesterolContent'] ?? '';
+				echo $nutrition_variables['sodiumContent'] ?? '';
+				echo $nutrition_variables['carbohydrateContent'] ?? '';
+				echo $nutrition_variables['fiberContent'] ?? '';
+				echo $nutrition_variables['sugarContent'] ?? '';
+				echo $nutrition_variables['proteinContent'] ?? '';
 				?>
 
             </div>

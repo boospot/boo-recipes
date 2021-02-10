@@ -430,7 +430,6 @@ class Boorecipe_Post_Types {
 			'type'              => 'switch',
 			'name'              => __( 'Show Nutrition', 'boo-recipes' ),
 			'desc'              => __( 'Do you want to show nutrition info for this recipe? Its required by Schema.org', 'boo-recipes' ),
-			'std'               => 1,
 			'sanitize_callback' => 'sanitize_key'
 
 		);

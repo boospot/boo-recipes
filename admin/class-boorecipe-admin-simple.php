@@ -479,7 +479,10 @@ class Boorecipe_Admin_Simple {
 				'id'      => $this->prefix . 'enable_wysiwyg_editor',
 				'type'    => 'select',
 				'label'   => __( 'Enable WYSIWYG Editor?', 'boo-recipes' ),
-				'options' => array( 'yes' => esc_html__( 'Yes' , 'boo-recipes' ), 'no' => esc_html__( 'No' , 'boo-recipes' )),
+				'options' => array(
+					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
+					'no'  => esc_html__( 'No', 'boo-recipes' )
+				),
 				'radio'   => true,
 				'default' => 'no',
 				'desc'    => __( 'This will only be available for Short Description and Additional Notes', 'boo-recipes' ),
@@ -491,7 +494,10 @@ class Boorecipe_Admin_Simple {
 				'label'             => __( 'Show Nutrition? (Global)', 'boo-recipes' ),
 				'label_description' => __( 'Do you want to show Nutrition info in individual Recipe?', 'boo-recipes' ),
 				'default'           => 'yes',
-				'options'           => array( 'yes' => esc_html__( 'Yes' , 'boo-recipes' ), 'no' => esc_html__( 'No' , 'boo-recipes' )),
+				'options'           => array(
+					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
+					'no'  => esc_html__( 'No', 'boo-recipes' )
+				),
 			),
 
 			array(
@@ -500,7 +506,10 @@ class Boorecipe_Admin_Simple {
 				'label'             => __( 'Show Icons?', 'boo-recipes' ),
 				'label_description' => __( 'Do you want to show icons in individual Recipe?', 'boo-recipes' ),
 				'default'           => 'yes',
-				'options'           => array( 'yes' => esc_html__( 'Yes' , 'boo-recipes' ), 'no' => esc_html__( 'No' , 'boo-recipes' )),
+				'options'           => array(
+					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
+					'no'  => esc_html__( 'No', 'boo-recipes' )
+				),
 			),
 
 			array(
@@ -509,7 +518,10 @@ class Boorecipe_Admin_Simple {
 				'label'             => __( 'Show Labels for Key Points?', 'boo-recipes' ),
 				'label_description' => __( 'Do you want to show labels for key points in individual Recipe?', 'boo-recipes' ),
 				'default'           => 'yes',
-				'options'           => array( 'yes' => esc_html__( 'Yes' , 'boo-recipes' ), 'no' => esc_html__( 'No' , 'boo-recipes' )),
+				'options'           => array(
+					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
+					'no'  => esc_html__( 'No', 'boo-recipes' )
+				),
 			),
 
 			array(
@@ -530,7 +542,10 @@ class Boorecipe_Admin_Simple {
 				'label'             => __( 'Ingredients by the Side', 'boo-recipes' ),
 				'label_description' => __( 'Do you Want to show ingredients by the side?', 'boo-recipes' ),
 				'default'           => 'no',
-				'options'           => array( 'yes' => esc_html__( 'Yes' , 'boo-recipes' ), 'no' => esc_html__( 'No' , 'boo-recipes' )),
+				'options'           => array(
+					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
+					'no'  => esc_html__( 'No', 'boo-recipes' )
+				),
 			),
 
 			array(
@@ -539,7 +554,22 @@ class Boorecipe_Admin_Simple {
 				'label'             => __( 'Nutrition by the Side', 'boo-recipes' ),
 				'label_description' => __( 'Do you Want to show nutrition by the side?', 'boo-recipes' ),
 				'default'           => 'yes',
-				'options'           => array( 'yes' => esc_html__( 'Yes' , 'boo-recipes' ), 'no' => esc_html__( 'No' , 'boo-recipes' )),
+				'options'           => array(
+					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
+					'no'  => esc_html__( 'No', 'boo-recipes' )
+				),
+			),
+
+			array(
+				'id'                => $this->prefix . 'hide_empty_nutrition',
+				'type'              => 'select',
+				'label'             => __( 'Hide Empty Nutrition Info', 'boo-recipes' ),
+				'label_description' => __( 'Do you want to hide nutrition info if value not provided?', 'boo-recipes' ),
+				'default'           => 'no',
+				'options'           => array(
+					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
+					'no'  => esc_html__( 'No', 'boo-recipes' )
+				),
 			),
 
 			array(
@@ -548,7 +578,10 @@ class Boorecipe_Admin_Simple {
 				'label'             => __( 'Show Featured Image?', 'boo-recipes' ),
 				'label_description' => __( 'Some Themes add this to header, you may want to hide the one added by this plugin to avoid duplicated contents', 'boo-recipes' ),
 				'default'           => $this->get_default_options( 'show_featured_image' ),
-				'options'           => array( 'yes' => esc_html__( 'Yes' , 'boo-recipes' ), 'no' => esc_html__( 'No' , 'boo-recipes' )),
+				'options'           => array(
+					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
+					'no'  => esc_html__( 'No', 'boo-recipes' )
+				),
 			),
 
 			array(
@@ -557,7 +590,10 @@ class Boorecipe_Admin_Simple {
 				'label'             => __( 'Show Recipe Title?', 'boo-recipes' ),
 				'label_description' => __( 'Some Themes add this to header, you may want to hide the one added by this plugin to avoid duplicated contents', 'boo-recipes' ),
 				'default'           => $this->get_default_options( 'show_recipe_title' ),
-				'options'           => array( 'yes' => esc_html__( 'Yes' , 'boo-recipes' ), 'no' => esc_html__( 'No' , 'boo-recipes' )),
+				'options'           => array(
+					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
+					'no'  => esc_html__( 'No', 'boo-recipes' )
+				),
 			),
 
 			array(
@@ -566,7 +602,10 @@ class Boorecipe_Admin_Simple {
 				'label'             => __( 'Show Recipe Publish info?', 'boo-recipes' ),
 				'label_description' => __( 'Some Themes add this to header, you may want to hide the one added by this plugin to avoid duplicated contents', 'boo-recipes' ),
 				'default'           => $this->get_default_options( 'show_recipe_publish_info' ),
-				'options'           => array( 'yes' => esc_html__( 'Yes' , 'boo-recipes' ), 'no' => esc_html__( 'No' , 'boo-recipes' )),
+				'options'           => array(
+					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
+					'no'  => esc_html__( 'No', 'boo-recipes' )
+				),
 			),
 
 			array(
@@ -575,7 +614,10 @@ class Boorecipe_Admin_Simple {
 				'label'             => __( 'Show Share Buttons?', 'boo-recipes' ),
 				'label_description' => __( 'Do you Want to show share buttons on recipe page?', 'boo-recipes' ),
 				'default'           => $this->get_default_options( 'show_share_buttons' ),
-				'options'           => array( 'yes' => esc_html__( 'Yes' , 'boo-recipes' ), 'no' => esc_html__( 'No' , 'boo-recipes' )),
+				'options'           => array(
+					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
+					'no'  => esc_html__( 'No', 'boo-recipes' )
+				),
 			),
 
 			array(
@@ -584,7 +626,10 @@ class Boorecipe_Admin_Simple {
 				'label'             => __( 'Show Author', 'boo-recipes' ),
 				'label_description' => __( 'Do you Want to show author name on recipe page?', 'boo-recipes' ),
 				'default'           => 'yes',
-				'options'           => array( 'yes' => esc_html__( 'Yes' , 'boo-recipes' ), 'no' => esc_html__( 'No' , 'boo-recipes' )),
+				'options'           => array(
+					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
+					'no'  => esc_html__( 'No', 'boo-recipes' )
+				),
 			),
 
 			array(
@@ -593,7 +638,10 @@ class Boorecipe_Admin_Simple {
 				'label'             => __( 'Show Published Date', 'boo-recipes' ),
 				'label_description' => __( 'Do you want to show published date on recipe page?', 'boo-recipes' ),
 				'default'           => 'no',
-				'options'           => array( 'yes' => esc_html__( 'Yes' , 'boo-recipes' ), 'no' => esc_html__( 'No' , 'boo-recipes' )),
+				'options'           => array(
+					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
+					'no'  => esc_html__( 'No', 'boo-recipes' )
+				),
 			),
 
 			array(
@@ -671,7 +719,10 @@ class Boorecipe_Admin_Simple {
 				'label'    => __( 'Recipes Per Page', 'boo-recipes' ),
 				'default'  => $this->get_default_options( 'recipes_per_page' ),
 				'sanitize' => 'boorecipe_sanitize_absint',
-				'options'  => array( 'yes' => esc_html__( 'Yes' , 'boo-recipes' ), 'no' => esc_html__( 'No' , 'boo-recipes' )),
+				'options'  => array(
+					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
+					'no'  => esc_html__( 'No', 'boo-recipes' )
+				),
 			),
 
 			array(
@@ -707,7 +758,10 @@ class Boorecipe_Admin_Simple {
 				'label'       => __( 'Show Recipe cards in Masonry?', 'boo-recipes' ),
 				'default'     => $this->get_default_options( 'show_in_masonry' ),
 				'description' => __( 'If enabled, Layout Switcher will auto disable on front end', 'boo-recipes' ),
-				'options'     => array( 'yes' => esc_html__( 'Yes' , 'boo-recipes' ), 'no' => esc_html__( 'No' , 'boo-recipes' )),
+				'options'     => array(
+					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
+					'no'  => esc_html__( 'No', 'boo-recipes' )
+				),
 			),
 
 			array(
@@ -716,7 +770,10 @@ class Boorecipe_Admin_Simple {
 				'label'       => __( 'Show Layout Switcher?', 'boo-recipes' ),
 				'description' => __( 'This option only available for List and Grid view', 'boo-recipes' ),
 				'default'     => $this->get_default_options( 'show_layout_switcher' ),
-				'options'     => array( 'yes' => esc_html__( 'Yes' , 'boo-recipes' ), 'no' => esc_html__( 'No' , 'boo-recipes' )),
+				'options'     => array(
+					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
+					'no'  => esc_html__( 'No', 'boo-recipes' )
+				),
 			),
 
 			array(
@@ -785,7 +842,10 @@ class Boorecipe_Admin_Simple {
 				'label'             => __( 'Override Pagination Styling?', 'boo-recipes' ),
 				'label_description' => __( 'Do you want to override theme styling for pagination?', 'boo-recipes' ),
 				'default'           => $this->get_default_options( 'override_theme_pagination_style' ),
-				'options'           => array( 'yes' => esc_html__( 'Yes' , 'boo-recipes' ), 'no' => esc_html__( 'No' , 'boo-recipes' )),
+				'options'           => array(
+					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
+					'no'  => esc_html__( 'No', 'boo-recipes' )
+				),
 			),
 
 			array(
@@ -794,7 +854,10 @@ class Boorecipe_Admin_Simple {
 				'label'             => __( 'Show Archive Excerpt', 'boo-recipes' ),
 				'label_description' => __( 'Do you want to show archive excerpt?', 'boo-recipes' ),
 				'default'           => $this->get_default_options( 'show_archive_excerpt' ),
-				'options'           => array( 'yes' => esc_html__( 'Yes' , 'boo-recipes' ), 'no' => esc_html__( 'No' , 'boo-recipes' )),
+				'options'           => array(
+					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
+					'no'  => esc_html__( 'No', 'boo-recipes' )
+				),
 			),
 
 			array(
@@ -803,7 +866,10 @@ class Boorecipe_Admin_Simple {
 				'label'             => __( 'Show Search Form on archive page?', 'boo-recipes' ),
 				'label_description' => __( 'If enabled, Search form will be added to recipes archive page ', 'boo-recipes' ),
 				'default'           => $this->get_default_options( 'show_search_form' ),
-				'options'           => array( 'yes' => esc_html__( 'Yes' , 'boo-recipes' ), 'no' => esc_html__( 'No' , 'boo-recipes' )),
+				'options'           => array(
+					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
+					'no'  => esc_html__( 'No', 'boo-recipes' )
+				),
 			),
 
 			array(
@@ -973,7 +1039,10 @@ class Boorecipe_Admin_Simple {
 				'description' => __( 'Delete all plugin options data at uninstall?', 'boo-recipes' ),
 				'help'        => __( 'green = Yes & red = No', 'boo-recipes' ),
 				'default'     => $this->get_default_options( 'uninstall_delete_options' ),
-				'options'     => array( 'yes' => esc_html__( 'Yes' , 'boo-recipes' ), 'no' => esc_html__( 'No' , 'boo-recipes' )),
+				'options'     => array(
+					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
+					'no'  => esc_html__( 'No', 'boo-recipes' )
+				),
 			),
 
 			array(
@@ -983,7 +1052,10 @@ class Boorecipe_Admin_Simple {
 				'description' => __( 'Delete all recipes meta data at uninstall?', 'boo-recipes' ),
 				'help'        => __( 'green = Yes & red = No', 'boo-recipes' ),
 				'default'     => $this->get_default_options( 'uninstall_delete_mata' ),
-				'options'     => array( 'yes' => esc_html__( 'Yes' , 'boo-recipes' ), 'no' => esc_html__( 'No' , 'boo-recipes' )),
+				'options'     => array(
+					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
+					'no'  => esc_html__( 'No', 'boo-recipes' )
+				),
 			),
 
 
