@@ -100,7 +100,7 @@ class Boorecipe_Template_Functions {
 
 		$is_external_author = isset( $meta['is_external_author'] ) ? $meta['is_external_author'] : false;
 
-		if ( $is_external_author == 'yes' ) {
+		if ( $is_external_author ) {
 			$recipe_author_with_link = $this->get_external_author( $meta, $link );
 		} else {
 			$recipe_author_with_link = $this->get_wordpress_author( $item, $link );

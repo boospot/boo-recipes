@@ -322,6 +322,10 @@
   align-items: center;
   margin-bottom: 10px;
 }
+.boorecipe-recipe .recipe-author-avatar.external-author-avatar {
+  max-width: 30px;
+  max-height: 30px;
+}
 .boorecipe-recipe .recipe-meta > div {
   padding: 0.5em 0;
 }

@@ -95,8 +95,7 @@ class Boorecipe_Single_Template_Functions extends Boorecipe_Template_Functions {
 			( $this->get_options_value( 'show_author' ) === 'yes' )
 			&&
 			( $this->get_options_value( 'show_author_box' ) === 'no' ||
-			  ! $this->get_options_value( 'show_author_box'
-			  )
+			  ! $this->get_options_value( 'show_author_box' )
 			)
 		):
 
