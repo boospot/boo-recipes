@@ -4,8 +4,8 @@ Contributors: boospot
 Tags: recipe, recipes, rich snippet, schema.org
 Donate link: https://www.buymeacoffee.com/raoabid
 Requires at least: 4.8
-Tested up to: 5.5
-Requires PHP: 5.6
+Tested up to: 5.6.1
+Requires PHP: 7.0
 Stable tag: trunk
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
@@ -75,6 +75,7 @@ Documentation guides you about:
   - Recipe Tags (Usage)
   - Recipe Cuisine*
   - Cooking Method*
+  - Recipe Tools*
 - Recipes with image sliders*
 - Video Recipes*
 
@@ -123,6 +124,13 @@ you need to re-save your recipes. Quickest way is to "Bulk Edit" all recipes wit
 3. Mobile View
 
 == Changelog ==
+
+= 2.4.0 =
+
+- Compatibility with WordPress 5.6.1
+- Optimization: Code Refactoring and optimization
+- Fix: External Author not showing in some cases
+- Updated plugin dependencies
 
 = 2.3.0 =
 
