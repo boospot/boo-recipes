@@ -50,12 +50,23 @@ class Boorecipe_Admin_Simple {
 
 		$this->prefix = Boorecipe_Globals::get_meta_prefix();
 
-		add_action( 'wp_ajax_admin_convert_settings', array( $this, 'admin_convert_settings_handler' ) );
-
-		add_action( 'wp_ajax_admin_delete_settings', array( $this, 'admin_delete_settings_handler' ) );
-
 	}
 
+	/**
+	 * @hooked admin_footer
+	 */
+	public function add_custom_js_in_admin() {
+
+		$custom_js = Boorecipe_Globals::get_options_value( 'admin_custom_js_editor' );
+
+		if ( ! $custom_js ) {
+			return null;
+		}
+
+		return $custom_js;
+		
+
+	}
 
 	/**
 	 *
@@ -248,6 +259,8 @@ class Boorecipe_Admin_Simple {
 			$this->version,
 			false
 		);
+
+		wp_add_inline_script( $this->plugin_name, $this->add_custom_js_in_admin() );
 
 
 		wp_localize_script( $this->plugin_name, 'wp_ajax', array(
@@ -991,6 +1004,12 @@ class Boorecipe_Admin_Simple {
 				'desc'  => __( 'Add your custom CSS here', 'boo-recipes' ),
 			),
 
+			array(
+				'id'    => $this->prefix . 'admin_custom_js_editor',
+				'type'  => 'textarea',
+				'label' => __( 'Your Custom JS for Admin', 'boo-recipes' ),
+				'desc'  => __( 'Add your custom JS here', 'boo-recipes' ),
+			),
 
 		);
 

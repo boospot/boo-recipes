@@ -198,6 +198,11 @@ class Boorecipe {
 			$this->loader->add_action( 'init', $plugin_admin, 'create_plugin_menu', 999 );
 
 		}
+		/**
+		 * Adding Ajax Functionality
+		 */
+		$this->loader->add_action( 'wp_ajax_admin_convert_settings', $plugin_admin_simple, 'admin_convert_settings_handler' );
+		$this->loader->add_action( 'wp_ajax_admin_delete_settings', $plugin_admin_simple, 'admin_delete_settings_handler' );
 
 	}
 
