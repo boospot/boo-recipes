@@ -589,16 +589,16 @@ class Boorecipe_Post_Types {
 			array(
 				'id'          => $prefix . 'external_author_name',
 				'type'        => 'text',
-				'name'        => esc_html__( 'External author name', 'boo-recipes' ),
+				'name'        => esc_html__( 'External Author Name', 'boo-recipes' ),
 				'std'         => 'small',
-				'placeholder' => esc_html__( 'External author name', 'boo-recipes' ),
+				'placeholder' => esc_html__( 'External Author Name', 'boo-recipes' ),
 				'visible'     => array( "{$prefix}is_external_author", '=', 1 ),
 			),
 			array(
 				'id'               => $prefix . 'external_author_link',
 				'type'             => 'url',
-				'name'             => esc_html__( 'External author link', 'boo-recipes' ),
-				'placeholder'      => esc_html__( 'External author link', 'boo-recipes' ),
+				'name'             => esc_html__( 'External Author Link', 'boo-recipes' ),
+				'placeholder'      => esc_html__( 'External Author Link', 'boo-recipes' ),
 				'visible'          => array( "{$prefix}is_external_author", '=', 1 ),
 				'max_file_uploads' => 1,
 				'image_size'       => 'thumbnail',
@@ -606,8 +606,8 @@ class Boorecipe_Post_Types {
 			array(
 				'id'          => $prefix . 'external_author_image',
 				'type'        => 'image_advanced',
-				'name'        => esc_html__( 'External author image', 'boo-recipes' ),
-				'placeholder' => esc_html__( 'External author image', 'boo-recipes' ),
+				'name'        => esc_html__( 'External Author Image', 'boo-recipes' ),
+				'placeholder' => esc_html__( 'External Author Image', 'boo-recipes' ),
 				'visible'     => array( "{$prefix}is_external_author", '=', 1 ),
 				'max'
 			),

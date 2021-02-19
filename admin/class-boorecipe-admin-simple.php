@@ -53,22 +53,6 @@ class Boorecipe_Admin_Simple {
 	}
 
 	/**
-	 * @hooked admin_footer
-	 */
-	public function add_custom_js_in_admin() {
-
-		$custom_js = Boorecipe_Globals::get_options_value( 'admin_custom_js_editor' );
-
-		if ( ! $custom_js ) {
-			return null;
-		}
-
-		return $custom_js;
-		
-
-	}
-
-	/**
 	 *
 	 */
 	public function admin_delete_settings_handler() {
@@ -276,6 +260,21 @@ class Boorecipe_Admin_Simple {
 
 	}
 
+	/**
+	 * @hooked admin_footer
+	 */
+	public function add_custom_js_in_admin() {
+
+		$custom_js = Boorecipe_Globals::get_options_value( 'admin_custom_js_editor' );
+
+		if ( ! $custom_js ) {
+			return null;
+		}
+
+		return $custom_js;
+
+
+	}
 
 	/**
 	 * Shall use this to add data update functionality
@@ -718,6 +717,17 @@ class Boorecipe_Admin_Simple {
 				'sanitize'    => 'sanitize_key',
 
 			),
+
+			array(
+				'id'      => $this->prefix . 'external_link_type',
+				'type'    => 'select',
+				'label'   => __( 'External Author Link Type', 'boorecipe-premium' ),
+				'default' => 'link_to_name',
+				'options' => array(
+					'link_to_name'    => esc_html__( 'Link to External Author Name', 'boorecipe-premium' ),
+					'show_under_name' => esc_html__( 'Show Under External Author Name', 'boorecipe-premium' )
+				),
+			)
 
 
 		) );

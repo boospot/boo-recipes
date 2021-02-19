@@ -289,7 +289,8 @@ class Boorecipe_Globals {
 			'recipe_tags_slug'                  => 'recipe-tags',
 			'enable_wysiwyg_editor'             => 'no',
 			'ingredients_editor'                => 'textarea',
-			'hide_empty_nutrition'              => 'no'
+			'hide_empty_nutrition'              => 'no',
+			'external_link_type'                => 'link_to_name'
 		);
 
 

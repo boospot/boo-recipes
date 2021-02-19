@@ -127,7 +127,18 @@ class Boorecipe_Template_Functions {
 		$html = '';
 
 		if ( ! empty( $external_author_url ) && $link ) {
-			$html .= "<a href='{$external_author_url}' target='_blank' rel='nofollow'>{$external_author_name}</a>";
+
+			$external_link_type = Boorecipe_Globals::get_options_value( 'external_link_type' );
+
+			if ( 'link_to_name' === $external_link_type ) {
+				$html .= "<a class='recipe-author-link' href='{$external_author_url}'>{$external_author_name}</a>";
+			} else {
+				$html .= sprintf(
+					'<div class="recipe-external-author-name-wrapper"><span class="recipe-external-author-name">%1$s</span><br/><a class="recipe-author-link" href="%2$s">%2$s</a></div>',
+					$external_author_name,
+					$external_author_url
+				);
+			}
 		} else {
 			$html .= "{$external_author_name}";
 		}
@@ -177,7 +188,7 @@ class Boorecipe_Template_Functions {
 		include boorecipe_get_template( 'author-avatar', 'archive' );
 	} //get_author_avatar
 
-/**
+	/**
 	 * @param $taxonomy
 	 *
 	 * @return bool|mixed
