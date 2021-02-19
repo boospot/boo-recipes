@@ -125,6 +125,10 @@ you need to re-save your recipes. Quickest way is to "Bulk Edit" all recipes wit
 
 == Changelog ==
 
+= 2.4.1 =
+
+- Added option to show External Author link on frontend
+
 = 2.4.0 =
 
 - Compatibility with WordPress 5.6.1
