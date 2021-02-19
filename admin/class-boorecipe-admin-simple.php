@@ -996,9 +996,26 @@ class Boorecipe_Admin_Simple {
 			array(
 				'id'    => $this->prefix . 'plugin_activation_content',
 				'type'  => 'html',
-				'class' => 'class-name', // for all fieds
-				'desc'  => '<p>Enter all the details here about the features of your premium plugin<br/>
-	<a href="#">GET YOUR PLUGIN</a></p>',
+				'class' => 'class-name', // for all fields
+				'desc'  => '<div>
+								<p>Future Updates. 6 Months Support.</p>
+								<p>Key Features include:</p>
+								<ul>
+									<li>2 single recipe styles: style1 and style2</li>
+									<li>2 more recipe index styles: modern and overlay</li>
+									<li>Change Labels to suit your needs</li>
+									<li>Recipe Cuisines Taxonomy</li>
+									<li>Cooking Method Taxonomy</li>
+									<li>Recipes with image sliders</li>
+									<li>Video Recipes</li>
+									<li>Show/embed recipes in posts or pages</li>
+								</ul>
+							</div><br/>'
+				           .
+				           sprintf( '<a href="%s" target="_blank">%s</a>',
+					           'https://boospot.com/product/boorecipes-premium-plugin/',
+					           esc_html__( 'Buy Premium Plugin', 'boo-recipes' )
+				           ),
 			),
 
 		) );
