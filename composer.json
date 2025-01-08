@@ -29,5 +29,10 @@
       "public",
       "includes"
     ]
+  },
+  "config": {
+    "allow-plugins": {
+      "composer/installers": true
+    }
   }
 }
