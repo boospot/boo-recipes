@@ -21,7 +21,7 @@ if ( class_exists( 'Boorecipe_Premium_Globals' ) ) {
  */
 
 // Require the class file from parent plugin as the premium class is extending that class
-require_once BOORECIPE_PREMIUM_PARENT_BASE_DIR . 'includes/class-boorecipe-global-functions.php';
+require_once BOORECIPE_BASE_DIR . 'includes/class-boorecipe-global-functions.php';
 
 class Boorecipe_Premium_Globals extends Boorecipe_Globals {
 
@@ -58,18 +58,18 @@ class Boorecipe_Premium_Globals extends Boorecipe_Globals {
 	public function filter_default_labels_array( $default_labels ) {
 
 		$Premium_default_labels = array(
-			'recipe_cuisine_label'          => __( 'Cuisine', 'boorecipe-premium' ),
-			'cooking_method_label'          => __( 'Cooking Method', 'boorecipe-premium' ),
-			'user_rating_label'             => __( 'Recipe Ratings', 'boorecipe-premium' ),
-			'rating_start_label'            => __( 'Rated', 'boorecipe-premium' ),
-			'rating_based_on_label'         => __( 'based on', 'boorecipe-premium' ),
-			'rating_customer_reviews_label' => __( 'customer reviews', 'boorecipe-premium' ),
-			'recipe_tool_label'             => __( 'Recipe Tools', 'boorecipe-premium' ),
-			'author_link_label'             => __( 'All Recipes by the %s', 'boorecipe-premium' ),
-			'archive_layout_modern_label'   => _x( 'Modern', 'Post Archive Layout', 'boorecipe-premium' ),
-			'archive_layout_overlay_label'  => _x( 'Overlay', 'Post Archive Layout', 'boorecipe-premium' ),
-			'related_recipes_label'         => __( 'Related Recipes', 'boorecipe-premium' ),
-			'recipe_ratings_label'          => __( 'Recipe Ratings', 'boorecipe-premium' ),
+			'recipe_cuisine_label'          => __( 'Cuisine', 'boo-recipes' ),
+			'cooking_method_label'          => __( 'Cooking Method', 'boo-recipes' ),
+			'user_rating_label'             => __( 'Recipe Ratings', 'boo-recipes' ),
+			'rating_start_label'            => __( 'Rated', 'boo-recipes' ),
+			'rating_based_on_label'         => __( 'based on', 'boo-recipes' ),
+			'rating_customer_reviews_label' => __( 'customer reviews', 'boo-recipes' ),
+			'recipe_tool_label'             => __( 'Recipe Tools', 'boo-recipes' ),
+			'author_link_label'             => __( 'All Recipes by the %s', 'boo-recipes' ),
+			'archive_layout_modern_label'   => _x( 'Modern', 'Post Archive Layout', 'boo-recipes' ),
+			'archive_layout_overlay_label'  => _x( 'Overlay', 'Post Archive Layout', 'boo-recipes' ),
+			'related_recipes_label'         => __( 'Related Recipes', 'boo-recipes' ),
+			'recipe_ratings_label'          => __( 'Recipe Ratings', 'boo-recipes' ),
 			'cooking_method_slug'           => 'cooking-method',
 			'recipe_cuisine_slug'           => 'recipe-cuisine',
 			'recipe_tool_slug'              => 'recipe-tool',

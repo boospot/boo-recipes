@@ -22,7 +22,7 @@ if ( class_exists( 'Boorecipe_Premium_Single_Template_Functions' ) ) {
  */
 
 // Require the class file from parent plugin as the premium class is extending that class
-require_once BOORECIPE_PREMIUM_PARENT_BASE_DIR . 'public/class-boorecipe-single-template-functions.php';
+require_once BOORECIPE_BASE_DIR . 'public/class-boorecipe-single-template-functions.php';
 
 if ( ! class_exists( 'Boorecipe_Single_Template_Functions' ) ) {
 	return;

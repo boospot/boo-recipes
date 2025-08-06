@@ -137,12 +137,12 @@ class Boorecipe {
 		/**
 		 * Premium Custom Posts (Taxonomies)
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-boorecipe-premium-custom_posts.php';
+		// require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-boorecipe-premium-custom_posts.php';
 
 		/**
 		 * Premium Single Template Functions
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-boorecipe-premium-single-template-functions.php';
+		// require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-boorecipe-premium-single-template-functions.php';
 
 		/**
 		 * Initialize custom template loader
@@ -298,11 +298,11 @@ class Boorecipe {
 		/*
 		 * Premium Custom Post Types (Taxonomies)
 		 */
-		$plugin_premium_post_types = new Boorecipe_Premium_Post_Types();
+		// $plugin_premium_post_types = new Boorecipe_Premium_Post_Types();
 
-		$this->loader->add_filter( 'rwmb_meta_boxes', $plugin_premium_post_types, 'register_meta_box_premium', 13 );
+		// $this->loader->add_filter( 'rwmb_meta_boxes', $plugin_premium_post_types, 'register_meta_box_premium', 13 );
 
-		$this->loader->add_action( 'init', $plugin_premium_post_types, 'create_custom_post_type', 1000 );
+		// $this->loader->add_action( 'init', $plugin_premium_post_types, 'create_custom_post_type', 1000 );
 
 
 	} // define_custom_post_types_hooks()
@@ -360,7 +360,7 @@ class Boorecipe {
 		$single_template = new Boorecipe_Single_Template_Functions( $this->get_plugin_name(), $this->get_version() );
 
 		// Premium single template functions
-		$single_premium_templates = new Boorecipe_Premium_Single_Template_Functions( $this->get_plugin_name(), $this->get_version() );
+		// $single_premium_templates = new Boorecipe_Premium_Single_Template_Functions( $this->get_plugin_name(), $this->get_version() );
 
 		// Filter for Single Recipe
 		$this->loader->add_filter( 'boorecipe_single_recipe_wrapper_classes', $single_template, 'filter_recipe_wrapper_classes', 10, 1 );
@@ -396,8 +396,8 @@ class Boorecipe {
 		$this->loader->add_action( 'boorecipe_single_body', $single_template, 'nutrition', 11, 2 );
 
 		// Premium features
-		$this->loader->add_action( 'boorecipe_single_body', $single_premium_templates, 'recipe_tool_display', 10, 2 );
-		$this->loader->add_action( 'boorecipe_single_body', $single_premium_templates, 'cooking_methods_display', 10, 2 );
+		// $this->loader->add_action( 'boorecipe_single_body', $single_premium_templates, 'recipe_tool_display', 10, 2 );
+		// $this->loader->add_action( 'boorecipe_single_body', $single_premium_templates, 'cooking_methods_display', 10, 2 );
 
 		/*
 		 * Single Recipe Meta Key Point Style 1
@@ -409,7 +409,7 @@ class Boorecipe {
 		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_1', $single_template, 'the_taxonomy_recipe_yield', 10, 2 );
 
 		// Premium taxonomies
-		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_1', $single_premium_templates, 'the_taxonomy_cooking_method', 15, 2 );
+		// $this->loader->add_action( 'boorecipe_single_meta_key_point_style_1', $single_premium_templates, 'the_taxonomy_cooking_method', 15, 2 );
 
 		/*
 		 * Single Recipe Meta Key Point Style 2
@@ -421,7 +421,7 @@ class Boorecipe {
 		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $single_template, 'the_taxonomy_recipe_yield_style_2', 10, 2 );
 
 		// Premium taxonomies style 2
-		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $single_premium_templates, 'the_taxonomy_cooking_method_style_2', 15, 2 );
+		// $this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $single_premium_templates, 'the_taxonomy_cooking_method_style_2', 15, 2 );
 
 		/*
 		 * Single Recipe Meta Time Style 1

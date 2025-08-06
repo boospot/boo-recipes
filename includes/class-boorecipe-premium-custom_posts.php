@@ -14,7 +14,7 @@ if ( class_exists( 'Boorecipe_Premium_Post_Types' ) ) {
  * This class will extend the functionality of the main class defined in base version of plugin
  */
 // Require the class file from parent plugin as the premium class is extending that class
-require_once BOORECIPE_PREMIUM_PARENT_BASE_DIR . 'includes/class-boorecipe-custom_posts.php';
+require_once BOORECIPE_BASE_DIR . 'includes/class-boorecipe-custom_posts.php';
 
 class Boorecipe_Premium_Post_Types extends Boorecipe_Post_Types {
 
@@ -41,15 +41,15 @@ class Boorecipe_Premium_Post_Types extends Boorecipe_Post_Types {
 			array(
 				'id'                => $prefix . 'show_image_slider',
 				'type'              => 'switch',
-				'name'              => __( 'Show Image Slider', 'boorecipe-premium' ),
-				'label'             => __( 'Do you want to show image slider for this recipe?', 'boorecipe-premium' ),
+				'name'              => __( 'Show Image Slider', 'boo-recipes' ),
+				'label'             => __( 'Do you want to show image slider for this recipe?', 'boo-recipes' ),
 				'std'               => 0,
 				'sanitize_callback' => 'sanitize_key'
 			),
 
 			array(
 				'id'               => $prefix . 'recipe_image_slider_items_attached',
-				'name'             => __( 'Slider images', 'boorecipe-premium' ),
+				'name'             => __( 'Slider images', 'boo-recipes' ),
 				'type'             => 'image_advanced',
 				'force_delete'     => false,
 				'max_file_uploads' => 6,
@@ -62,8 +62,8 @@ class Boorecipe_Premium_Post_Types extends Boorecipe_Post_Types {
 			array(
 				'id'                => $prefix . 'is_video_recipe',
 				'type'              => 'switch',
-				'name'              => __( 'is it a Video Recipe?', 'boorecipe-premium' ),
-				'desc'              => __( 'Do you want to show video instead of featured image?', 'boorecipe-premium' ),
+				'name'              => __( 'is it a Video Recipe?', 'boo-recipes' ),
+				'desc'              => __( 'Do you want to show video instead of featured image?', 'boo-recipes' ),
 				'std'               => 0,
 				'sanitize_callback' => 'sanitize_key'
 			),
@@ -72,18 +72,18 @@ class Boorecipe_Premium_Post_Types extends Boorecipe_Post_Types {
 			array(
 				'id'         => $prefix . 'video_recipe_url',
 				'type'       => 'oembed',
-				'name'       => __( 'Video URL', 'boorecipe-premium' ),
+				'name'       => __( 'Video URL', 'boo-recipes' ),
 				'visible'    => array( "{$prefix}is_video_recipe", '=', 1 ),
 				'attributes' => array(
-					'placeholder' => __( 'Youtube, Vimeo, Self Hosted', 'boorecipe-premium' ),
+					'placeholder' => __( 'Youtube, Vimeo, Self Hosted', 'boo-recipes' ),
 				),
-				'desc'       => sprintf( esc_html__( 'Youtube, Vimeo, Self Hosted or other embed options: %s', 'boorecipe-premium' ), 'https://codex.wordpress.org/Embeds' ),
+				'desc'       => sprintf( esc_html__( 'Youtube, Vimeo, Self Hosted or other embed options: %s', 'boo-recipes' ), 'https://codex.wordpress.org/Embeds' ),
 			),
 		);
 
 		$metabox_array_additional_media = array(
 			'id'             => 'boorecipe-recipe-meta-additional-media',
-			'title'          => esc_html__( 'Recipe Additional Media', 'boorecipe-premium' ),
+			'title'          => esc_html__( 'Recipe Additional Media', 'boo-recipes' ),
 			'post_types'     => array( 'boo_recipe' ),
 			'context'        => 'normal',
 			'priority'       => 'high',
@@ -105,22 +105,22 @@ class Boorecipe_Premium_Post_Types extends Boorecipe_Post_Types {
 	public function register_meta_taxonomy_terms( $meta_boxes ) {
 
 		$meta_boxes[] = array(
-			'title'      => esc_html__( 'Special Fields', 'boorecipe-premium' ),
+			'title'      => esc_html__( 'Special Fields', 'boo-recipes' ),
 			'taxonomies' => [ 'recipe_tool', 'cooking_method' ],
 
 			'fields' => apply_filters( 'boorecipes_taxonomy_metabox_fields', array(
 				array(
-					'name'             => esc_html__( 'Featured Image', 'boorecipe-premium' ),
+					'name'             => esc_html__( 'Featured Image', 'boo-recipes' ),
 					'id'               => 'featured_image',
 					'type'             => 'image_advanced',
 					'max_file_uploads' => 1,
 					'image_size'       => 'thumbnail',
 				),
 				array(
-					'name' => esc_html__( 'Override URL', 'boorecipe-premium' ),
+					'name' => esc_html__( 'Override URL', 'boo-recipes' ),
 					'id'   => 'override_url',
 					'type' => 'url',
-					'desc' => esc_html__( 'Any URL entered in this field will be used to override the default link for this term.', 'boorecipe-premium' )
+					'desc' => esc_html__( 'Any URL entered in this field will be used to override the default link for this term.', 'boo-recipes' )
 				),
 			) ),
 		);
@@ -141,11 +141,11 @@ class Boorecipe_Premium_Post_Types extends Boorecipe_Post_Types {
 		$ingredient_fields = array(
 			array(
 				'id'       => $prefix . 'ingredients_type',
-				'name'     => esc_html__( 'Ingredient Type', 'boorecipe-premium' ),
+				'name'     => esc_html__( 'Ingredient Type', 'boo-recipes' ),
 				'type'     => 'button_group',
 				'options'  => array(
-					''        => '<i class="dashicons dashicons-edit"></i>' . " " . esc_html__( 'Textarea', 'boorecipe-premium' ),
-					'wysiwyg' => '<i class="dashicons dashicons-editor-kitchensink"></i>' . " " . esc_html__( 'WYSIWYG', 'boorecipe-premium' ),
+					''        => '<i class="dashicons dashicons-edit"></i>' . " " . esc_html__( 'Textarea', 'boo-recipes' ),
+					'wysiwyg' => '<i class="dashicons dashicons-editor-kitchensink"></i>' . " " . esc_html__( 'WYSIWYG', 'boo-recipes' ),
 				),
 				'inline'   => true,
 				'multiple' => false,
@@ -154,8 +154,8 @@ class Boorecipe_Premium_Post_Types extends Boorecipe_Post_Types {
 			array(
 				'id'      => $prefix . 'ingredients_wysiwyg',
 				'type'    => 'wysiwyg',
-				'name'    => esc_html__( 'Ingredients', 'boorecipe-premium' ),
-				'desc'    => __( 'Each new paragraph will be a new ingredient', 'boorecipe-premium' ),
+				'name'    => esc_html__( 'Ingredients', 'boo-recipes' ),
+				'desc'    => __( 'Each new paragraph will be a new ingredient', 'boo-recipes' ),
 				'visible' => array( $prefix . 'ingredients_type', '=', 'wysiwyg' ),
 				'options' => array(
 					'textarea_rows' => 6,
@@ -171,11 +171,11 @@ class Boorecipe_Premium_Post_Types extends Boorecipe_Post_Types {
 		$directions_fields = array(
 			array(
 				'id'       => $prefix . 'directions_type',
-				'name'     => esc_html__( 'Directions Type', 'boorecipe-premium' ),
+				'name'     => esc_html__( 'Directions Type', 'boo-recipes' ),
 				'type'     => 'button_group',
 				'options'  => array(
-					''        => '<i class="dashicons dashicons-edit"></i>' . " " . esc_html__( 'Textarea', 'boorecipe-premium' ),
-					'wysiwyg' => '<i class="dashicons dashicons-editor-kitchensink"></i>' . " " . esc_html__( 'WYSIWYG', 'boorecipe-premium' ),
+					''        => '<i class="dashicons dashicons-edit"></i>' . " " . esc_html__( 'Textarea', 'boo-recipes' ),
+					'wysiwyg' => '<i class="dashicons dashicons-editor-kitchensink"></i>' . " " . esc_html__( 'WYSIWYG', 'boo-recipes' ),
 //					'underline' => '<i class="dashicons dashicons-editor-underline"></i>',
 				),
 				'inline'   => true,
@@ -185,8 +185,8 @@ class Boorecipe_Premium_Post_Types extends Boorecipe_Post_Types {
 			array(
 				'id'      => $prefix . 'directions_wysiwyg',
 				'type'    => 'wysiwyg',
-				'name'    => esc_html__( 'Directions', 'boorecipe-premium' ),
-				'desc'    => __( 'Each new paragraph will be a new Direction', 'boorecipe-premium' ),
+				'name'    => esc_html__( 'Directions', 'boo-recipes' ),
+				'desc'    => __( 'Each new paragraph will be a new Direction', 'boo-recipes' ),
 				'visible' => array( $prefix . 'directions_type', '=', 'wysiwyg' ),
 				'options' => array(
 					'textarea_rows' => 6,
@@ -211,7 +211,7 @@ class Boorecipe_Premium_Post_Types extends Boorecipe_Post_Types {
 			array(
 				'id'     => 'recipe_image_slider',
 				'name'   => 'recipe_image_slider',
-				'title'  => __( 'Recipe Additional Media', 'boorecipe-premium' ),
+				'title'  => __( 'Recipe Additional Media', 'boo-recipes' ),
 				'fields' => array(
 
 					array(
@@ -223,22 +223,22 @@ class Boorecipe_Premium_Post_Types extends Boorecipe_Post_Types {
 							'==|==',
 							'true|true'
 						),
-						'content'    => __( 'You may either use images slider or Video. Please deactivate image slider if you want to use video', 'boorecipe-premium' ),
+						'content'    => __( 'You may either use images slider or Video. Please deactivate image slider if you want to use video', 'boo-recipes' ),
 						'sanitize'   => 'sanitize_text_field'
 					),
 
 					array(
 						'id'       => $prefix . 'show_image_slider',
 						'type'     => 'switcher',
-						'title'    => __( 'Show Image Slider', 'boorecipe-premium' ),
-						'label'    => __( 'Do you want to show image slider for this recipe?', 'boorecipe-premium' ),
+						'title'    => __( 'Show Image Slider', 'boo-recipes' ),
+						'label'    => __( 'Do you want to show image slider for this recipe?', 'boo-recipes' ),
 						'default'  => 'no',
 						'sanitize' => 'sanitize_key'
 					),
 					array(
 						'id'         => $prefix . 'recipe_image_slider_items_attached',
 						'type'       => 'attached',
-						'title'      => __( 'Attached images', 'boorecipe-premium' ),
+						'title'      => __( 'Attached images', 'boo-recipes' ),
 						'dependency' => array( $prefix . 'show_image_slider', '==', true ),
 						'options'    => array(
 							'type' => '', // attach to post (only in metabox)
@@ -247,7 +247,7 @@ class Boorecipe_Premium_Post_Types extends Boorecipe_Post_Types {
 					array(
 						'id'         => $prefix . 'recipe_image_slider_items',
 						'type'       => 'upload',
-						'title'      => __( 'Upload images', 'boorecipe-premium' ),
+						'title'      => __( 'Upload images', 'boo-recipes' ),
 						'dependency' => array( $prefix . 'show_image_slider', '==', true ),
 						'options'    => array(
 							'attach'               => true, // attach to post (only in metabox)
@@ -263,8 +263,8 @@ class Boorecipe_Premium_Post_Types extends Boorecipe_Post_Types {
 					array(
 						'id'       => $prefix . 'is_video_recipe',
 						'type'     => 'switcher',
-						'title'    => __( 'is it a Video Recipe?', 'boorecipe-premium' ),
-						'label'    => __( 'Do you want to show video instead of featured image?', 'boorecipe-premium' ),
+						'title'    => __( 'is it a Video Recipe?', 'boo-recipes' ),
+						'label'    => __( 'Do you want to show video instead of featured image?', 'boo-recipes' ),
 						'default'  => 'no',
 						'sanitize' => 'sanitize_key'
 					),
@@ -273,17 +273,17 @@ class Boorecipe_Premium_Post_Types extends Boorecipe_Post_Types {
 					array(
 						'id'         => $prefix . 'video_recipe_url',
 						'type'       => 'text',
-						'title'      => __( 'Video URL', 'boorecipe-premium' ),
+						'title'      => __( 'Video URL', 'boo-recipes' ),
 						'dependency' => array(
 							"{$prefix}is_video_recipe|{$prefix}show_image_slider",
 							'==|==',
 							'true|false'
 						),
 						'attributes' => array(
-							'placeholder' => __( 'Youtube, Vimeo, Self Hosted', 'boorecipe-premium' ),
+							'placeholder' => __( 'Youtube, Vimeo, Self Hosted', 'boo-recipes' ),
 						),
 						'after'      => ' <i class="text-muted">' .
-						                __( 'Youtube, Vimeo, Self Hosted or other embed options: https://codex.wordpress.org/Embeds ', 'boorecipe-premium' )
+						                __( 'Youtube, Vimeo, Self Hosted or other embed options: https://codex.wordpress.org/Embeds ', 'boo-recipes' )
 						                . '</i>',
 						'sanitize'   => 'esc_url_raw'
 					),
@@ -337,24 +337,24 @@ class Boorecipe_Premium_Post_Types extends Boorecipe_Post_Types {
 		$new_taxonomy_args   = array();
 		$new_taxonomy_args[] = array(
 			'taxonomy'   => 'cooking_method',
-			'plural'     => __( 'Cooking Methods', 'boorecipe-premium' ),
-			'single'     => __( 'Cooking Methods', 'boorecipe-premium' ),
+			'plural'     => __( 'Cooking Methods', 'boo-recipes' ),
+			'single'     => __( 'Cooking Methods', 'boo-recipes' ),
 			'post_types' => array( 'boo_recipe' ),
 			'rewrite'    => array( 'slug' => $cooking_method_slug, 'with_front' => false )
 		);
 
 		$new_taxonomy_args[] = array(
 			'taxonomy'   => 'recipe_cuisine',
-			'plural'     => __( 'Recipe Cuisines', 'boorecipe-premium' ),
-			'single'     => __( 'Recipe Cuisine', 'boorecipe-premium' ),
+			'plural'     => __( 'Recipe Cuisines', 'boo-recipes' ),
+			'single'     => __( 'Recipe Cuisine', 'boo-recipes' ),
 			'post_types' => array( 'boo_recipe' ),
 			'rewrite'    => array( 'slug' => $recipe_cuisine_slug, 'with_front' => false )
 		);
 
 		$new_taxonomy_args[] = array(
 			'taxonomy'   => 'recipe_tool',
-			'plural'     => __( 'Recipe Tools', 'boorecipe-premium' ),
-			'single'     => __( 'Recipe Tool', 'boorecipe-premium' ),
+			'plural'     => __( 'Recipe Tools', 'boo-recipes' ),
+			'single'     => __( 'Recipe Tool', 'boo-recipes' ),
 			'post_types' => array( 'boo_recipe' ),
 			'rewrite'    => array( 'slug' => $recipe_tool_slug, 'with_front' => false )
 		);
@@ -442,7 +442,7 @@ class Boorecipe_Premium_Post_Types extends Boorecipe_Post_Types {
 
 
 		if ( ! isset( $_POST['boorecipe_user_rating'] ) ) {
-			wp_die( __( 'Error: You did not add a rating. Hit the Back button on your Web browser and resubmit your comment with a rating.', 'boorecipe-premium' ) );
+			wp_die( __( 'Error: You did not add a rating. Hit the Back button on your Web browser and resubmit your comment with a rating.', 'boo-recipes' ) );
 		}
 
 		return $comment_data;
