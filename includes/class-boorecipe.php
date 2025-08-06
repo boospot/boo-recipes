@@ -360,7 +360,10 @@ class Boorecipe {
 		$this->loader->add_action( 'boorecipe_single_body', $single_template, 'ingredients', 9, 2 );
 		$this->loader->add_action( 'boorecipe_single_body', $single_template, 'instructions', 10, 2 );
 		$this->loader->add_action( 'boorecipe_single_body', $single_template, 'additional_notes', 10, 2 );
+		
+		// Nutrition - conditionally placed based on settings
 		$this->loader->add_action( 'boorecipe_single_body', $single_template, 'nutrition', 11, 2 );
+		$this->loader->add_action( 'boorecipe_recipe_single_aside', $single_template, 'nutrition', 10, 2 );
 
 
 		// Recipe Taxonomies

@@ -33,9 +33,9 @@ class Boorecipe_Aside_Template_Functions extends Boorecipe_Template_Functions {
 	 *
 	 */
 	public function aside_recipe_single( $item, $meta ) {
-		if ( $this->get_sidebar_layout() ) {
-			include boorecipe_get_template( 'sidebar-recipe-single', 'aside' );
-		}
+		// Always include aside template to allow nutrition to display
+		// The sidebar widgets will only show if sidebar is active
+		include boorecipe_get_template( 'sidebar-recipe-single', 'aside' );
 	}
 
 

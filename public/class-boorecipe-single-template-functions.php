@@ -369,6 +369,7 @@ class Boorecipe_Single_Template_Functions extends Boorecipe_Template_Functions {
 	 * Include      public/templates/single/section-recipe-nutrition
 	 *
 	 * @hooked       boorecipe_single_body        11
+	 * @hooked       boorecipe_recipe_single_aside 10
 	 *
 	 * @param object $item A post object
 	 * @param array $meta The post metadata
@@ -380,6 +381,9 @@ class Boorecipe_Single_Template_Functions extends Boorecipe_Template_Functions {
 		
 		// Check individual recipe nutrition setting
 		$recipe_nutrition = isset( $meta['show_nutrition'] ) ? $meta['show_nutrition'] : '';
+		
+		// Check if nutrition should be on the side
+		$nutrition_side = $this->get_options_value( 'nutrition_side' );
 		
 		// More flexible condition check - handle different data types
 		$should_show_nutrition = false;
@@ -397,8 +401,17 @@ class Boorecipe_Single_Template_Functions extends Boorecipe_Template_Functions {
 		
 		// If nutrition should be shown, include the template
 		if ( $should_show_nutrition ) {
-			$meta_key = 'nutrition';
-			include boorecipe_get_template( 'section-recipe-nutrition', 'single' );
+			// Check if we're in the aside hook and nutrition should be on the side
+			$current_hook = current_filter();
+			if ( $current_hook === 'boorecipe_recipe_single_aside' && $nutrition_side === 'yes' ) {
+				$meta_key = 'nutrition';
+				include boorecipe_get_template( 'section-recipe-nutrition', 'single' );
+			}
+			// Check if we're in the main body hook and nutrition should NOT be on the side
+			elseif ( $current_hook === 'boorecipe_single_body' && $nutrition_side !== 'yes' ) {
+				$meta_key = 'nutrition';
+				include boorecipe_get_template( 'section-recipe-nutrition', 'single' );
+			}
 		}
 
 	} // nutrition()
