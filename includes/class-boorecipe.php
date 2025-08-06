@@ -267,8 +267,8 @@ class Boorecipe {
 		/**
 		 * JSON-LD Schema Generator
 		 */
-		$jsonld_generator = new Boorecipe_JSONLD_Generator( $this );
-		$this->loader->add_action( 'wp_head', $jsonld_generator, 'output_schema' );
+		// $jsonld_generator = new Boorecipe_JSONLD_Generator( $this );
+		// $this->loader->add_action( 'wp_head', $jsonld_generator, 'output_schema' );
 
 	} // define_public_hooks()
 
@@ -381,10 +381,6 @@ class Boorecipe {
 		$this->loader->add_action( 'boorecipe_single_head_publish_info', $single_template, 'the_date', 10, 2 );
 
 		/*
-		 * Single Recipe Meta
-		 */
-
-		/*
 		 * Single Recipe Body
 		 */
 		$this->loader->add_action( 'boorecipe_single_body', $single_template, 'ingredients', 9, 2 );
@@ -426,48 +422,48 @@ class Boorecipe {
 		/*
 		 * Single Recipe Foot
 		 */
-		$this->loader->add_action( 'boorecipe_single_foot', $single_template, 'recipe_share_buttons', 10, 2 );
+		// $this->loader->add_action( 'boorecipe_single_foot', $single_template, 'recipe_share_buttons', 10, 2 );
 
 		/*
 		 * Single Recipe Comments
 		 */
-		$this->loader->add_action( 'boorecipe_single_comments_before', $single_template, 'recipe_comments_before', 10, 2 );
-		$this->loader->add_action( 'boorecipe_single_comments_after', $single_template, 'recipe_comments_after', 10, 2 );
+		// $this->loader->add_action( 'boorecipe_single_comments_before', $single_template, 'recipe_comments_before', 10, 2 );
+		// $this->loader->add_action( 'boorecipe_single_comments_after', $single_template, 'recipe_comments_after', 10, 2 );
 
 		/*
 		 * Single Recipe Aside
 		 */
-		$this->loader->add_action( 'boorecipe_recipe_single_aside', $single_template, 'aside_recipe_single', 10, 2 );
+		// $this->loader->add_action( 'boorecipe_recipe_single_aside', $single_template, 'aside_recipe_single', 10, 2 );
 
 		/*
 		 * Single Recipe Body Before
 		 */
-		$this->loader->add_action( 'boorecipe_single_body_before', $single_template, 'recipe_body_before', 10, 2 );
+		// $this->loader->add_action( 'boorecipe_single_body_before', $single_template, 'recipe_body_before', 10, 2 );
 
 		/*
 		 * Single Recipe Body After
 		 */
-		$this->loader->add_action( 'boorecipe_single_body_after', $single_template, 'recipe_body_after', 10, 2 );
+		// $this->loader->add_action( 'boorecipe_single_body_after', $single_template, 'recipe_body_after', 10, 2 );
 
 		/*
 		 * Single Recipe Foot Before
 		 */
-		$this->loader->add_action( 'boorecipe_single_foot_before', $single_template, 'recipe_foot_before', 10, 2 );
+		// $this->loader->add_action( 'boorecipe_single_foot_before', $single_template, 'recipe_foot_before', 10, 2 );
 
 		/*
 		 * Single Recipe Foot After
 		 */
-		$this->loader->add_action( 'boorecipe_single_foot_after', $single_template, 'recipe_foot_after', 10, 2 );
+		// $this->loader->add_action( 'boorecipe_single_foot_after', $single_template, 'recipe_foot_after', 10, 2 );
 
 		/*
 		 * Single Recipe Aside Before
 		 */
-		$this->loader->add_action( 'boorecipe_single_aside_before', $single_template, 'recipe_aside_before', 10, 2 );
+		// $this->loader->add_action( 'boorecipe_single_aside_before', $single_template, 'recipe_aside_before', 10, 2 );
 
 		/*
 		 * Single Recipe Aside After
 		 */
-		$this->loader->add_action( 'boorecipe_single_aside_after', $single_template, 'recipe_aside_after', 10, 2 );
+		// $this->loader->add_action( 'boorecipe_single_aside_after', $single_template, 'recipe_aside_after', 10, 2 );
 
 		/*
 		 * Single Recipe Wrapper Classes
