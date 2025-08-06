@@ -282,6 +282,7 @@ class Boorecipe_Globals {
 			'show_recipe_title'                 => 'yes',
 			'show_recipe_publish_info'          => 'yes',
 			'show_share_buttons'                => 'yes',
+			'show_nutrition'                    => 'yes',
 			'uninstall_delete_options'          => 'no',
 			'uninstall_delete_mata'             => 'no',
 			'recipe_category_slug'              => 'recipe-category',
@@ -289,6 +290,8 @@ class Boorecipe_Globals {
 			'recipe_tags_slug'                  => 'recipe-tags',
 			'enable_wysiwyg_editor'             => 'no',
 			'ingredients_editor'                => 'textarea',
+			'ingredient_side'                   => 'no',
+			'nutrition_side'                    => 'yes',
 			'hide_empty_nutrition'              => 'no',
 			'external_link_type'                => 'link_to_name'
 		);

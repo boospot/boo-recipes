@@ -366,7 +366,7 @@ class Boorecipe_Single_Template_Functions extends Boorecipe_Template_Functions {
 
 
 	/**
-	 * Include      public/templates/single/section-recipe-ingredients
+	 * Include      public/templates/single/section-recipe-nutrition
 	 *
 	 * @hooked       boorecipe_single_body        11
 	 *
@@ -375,12 +375,30 @@ class Boorecipe_Single_Template_Functions extends Boorecipe_Template_Functions {
 	 */
 	public function nutrition( $item, $meta ) {
 
-		// If the Option is set to show nutrition
-		if ( $this->get_options_value( 'show_nutrition' ) === 'yes' && ( $meta['show_nutrition'] == 1 || 'yes' === $meta['show_nutrition'] ) ) {
-
+		// Check global nutrition setting
+		$global_nutrition = $this->get_options_value( 'show_nutrition' );
+		
+		// Check individual recipe nutrition setting
+		$recipe_nutrition = isset( $meta['show_nutrition'] ) ? $meta['show_nutrition'] : '';
+		
+		// More flexible condition check - handle different data types
+		$should_show_nutrition = false;
+		
+		if ( $global_nutrition === 'yes' ) {
+			// Check if recipe nutrition is enabled (handle various formats)
+			if ( $recipe_nutrition == 1 || $recipe_nutrition === 'yes' || $recipe_nutrition === '1' || $recipe_nutrition === true ) {
+				$should_show_nutrition = true;
+			}
+			// If recipe setting is empty/null, default to showing nutrition
+			elseif ( empty( $recipe_nutrition ) ) {
+				$should_show_nutrition = true;
+			}
+		}
+		
+		// If nutrition should be shown, include the template
+		if ( $should_show_nutrition ) {
 			$meta_key = 'nutrition';
 			include boorecipe_get_template( 'section-recipe-nutrition', 'single' );
-
 		}
 
 	} // nutrition()
