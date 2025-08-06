@@ -219,9 +219,12 @@ class Boorecipe_Public {
 			// Add Keyword Search to the Query
 			if ( $this->is_search_form_submitted() ) {
 
-				$search_keyword = isset( $_GET['keyword'] ) ? sanitize_text_field( $_GET['keyword'] ) : false;
+				$search_keyword = '';
+				if ( isset( $_GET['keyword'] ) && is_string( $_GET['keyword'] ) ) {
+					$search_keyword = sanitize_text_field( $_GET['keyword'] );
+				}
 
-				if ( $search_keyword ) {
+				if ( ! empty( $search_keyword ) ) {
 
 					$custom_meta = array();
 
@@ -239,11 +242,13 @@ class Boorecipe_Public {
 					$custom_meta['relation'] = 'OR';
 
 					foreach ( $meta_fields_to_include_in_search as $meta_key ) {
-						$custom_meta[] = array(
-							'key'     => $meta_key,
-							'value'   => $search_keyword,
-							'compare' => 'LIKE'
-						);
+						if ( is_string( $meta_key ) ) {
+							$custom_meta[] = array(
+								'key'     => sanitize_key( $meta_key ),
+								'value'   => $search_keyword,
+								'compare' => 'LIKE'
+							);
+						}
 					}
 
 
@@ -253,7 +258,7 @@ class Boorecipe_Public {
 //							'value'   => $search_keyword,
 //							'compare' => 'LIKE'
 //						);
-//					}
+//					)
 
 
 					$meta_query = $current_meta = $custom_meta;
@@ -269,11 +274,12 @@ class Boorecipe_Public {
 
 	public function is_search_form_submitted() {
 
-		$is_search_form_submitted = (
-			isset( $_GET['recipe_search'] )
-			&& ! empty( ( sanitize_key( $_GET['recipe_search'] ) ) )
-		)
-			? true : false;
+		$is_search_form_submitted = false;
+		
+		if ( isset( $_GET['recipe_search'] ) && is_string( $_GET['recipe_search'] ) ) {
+			$recipe_search = sanitize_key( $_GET['recipe_search'] );
+			$is_search_form_submitted = ! empty( $recipe_search );
+		}
 
 		return $is_search_form_submitted;
 

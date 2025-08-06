@@ -298,9 +298,15 @@ class Boorecipe_Admin_Ajax_Meta_Update {
 
 		// check user
 		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( __( 'Insufficient permissions.', 'boo-recipes' ) );
 			return;
 		}
 
+		// Validate post ID
+		if ( ! isset( $_POST['id'] ) || ! is_numeric( $_POST['id'] ) ) {
+			wp_send_json_error( __( 'Invalid post ID provided.', 'boo-recipes' ) );
+			return;
+		}
 
 		/**
 		 * Do your magic here
@@ -309,7 +315,12 @@ class Boorecipe_Admin_Ajax_Meta_Update {
 
 		$post_id = absint( $_POST['id'] );
 
+		// Verify post exists and is a recipe
 		$post = get_post( $post_id );
+		if ( ! $post || $post->post_type !== 'boo_recipe' ) {
+			wp_send_json_error( __( 'Invalid recipe post.', 'boo-recipes' ) );
+			return;
+		}
 
 		$is_update_required = $this->is_update_required( $post_id );
 

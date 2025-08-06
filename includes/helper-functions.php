@@ -870,46 +870,63 @@ endif;
 /**
  * @param $taxonomy_name_or_args_array
  *
- * @return bool|string
+ * @return string
  */
 if ( ! function_exists( 'boorecipe_get_taxonomy_terms_options_markup' ) ) :
 
 	function boorecipe_get_taxonomy_terms_options_markup( $taxonomy_name_or_args_array ) {
 
-		if ( is_array( $taxonomy_name_or_args_array ) ) {
-			$taxonomy_name  = isset( $taxonomy_name_or_args_array['taxonomy'] ) ? $taxonomy_name_or_args_array['taxonomy'] : 0;
-			$taxonomy_terms = get_terms( $taxonomy_name_or_args_array );
-
-		} else {
-			$taxonomy_name  = $taxonomy_name_or_args_array;
-			$taxonomy_terms = get_terms( array(
-				'taxonomy'   => $taxonomy_name_or_args_array,
-				'hide_empty' => true
-			) );
+		// Validate input
+		if ( empty( $taxonomy_name_or_args_array ) ) {
+			return '';
 		}
 
-		// Get Variables from GET array
-		$get_taxonomy_term_from_url = ( isset( $_GET[ $taxonomy_name ] ) ) ? sanitize_key( $_GET[ $taxonomy_name ] ) : '';
+		$taxonomy_name = is_array( $taxonomy_name_or_args_array ) ? $taxonomy_name_or_args_array['taxonomy'] : $taxonomy_name_or_args_array;
+
+		// Validate taxonomy name
+		if ( ! is_string( $taxonomy_name ) || ! taxonomy_exists( $taxonomy_name ) ) {
+			return '';
+		}
+
+		$taxonomy_terms = get_terms( array(
+			'taxonomy'   => $taxonomy_name,
+			'hide_empty' => false,
+		) );
+
+		if ( is_wp_error( $taxonomy_terms ) ) {
+			return '';
+		}
+
+		// Get Variables from GET array with proper sanitization
+		$get_taxonomy_term_from_url = '';
+		if ( isset( $_GET[ $taxonomy_name ] ) && is_string( $_GET[ $taxonomy_name ] ) ) {
+			$get_taxonomy_term_from_url = sanitize_key( $_GET[ $taxonomy_name ] );
+		}
+		
 		// If the GET variable not defined, try to get it from the queried object
 		if ( empty( $get_taxonomy_term_from_url ) ) {
 			$queried_object = get_queried_object();
-			if ( get_class( $queried_object ) === 'WP_Term' ) {
+			if ( $queried_object instanceof WP_Term ) {
 				$get_taxonomy_term_from_url = $queried_object->slug;
 			}
 		}
 
-		$output = false;
+		$output = '';
 
-		if ( ! empty( $taxonomy_terms ) ) :
+		if ( ! empty( $taxonomy_terms ) && is_array( $taxonomy_terms ) ) :
 			foreach ( $taxonomy_terms as $term ) {
-				if ( $term->slug == $get_taxonomy_term_from_url ) {
-
-					$output .= "<option value='$term->slug' selected=selected>{$term->name}</option>";
-				} else {
-					$output .= "<option value='$term->slug'>{$term->name}</option>";
+				if ( ! $term instanceof WP_Term ) {
+					continue;
 				}
+				
+				$selected = ( $term->slug === $get_taxonomy_term_from_url ) ? ' selected="selected"' : '';
+				$output .= sprintf(
+					'<option value="%s"%s>%s</option>',
+					esc_attr( $term->slug ),
+					$selected,
+					esc_html( $term->name )
+				);
 			}
-
 		endif;
 
 		return $output;
@@ -927,7 +944,17 @@ if ( ! function_exists( 'boorecipe_get_meta_terms_options_markup' ) ) :
 
 	function boorecipe_get_meta_terms_options_markup( $field_args ) {
 
-		$get_meta_from_url = ( isset( $_GET[ $field_args['id'] ] ) ) ? sanitize_key( $_GET[ $field_args['id'] ] ) : '';
+		// Validate input
+		if ( ! is_array( $field_args ) || ! isset( $field_args['id'] ) || ! is_string( $field_args['id'] ) ) {
+			return '';
+		}
+
+		$field_id = sanitize_key( $field_args['id'] );
+		$get_meta_from_url = '';
+		
+		if ( isset( $_GET[ $field_id ] ) && is_string( $_GET[ $field_id ] ) ) {
+			$get_meta_from_url = sanitize_key( $_GET[ $field_id ] );
+		}
 
 		$option_markup = '';
 
@@ -935,12 +962,13 @@ if ( ! function_exists( 'boorecipe_get_meta_terms_options_markup' ) ) :
 
 			foreach ( $field_args['options'] as $meta_value => $meta_name ) {
 
-				$selected = '';
-
-				if ( $meta_value == $get_meta_from_url ) {
-					$selected = "selected=selected";
-				}
-				$option_markup .= "<option value='$meta_value' {$selected}>{$meta_name}</option>";
+				$selected = ( $meta_value === $get_meta_from_url ) ? ' selected="selected"' : '';
+				$option_markup .= sprintf(
+					'<option value="%s"%s>%s</option>',
+					esc_attr( $meta_value ),
+					$selected,
+					esc_html( $meta_name )
+				);
 			}
 		}
 
@@ -958,9 +986,11 @@ if ( ! function_exists( 'boorecipe_get_skill_level_options_markup' ) ) :
 
 	function boorecipe_get_skill_level_options_markup() {
 
-		// Get Variables from GET array
-		$get_skill_level_from_url = ( isset( $_GET['skill_level'] ) ) ? sanitize_key( $_GET['skill_level'] ) : '';
-
+		// Get Variables from GET array with proper sanitization
+		$get_skill_level_from_url = '';
+		if ( isset( $_GET['skill_level'] ) && is_string( $_GET['skill_level'] ) ) {
+			$get_skill_level_from_url = sanitize_key( $_GET['skill_level'] );
+		}
 
 		$skill_levels = array(
 			'easy'   => __( 'Easy', 'boo-recipes' ),
@@ -968,19 +998,18 @@ if ( ! function_exists( 'boorecipe_get_skill_level_options_markup' ) ) :
 			'hard'   => __( 'Hard', 'boo-recipes' ),
 		);
 
-
-		$output = false;
+		$output = '';
 
 		foreach ( $skill_levels as $skill => $skill_name ) {
 
-			$selected_skill = '';
-
-			if ( $skill == $get_skill_level_from_url ) {
-				$selected_skill = "selected=selected";
-			}
-			$output .= "<option value='$skill' {$selected_skill}>{$skill_name}</option>";
+			$selected_skill = ( $skill === $get_skill_level_from_url ) ? ' selected="selected"' : '';
+			$output .= sprintf(
+				'<option value="%s"%s>%s</option>',
+				esc_attr( $skill ),
+				$selected_skill,
+				esc_html( $skill_name )
+			);
 		}
-
 
 		return $output;
 	}

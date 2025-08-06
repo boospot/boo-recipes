@@ -62,7 +62,7 @@ class Boorecipe_Admin_Simple {
 
 		// Verify Nonce
 		if ( ! wp_verify_nonce( $_REQUEST['_wpnonce'], 'delete_existing_settings_using_ajax' ) ) {
-			wp_send_json_error( __( 'Security token is invalid' . $_REQUEST['_wpnonce'], 'boo-recipes' ) );
+			wp_send_json_error( __( 'Security token is invalid. Please refresh the page and try again.', 'boo-recipes' ) );
 			die();
 		}
 		// Check capabilities
@@ -112,7 +112,7 @@ class Boorecipe_Admin_Simple {
 
 		// Verify Nonce
 		if ( ! wp_verify_nonce( $_REQUEST['_wpnonce'], 'convert_existing_settings_using_ajax' ) ) {
-			wp_send_json_error( __( 'Security token is invalid' . $_REQUEST['_wpnonce'], 'boo-recipes' ) );
+			wp_send_json_error( __( 'Security token is invalid. Please refresh the page and try again.', 'boo-recipes' ) );
 			die();
 		}
 

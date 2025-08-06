@@ -15,7 +15,9 @@
  * Plugin Name:       Boo Recipes
  * Plugin URI:        http://boorecipes.com/
  * Description:       Easily add Recipes in user friendly way that generates SEO optimized recipes using Schema.org microdata.
- * Version:           2.4.1
+ * Version:           2.5.0
+ * Requires at least: 5.0
+ * Requires PHP:      8.0
  * Author:            BooSpot Team
  * Author URI:        https://boospot.com
  * License:           GPL-2.0+
@@ -28,6 +30,20 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
+// Check PHP version compatibility
+if ( version_compare( PHP_VERSION, '8.0', '<' ) ) {
+	add_action( 'admin_notices', function() {
+		echo '<div class="notice notice-error"><p>';
+		printf( 
+			__( 'Boo Recipes requires PHP version 8.0 or higher. You are running version %s. Please contact your hosting provider to upgrade PHP.', 'boo-recipes' ),
+			PHP_VERSION
+		);
+		echo '</p></div>';
+	} );
+	return;
+}
+
 /**
  * Plugin base dir path.
  * used to locate plugin resources primarily code files
@@ -48,7 +64,7 @@ define( 'BOORECIPE_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
  * Start at version 1.0.0
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'BOORECIPE_VERSION', '2.4.1' );
+define( 'BOORECIPE_VERSION', '2.5.0' );
 
 /**
  * The code that runs during plugin activation.

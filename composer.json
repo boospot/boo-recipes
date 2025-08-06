@@ -1,15 +1,21 @@
 {
+  "name": "boospot/boo-recipes",
+  "description": "WordPress plugin for creating and managing recipes with SEO optimization",
+  "type": "wordpress-plugin",
+  "license": "GPL-2.0+",
+  "require": {
+    "php": ">=8.0",
+    "wpackagist-plugin/meta-box": "^5.7",
+    "wptrt/admin-notices": "^1.0",
+    "boospot/boo-settings-helper": "^5.3",
+    "composer/installers": "^2.0"
+  },
   "repositories": [
     {
       "type": "composer",
       "url": "https://wpackagist.org"
     }
   ],
-  "require": {
-    "wpackagist-plugin/meta-box": "5.*",
-    "wptrt/admin-notices": "^1.0",
-    "boospot/boo-settings-helper": "dev-master"
-  },
   "extra": {
     "installer-paths": {
       "vendor/meta-box/meta-box": [
@@ -29,5 +35,14 @@
       "public",
       "includes"
     ]
-  }
+  },
+  "config": {
+    "allow-plugins": {
+      "composer/installers": true
+    },
+    "optimize-autoloader": true,
+    "sort-packages": true
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true
 }
