@@ -53,7 +53,6 @@ class Boorecipe_Premium_Post_Types extends Boorecipe_Post_Types {
 				'type'             => 'image_advanced',
 				'force_delete'     => false,
 				'max_file_uploads' => 6,
-				'visible'          => array( "{$prefix}show_image_slider", '=', 1 ),
 				'max_status'       => 'false',
 				'image_size'       => 'thumbnail',
 			),
@@ -73,7 +72,6 @@ class Boorecipe_Premium_Post_Types extends Boorecipe_Post_Types {
 				'id'         => $prefix . 'video_recipe_url',
 				'type'       => 'oembed',
 				'name'       => __( 'Video URL', 'boo-recipes' ),
-				'visible'    => array( "{$prefix}is_video_recipe", '=', 1 ),
 				'attributes' => array(
 					'placeholder' => __( 'Youtube, Vimeo, Self Hosted', 'boo-recipes' ),
 				),
@@ -156,7 +154,6 @@ class Boorecipe_Premium_Post_Types extends Boorecipe_Post_Types {
 				'type'    => 'wysiwyg',
 				'name'    => esc_html__( 'Ingredients', 'boo-recipes' ),
 				'desc'    => __( 'Each new paragraph will be a new ingredient', 'boo-recipes' ),
-				'visible' => array( $prefix . 'ingredients_type', '=', 'wysiwyg' ),
 				'options' => array(
 					'textarea_rows' => 6,
 //					'teeny'         => true,
@@ -187,7 +184,6 @@ class Boorecipe_Premium_Post_Types extends Boorecipe_Post_Types {
 				'type'    => 'wysiwyg',
 				'name'    => esc_html__( 'Directions', 'boo-recipes' ),
 				'desc'    => __( 'Each new paragraph will be a new Direction', 'boo-recipes' ),
-				'visible' => array( $prefix . 'directions_type', '=', 'wysiwyg' ),
 				'options' => array(
 					'textarea_rows' => 6,
 //					'teeny'         => true,

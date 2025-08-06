@@ -470,7 +470,6 @@ class Boorecipe_Post_Types {
 							'type'        => 'text',
 							'name'        => $display,
 							'desc'        => $description,
-							'visible'     => array( $prefix . 'show_nutrition', '=', 1 ),
 							'placeholder' => $measurement,
 
 							'sanitize' => 'sanitize_text_field'
@@ -485,7 +484,6 @@ class Boorecipe_Post_Types {
 							'name'        => $display,
 							'desc'        => $description,
 							'placeholder' => $measurement,
-							'visible'     => array( $prefix . 'show_nutrition', '=', 1 ),
 							'step'        => 'any',
 //							'sanitize_callback' => 'boorecipe_sanitize_float'
 						);
@@ -592,14 +590,12 @@ class Boorecipe_Post_Types {
 				'name'        => esc_html__( 'External Author Name', 'boo-recipes' ),
 				'std'         => 'small',
 				'placeholder' => esc_html__( 'External Author Name', 'boo-recipes' ),
-				'visible'     => array( "{$prefix}is_external_author", '=', 1 ),
 			),
 			array(
 				'id'               => $prefix . 'external_author_link',
 				'type'             => 'url',
 				'name'             => esc_html__( 'External Author Link', 'boo-recipes' ),
 				'placeholder'      => esc_html__( 'External Author Link', 'boo-recipes' ),
-				'visible'          => array( "{$prefix}is_external_author", '=', 1 ),
 				'max_file_uploads' => 1,
 				'image_size'       => 'thumbnail',
 			),
@@ -608,7 +604,6 @@ class Boorecipe_Post_Types {
 				'type'        => 'image_advanced',
 				'name'        => esc_html__( 'External Author Image', 'boo-recipes' ),
 				'placeholder' => esc_html__( 'External Author Image', 'boo-recipes' ),
-				'visible'     => array( "{$prefix}is_external_author", '=', 1 ),
 				'max'
 			),
 			array(
@@ -618,7 +613,6 @@ class Boorecipe_Post_Types {
 				'label_description' => __( 'If you need to add ingredient group, place ** before the group heading like: <br/> **Cake <br/>ingredient 1 <br/>ingredient 2', 'boo-recipes' ),
 				'placeholder'       => esc_html__( 'One ingredient per line.', 'boo-recipes' ),
 				'rows'              => 8,
-				'visible'           => array( $prefix . 'ingredients_type', 'not in', array( 'wysiwyg' ) ),
 			),
 			array(
 				'id'                => $prefix . 'directions',
@@ -627,7 +621,6 @@ class Boorecipe_Post_Types {
 				'label_description' => __( 'If you need to add directions group, place ** before the group heading like: <br/> **How to Make Crust<br/>Direction 1<br/>Direction 2', 'boo-recipes' ),
 				'placeholder'       => esc_html__( 'One Step per line', 'boo-recipes' ),
 				'rows'              => 8,
-				'visible'           => array( $prefix . 'directions_type', 'not in', array( 'wysiwyg' ) ),
 			),
 			array(
 				'id'   => $prefix . 'list_excerpt',
