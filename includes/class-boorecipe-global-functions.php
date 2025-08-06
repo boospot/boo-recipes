@@ -293,7 +293,16 @@ class Boorecipe_Globals {
 			'ingredient_side'                   => 'no',
 			'nutrition_side'                    => 'yes',
 			'hide_empty_nutrition'              => 'no',
-			'external_link_type'                => 'link_to_name'
+			'external_link_type'                => 'link_to_name',
+			// Premium taxonomy defaults
+			'recipe_cuisine_label'              => __( 'Cuisine', 'boo-recipes' ),
+			'cooking_method_label'              => __( 'Cooking Method', 'boo-recipes' ),
+			'recipe_tool_label'                 => __( 'Recipe Tools', 'boo-recipes' ),
+			'cooking_method_slug'               => 'cooking-method',
+			'recipe_cuisine_slug'               => 'recipe-cuisine',
+			'recipe_tool_slug'                  => 'recipe-tool',
+			'show_recipe_tool_img'              => 'no',
+			'show_cooking_method_img'           => 'no'
 		);
 
 
@@ -336,7 +345,15 @@ class Boorecipe_Globals {
 			'all_label'                 => __( 'All', 'boo-recipes' ),
 			'archive_layout_grid_label' => _x( 'Grid', 'Post Archive Layout', 'boo-recipes' ),
 			'archive_layout_list_label' => _x( 'List', 'Post Archive Layout', 'boo-recipes' ),
-
+			// Premium taxonomy labels
+			'recipe_cuisine_label'      => __( 'Cuisine', 'boo-recipes' ),
+			'cooking_method_label'      => __( 'Cooking Method', 'boo-recipes' ),
+			'recipe_tool_label'         => __( 'Recipe Tools', 'boo-recipes' ),
+			'cooking_method_slug'       => 'cooking-method',
+			'recipe_cuisine_slug'       => 'recipe-cuisine',
+			'recipe_tool_slug'          => 'recipe-tool',
+			'show_recipe_tool_img'      => 'no',
+			'show_cooking_method_img'   => 'no'
 		);
 
 		return apply_filters( 'boorecipe_filter_default_labels_array', $default_labels );

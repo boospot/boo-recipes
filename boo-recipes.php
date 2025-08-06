@@ -14,14 +14,14 @@
  * @wordpress-plugin
  * Plugin Name:       Boo Recipes
  * Plugin URI:        http://boorecipes.com/
- * Description:       Easily add Recipes in user friendly way that generates SEO optimized recipes using Schema.org microdata.
- * Version:           2.5.0
+ * Description:       Complete recipe management plugin with 4 recipe styles, advanced taxonomies, video support, and SEO-optimized JSON-LD structured data. Features include recipe cuisines, cooking methods, tools, ratings, and more.
+ * Version:           3.0.0
  * Requires at least: 5.0
  * Requires PHP:      8.0
  * Author:            BooSpot Team
  * Author URI:        https://boospot.com
  * License:           GPL-2.0+
- * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ * License URI:        http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       boo-recipes
  * Domain Path:       /languages
  */
@@ -64,7 +64,7 @@ define( 'BOORECIPE_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
  * Start at version 1.0.0
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'BOORECIPE_VERSION', '2.5.0' );
+define( 'BOORECIPE_VERSION', '3.0.0' );
 
 /**
  * The code that runs during plugin activation.

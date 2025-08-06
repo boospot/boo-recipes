@@ -480,11 +480,14 @@ class Boorecipe_Admin_Simple {
 				'type'    => 'select',
 				'label'   => __( 'Recipe Style', 'boo-recipes' ),
 				'options' => apply_filters( 'boorecipe_filter_options_fields_array_single_style', array(
-					'style1' => sprintf( __( 'Style %s', 'boo-recipes' ), 1 )
+					'style1' => sprintf( __( 'Style %s', 'boo-recipes' ), 1 ),
+					'style2' => sprintf( __( 'Style %s', 'boo-recipes' ), 2 ),
+					'style3' => sprintf( __( 'Style %s', 'boo-recipes' ), 3 ),
+					'style4' => sprintf( __( 'Style %s', 'boo-recipes' ), 4 )
 				) ),
 				'radio'   => true,
 				'default' => 'style1',
-				'desc'    => __( 'More Styles in Premium Version', 'boo-recipes' ),
+				'desc'    => __( 'Choose from 4 different recipe layout styles', 'boo-recipes' ),
 			),
 
 			array(
@@ -540,10 +543,11 @@ class Boorecipe_Admin_Simple {
 				'id'      => $this->prefix . 'ingredients_editor',
 				'type'    => 'select',
 				'label'   => __( 'Ingredients Editor', 'boo-recipes' ),
-				'desc'    => __( 'More Styles in Premium Version', 'boo-recipes' ),
+				'desc'    => __( 'Choose your preferred ingredients input method', 'boo-recipes' ),
 				'default' => 'textarea',
 				'options' => apply_filters( 'boorecipe_filter_options_field_ingredients_editor', array(
-					'textarea' => __( 'Simple Textarea', 'boo-recipes' )
+					'textarea' => __( 'Simple Textarea', 'boo-recipes' ),
+					'repeater' => __( 'Repeater Fields', 'boo-recipes' )
 				) )
 
 			),

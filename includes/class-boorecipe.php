@@ -130,12 +130,27 @@ class Boorecipe {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/helper-functions.php';
 
 		/**
+		 * JSON-LD Schema Generator
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-boorecipe-jsonld-generator.php';
+
+		/**
+		 * Premium Custom Posts (Taxonomies)
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-boorecipe-premium-custom_posts.php';
+
+		/**
+		 * Premium Single Template Functions
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-boorecipe-premium-single-template-functions.php';
+
+		/**
 		 * Initialize custom template loader
 		 *
 		 * Template File Loaders in Plugins
 		 * Template file loaders like this are used in a lot of large-scale plugins in order to
 		 * provide greater flexibility and better control for advanced users that want to tailor
-		 * a plugin’s output more to their specific needs.
+		 * a plugin's output more to their specific needs.
 		 *
 		 * @link https://github.com/pippinsplugins/pw-sample-template-loader-plugin
 		 * @link https://pippinsplugins.com/template-file-loaders-plugins/
@@ -249,6 +264,12 @@ class Boorecipe {
 
 		$this->loader->add_action( 'pre_get_posts', $plugin_public, 'alter_query_to_add_recipe_posttype' );
 
+		/**
+		 * JSON-LD Schema Generator
+		 */
+		$jsonld_generator = new Boorecipe_JSONLD_Generator( $this );
+		$this->loader->add_action( 'wp_head', $jsonld_generator, 'output_schema' );
+
 	} // define_public_hooks()
 
 	/**
@@ -273,6 +294,15 @@ class Boorecipe {
 		$this->loader->add_action( 'init', $plugin_post_types, 'create_custom_post_type', 999 );
 
 		$this->loader->add_action( 'save_post', $plugin_post_types, 'update_contents_of_post_with_title', 999, 3 );
+
+		/*
+		 * Premium Custom Post Types (Taxonomies)
+		 */
+		$plugin_premium_post_types = new Boorecipe_Premium_Post_Types();
+
+		$this->loader->add_filter( 'rwmb_meta_boxes', $plugin_premium_post_types, 'register_meta_box_premium', 13 );
+
+		$this->loader->add_action( 'init', $plugin_premium_post_types, 'create_custom_post_type', 1000 );
 
 
 	} // define_custom_post_types_hooks()
@@ -329,6 +359,8 @@ class Boorecipe {
 
 		$single_template = new Boorecipe_Single_Template_Functions( $this->get_plugin_name(), $this->get_version() );
 
+		// Premium single template functions
+		$single_premium_templates = new Boorecipe_Premium_Single_Template_Functions( $this->get_plugin_name(), $this->get_version() );
 
 		// Filter for Single Recipe
 		$this->loader->add_filter( 'boorecipe_single_recipe_wrapper_classes', $single_template, 'filter_recipe_wrapper_classes', 10, 1 );
@@ -348,52 +380,134 @@ class Boorecipe {
 		$this->loader->add_action( 'boorecipe_single_head_publish_info', $single_template, 'the_author', 10, 2 );
 		$this->loader->add_action( 'boorecipe_single_head_publish_info', $single_template, 'the_date', 10, 2 );
 
-
 		/*
 		 * Single Recipe Meta
 		 */
-
+		$this->loader->add_action( 'boorecipe_single_meta', $single_template, 'sub_section_meta_time_entry', 10, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta', $single_template, 'sub_section_meta_taxonomy_entry', 10, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta', $single_template, 'sub_section_meta_key_point_entry', 10, 2 );
 
 		/*
 		 * Single Recipe Body
 		 */
-		$this->loader->add_action( 'boorecipe_single_body', $single_template, 'ingredients', 9, 2 );
-		$this->loader->add_action( 'boorecipe_single_body', $single_template, 'instructions', 10, 2 );
-		$this->loader->add_action( 'boorecipe_single_body', $single_template, 'additional_notes', 10, 2 );
-		
-		// Nutrition - conditionally placed based on settings
+		$this->loader->add_action( 'boorecipe_single_body', $single_template, 'recipe_ingredients', 10, 2 );
+		$this->loader->add_action( 'boorecipe_single_body', $single_template, 'recipe_instructions', 10, 2 );
+		$this->loader->add_action( 'boorecipe_single_body', $single_template, 'recipe_additional_notes', 10, 2 );
 		$this->loader->add_action( 'boorecipe_single_body', $single_template, 'nutrition', 11, 2 );
-		$this->loader->add_action( 'boorecipe_recipe_single_aside', $single_template, 'nutrition', 10, 2 );
 
+		// Premium features
+		$this->loader->add_action( 'boorecipe_single_body', $single_premium_templates, 'recipe_tool_display', 10, 2 );
+		$this->loader->add_action( 'boorecipe_single_body', $single_premium_templates, 'cooking_methods_display', 10, 2 );
 
-		// Recipe Taxonomies
-		$this->loader->add_action( 'boorecipe_single_meta', $single_template, 'sub_section_meta_taxonomy_style_1', 10, 2 );
-		$this->loader->add_action( 'boorecipe_single_meta_taxonomy', $single_template, 'the_taxonomy_icon', 8, 2 );
-		$this->loader->add_action( 'boorecipe_single_meta_taxonomy', $single_template, 'the_taxonomy_category', 9, 2 );
-		$this->loader->add_action( 'boorecipe_single_meta_taxonomy', $single_template, 'the_taxonomy_tags', 11, 2 );
+		/*
+		 * Single Recipe Meta Key Point Style 1
+		 */
+		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_1', $single_template, 'the_taxonomy_recipe_category', 10, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_1', $single_template, 'the_taxonomy_skill_level', 10, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_1', $single_template, 'the_taxonomy_recipe_tags', 10, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_1', $single_template, 'the_taxonomy_keywords', 10, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_1', $single_template, 'the_taxonomy_recipe_yield', 10, 2 );
 
+		// Premium taxonomies
+		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_1', $single_premium_templates, 'the_taxonomy_cooking_method', 15, 2 );
 
-		// Recipe Times
-		$this->loader->add_action( 'boorecipe_single_meta', $single_template, 'sub_section_meta_time_style_1', 10, 2 );
-		$this->loader->add_action( 'boorecipe_single_meta_time_style_1', $single_template, 'the_time_icon', 8, 2 );
-		$this->loader->add_action( 'boorecipe_single_meta_time_style_1', $single_template, 'recipe_prep_time', 9, 2 );
-		$this->loader->add_action( 'boorecipe_single_meta_time_style_1', $single_template, 'recipe_cook_time', 10, 2 );
-		$this->loader->add_action( 'boorecipe_single_meta_time_style_1', $single_template, 'recipe_total_time', 11, 2 );
+		/*
+		 * Single Recipe Meta Key Point Style 2
+		 */
+		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $single_template, 'the_taxonomy_recipe_category_style_2', 10, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $single_template, 'the_taxonomy_skill_level_style_2', 10, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $single_template, 'the_taxonomy_recipe_tags_style_2', 10, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $single_template, 'the_taxonomy_keywords_style_2', 10, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $single_template, 'the_taxonomy_recipe_yield_style_2', 10, 2 );
 
-		// Recipe Key Points
-		$this->loader->add_action( 'boorecipe_single_meta', $single_template, 'sub_section_meta_key_point_style_1', 10, 2 );
-		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_1', $single_template, 'the_key_point_icon', 8, 2 );
-		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_1', $single_template, 'yields', 9, 2 );
-		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_1', $single_template, 'the_taxonomy_skill_level', 9, 2 );
+		// Premium taxonomies style 2
+		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $single_premium_templates, 'the_taxonomy_cooking_method_style_2', 15, 2 );
 
-		$this->loader->add_action( 'boorecipe_single_head_after', $single_template, 'section_sharing_buttons_style_1', 10, 2 );
+		/*
+		 * Single Recipe Meta Time Style 1
+		 */
+		$this->loader->add_action( 'boorecipe_single_meta_time_style_1', $single_template, 'the_taxonomy_prep_time', 10, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_time_style_1', $single_template, 'the_taxonomy_cook_time', 10, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_time_style_1', $single_template, 'the_taxonomy_total_time', 10, 2 );
 
+		/*
+		 * Single Recipe Meta Time Style 2
+		 */
+		$this->loader->add_action( 'boorecipe_single_meta_time_style_2', $single_template, 'the_taxonomy_prep_time_style_2', 10, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_time_style_2', $single_template, 'the_taxonomy_cook_time_style_2', 10, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_time_style_2', $single_template, 'the_taxonomy_total_time_style_2', 10, 2 );
 
+		/*
+		 * Single Recipe Meta Taxonomy Style 1
+		 */
+		$this->loader->add_action( 'boorecipe_single_meta_taxonomy_style_1', $single_template, 'the_taxonomy_recipe_category_style_1', 10, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_taxonomy_style_1', $single_template, 'the_taxonomy_skill_level_style_1', 10, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_taxonomy_style_1', $single_template, 'the_taxonomy_recipe_tags_style_1', 10, 2 );
+
+		/*
+		 * Single Recipe Meta Taxonomy Style 2
+		 */
+		$this->loader->add_action( 'boorecipe_single_meta_taxonomy_style_2', $single_template, 'the_taxonomy_recipe_category_style_2', 10, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_taxonomy_style_2', $single_template, 'the_taxonomy_skill_level_style_2', 10, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_taxonomy_style_2', $single_template, 'the_taxonomy_recipe_tags_style_2', 10, 2 );
+
+		/*
+		 * Single Recipe Foot
+		 */
+		$this->loader->add_action( 'boorecipe_single_foot', $single_template, 'recipe_share_buttons', 10, 2 );
+
+		/*
+		 * Single Recipe Comments
+		 */
+		$this->loader->add_action( 'boorecipe_single_comments_before', $single_template, 'recipe_comments_before', 10, 2 );
+		$this->loader->add_action( 'boorecipe_single_comments_after', $single_template, 'recipe_comments_after', 10, 2 );
+
+		/*
+		 * Single Recipe Aside
+		 */
+		$this->loader->add_action( 'boorecipe_recipe_single_aside', $single_template, 'aside_recipe_single', 10, 2 );
+
+		/*
+		 * Single Recipe Body Before
+		 */
+		$this->loader->add_action( 'boorecipe_single_body_before', $single_template, 'recipe_body_before', 10, 2 );
+
+		/*
+		 * Single Recipe Body After
+		 */
+		$this->loader->add_action( 'boorecipe_single_body_after', $single_template, 'recipe_body_after', 10, 2 );
+
+		/*
+		 * Single Recipe Foot Before
+		 */
+		$this->loader->add_action( 'boorecipe_single_foot_before', $single_template, 'recipe_foot_before', 10, 2 );
+
+		/*
+		 * Single Recipe Foot After
+		 */
+		$this->loader->add_action( 'boorecipe_single_foot_after', $single_template, 'recipe_foot_after', 10, 2 );
+
+		/*
+		 * Single Recipe Aside Before
+		 */
+		$this->loader->add_action( 'boorecipe_single_aside_before', $single_template, 'recipe_aside_before', 10, 2 );
+
+		/*
+		 * Single Recipe Aside After
+		 */
+		$this->loader->add_action( 'boorecipe_single_aside_after', $single_template, 'recipe_aside_after', 10, 2 );
+
+		/*
+		 * Single Recipe Wrapper Classes
+		 */
 		$this->loader->add_filter( 'boorecipe_single_recipe_wrapper_classes', $single_template, 'add_single_recipe_style_class' );
 
-
+		/*
+		 * Body Class
+		 */
 		$this->loader->add_filter( 'body_class', $single_template, 'add_recipe_style_class' );
-	}
+
+	} // define_single_template_hooks()
 
 	/**
 	 * Register all of the hooks related to the templates.
