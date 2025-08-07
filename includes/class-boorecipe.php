@@ -492,8 +492,8 @@ class Boorecipe {
 		 * Recipe Style : 3
 		 */
 		$this->loader->add_filter( 'boorecipe_single_recipe_layout_class', $single_premium_templates, 'single_recipe_layout_class' );
-		$this->loader->add_action( 'boorecipe_single_body_before', $single_premium_templates, 'add_boo_recipe_details_wrapper' );
-		$this->loader->add_action( 'boorecipe_single_body_after', $single_premium_templates, 'close_boo_recipe_details_wrapper', 12 );
+		$this->loader->add_action( 'boorecipe_single_body_before', $single_premium_templates, 'add_boo_recipe_details_wrapper', 5 );
+		$this->loader->add_action( 'boorecipe_single_body_after', $single_premium_templates, 'close_boo_recipe_details_wrapper', 15 );
 
 		$this->loader->add_action( 'boorecipe_single_head_after', $single_template, 'section_sharing_buttons_style_1', 10, 2 );
 
