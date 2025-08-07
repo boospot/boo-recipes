@@ -621,7 +621,10 @@ class Boorecipe_Premium_Single_Template_Functions extends Boorecipe_Single_Templ
 	 */
 	public function add_recipe_meta_style_class( $classes ) {
 
-		$classes[] = 'recipe-style-' . $this->get_options_value( 'recipe_style' );
+		$style = $this->get_options_value( 'recipe_style' );
+		if ( $style ) {
+			$classes[] = 'recipe-style' . $style;
+		}
 
 		return $classes;
 	}
