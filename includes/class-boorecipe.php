@@ -495,6 +495,7 @@ class Boorecipe {
 		$this->loader->add_action( 'boorecipe_single_body_before', $single_premium_templates, 'add_boo_recipe_details_wrapper', 5 );
 		$this->loader->add_action( 'boorecipe_single_body_after', $single_premium_templates, 'close_boo_recipe_details_wrapper', 15 );
 
+		// Style 3 specific elements (same as other styles but with different visual presentation)
 		$this->loader->add_action( 'boorecipe_single_head_after', $single_template, 'section_sharing_buttons_style_1', 10, 2 );
 
 		// Premium Filters
