@@ -11,11 +11,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * $featured_image_url
  *
  */
-
 $excerpt_encoded = urlencode( $excerpt . PHP_EOL . PHP_EOL );
-
 $link_to_share = $excerpt_encoded . esc_url_raw( get_the_permalink( $item->ID ) );
-
 $icon_facebook   = Boorecipe_Globals::get_svg( 'facebook', 'icon-size-16' );
 $icon_twitter    = Boorecipe_Globals::get_svg( 'twitter', 'icon-size-16' );
 $icon_pinterest  = Boorecipe_Globals::get_svg( 'pinterest', 'icon-size-16' );
@@ -52,7 +49,6 @@ $icon_googleplus = Boorecipe_Globals::get_svg( 'googleplus', 'icon-size-16' );
             <span class="share-icon"><?php echo $icon_email; ?></span>
             <span class="share-text"><?php echo _x( 'Email', 'Send Email', 'boo-recipes' ); ?></span>
         </a>
-
 		<?php do_action( 'boorecipe_share_buttons', $item, $title, $excerpt, $featured_image_url ); ?>
     </div>
 </div><!--    .recipe-share-buttons-->

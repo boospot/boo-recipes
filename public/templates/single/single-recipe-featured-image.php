@@ -9,4 +9,3 @@ if ( ! defined( 'ABSPATH' ) ) {
          alt="<?php echo esc_html( $item->post_title ); ?>"
          class="recipe-img"/>
 </div>
-

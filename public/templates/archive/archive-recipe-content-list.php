@@ -5,7 +5,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 //$meta                 = get_post_meta( $post->ID, 'boorecipe-recipe-meta', true );
 $meta = Boorecipe_Globals::get_recipe_meta($post->ID);
-
 $archive_card_classes = implode( ' ', apply_filters( 'boorecipe_filter_archive_recipe_card_classes', array( 'recipe-card' ) ) );
 ?>
 <article class="<?php echo $archive_card_classes; ?>">
@@ -19,7 +18,3 @@ $archive_card_classes = implode( ' ', apply_filters( 'boorecipe_filter_archive_r
         </div><!-- .recipe-keypoints -->
     </a><!-- .recipe-link-->
 </article><!-- .recipe-card-->
-
-
-
-

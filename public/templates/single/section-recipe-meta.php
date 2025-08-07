@@ -3,7 +3,6 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
 $meta_classes = apply_filters( 'boorecipe_recipe_meta_classes', array( 'posttype-section', 'recipe-meta' ) );
 ?>
 <div class="<?php echo implode( ' ', $meta_classes ); ?>"><?php

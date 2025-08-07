@@ -3,7 +3,6 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
 // Get svg class
 $svg_size_class = ( isset( $svg_class ) ? $svg_class : 'icon-size-' . $this->get_options_value( 'single_recipe_icon_size' ) );
 ?>

@@ -5,60 +5,45 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 <?php
-
 // This is the helping array to  build markup
 $nutrition_meta = boorecipe_get_nutrition_meta();
-
 $format_nutrition_detail =
 	"<div class='nutrition-detail'>
                         <div class='nutrition-measurement'><span class='%s'>%s</span> <span class='nutrition-info' itemprop='%s'>%s%s</span></div>
                         <div class='nutrition-percent'>%s</div>
                     </div>";
-
-
 //there are nine calories in one gram of fat.
-
 $format_calories_detail =
 	"<div class='calories-section'>
                         <div class='calories-number'><span class='%s'>%s</span> <span class='nutrition-info' itemprop='%s'>%s</span></div>
                         <div class='calories-fat'>%s %s</div>
                     </div>";
-
 //          Fat Calories Calculation
 //          9 calories = 1gram fat
 $calories_from_fat = '';
 if ( isset( $meta['fatContent'] ) && ! empty( $meta['fatContent'] ) ) {
 	$calories_from_fat = round( $meta['fatContent'] * 9 );
 }
-
-
 //	Initializing Nutrition Variable Array
 $nutrition_variables = array();
-
-
 //	Running Loop for each Nutrition item
 foreach ( $nutrition_meta as $key => $nutrition ) {
-
 //	        initialize and create variables to use in sprintf
 	$itemprop    = $nutrition['itemprop'];
 	$display     = $nutrition['display'];
 	$value       = $meta[ $itemprop ];
 	$measurement = ! empty( $nutrition['measurement'] && $value ) ? " " . $nutrition['measurement'] : '';
 	$role_class  = ( $nutrition['parent'] ) ? 'nutrition-parent' : 'nutrition-child';
-
 	//percent Calculation
 	$percentage = '';
 	if ( isset( $nutrition['cal_total'] ) && $nutrition['cal_total'] && ! empty( $value ) ) {
 		$percentage = round( $value / $nutrition['2000_cal_total'] * 100 ) . "%";
 	}
-
 	if ( 'yes' === $this->get_options_value( 'hide_empty_nutrition' ) && ! $value ) {
 		continue;
 	}
-
 	// Using the right sprintf Format
 	switch ( $itemprop ) {
-
 		case 'calories':
 			$nutrition_variables[ $itemprop ] =
 				sprintf(
@@ -69,10 +54,8 @@ foreach ( $nutrition_meta as $key => $nutrition ) {
 					$value,
 					__( 'Calories from Fat', 'boo-recipes' ),
 					$calories_from_fat
-
 				);
 			break;
-
 		default:
 			$nutrition_variables[ $itemprop ] =
 				sprintf(
@@ -83,15 +66,10 @@ foreach ( $nutrition_meta as $key => $nutrition ) {
 					$value,
 					$measurement,
 					$percentage
-
 				);
 	}
-
-
 }
-
 ?>
-
 <div class="recipe-nutrition" itemprop="nutrition" itemscope itemtype="http://schema.org/NutritionInformation">
     <div class="nutrition-info-cont">
         <section class="nutrition-facts">
@@ -115,7 +93,6 @@ foreach ( $nutrition_meta as $key => $nutrition ) {
 				echo $nutrition_variables['sugarContent'] ?? '';
 				echo $nutrition_variables['proteinContent'] ?? '';
 				?>
-
             </div>
             <p class="small-info">* Percent Daily Values are based on a 2,000 calorie diet. Your daily values may be
                 higher or lower depending on your calorie needs:</p>
@@ -175,11 +152,8 @@ foreach ( $nutrition_meta as $key => $nutrition ) {
                 &bull;
                 Carbohydrate 4
                 &bull;
-
                 Protein 4
             </p>
-
         </section>
-
     </div>
 </div><!--    div.recipe-nutrition-->

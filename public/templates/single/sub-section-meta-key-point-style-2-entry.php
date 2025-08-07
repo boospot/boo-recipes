@@ -18,7 +18,5 @@ $single_recipe_icon_size_2 = $this->get_options_value( 'single_recipe_icon_size_
             <span class="subsection-label"><?php echo $key_point_label; ?></span>
 	    <?php endif; ?>
     </span>
-
     <span class="subsection-value" <?php echo $itemprop ?>><?php echo $key_point_value ?></span>
 </div>
-

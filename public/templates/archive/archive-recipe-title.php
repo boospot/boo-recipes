@@ -7,4 +7,3 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div class="recipe-archive-title"><?php
 	echo apply_filters( 'boorecipe_archive_title_args', esc_attr( strip_tags( get_the_title() ) ) );
 	?></div>
-

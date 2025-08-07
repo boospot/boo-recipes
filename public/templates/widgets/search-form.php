@@ -9,7 +9,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	// This will be verified on the recipe archive page as action of this form
 	// get_post_type_archive_link( 'recipe' )
 	wp_nonce_field( 'recipe_search_form_submitted', 'recipe_search_form' );
-
 	do_action( 'boorecipe_widget_search_form_fields' );
 	?>
     <div class="search-form-field-cont">

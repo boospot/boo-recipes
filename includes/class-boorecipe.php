@@ -310,6 +310,12 @@ class Boorecipe {
 		$this->loader->add_filter( 'the_content', $plugin_public, 'disable_wpautop_for_recipes', 1 );
 		$this->loader->add_filter( 'the_excerpt', $plugin_public, 'disable_wpautop_for_recipes', 1 );
 		$this->loader->add_filter( 'widget_text_content', $plugin_public, 'disable_wpautop_for_recipes', 1 );
+		
+		/**
+		 * Prevent whitespace output for recipe templates
+		 */
+		$this->loader->add_action( 'template_redirect', $plugin_public, 'start_output_buffering_for_recipes', 1 );
+		$this->loader->add_action( 'wp_footer', $plugin_public, 'end_output_buffering_for_recipes', 999 );
 
 	} // define_public_hooks()
 

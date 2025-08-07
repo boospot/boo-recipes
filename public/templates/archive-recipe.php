@@ -3,19 +3,16 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
 // Verify nonce if search form is submitted.
 if ( boorecipe_is_search_form_submitted() ) {
 	if ( ! wp_verify_nonce( $_GET['recipe_search_form'], 'recipe_search_form_submitted' ) ) {
 		die( __( 'Security Validation Failed', 'boo-recipes' ) );
 	}
 }
-
 /**
  * Get a custom header-recipe.php file, if it exists.
  * Otherwise, get default header.
  */
-
 get_header( 'recipe' );
 ?>
     <div class="wrap archive-recipe">

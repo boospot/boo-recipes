@@ -300,9 +300,58 @@ class Boorecipe_Public {
 			remove_filter( 'the_content', 'wpautop' );
 			remove_filter( 'the_excerpt', 'wpautop' );
 			remove_filter( 'widget_text_content', 'wpautop' );
+			
+			// Also remove other content filters that might add empty tags
+			remove_filter( 'the_content', 'wptexturize' );
+			remove_filter( 'the_excerpt', 'wptexturize' );
+			remove_filter( 'widget_text_content', 'wptexturize' );
 		}
 		
 		return $content;
+	}
+
+	/**
+	 * Start output buffering for recipe templates to prevent whitespace issues
+	 */
+	public function start_output_buffering_for_recipes() {
+		
+		// Only apply to recipe post types
+		if ( is_singular( 'boo_recipe' ) || is_post_type_archive( 'boo_recipe' ) || boorecipe_is_recipe_taxonomy() ) {
+			ob_start( array( $this, 'clean_output_buffer' ) );
+		}
+	}
+
+	/**
+	 * End output buffering for recipe templates
+	 */
+	public function end_output_buffering_for_recipes() {
+		
+		// Only apply to recipe post types
+		if ( is_singular( 'boo_recipe' ) || is_post_type_archive( 'boo_recipe' ) || boorecipe_is_recipe_taxonomy() ) {
+			if ( ob_get_level() ) {
+				ob_end_flush();
+			}
+		}
+	}
+
+	/**
+	 * Clean the output buffer to remove empty p tags and extra whitespace
+	 *
+	 * @param string $buffer The output buffer content
+	 * @return string The cleaned content
+	 */
+	public function clean_output_buffer( $buffer ) {
+		
+		// Remove empty p tags
+		$buffer = preg_replace( '/<p>\s*<\/p>/', '', $buffer );
+		
+		// Remove extra whitespace
+		$buffer = preg_replace( '/\s+/', ' ', $buffer );
+		
+		// Remove whitespace between HTML tags
+		$buffer = preg_replace( '/>\s+</', '><', $buffer );
+		
+		return $buffer;
 	}
 
 }

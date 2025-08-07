@@ -9,4 +9,3 @@ if ( ! defined( 'ABSPATH' ) ) {
 	do_action( 'boorecipe_single_head', $item, $meta );
 	do_action( 'boorecipe_single_head_after', $item, $meta );
 	?></div>
-

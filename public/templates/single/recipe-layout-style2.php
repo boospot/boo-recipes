@@ -11,7 +11,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php include boorecipe_get_template( 'section-recipe-meta', 'single' ); ?>
     </div>
 </div><!--    div.posttype-section-box-->
-
 <div class="posttype-section recipe-body">
 	<?php do_action( 'boorecipe_single_body_before', $item, $meta ); ?>
     <div class="recipe-main-body">
@@ -19,7 +18,6 @@ if ( ! defined( 'ABSPATH' ) ) {
     </div>
 	<?php do_action( 'boorecipe_single_body_after', $item, $meta ); ?>
 </div><!--    div.recipe-body-->
-
 <div class="posttype-section recipe-comments">
 	<?php
 	do_action( 'boorecipe_single_comments_before', $item, $meta );
@@ -27,7 +25,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	do_action( 'boorecipe_single_comments_after', $item, $meta );
 	?>
 </div><!--    div.recipe-comments-->
-
 <div class="posttype-section recipe-foot">
 	<?php
 	do_action( 'boorecipe_single_foot_before', $item, $meta );

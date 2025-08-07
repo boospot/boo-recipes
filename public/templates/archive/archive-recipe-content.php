@@ -3,13 +3,10 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
 //$meta = get_post_meta( $post->ID, 'boorecipe-recipe-meta', true );
 $meta = Boorecipe_Globals::get_recipe_meta( $item->ID );
-
 $archive_card_classes = implode( ' ', apply_filters( 'boorecipe_filter_archive_recipe_card_classes', array( 'recipe-card' ) ) );
 ?>
-
 <article class="<?php echo $archive_card_classes; ?>">
     <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" class="recipe-link">
 		<?php do_action( 'boorecipe_archive_recipe_media', $post ); ?>
@@ -20,7 +17,3 @@ $archive_card_classes = implode( ' ', apply_filters( 'boorecipe_filter_archive_r
         </div><!-- .card-content -->
     </a><!-- .recipe-link-->
 </article><!-- .recipe-card-->
-
-
-
-
