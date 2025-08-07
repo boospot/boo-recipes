@@ -316,6 +316,13 @@ class Boorecipe {
 		 */
 		$this->loader->add_action( 'template_redirect', $plugin_public, 'start_output_buffering_for_recipes', 1 );
 		$this->loader->add_action( 'wp_footer', $plugin_public, 'end_output_buffering_for_recipes', 999 );
+		
+		/**
+		 * Disable Elementor content processing for recipe content
+		 */
+		$this->loader->add_filter( 'elementor/frontend/builder_content_data', $plugin_public, 'disable_elementor_wpautop_for_recipes', 10, 2 );
+		$this->loader->add_filter( 'elementor/widget/render_content', $plugin_public, 'clean_elementor_widget_content', 10, 2 );
+		$this->loader->add_filter( 'elementor/frontend/the_content', $plugin_public, 'clean_elementor_content', 10, 1 );
 
 	} // define_public_hooks()
 

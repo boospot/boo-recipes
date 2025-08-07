@@ -354,4 +354,76 @@ class Boorecipe_Public {
 		return $buffer;
 	}
 
+	/**
+	 * Disable Elementor wpautop for recipe content
+	 *
+	 * @param array $data Elementor content data
+	 * @param int $post_id Post ID
+	 * @return array Modified data
+	 */
+	public function disable_elementor_wpautop_for_recipes( $data, $post_id ) {
+		
+		// Check if this is a recipe post
+		if ( get_post_type( $post_id ) === 'boo_recipe' ) {
+			// Remove wpautop from Elementor's content processing
+			remove_filter( 'the_content', 'wpautop' );
+			remove_filter( 'the_excerpt', 'wpautop' );
+		}
+		
+		return $data;
+	}
+
+	/**
+	 * Clean Elementor widget content to remove empty p tags
+	 *
+	 * @param string $content Widget content
+	 * @param \Elementor\Widget_Base $widget Widget instance
+	 * @return string Cleaned content
+	 */
+	public function clean_elementor_widget_content( $content, $widget ) {
+		
+		// Only apply to text editor widgets that contain recipe content
+		if ( $widget->get_name() === 'text-editor' && 
+		     ( is_singular( 'boo_recipe' ) || is_post_type_archive( 'boo_recipe' ) || boorecipe_is_recipe_taxonomy() ) ) {
+			
+			// Remove empty p tags
+			$content = preg_replace( '/<p>\s*<\/p>/', '', $content );
+			
+			// Remove extra whitespace
+			$content = preg_replace( '/\s+/', ' ', $content );
+			
+			// Remove whitespace between HTML tags
+			$content = preg_replace( '/>\s+</', '><', $content );
+		}
+		
+		return $content;
+	}
+
+	/**
+	 * Clean Elementor content to remove empty p tags
+	 *
+	 * @param string $content Elementor content
+	 * @return string Cleaned content
+	 */
+	public function clean_elementor_content( $content ) {
+		
+		// Only apply to recipe post types
+		if ( is_singular( 'boo_recipe' ) || is_post_type_archive( 'boo_recipe' ) || boorecipe_is_recipe_taxonomy() ) {
+			
+			// Remove empty p tags
+			$content = preg_replace( '/<p>\s*<\/p>/', '', $content );
+			
+			// Remove extra whitespace
+			$content = preg_replace( '/\s+/', ' ', $content );
+			
+			// Remove whitespace between HTML tags
+			$content = preg_replace( '/>\s+</', '><', $content );
+			
+			// Remove HTML comments that might be wrapped in p tags
+			$content = preg_replace( '/<p>\s*<!--.*?-->\s*<\/p>/', '', $content );
+		}
+		
+		return $content;
+	}
+
 }
