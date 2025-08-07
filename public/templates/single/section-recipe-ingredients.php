@@ -3,10 +3,8 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
 $ingredient_type = isset( $meta['ingredients_type'] ) ? sanitize_key( $meta['ingredients_type'] ) : '';
 $meta_key        = ( 'wysiwyg' === $ingredient_type ) ? 'ingredients_wysiwyg' : 'ingredients';
-
 do_action( 'boorecipe_single_body_ingredients_before' );
 ?>
     <div class="recipe-ingredients">
@@ -14,11 +12,9 @@ do_action( 'boorecipe_single_body_ingredients_before' );
         <div class='select-items-cont'>
 			<?php
 			$ingredients = $meta[ $meta_key ];
-
 			$ingredients      = str_ireplace( '<p>', '', $ingredients );
 			$ingredients      = str_ireplace( '</p>', '', $ingredients );
 			$ingredient_lines = preg_split( '/<br[^>]*>/i', nl2br( $ingredients ) );
-
 			$section_start_identifier = "**";
 			foreach ( $ingredient_lines as $item ) {
 				$item = trim( $item );

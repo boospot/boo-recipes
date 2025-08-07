@@ -3,7 +3,6 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
 $itemprop = ( isset( $itemprop ) ) ? "itemprop='{$itemprop}'" : "";
 ?>
 <div class="recipe-<?php echo $key_point; ?>">
@@ -12,4 +11,3 @@ $itemprop = ( isset( $itemprop ) ) ? "itemprop='{$itemprop}'" : "";
 	<?php endif; ?>
     <span class="subsection-value" <?php echo $itemprop ?>><?php echo $key_point_value ?></span>
 </div>
-

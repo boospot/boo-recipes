@@ -3,18 +3,12 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
 $recipe_author_link_label = $this->get_options_value( 'author_link'."_label" );
-
 $recipe_author_link_label = str_replace( '%author', '%s', $recipe_author_link_label );
-
 $author_id = $item->post_author;
-
 // To adjust query in URL for different permalink structure
 $query_separator = ( get_option( 'permalink_structure' ) ) ? '?' : '&';
-
 $link_label = sprintf( $recipe_author_link_label, get_the_author_meta( 'display_name', $author_id ) );
-
 ?>
 <div class="recipe-author-box">
     <div class="recipe-author-img">
@@ -31,6 +25,4 @@ $link_label = sprintf( $recipe_author_link_label, get_the_author_meta( 'display_
                href="<?php echo esc_url_raw( get_author_posts_url( $author_id ) . $query_separator . 'post_type=' . $item->post_type ); ?>"><?php echo $link_label; ?></a>
         </div>
     </div>
-
-
 </div>

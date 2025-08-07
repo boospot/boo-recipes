@@ -3,7 +3,6 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
 $itemprop_tag         = ( isset( $itemprop ) ) ? "itemprop='$itemprop'" : '';
 $show_key_point_label = ( $this->get_options_value( 'show_key_point_label' ) === 'yes' ) ? true : false;
 ?>
