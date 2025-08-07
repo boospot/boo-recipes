@@ -505,6 +505,9 @@ class Boorecipe {
 		// The unique feature is the .new-section wrapper around meta in the template
 		// All elements are available through the general hooks
 
+		// Add recipe style class to meta section for all styles
+		$this->loader->add_filter( 'boorecipe_recipe_meta_classes', $single_premium_templates, 'add_recipe_meta_style_class' );
+
 		// Premium Filters
 		$this->loader->add_filter( 'boorecipe_before_showing_featured_image', $single_premium_templates, 'is_recipe_have_video_or_image', 10, 2 );
 

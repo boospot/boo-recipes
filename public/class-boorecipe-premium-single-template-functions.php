@@ -616,6 +616,16 @@ class Boorecipe_Premium_Single_Template_Functions extends Boorecipe_Single_Templ
 		return $classes;
 	}
 
+	/**
+	 * Add recipe style class to meta section
+	 */
+	public function add_recipe_meta_style_class( $classes ) {
+
+		$classes[] = 'recipe-style-' . $this->get_options_value( 'recipe_style' );
+
+		return $classes;
+	}
+
 
 	public function add_boo_recipe_details_wrapper() {
 
