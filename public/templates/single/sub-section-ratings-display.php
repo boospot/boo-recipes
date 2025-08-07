@@ -45,4 +45,4 @@ $ratings_detail_markup = sprintf(
 <div class="recipe-discussion">
     <h3 class="recipe-section-heading"><?php echo $this->get_options_value( 'recipe_ratings_label' ); ?></h3>
 	<?php echo $ratings_detail_markup; ?>
-</div><!--    div.recipe-discussion-->
+</div>

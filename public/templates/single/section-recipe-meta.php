@@ -10,4 +10,4 @@ $meta_classes = apply_filters( 'boorecipe_recipe_meta_classes', array( 'posttype
 	do_action( 'boorecipe_single_meta_before', $item, $meta );
 	do_action( 'boorecipe_single_meta', $item, $meta );
 	do_action( 'boorecipe_single_meta_after', $item, $meta );
-	?></div><!--    div.recipe-meta-->
+	?></div>

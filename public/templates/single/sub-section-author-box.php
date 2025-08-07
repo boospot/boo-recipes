@@ -26,7 +26,7 @@ $link_label = sprintf( $recipe_author_link_label, get_the_author_meta( 'display_
         <div class="author-icons">
                 <span class="before_author_recipes_link_action"><?php
 	                do_action( 'boorecipe_before_author_recipes_link' );
-	                ?></span><!--    recipe-before-meta-->
+	                ?></span>
             <a class="author-all-recipes-link"
                href="<?php echo esc_url_raw( get_author_posts_url( $author_id ) . $query_separator . 'post_type=' . $item->post_type ); ?>"><?php echo $link_label; ?></a>
         </div>

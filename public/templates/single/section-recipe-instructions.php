@@ -69,12 +69,12 @@ $item_count               = 0;
 				$item_count ++;
 			}
 		}
-		$html .= "</ol><!-- .instructions-list -->";
+		$html .= "</ol>";
 
 
 		$html .= "</div>";
 
 		echo $html;
 		?>
-    </div><!--  end of div.recipe-instructions-->
+    </div>
 <?php do_action( 'boorecipe_single_body_instruction_after' ); ?>

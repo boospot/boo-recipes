@@ -36,6 +36,6 @@ do_action( 'boorecipe_single_body_ingredients_before' );
 				}
 			}
 			?>
-        </div><!--	.select-items-cont-->
-    </div><!--    div.recipe-ingredients-->
+        </div>
+    </div>
 <?php do_action( 'boorecipe_single_body_ingredients_after' ); ?>
