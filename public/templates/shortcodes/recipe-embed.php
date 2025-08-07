@@ -37,6 +37,6 @@ if ( $loop->have_posts() ) :
 	<?php
 	endwhile;
 else:
-	echo wpautop( __( 'No Recipe Found', 'boo-recipes' ) );
+	echo __( 'No Recipe Found', 'boo-recipes' );
 endif;
 wp_reset_postdata();

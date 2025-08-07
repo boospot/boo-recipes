@@ -304,6 +304,13 @@ class Boorecipe {
 		$jsonld_generator = new Boorecipe_JSONLD_Generator( $this );
 		$this->loader->add_action( 'wp_head', $jsonld_generator, 'output_schema' );
 
+		/**
+		 * Disable WordPress auto-paragraphing for recipe content
+		 */
+		$this->loader->add_filter( 'the_content', $plugin_public, 'disable_wpautop_for_recipes', 1 );
+		$this->loader->add_filter( 'the_excerpt', $plugin_public, 'disable_wpautop_for_recipes', 1 );
+		$this->loader->add_filter( 'widget_text_content', $plugin_public, 'disable_wpautop_for_recipes', 1 );
+
 	} // define_public_hooks()
 
 	/**

@@ -285,4 +285,24 @@ class Boorecipe_Public {
 
 	}
 
+	/**
+	 * Disable WordPress auto-paragraphing for recipe content
+	 * This prevents empty <p></p> tags from being added
+	 *
+	 * @param string $content The post content
+	 * @return string The modified content
+	 */
+	public function disable_wpautop_for_recipes( $content ) {
+		
+		// Only apply to recipe post types
+		if ( is_singular( 'boo_recipe' ) || is_post_type_archive( 'boo_recipe' ) || boorecipe_is_recipe_taxonomy() ) {
+			// Remove wpautop filter temporarily
+			remove_filter( 'the_content', 'wpautop' );
+			remove_filter( 'the_excerpt', 'wpautop' );
+			remove_filter( 'widget_text_content', 'wpautop' );
+		}
+		
+		return $content;
+	}
+
 }
