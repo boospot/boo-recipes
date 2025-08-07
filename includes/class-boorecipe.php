@@ -145,6 +145,26 @@ class Boorecipe {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-boorecipe-premium-single-template-functions.php';
 
 		/**
+		 * Premium Archive Template Functions
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-boorecipe-premium-archive-template-functions.php';
+
+		/**
+		 * Premium Widget Template Functions
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-boorecipe-premium-widget-template-functions.php';
+
+		/**
+		 * Premium Admin Simple
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-boorecipe-premium-admin-simple.php';
+
+		/**
+		 * Premium Widgets
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-boorecipe-premium-widgets.php';
+
+		/**
 		 * Initialize custom template loader
 		 *
 		 * Template File Loaders in Plugins
@@ -199,6 +219,20 @@ class Boorecipe {
 		 * Added the plugin options menu and page
 		 */
 		$this->loader->add_action( 'widgets_init', $plugin_admin_simple, 'register_sidebar_widgets', 999 );
+
+		// Premium Admin Simple
+		$plugin_premium_admin_simple = new Boorecipe_Premium_Admin_Simple( $this->get_plugin_name(), $this->get_version() );
+
+		// Add premium admin hooks
+		$this->loader->add_filter( 'boorecipe_options_sections_array', $plugin_premium_admin_simple, 'filter_options_sections_array', 10 );
+		$this->loader->add_filter( 'boorecipe_options_args_array', $plugin_premium_admin_simple, 'filter_options_fields_array', 10 );
+		$this->loader->add_filter( 'boorecipe_options_args_array', $plugin_premium_admin_simple, 'filter_options_args_array_activation_tab_update', 20 );
+		$this->loader->add_filter( 'boorecipe_options_args_array', $plugin_premium_admin_simple, 'filter_options_args_array_search_form', 30 );
+		$this->loader->add_filter( 'boorecipe_options_args_array', $plugin_premium_admin_simple, 'filter_options_recipe_single', 40 );
+		$this->loader->add_filter( 'boorecipe_options_args_array', $plugin_premium_admin_simple, 'filter_options_recipe_single_style', 50 );
+		$this->loader->add_filter( 'boorecipe_options_args_array', $plugin_premium_admin_simple, 'filter_options_recipe_archive', 60 );
+		$this->loader->add_filter( 'boorecipe_options_args_array', $plugin_premium_admin_simple, 'filter_options_uninstall_section', 70 );
+		$this->loader->add_filter( 'boorecipe_options_args_array', $plugin_premium_admin_simple, 'filter_options_recipe_archive_layout', 80 );
 
 
 		if ( boorecipe_is_old_settings_available() ) {
@@ -304,6 +338,9 @@ class Boorecipe {
 
 		$this->loader->add_action( 'init', $plugin_premium_post_types, 'create_custom_post_type', 1000 );
 
+		// Register premium taxonomies
+		$this->loader->add_filter( 'boorecipe_taxonomies_create_args', $plugin_premium_post_types, 'filter_taxonomies_create_args', 10, 1 );
+
 
 	} // define_custom_post_types_hooks()
 
@@ -345,12 +382,14 @@ class Boorecipe {
 		$this->loader->add_shortcode( "boorecipe_print_button", $plugin_shortcode, "boorecipe_print_button" );
 
 		$this->loader->add_shortcode( "recipes_browse", $plugin_shortcode, "recipes_browse" );
+		$this->loader->add_shortcode( "recipe_embed", $plugin_shortcode, "recipe_embed" );
 
 	} //define_shortcode_hooks
 
 
 	/**
-	 * Register all of the hooks related to single templates.
+	 * Register all of the hooks related to single template functionality
+	 * of the plugin.
 	 *
 	 * @since    1.0.0
 	 * @access   private
@@ -371,6 +410,10 @@ class Boorecipe {
 		 */
 		$this->loader->add_action( 'boorecipe_single_media', $single_template, 'recipe_featured_image', 10, 2 );
 
+		// Premium Media Features
+		$this->loader->add_action( 'boorecipe_single_media', $single_premium_templates, 'recipe_image_slider', 10, 2 );
+		$this->loader->add_action( 'boorecipe_single_media', $single_premium_templates, 'recipe_video_section', 10, 2 );
+
 		/*
 		 * Single Recipe Head
 		 */
@@ -381,25 +424,34 @@ class Boorecipe {
 		$this->loader->add_action( 'boorecipe_single_head_publish_info', $single_template, 'the_date', 10, 2 );
 
 		/*
+		 * Single Recipe Meta
+		 */
+
+		/*
 		 * Single Recipe Body
 		 */
 		$this->loader->add_action( 'boorecipe_single_body', $single_template, 'ingredients', 9, 2 );
 		$this->loader->add_action( 'boorecipe_single_body', $single_template, 'instructions', 10, 2 );
 		$this->loader->add_action( 'boorecipe_single_body', $single_template, 'additional_notes', 10, 2 );
-
-		// Nutrition - conditionally placed based on settings
 		$this->loader->add_action( 'boorecipe_single_body', $single_template, 'nutrition', 11, 2 );
-		$this->loader->add_action( 'boorecipe_recipe_single_aside', $single_template, 'nutrition', 10, 2 );
 
-		// Premium features
+		// Premium Body Features
 		$this->loader->add_action( 'boorecipe_single_body', $single_premium_templates, 'recipe_tool_display', 10, 2 );
 		$this->loader->add_action( 'boorecipe_single_body', $single_premium_templates, 'cooking_methods_display', 10, 2 );
+
+		// Premium After Body Features
+		$this->loader->add_action( 'boorecipe_single_body_after', $single_premium_templates, 'ratings_display', 10, 2 );
+		$this->loader->add_action( 'boorecipe_single_body_after', $single_premium_templates, 'author_box', 11, 2 );
+		$this->loader->add_action( 'boorecipe_single_body_after', $single_premium_templates, 'related_recipes_section', 13, 2 );
 
 		// Recipe Taxonomies
 		$this->loader->add_action( 'boorecipe_single_meta', $single_template, 'sub_section_meta_taxonomy_style_1', 10, 2 );
 		$this->loader->add_action( 'boorecipe_single_meta_taxonomy', $single_template, 'the_taxonomy_icon', 8, 2 );
 		$this->loader->add_action( 'boorecipe_single_meta_taxonomy', $single_template, 'the_taxonomy_category', 9, 2 );
 		$this->loader->add_action( 'boorecipe_single_meta_taxonomy', $single_template, 'the_taxonomy_tags', 11, 2 );
+
+		// Premium Taxonomy
+		$this->loader->add_action( 'boorecipe_single_meta_taxonomy', $single_premium_templates, 'the_taxonomy_cuisine', 10, 2 );
 
 		// Recipe Times
 		$this->loader->add_action( 'boorecipe_single_meta', $single_template, 'sub_section_meta_time_style_1', 10, 2 );
@@ -414,56 +466,23 @@ class Boorecipe {
 		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_1', $single_template, 'yields', 9, 2 );
 		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_1', $single_template, 'the_taxonomy_skill_level', 9, 2 );
 
-		// Premium taxonomies
+		// Premium Key Points
 		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_1', $single_premium_templates, 'the_taxonomy_cooking_method', 15, 2 );
 
 		$this->loader->add_action( 'boorecipe_single_head_after', $single_template, 'section_sharing_buttons_style_1', 10, 2 );
 
-		/*
-		 * Single Recipe Foot
-		 */
-		$this->loader->add_action( 'boorecipe_single_foot', $single_template, 'recipe_share_buttons', 10, 2 );
+		// Premium Filters
+		$this->loader->add_filter( 'boorecipe_before_showing_featured_image', $single_premium_templates, 'is_recipe_have_video_or_image', 10, 2 );
 
-		/*
-		 * Single Recipe Comments
-		 */
-		$this->loader->add_action( 'boorecipe_single_comments_before', $single_template, 'recipe_comments_before', 10, 2 );
-		$this->loader->add_action( 'boorecipe_single_comments_after', $single_template, 'recipe_comments_after', 10, 2 );
-
-		/*
-		 * Single Recipe Aside
-		 */
-		$this->loader->add_action( 'boorecipe_recipe_single_aside', $single_template, 'aside_recipe_single', 10, 2 );
-
-		/*
-		 * Single Recipe Body Before
-		 */
-		$this->loader->add_action( 'boorecipe_single_body_before', $single_template, 'recipe_body_before', 10, 2 );
-
-		/*
-		 * Single Recipe Body After
-		 */
-		$this->loader->add_action( 'boorecipe_single_body_after', $single_template, 'recipe_body_after', 10, 2 );
-
-		/*
-		 * Single Recipe Foot Before
-		 */
-		$this->loader->add_action( 'boorecipe_single_foot_before', $single_template, 'recipe_foot_before', 10, 2 );
-
-		/*
-		 * Single Recipe Foot After
-		 */
-		$this->loader->add_action( 'boorecipe_single_foot_after', $single_template, 'recipe_foot_after', 10, 2 );
-
-		/*
-		 * Single Recipe Aside Before
-		 */
-		$this->loader->add_action( 'boorecipe_single_aside_before', $single_template, 'recipe_aside_before', 10, 2 );
-
-		/*
-		 * Single Recipe Aside After
-		 */
-		$this->loader->add_action( 'boorecipe_single_aside_after', $single_template, 'recipe_aside_after', 10, 2 );
+		// Advanced Template Hooks (only for methods that exist)
+		$this->loader->add_action( 'boorecipe_single_media_before', $single_premium_templates, 'single_media_before', 10, 2 );
+		$this->loader->add_action( 'boorecipe_single_media_after', $single_premium_templates, 'single_media_after', 10, 2 );
+		$this->loader->add_action( 'boorecipe_single_head_before', $single_premium_templates, 'single_head_before', 10, 2 );
+		$this->loader->add_action( 'boorecipe_single_head_after', $single_premium_templates, 'single_head_after', 10, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_before', $single_premium_templates, 'single_meta_before', 10, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_after', $single_premium_templates, 'single_meta_after', 10, 2 );
+		$this->loader->add_action( 'boorecipe_single_body_before', $single_premium_templates, 'single_body_before', 10, 2 );
+		$this->loader->add_action( 'boorecipe_single_body_after', $single_premium_templates, 'single_body_after', 10, 2 );
 
 		/*
 		 * Single Recipe Wrapper Classes
@@ -517,6 +536,17 @@ class Boorecipe {
 		$this->loader->add_filter( 'boorecipe_filter_archive_recipe_card_classes', $plugin_archive_template, 'filter_archive_recipe_card_classes' );
 
 		$this->loader->add_filter( 'boorecipe_filter_archive_image_size', $plugin_archive_template, 'filter_archive_image_size', 10, 1 );
+
+		// Premium Archive Template Functions
+		$plugin_premium_archive_template = new Boorecipe_Premium_Archive_Template_Functions( $this->get_plugin_name(), $this->get_version() );
+
+		// Premium Archive Actions
+		$this->loader->add_action( 'boorecipe_archive_recipe_key_points', $plugin_premium_archive_template, 'archive_recipe_key_points_total_time', 10, 2 );
+		$this->loader->add_action( 'boorecipe_archive_recipe_content', $plugin_premium_archive_template, 'archive_recipe_author_name', 8, 2 );
+
+		// Premium Archive Filters
+		$this->loader->add_filter( 'boorecipe_filter_archive_recipe_card_classes', $plugin_premium_archive_template, 'filter_archive_recipe_card_classes', 20 );
+		$this->loader->add_filter( 'boorecipe_filter_archive_recipe_wrap_classes', $plugin_premium_archive_template, 'filter_archive_recipe_wrap_classes', 20 );
 	}
 
 	/**
@@ -547,6 +577,12 @@ class Boorecipe {
 		$this->loader->add_action( 'boorecipe_widget_search_form_fields', $widget_template, 'search_form_category_field', 7 );
 		$this->loader->add_action( 'boorecipe_widget_search_form_fields', $widget_template, 'search_form_skill_level_field', 9 );
 		$this->loader->add_action( 'boorecipe_widget_search_form_fields', $widget_template, 'search_form_keyword_field', 9 );
+
+		// Premium Widget Template Functions
+		$premium_widget_template = new Boorecipe_Premium_Widget_Template_Functions( $this->get_plugin_name(), $this->get_version() );
+
+		// Premium Search Form Fields
+		$this->loader->add_action( 'boorecipe_widget_search_form_fields', $premium_widget_template, 'search_form_cuisine_field', 8 );
 	}
 
 	/**
@@ -562,6 +598,11 @@ class Boorecipe {
 		$plugin_widgets = new Boorecipe_Widgets( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'widgets_init', $plugin_widgets, 'widgets_init' );
+
+		// Premium Widgets
+		$plugin_premium_widgets = new Boorecipe_Premium_Widgets( $this->get_plugin_name(), $this->get_version() );
+
+		$this->loader->add_action( 'widgets_init', $plugin_premium_widgets, 'widgets_init' );
 
 
 	}

@@ -23,5 +23,8 @@ if ( ! $should_show_aside ) {
 	if ( $has_sidebar ) {
 		dynamic_sidebar( apply_filters( 'boorecipe_aside_single_recipe_id', 'recipe-single-sidebar' ) );
 	}
+	
+	// Nutrition content is handled by the proper action hook in single-recipe-end.php
+	// No need to call do_action here as it causes duplication
 	?>
 </aside>

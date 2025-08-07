@@ -7,7 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $terms_ids_array = wp_get_post_terms( $item->ID, 'recipe_tool', array( 'fields' => 'ids' ) );
 
-if ( empty( $terms_ids_array ) ) {
+// Check if wp_get_post_terms returned an error
+if ( is_wp_error( $terms_ids_array ) || empty( $terms_ids_array ) ) {
 	return null;
 }
 
@@ -26,13 +27,24 @@ if ( empty( $terms_ids_array ) ) {
 
 			$term = get_term( $term_id );
 
+			// Skip if term doesn't exist
+			if ( ! $term || is_wp_error( $term ) ) {
+				continue;
+			}
+
 			$override_url = get_term_meta( $term_id, 'override_url', true );
 			if ( $override_url ) {
 				$term_link = esc_url_raw( $override_url );
 				$target    = '_blank';
 			} else {
 				$term_link = get_term_link( $term );
-				$target    = '_top';
+				// Check if get_term_link returned an error
+				if ( is_wp_error( $term_link ) ) {
+					$term_link = '#';
+					$target    = '_top';
+				} else {
+					$target    = '_top';
+				}
 			}
 
 			if ( 'yes' === $enable_images ):

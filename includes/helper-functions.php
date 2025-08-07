@@ -1057,7 +1057,7 @@ if ( ! function_exists( 'boorecipe_is_archive_query' ) ) :
 		$queried_object = get_queried_object();
 
 		$taxonomy_template = false;
-		if ( get_class( $queried_object ) == 'WP_Term' ) {
+		if ( $queried_object && get_class( $queried_object ) == 'WP_Term' ) {
 			$taxonomy_template = (
 				$queried_object->taxonomy == 'recipe_category' ||
 				$queried_object->taxonomy == 'recipe_cuisine' ||
