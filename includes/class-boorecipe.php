@@ -469,6 +469,25 @@ class Boorecipe {
 		// Premium Key Points
 		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_1', $single_premium_templates, 'the_taxonomy_cooking_method', 15, 2 );
 
+		/*
+		 * Recipe Style : 2
+		 */
+		$this->loader->add_action( 'boorecipe_single_meta', $single_premium_templates, 'sub_section_meta_key_point_style_2', 10, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $single_premium_templates, 'the_taxonomy_category_style_2', 15, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $single_premium_templates, 'the_taxonomy_cuisine_style_2', 15, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $single_premium_templates, 'the_taxonomy_tags_style_2', 15, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $single_premium_templates, 'the_taxonomy_skill_level_style_2', 15, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $single_premium_templates, 'the_taxonomy_cooking_method_style_2', 15, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $single_premium_templates, 'key_point_yields_style_2', 15, 2 );
+
+		$this->loader->add_action( 'boorecipe_single_body_before', $single_premium_templates, 'section_sharing_buttons_style_2', 10, 2 );
+		$this->loader->add_action( 'boorecipe_single_body_before', $single_premium_templates, 'sub_section_meta_time_style_2', 9, 2 );
+
+		$this->loader->add_action( 'boorecipe_single_meta_time_style_2', $single_premium_templates, 'the_time_icon', 8, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_time_style_2', $single_premium_templates, 'recipe_prep_time', 9, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_time_style_2', $single_premium_templates, 'recipe_cook_time', 10, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_time_style_2', $single_premium_templates, 'recipe_total_time', 11, 2 );
+
 		$this->loader->add_action( 'boorecipe_single_head_after', $single_template, 'section_sharing_buttons_style_1', 10, 2 );
 
 		// Premium Filters
