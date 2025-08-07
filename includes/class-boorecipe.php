@@ -498,6 +498,13 @@ class Boorecipe {
 		// Style 3 specific elements (same as other styles but with different visual presentation)
 		$this->loader->add_action( 'boorecipe_single_head_after', $single_template, 'section_sharing_buttons_style_1', 10, 2 );
 
+		/*
+		 * Recipe Style : 4
+		 */
+		// Style 4 uses the same wrapper as Style 3 for side-by-side layout
+		// The unique feature is the .new-section wrapper around meta in the template
+		// All elements are available through the general hooks
+
 		// Premium Filters
 		$this->loader->add_filter( 'boorecipe_before_showing_featured_image', $single_premium_templates, 'is_recipe_have_video_or_image', 10, 2 );
 
