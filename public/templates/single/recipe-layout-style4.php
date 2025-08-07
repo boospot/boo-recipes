@@ -13,13 +13,16 @@ do_action( 'boorecipe_single_head', $item, $meta );
 do_action( 'boorecipe_single_head_after', $item, $meta );
 ?>
     <div class="new-section">
-
 		<?php
 		do_action( 'boorecipe_single_meta_before', $item, $meta );
 		do_action( 'boorecipe_single_meta', $item, $meta );
 		do_action( 'boorecipe_single_meta_after', $item, $meta );
 		?>
-
+		
+		<!-- Time info for Style 4 -->
+		<div class="posttype-sub-section recipe-time-info">
+			<?php do_action( 'boorecipe_single_meta_time_style_1', $item, $meta ); ?>
+		</div>
     </div>
 <?php
 do_action( 'boorecipe_single_body_before', $item, $meta );

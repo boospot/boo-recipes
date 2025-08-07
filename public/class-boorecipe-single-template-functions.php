@@ -547,7 +547,7 @@ class Boorecipe_Single_Template_Functions extends Boorecipe_Template_Functions {
 	 */
 	public function sub_section_meta_time_style_1( $item, $meta ) {
 
-		if ( $this->get_options_value( 'recipe_style' ) !== 'style1' ) {
+		if ( $this->get_options_value( 'recipe_style' ) !== 'style1' && $this->get_options_value( 'recipe_style' ) !== 'style4' ) {
 			return;
 		}
 
