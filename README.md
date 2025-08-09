@@ -1,6 +1,6 @@
-# Boo Recipes - WordPress Recipe Plugin
+# Boo Recipes Pro - WordPress Recipe Plugin
 
-A comprehensive WordPress plugin for creating and managing recipes with SEO optimization using Schema.org microdata.
+A comprehensive WordPress plugin for creating and managing recipes with SEO optimization using Schema.org microdata. Pro version with unified premium features and 4 recipe styles.
 
 ## 🚀 Version 2.5.0 - Major Security & Compatibility Update
 

@@ -22,7 +22,7 @@ function debug_boorecipe_nutrition() {
     global $post;
     
     echo '<div style="background: #f0f0f0; padding: 20px; margin: 20px; border: 1px solid #ccc; font-family: monospace; font-size: 12px;">';
-    echo '<h3>Boo Recipe Nutrition Debug Info</h3>';
+    echo '<h3>Boo Recipes Pro Nutrition Debug Info</h3>';
     
     // Check global nutrition setting
     $global_nutrition = boorecipe_get_options_value( 'show_nutrition' );

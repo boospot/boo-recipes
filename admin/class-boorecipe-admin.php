@@ -147,7 +147,7 @@ class Boorecipe_Admin {
 			// Required, meta box id, unique per page, to save: get_option( id )
 			'id'              => $this->plugin_name . '-options',
 			// //The Menu Title in Wp Admin
-			'menu_title'      => __( 'Boo Recipe', 'boo-recipes' ),
+			'menu_title'      => __( 'Boo Recipes Pro', 'boo-recipes' ),
 			// Required for submenu
 			'submenu'         => true,
 			//The name of this page
@@ -232,7 +232,7 @@ class Boorecipe_Admin {
 					) ),
 					'radio'       => true,
 					'default'     => 'style1',
-					'description' => __( 'More Styles in Premium Version', 'boo-recipes' ),
+					'description' => __( 'All 4 recipe styles included in Pro version', 'boo-recipes' ),
 				),
 
 				array(

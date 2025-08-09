@@ -1,4 +1,4 @@
-=== Boo Recipes ===
+=== Boo Recipes Pro ===
 
 Contributors: boospot
 Tags: recipe, recipes, rich snippet, schema.org

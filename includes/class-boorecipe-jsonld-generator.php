@@ -1,6 +1,6 @@
 <?php
 /**
- * JSON-LD Schema Generator for Boo Recipes
+ * JSON-LD Schema Generator for Boo Recipes Pro
  *
  * Generates structured data in JSON-LD format for recipes
  * Replaces HTML microdata with modern JSON-LD format

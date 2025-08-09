@@ -12,9 +12,9 @@
  * @package           Boorecipe
  *
  * @wordpress-plugin
- * Plugin Name:       Boo Recipes
+ * Plugin Name:       Boo Recipes Pro
  * Plugin URI:        http://boorecipes.com/
- * Description:       Complete recipe management plugin with 4 recipe styles, advanced taxonomies, video support, and SEO-optimized JSON-LD structured data. Features include recipe cuisines, cooking methods, tools, ratings, and more.
+ * Description:       Complete recipe management plugin with 4 recipe styles, advanced taxonomies, video support, and SEO-optimized JSON-LD structured data. Features include recipe cuisines, cooking methods, tools, ratings, and more. Pro version with unified premium features.
  * Version:           3.0.0
  * Requires at least: 5.0
  * Requires PHP:      8.0
@@ -36,7 +36,7 @@ if ( version_compare( PHP_VERSION, '8.0', '<' ) ) {
 	add_action( 'admin_notices', function() {
 		echo '<div class="notice notice-error"><p>';
 		printf( 
-			__( 'Boo Recipes requires PHP version 8.0 or higher. You are running version %s. Please contact your hosting provider to upgrade PHP.', 'boo-recipes' ),
+			__( 'Boo Recipes Pro requires PHP version 8.0 or higher. You are running version %s. Please contact your hosting provider to upgrade PHP.', 'boo-recipes' ),
 			PHP_VERSION
 		);
 		echo '</p></div>';
