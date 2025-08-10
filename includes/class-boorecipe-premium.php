@@ -475,100 +475,33 @@ class Boorecipe_Premium {
 
 	/**
 	 * Register all of the hooks related to single templates.
+	 * 
+	 * UNIFIED SYSTEM: Hook registration is now handled by the free plugin's unified system
+	 * This method is disabled to prevent duplicate hook registrations
 	 *
 	 * @since    1.0.0
 	 * @access   private
 	 */
 	private function define_single_template_hooks() {
-		$single_premium_templates = new Boorecipe_Premium_Single_Template_Functions( $this->get_parent_plugin_name(), $this->get_version() );
-
-		/*
-		 * Single Recipe Actions and Filters
+		/**
+		 * UNIFIED HOOK REGISTRATION SYSTEM ACTIVE
+		 * 
+		 * All single template hooks are now registered via the unified system 
+		 * in the free plugin (class-boorecipe.php define_single_template_hooks())
+		 * 
+		 * This method is now disabled to prevent duplicate hook registrations.
+		 * Premium functionality is maintained through intelligent feature detection
+		 * in the unified registration system.
+		 * 
+		 * Benefits of unified system:
+		 * - Single source of truth for all hooks
+		 * - Automatic premium feature detection  
+		 * - Consistent priority management
+		 * - Simplified debugging and maintenance
+		 * - Eliminated duplicate registrations
 		 */
-
-		/*
-		 * Single Recipe Media - Now handled by unified system in free plugin
-		 * Premium media features (video, slider) are automatically detected by the unified system
-		 */
-
-		/*
-		 * Single Recipe Meta
-		 */
-
-		// Recipe Taxonomy
-		$this->loader->add_action( 'boorecipe_single_meta_taxonomy', $single_premium_templates, 'the_taxonomy_cuisine', 10, 2 );
-
-		// Recipe Key Point
-		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_1', $single_premium_templates, 'the_taxonomy_cooking_method', 15, 2 );
-
-		/*
-		 * Single Recipe Body
-		 */
-
-		// Premium Body Features (Priority: 44-49 - after core body content)
-		$this->loader->add_action( 'boorecipe_single_body', $single_premium_templates, 'recipe_tool_display', 44, 2 );
-
-		$this->loader->add_action( 'boorecipe_single_body', $single_premium_templates, 'cooking_methods_display', 45, 2 );
-
-		// Premium Body After Features (Priority: 50-59)
-		$this->loader->add_action( 'boorecipe_single_body_after', $single_premium_templates, 'ratings_display', 50, 2 );
-
-		$this->loader->add_action( 'boorecipe_single_body_after', $single_premium_templates, 'author_box', 51, 2 );
-
-		$this->loader->add_action( 'boorecipe_single_body_after', $single_premium_templates, 'related_recipes_section', 52, 2 );
-
-
-		// Filter no longer needed - unified media system handles priority automatically
-
-
-		/*
-		 * Recipe Style : 2
-		 */
-
-		// Key points now handled by unified system in free plugin which auto-detects style
-		// $this->loader->add_action( 'boorecipe_single_meta', $single_premium_templates, 'sub_section_meta_key_point_style_2', 10, 2 );
-
-		// Premium Meta Key Points (Priority: 33-39 - within meta section range)
-		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $single_premium_templates, 'unified_taxonomy_category', 33, 2 );
-
-		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $single_premium_templates, 'the_taxonomy_cuisine_style_2', 34, 2 );
-
-		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $single_premium_templates, 'unified_taxonomy_tags', 35, 2 );
-
-		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $single_premium_templates, 'unified_taxonomy_skill_level', 36, 2 );
-
-		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $single_premium_templates, 'the_taxonomy_cooking_method_style_2', 37, 2 );
-
-		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $single_premium_templates, 'key_point_yields_style_2', 38, 2 );
-
-		// Premium Body Before Features (Priority: 35-39 - before main body content)
-		$this->loader->add_action( 'boorecipe_single_body_before', $single_premium_templates, 'section_sharing_buttons_style_2', 35, 2 );
-
-		// Time functions are now handled by the unified system in the free plugin
-		// For Style 2, the time display is moved to body_before section
-		$this->loader->add_action( 'boorecipe_single_body_before', $single_premium_templates, 'sub_section_meta_time_style_2', 36, 2 );
-
-
-		/* Premium Options Hooks - Follow section priority ranges */
-		$this->loader->add_action( 'boorecipe_single_media_before', $single_premium_templates, 'single_media_before', 15, 2 );
-		$this->loader->add_action( 'boorecipe_single_media_after', $single_premium_templates, 'single_media_after', 15, 2 );
-		$this->loader->add_action( 'boorecipe_single_head_before', $single_premium_templates, 'single_head_before', 25, 2 );
-		$this->loader->add_action( 'boorecipe_single_head_after', $single_premium_templates, 'single_head_after', 25, 2 );
-		$this->loader->add_action( 'boorecipe_single_meta_before', $single_premium_templates, 'single_meta_before', 35, 2 );
-		$this->loader->add_action( 'boorecipe_single_meta_after', $single_premium_templates, 'single_meta_after', 35, 2 );
-		$this->loader->add_action( 'boorecipe_single_body_before', $single_premium_templates, 'single_body_before', 45, 2 );
-		$this->loader->add_action( 'boorecipe_single_body_after', $single_premium_templates, 'single_body_after', 55, 2 );
-		$this->loader->add_action( 'boorecipe_single_article_after_start', $single_premium_templates, 'single_article_before_start', 5, 2 );
-		$this->loader->add_action( 'boorecipe_single_article_after_end', $single_premium_templates, 'single_article_after_end', 60, 2 );
-
-
-		/*
-		 * Recipe Style : 3
-		 */
-		$this->loader->add_filter( 'boorecipe_single_recipe_layout_class', $single_premium_templates, 'single_recipe_layout_class' );
-
-		$this->loader->add_action( 'boorecipe_single_body_before', $single_premium_templates, 'add_boo_recipe_details_wrapper' );
-		$this->loader->add_action( 'boorecipe_single_body_after', $single_premium_templates, 'close_boo_recipe_details_wrapper', 53 );
+		
+		// All hook registrations handled by unified system in free plugin
 	}
 
 	/**
