@@ -26,14 +26,14 @@
       flex-basis: 100%;
       //padding-left: 1em;
 
-      .posttype-section {
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: column;
-        justify-content: flex-start;
-        flex: 1 0 100%;
-        max-width: 100%;
-        padding-bottom: 1em;
+              .posttype-section {
+          display: flex;
+          flex-wrap: wrap;
+          flex-direction: column;
+          justify-content: flex-start;
+          flex: 1 0 100%;
+          max-width: 100%;
+          padding-bottom: 0.5em;
 
         .posttype-sub-section {
           > div {
@@ -74,7 +74,7 @@
       }
 
       .recipe-meta > div {
-        padding: 0.25em 0;
+        padding: 0.15em 0;
       }
 
       .recipe-meta.recipe-style2 {

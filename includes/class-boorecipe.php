@@ -462,7 +462,7 @@ class Boorecipe {
 
 		// Recipe Taxonomies - Unified system for all styles
 		$this->loader->add_action( 'boorecipe_single_meta', $single_template, 'display_unified_taxonomy_section', 30, 2 );
-		$this->loader->add_action( 'boorecipe_single_meta_taxonomy', $single_template, 'unified_taxonomy_icon', 30, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_taxonomy_icon', $single_template, 'unified_taxonomy_icon', 30, 2 );
 		$this->loader->add_action( 'boorecipe_single_meta_taxonomy', $single_template, 'unified_taxonomy_category', 31, 2 );
 		$this->loader->add_action( 'boorecipe_single_meta_taxonomy', $single_template, 'unified_taxonomy_tags', 32, 2 );
 
@@ -475,7 +475,7 @@ class Boorecipe {
 
 		// Recipe Key Points - Unified system for all styles
 		$this->loader->add_action( 'boorecipe_single_meta', $single_template, 'display_unified_key_point_section', 32, 2 );
-		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_1', $single_template, 'unified_key_point_icon', 30, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_key_point_icon', $single_template, 'unified_key_point_icon', 30, 2 );
 		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_1', $single_template, 'yields', 31, 2 );
 		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_1', $single_template, 'unified_taxonomy_skill_level', 32, 2 );
 
@@ -508,8 +508,10 @@ class Boorecipe {
 			$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $premium_template, 'key_point_yields_style_2', 38, 2 );
 
 			// Premium Body Before Features (Priority: 35-39)
-			$this->loader->add_action( 'boorecipe_single_body_before', $premium_template, 'section_sharing_buttons_style_2', 35, 2 );
-			$this->loader->add_action( 'boorecipe_single_body_before', $premium_template, 'sub_section_meta_time_style_2', 36, 2 );
+			// Time display for Style 2 and Style 3 (positioned before body content)
+			$this->loader->add_action( 'boorecipe_single_body_before', $premium_template, 'sub_section_meta_time_style_2', 35, 2 );
+			// Sharing buttons for Style 2 (after time information)
+			$this->loader->add_action( 'boorecipe_single_body_before', $premium_template, 'section_sharing_buttons_style_2', 36, 2 );
 
 			// Premium Options Hooks - Follow section priority ranges
 			$this->loader->add_action( 'boorecipe_single_media_before', $premium_template, 'single_media_before', 15, 2 );

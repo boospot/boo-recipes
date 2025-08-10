@@ -10,14 +10,12 @@ do_action( 'boorecipe_single_head_before', $item, $meta );
 do_action( 'boorecipe_single_head', $item, $meta );
 do_action( 'boorecipe_single_head_after', $item, $meta );
 ?>
-    <div class="new-section">
-
+    <div class="posttype-sub-section recipe-meta recipe-style4">
 		<?php
 		do_action( 'boorecipe_single_meta_before', $item, $meta );
 		do_action( 'boorecipe_single_meta', $item, $meta );
 		do_action( 'boorecipe_single_meta_after', $item, $meta );
 		?>
-
     </div>
 <?php
 do_action( 'boorecipe_single_body_before', $item, $meta );

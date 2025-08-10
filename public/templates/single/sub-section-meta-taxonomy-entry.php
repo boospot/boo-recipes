@@ -8,7 +8,7 @@ $show_key_point_label = ( $this->get_options_value( 'show_key_point_label' ) ===
 ?>
 <div class="taxonomy-<?php echo strtolower( sanitize_html_class( $taxonomy ) ) ?>">
 	<?php if ( $show_key_point_label ) : ?>
-        <span class="subsection-label"><?php echo $this->get_options_value( $taxonomy . '_label' ); ?></span>
+        <span class="subsection-label"><?php echo $this->get_options_value( $taxonomy . '_label' ); ?></span><br>
 	<?php endif; ?>
     <span <?php echo $itemprop_tag ?> class="subsection-value"><?php echo $taxonomy_terms; ?></span>
 </div>

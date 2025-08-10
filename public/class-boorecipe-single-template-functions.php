@@ -327,10 +327,15 @@ class Boorecipe_Single_Template_Functions extends Boorecipe_Template_Functions {
 		);
 
 		// Get the appropriate SVG icon
-		$svg = isset( $icon_map[ $icon_type ] ) ? $icon_map[ $icon_type ] : 'tags';
+		$svg_name = isset( $icon_map[ $icon_type ] ) ? $icon_map[ $icon_type ] : 'tags';
+		$icon_size = $this->get_options_value( 'single_recipe_icon_size' );
 		
-		// Include the icon template
-		include boorecipe_get_template( 'sub-section-icon', 'single' );
+		// Output the icon HTML directly
+		?>
+		<div class="subsection-icon">
+			<?php echo Boorecipe_Globals::get_svg( $svg_name, 'icon-size-' . $icon_size ); ?>
+		</div>
+		<?php
 	}
 
 	/**

@@ -272,9 +272,15 @@ class Boorecipe_Premium_Single_Template_Functions extends Boorecipe_Single_Templ
 	 */
 	public function sub_section_meta_time_style_2( $item, $meta ) {
 
-		if ( $this->get_options_value( 'recipe_style' ) != 'style1' ) {
-			// Use the unified time template for premium styles
-			include boorecipe_get_template( 'sub-section-meta-time', 'single' );
+		$recipe_style = $this->get_options_value( 'recipe_style' );
+		
+		// Display time for Style 2 and Style 3 in body_before section
+		if ( $recipe_style === 'style2' || $recipe_style === 'style3' ) {
+			?>
+			<div class="posttype-sub-section recipe-time-info"><?php
+				do_action( 'boorecipe_single_meta_time', $item, $meta );
+			?></div>
+			<?php
 		}
 
 	} //sub_section_meta_time_style_2

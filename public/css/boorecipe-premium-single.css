@@ -1,6 +1,5 @@
 @charset "UTF-8";
 /*Recipe Styling Begin here*/
-/* Test change - Sun Aug 10 02:50:42 PM PKT 2025 */
 .posttype-wrapper {
   display: flex;
   flex-direction: column;
@@ -702,7 +701,7 @@ video.wp-video-shortcode {
   justify-content: flex-start;
   flex: 1 0 100%;
   max-width: 100%;
-  padding-bottom: 1em;
+  padding-bottom: 0.5em;
 }
 .single-recipe-style2 .posttype-section-box .posttype-section-sub-box .posttype-section .posttype-sub-section > div {
   flex: 1;
@@ -716,7 +715,7 @@ video.wp-video-shortcode {
   max-width: 15%;
 }
 .single-recipe-style2 .posttype-section-box .posttype-section-sub-box .recipe-meta > div {
-  padding: 0.25em 0;
+  padding: 0.15em 0;
 }
 .single-recipe-style2 .posttype-section-box .posttype-section-sub-box .recipe-meta.recipe-style2 {
   flex-direction: column;
