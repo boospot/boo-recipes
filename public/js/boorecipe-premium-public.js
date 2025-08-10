@@ -54,19 +54,23 @@
             try {
                 $('#slider-thumbs-section').flexslider({
                     animation: "slide",
-                    controlNav: false,
-                    animationLoop: false,
-                    slideshow: false,
+                    controlNav: true,
+                    animationLoop: true,
+                    slideshow: true,
                     itemWidth: 210,
                     itemMargin: 5,
                     asNavFor: '#slider-image-section',
+                    slideshowSpeed: 4000,
+                    animationSpeed: 600,
                 });
 
                 $('#slider-image-section').flexslider({
                     animation: "slide",
-                    controlNav: false,
-                    animationLoop: false,
-                    slideshow: false,
+                    controlNav: true,
+                    animationLoop: true,
+                    slideshow: true,
+                    slideshowSpeed: 4000,
+                    animationSpeed: 600,
                     sync: "#slider-thumbs-section"
                 });
                 

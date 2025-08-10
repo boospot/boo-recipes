@@ -674,28 +674,18 @@ video.wp-video-shortcode {
   font-size: 2em;
 }
 
-/* Fix for FlexSlider slides not displaying */
-.recipe-image-slider .flexslider .slides > li {
-  display: block !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-.recipe-image-slider .flexslider .slides > li:first-child {
-  display: block !important;
-}
-
-.recipe-image-slider .flexslider .slides > li:not(:first-child) {
-  display: none !important;
-}
-
-/* Fallback styles for when JavaScript hasn't loaded yet */
+/* Fix for FlexSlider slides not displaying - Only apply fallback when not initialized */
 .recipe-image-slider .flexslider:not(.flexslider-initialized) .slides > li:first-child {
   display: block !important;
 }
 
 .recipe-image-slider .flexslider:not(.flexslider-initialized) .slides > li:not(:first-child) {
   display: none !important;
+}
+
+/* Once FlexSlider is initialized, let it handle slide display */
+.recipe-image-slider .flexslider.flexslider-initialized .slides > li {
+  display: block !important;
 }
 
 /* Ensure slider container has proper dimensions */
@@ -732,6 +722,51 @@ video.wp-video-shortcode {
   display: inline-block !important;
   margin-right: 5px;
   cursor: pointer;
+}
+
+/* FlexSlider navigation styling */
+.recipe-image-slider .flex-direction-nav a {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 10px;
+  text-decoration: none;
+  border-radius: 3px;
+}
+
+.recipe-image-slider .flex-direction-nav .flex-prev {
+  left: 10px;
+}
+
+.recipe-image-slider .flex-direction-nav .flex-next {
+  right: 10px;
+}
+
+/* FlexSlider control navigation dots */
+.recipe-image-slider .flex-control-nav {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.recipe-image-slider .flex-control-nav li {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.recipe-image-slider .flex-control-nav a {
+  display: block;
+  width: 12px;
+  height: 12px;
+  background: #ccc;
+  border-radius: 50%;
+  text-indent: -9999px;
+}
+
+.recipe-image-slider .flex-control-nav a.flex-active {
+  background: #007cba;
 }
 
 .recipe-image-slider .slider-thumbs-section img {
