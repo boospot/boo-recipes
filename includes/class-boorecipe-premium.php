@@ -487,12 +487,9 @@ class Boorecipe_Premium {
 		 */
 
 		/*
-		 * Single Recipe Media
+		 * Single Recipe Media - Now handled by unified system in free plugin
+		 * Premium media features (video, slider) are automatically detected by the unified system
 		 */
-
-		$this->loader->add_action( 'boorecipe_single_media', $single_premium_templates, 'recipe_image_slider', 10, 2 );
-
-		$this->loader->add_action( 'boorecipe_single_media', $single_premium_templates, 'recipe_video_section', 10, 2 );
 
 		/*
 		 * Single Recipe Meta
@@ -519,7 +516,7 @@ class Boorecipe_Premium {
 		$this->loader->add_action( 'boorecipe_single_body_after', $single_premium_templates, 'related_recipes_section', 13, 2 );
 
 
-		$this->loader->add_filter( 'boorecipe_before_showing_featured_image', $single_premium_templates, 'is_recipe_have_video_or_image', 10, 2 );
+		// Filter no longer needed - unified media system handles priority automatically
 
 
 		/*
@@ -528,13 +525,14 @@ class Boorecipe_Premium {
 
 		$this->loader->add_action( 'boorecipe_single_meta', $single_premium_templates, 'sub_section_meta_key_point_style_2', 10, 2 );
 
-		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $single_premium_templates, 'the_taxonomy_category_style_2', 15, 2 );
+		// Basic taxonomies now use unified system from free plugin
+		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $single_premium_templates, 'unified_taxonomy_category', 15, 2 );
 
 		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $single_premium_templates, 'the_taxonomy_cuisine_style_2', 15, 2 );
 
-		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $single_premium_templates, 'the_taxonomy_tags_style_2', 15, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $single_premium_templates, 'unified_taxonomy_tags', 15, 2 );
 
-		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $single_premium_templates, 'the_taxonomy_skill_level_style_2', 15, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $single_premium_templates, 'unified_taxonomy_skill_level', 15, 2 );
 
 		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $single_premium_templates, 'the_taxonomy_cooking_method_style_2', 15, 2 );
 

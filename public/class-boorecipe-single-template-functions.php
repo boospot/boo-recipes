@@ -61,6 +61,43 @@ class Boorecipe_Single_Template_Functions extends Boorecipe_Template_Functions {
 
 	}
 
+	/**
+	 * Unified media display function for all media types
+	 * Implements intelligent priority: Video > Slider > Featured Image
+	 *
+	 * @param object $item
+	 * @param array $meta
+	 */
+	public function display_unified_media( $item, $meta ) {
+		// Check if any media should be shown
+		if ( $this->get_options_value( 'show_featured_image' ) != 'yes' ) {
+			return;
+		}
+
+		// Priority 1: Video (highest priority)
+		if ( method_exists( $this, 'is_video_recipe' ) && $this->is_video_recipe( $meta ) ) {
+			include boorecipe_get_template( 'recipe-video-section', 'single' );
+			return;
+		}
+
+		// Priority 2: Image Slider (medium priority)
+		if ( method_exists( $this, 'is_show_image_slider' ) && $this->is_show_image_slider( $meta ) ) {
+			include boorecipe_get_template( 'recipe-image-slider', 'single' );
+			return;
+		}
+
+		// Priority 3: Featured Image (fallback)
+		$image_size = $this->get_options_value( 'recipe_image_size_' . $this->get_options_value( 'recipe_style' ) );
+		$featured_image = get_the_post_thumbnail_url( $item->ID, $image_size );
+
+		// Assign default if empty
+		if ( empty( $featured_image ) ) {
+			$featured_image = $this->get_recipe_featured_image_default();
+		}
+
+		include boorecipe_get_template( 'single-recipe-featured-image', 'single' );
+	}
+
 
 	/**
 	 * Include      public/templates/single/sub-section-head-title
@@ -580,6 +617,62 @@ class Boorecipe_Single_Template_Functions extends Boorecipe_Template_Functions {
 		}
 
 	} // the_taxonomy_tags()
+
+	/**
+	 * Unified taxonomy display function for all styles
+	 *
+	 * @param object $item
+	 * @param array $meta
+	 * @param string $taxonomy_type The taxonomy type ('recipe_category', 'recipe_tags', 'skill_level')
+	 */
+	public function display_taxonomy( $item, $meta, $taxonomy_type ) {
+		$taxonomy       = $taxonomy_type;
+		$taxonomy_label = $this->get_taxonomy_label( $taxonomy );
+		$taxonomy_terms = $this->get_taxonomy_terms( $item->ID, $taxonomy );
+
+		if ( ! empty( $taxonomy_terms ) ) {
+			// Determine which template to use based on recipe style
+			$recipe_style = $this->get_options_value( 'recipe_style' );
+			
+			if ( $recipe_style === 'style1' || $recipe_style === 'style4' ) {
+				// Use original template for style 1 and 4
+				include boorecipe_get_template( 'sub-section-meta-taxonomy-entry', 'single' );
+			} else {
+				// Use style 2 template for styles 2 and 3
+				include boorecipe_get_template( 'sub-section-meta-taxonomy-style-2-entry', 'single' );
+			}
+		}
+	}
+
+	/**
+	 * Unified category taxonomy - wrapper for display_taxonomy
+	 *
+	 * @param object $item
+	 * @param array $meta
+	 */
+	public function unified_taxonomy_category( $item, $meta ) {
+		$this->display_taxonomy( $item, $meta, 'recipe_category' );
+	}
+
+	/**
+	 * Unified tags taxonomy - wrapper for display_taxonomy
+	 *
+	 * @param object $item
+	 * @param array $meta
+	 */
+	public function unified_taxonomy_tags( $item, $meta ) {
+		$this->display_taxonomy( $item, $meta, 'recipe_tags' );
+	}
+
+	/**
+	 * Unified skill level taxonomy - wrapper for display_taxonomy
+	 *
+	 * @param object $item
+	 * @param array $meta
+	 */
+	public function unified_taxonomy_skill_level( $item, $meta ) {
+		$this->display_taxonomy( $item, $meta, 'skill_level' );
+	}
 
 
 	/**

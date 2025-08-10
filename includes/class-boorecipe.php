@@ -425,11 +425,11 @@ class Boorecipe {
 		$this->loader->add_filter( 'boorecipe_single_recipe_post_classes', $single_template, 'filter_recipe_post_classes', 10, 1 );
 
 		/*
-		 * Single Recipe Media
+		 * Single Recipe Media - Unified system handles all media types
 		 */
-		$this->loader->add_action( 'boorecipe_single_media', $single_template, 'recipe_featured_image', 10, 2 );
+		$this->loader->add_action( 'boorecipe_single_media', $single_template, 'display_unified_media', 10, 2 );
 
-		// Premium Media Features are handled by the premium plugin
+		// Premium media features (video, slider) are now handled by the unified system
 
 		/*
 		 * Single Recipe Head
@@ -457,8 +457,8 @@ class Boorecipe {
 		// Recipe Taxonomies
 		$this->loader->add_action( 'boorecipe_single_meta', $single_template, 'sub_section_meta_taxonomy_style_1', 10, 2 );
 		$this->loader->add_action( 'boorecipe_single_meta_taxonomy', $single_template, 'unified_taxonomy_icon', 8, 2 );
-		$this->loader->add_action( 'boorecipe_single_meta_taxonomy', $single_template, 'the_taxonomy_category', 9, 2 );
-		$this->loader->add_action( 'boorecipe_single_meta_taxonomy', $single_template, 'the_taxonomy_tags', 11, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_taxonomy', $single_template, 'unified_taxonomy_category', 9, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_taxonomy', $single_template, 'unified_taxonomy_tags', 11, 2 );
 
 		// Premium Taxonomy is handled by the premium plugin
 
@@ -473,7 +473,7 @@ class Boorecipe {
 		$this->loader->add_action( 'boorecipe_single_meta', $single_template, 'sub_section_meta_key_point_style_1', 10, 2 );
 		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_1', $single_template, 'unified_key_point_icon', 8, 2 );
 		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_1', $single_template, 'yields', 9, 2 );
-		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_1', $single_template, 'the_taxonomy_skill_level', 9, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_1', $single_template, 'unified_taxonomy_skill_level', 9, 2 );
 
 		// Premium Key Points are handled by the premium plugin
 
