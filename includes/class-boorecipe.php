@@ -425,55 +425,57 @@ class Boorecipe {
 		$this->loader->add_filter( 'boorecipe_single_recipe_post_classes', $single_template, 'filter_recipe_post_classes', 10, 1 );
 
 		/*
-		 * Single Recipe Media - Unified system handles all media types
+		 * Single Recipe Media - Unified system handles all media types (Priority: 10-19)
 		 */
 		$this->loader->add_action( 'boorecipe_single_media', $single_template, 'display_unified_media', 10, 2 );
 
 		// Premium media features (video, slider) are now handled by the unified system
 
 		/*
-		 * Single Recipe Head
+		 * Single Recipe Head (Priority: 20-29)
 		 */
-		$this->loader->add_action( 'boorecipe_single_head', $single_template, 'the_title', 10, 2 );
-		$this->loader->add_action( 'boorecipe_single_head', $single_template, 'sub_section_publish_info', 10, 2 );
-		$this->loader->add_action( 'boorecipe_single_head', $single_template, 'sub_section_short_description', 10, 2 );
-		$this->loader->add_action( 'boorecipe_single_head_publish_info', $single_template, 'the_author', 10, 2 );
-		$this->loader->add_action( 'boorecipe_single_head_publish_info', $single_template, 'the_date', 10, 2 );
+		$this->loader->add_action( 'boorecipe_single_head', $single_template, 'the_title', 20, 2 );
+		$this->loader->add_action( 'boorecipe_single_head', $single_template, 'sub_section_publish_info', 21, 2 );
+		$this->loader->add_action( 'boorecipe_single_head', $single_template, 'sub_section_short_description', 22, 2 );
+		$this->loader->add_action( 'boorecipe_single_head_publish_info', $single_template, 'the_author', 20, 2 );
+		$this->loader->add_action( 'boorecipe_single_head_publish_info', $single_template, 'the_date', 21, 2 );
 
 		/*
 		 * Single Recipe Meta
 		 */
 
 		/*
-		 * Single Recipe Body
+		 * Single Recipe Body (Priority: 40-49)
 		 */
-		$this->loader->add_action( 'boorecipe_single_body', $single_template, 'ingredients', 9, 2 );
-		$this->loader->add_action( 'boorecipe_single_body', $single_template, 'instructions', 10, 2 );
-		$this->loader->add_action( 'boorecipe_single_body', $single_template, 'additional_notes', 10, 2 );
-		$this->loader->add_action( 'boorecipe_single_body', $single_template, 'nutrition', 11, 2 );
+		$this->loader->add_action( 'boorecipe_single_body', $single_template, 'ingredients', 40, 2 );
+		$this->loader->add_action( 'boorecipe_single_body', $single_template, 'instructions', 41, 2 );
+		$this->loader->add_action( 'boorecipe_single_body', $single_template, 'additional_notes', 42, 2 );
+		$this->loader->add_action( 'boorecipe_single_body', $single_template, 'nutrition', 43, 2 );
 
 		// Premium Body Features are handled by the premium plugin
 
-		// Recipe Taxonomies
-		$this->loader->add_action( 'boorecipe_single_meta', $single_template, 'sub_section_meta_taxonomy_style_1', 10, 2 );
-		$this->loader->add_action( 'boorecipe_single_meta_taxonomy', $single_template, 'unified_taxonomy_icon', 8, 2 );
-		$this->loader->add_action( 'boorecipe_single_meta_taxonomy', $single_template, 'unified_taxonomy_category', 9, 2 );
-		$this->loader->add_action( 'boorecipe_single_meta_taxonomy', $single_template, 'unified_taxonomy_tags', 11, 2 );
+		/*
+		 * Single Recipe Meta (Priority: 30-39)
+		 */
 
-		// Premium Taxonomy is handled by the premium plugin
+		// Recipe Taxonomies - Unified system for all styles
+		$this->loader->add_action( 'boorecipe_single_meta', $single_template, 'display_unified_taxonomy_section', 30, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_taxonomy', $single_template, 'unified_taxonomy_icon', 30, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_taxonomy', $single_template, 'unified_taxonomy_category', 31, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_taxonomy', $single_template, 'unified_taxonomy_tags', 32, 2 );
 
 		// Recipe Times - Unified system for all styles
-		$this->loader->add_action( 'boorecipe_single_meta', $single_template, 'sub_section_meta_time', 10, 2 );
-		$this->loader->add_action( 'boorecipe_single_meta_time', $single_template, 'unified_time_icon', 8, 2 );
-		$this->loader->add_action( 'boorecipe_single_meta_time', $single_template, 'recipe_prep_time', 9, 2 );
-		$this->loader->add_action( 'boorecipe_single_meta_time', $single_template, 'recipe_cook_time', 10, 2 );
-		$this->loader->add_action( 'boorecipe_single_meta_time', $single_template, 'recipe_total_time', 11, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta', $single_template, 'sub_section_meta_time', 31, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_time', $single_template, 'unified_time_icon', 30, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_time', $single_template, 'recipe_prep_time', 31, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_time', $single_template, 'recipe_cook_time', 32, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_time', $single_template, 'recipe_total_time', 33, 2 );
 
-		// Recipe Key Points
-		$this->loader->add_action( 'boorecipe_single_meta', $single_template, 'sub_section_meta_key_point_style_1', 10, 2 );
-		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_1', $single_template, 'unified_key_point_icon', 8, 2 );
-		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_1', $single_template, 'yields', 9, 2 );
-		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_1', $single_template, 'unified_taxonomy_skill_level', 9, 2 );
+		// Recipe Key Points - Unified system for all styles
+		$this->loader->add_action( 'boorecipe_single_meta', $single_template, 'display_unified_key_point_section', 32, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_1', $single_template, 'unified_key_point_icon', 30, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_1', $single_template, 'yields', 31, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_1', $single_template, 'unified_taxonomy_skill_level', 32, 2 );
 
 		// Premium Key Points are handled by the premium plugin
 

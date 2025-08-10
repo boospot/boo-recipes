@@ -505,15 +505,17 @@ class Boorecipe_Premium {
 		 * Single Recipe Body
 		 */
 
-		$this->loader->add_action( 'boorecipe_single_body', $single_premium_templates, 'recipe_tool_display', 10, 2 );
+		// Premium Body Features (Priority: 44-49 - after core body content)
+		$this->loader->add_action( 'boorecipe_single_body', $single_premium_templates, 'recipe_tool_display', 44, 2 );
 
-		$this->loader->add_action( 'boorecipe_single_body', $single_premium_templates, 'cooking_methods_display', 10, 2 );
+		$this->loader->add_action( 'boorecipe_single_body', $single_premium_templates, 'cooking_methods_display', 45, 2 );
 
-		$this->loader->add_action( 'boorecipe_single_body_after', $single_premium_templates, 'ratings_display', 10, 2 );
+		// Premium Body After Features (Priority: 50-59)
+		$this->loader->add_action( 'boorecipe_single_body_after', $single_premium_templates, 'ratings_display', 50, 2 );
 
-		$this->loader->add_action( 'boorecipe_single_body_after', $single_premium_templates, 'author_box', 11, 2 );
+		$this->loader->add_action( 'boorecipe_single_body_after', $single_premium_templates, 'author_box', 51, 2 );
 
-		$this->loader->add_action( 'boorecipe_single_body_after', $single_premium_templates, 'related_recipes_section', 13, 2 );
+		$this->loader->add_action( 'boorecipe_single_body_after', $single_premium_templates, 'related_recipes_section', 52, 2 );
 
 
 		// Filter no longer needed - unified media system handles priority automatically
@@ -523,39 +525,41 @@ class Boorecipe_Premium {
 		 * Recipe Style : 2
 		 */
 
-		$this->loader->add_action( 'boorecipe_single_meta', $single_premium_templates, 'sub_section_meta_key_point_style_2', 10, 2 );
+		// Key points now handled by unified system in free plugin which auto-detects style
+		// $this->loader->add_action( 'boorecipe_single_meta', $single_premium_templates, 'sub_section_meta_key_point_style_2', 10, 2 );
 
-		// Basic taxonomies now use unified system from free plugin
-		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $single_premium_templates, 'unified_taxonomy_category', 15, 2 );
+		// Premium Meta Key Points (Priority: 33-39 - within meta section range)
+		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $single_premium_templates, 'unified_taxonomy_category', 33, 2 );
 
-		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $single_premium_templates, 'the_taxonomy_cuisine_style_2', 15, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $single_premium_templates, 'the_taxonomy_cuisine_style_2', 34, 2 );
 
-		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $single_premium_templates, 'unified_taxonomy_tags', 15, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $single_premium_templates, 'unified_taxonomy_tags', 35, 2 );
 
-		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $single_premium_templates, 'unified_taxonomy_skill_level', 15, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $single_premium_templates, 'unified_taxonomy_skill_level', 36, 2 );
 
-		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $single_premium_templates, 'the_taxonomy_cooking_method_style_2', 15, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $single_premium_templates, 'the_taxonomy_cooking_method_style_2', 37, 2 );
 
-		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $single_premium_templates, 'key_point_yields_style_2', 15, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $single_premium_templates, 'key_point_yields_style_2', 38, 2 );
 
-		$this->loader->add_action( 'boorecipe_single_body_before', $single_premium_templates, 'section_sharing_buttons_style_2', 10, 2 );
+		// Premium Body Before Features (Priority: 35-39 - before main body content)
+		$this->loader->add_action( 'boorecipe_single_body_before', $single_premium_templates, 'section_sharing_buttons_style_2', 35, 2 );
 
 		// Time functions are now handled by the unified system in the free plugin
 		// For Style 2, the time display is moved to body_before section
-		$this->loader->add_action( 'boorecipe_single_body_before', $single_premium_templates, 'sub_section_meta_time_style_2', 9, 2 );
+		$this->loader->add_action( 'boorecipe_single_body_before', $single_premium_templates, 'sub_section_meta_time_style_2', 36, 2 );
 
 
-		/* Options Hooks */
-		$this->loader->add_action( 'boorecipe_single_media_before', $single_premium_templates, 'single_media_before', 10, 2 );
-		$this->loader->add_action( 'boorecipe_single_media_after', $single_premium_templates, 'single_media_after', 10, 2 );
-		$this->loader->add_action( 'boorecipe_single_head_before', $single_premium_templates, 'single_head_before', 10, 2 );
-		$this->loader->add_action( 'boorecipe_single_head_after', $single_premium_templates, 'single_head_after', 10, 2 );
-		$this->loader->add_action( 'boorecipe_single_meta_before', $single_premium_templates, 'single_meta_before', 10, 2 );
-		$this->loader->add_action( 'boorecipe_single_meta_after', $single_premium_templates, 'single_meta_after', 10, 2 );
-		$this->loader->add_action( 'boorecipe_single_body_before', $single_premium_templates, 'single_body_before', 10, 2 );
-		$this->loader->add_action( 'boorecipe_single_body_after', $single_premium_templates, 'single_body_after', 10, 2 );
-		$this->loader->add_action( 'boorecipe_single_article_after_start', $single_premium_templates, 'single_article_before_start', 10, 2 );
-		$this->loader->add_action( 'boorecipe_single_article_after_end', $single_premium_templates, 'single_article_after_end', 10, 2 );
+		/* Premium Options Hooks - Follow section priority ranges */
+		$this->loader->add_action( 'boorecipe_single_media_before', $single_premium_templates, 'single_media_before', 15, 2 );
+		$this->loader->add_action( 'boorecipe_single_media_after', $single_premium_templates, 'single_media_after', 15, 2 );
+		$this->loader->add_action( 'boorecipe_single_head_before', $single_premium_templates, 'single_head_before', 25, 2 );
+		$this->loader->add_action( 'boorecipe_single_head_after', $single_premium_templates, 'single_head_after', 25, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_before', $single_premium_templates, 'single_meta_before', 35, 2 );
+		$this->loader->add_action( 'boorecipe_single_meta_after', $single_premium_templates, 'single_meta_after', 35, 2 );
+		$this->loader->add_action( 'boorecipe_single_body_before', $single_premium_templates, 'single_body_before', 45, 2 );
+		$this->loader->add_action( 'boorecipe_single_body_after', $single_premium_templates, 'single_body_after', 55, 2 );
+		$this->loader->add_action( 'boorecipe_single_article_after_start', $single_premium_templates, 'single_article_before_start', 5, 2 );
+		$this->loader->add_action( 'boorecipe_single_article_after_end', $single_premium_templates, 'single_article_after_end', 60, 2 );
 
 
 		/*
@@ -564,7 +568,7 @@ class Boorecipe_Premium {
 		$this->loader->add_filter( 'boorecipe_single_recipe_layout_class', $single_premium_templates, 'single_recipe_layout_class' );
 
 		$this->loader->add_action( 'boorecipe_single_body_before', $single_premium_templates, 'add_boo_recipe_details_wrapper' );
-		$this->loader->add_action( 'boorecipe_single_body_after', $single_premium_templates, 'close_boo_recipe_details_wrapper', 12 );
+		$this->loader->add_action( 'boorecipe_single_body_after', $single_premium_templates, 'close_boo_recipe_details_wrapper', 53 );
 	}
 
 	/**

@@ -674,6 +674,45 @@ class Boorecipe_Single_Template_Functions extends Boorecipe_Template_Functions {
 		$this->display_taxonomy( $item, $meta, 'skill_level' );
 	}
 
+	/**
+	 * Unified key point section display for all styles
+	 * Automatically detects style and uses appropriate template
+	 *
+	 * @param object $item
+	 * @param array $meta
+	 */
+	public function display_unified_key_point_section( $item, $meta ) {
+		$recipe_style = $this->get_options_value( 'recipe_style' );
+		
+		if ( $recipe_style === 'style1' ) {
+			// Style 1 uses its own template
+			include boorecipe_get_template( 'sub-section-meta-key-point-style-1', 'single' );
+		} else {
+			// Style 2, 3, 4 use the style 2 template
+			include boorecipe_get_template( 'sub-section-meta-key-point-style-2', 'single' );
+		}
+	}
+
+	/**
+	 * Unified taxonomy section display for all styles
+	 * Automatically detects style and uses appropriate template
+	 *
+	 * @param object $item
+	 * @param array $meta
+	 */
+	public function display_unified_taxonomy_section( $item, $meta ) {
+		$recipe_style = $this->get_options_value( 'recipe_style' );
+		
+		if ( $recipe_style === 'style1' ) {
+			// Style 1 uses the basic taxonomy template
+			include boorecipe_get_template( 'sub-section-meta-taxonomy', 'single' );
+		} else {
+			// Style 2, 3, 4 don't show taxonomy in meta section
+			// They show it in key points section via unified taxonomies
+			return;
+		}
+	}
+
 
 	/**
 	 * Includes   public/templates/single/sub-section-head-publish-info
