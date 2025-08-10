@@ -836,28 +836,10 @@ if ( ! function_exists( 'boorecipe_get_taxonomy_terms' ) ) :
 
 	function boorecipe_get_taxonomy_terms( $taxonomy ) {
 
-// Get the term IDs assigned to post.
-		$post_terms = wp_get_object_terms( get_the_ID(), $taxonomy, array( 'fields' => 'ids' ) );
-
-// Separator between links.
-		$separator = ', ';
-
-		if ( ! empty( $post_terms ) && ! is_wp_error( $post_terms ) ) {
-
-			$term_ids = implode( ',', $post_terms );
-
-			$terms = wp_list_categories( array(
-				'title_li' => '',
-				'style'    => 'none',
-				'echo'     => false,
-				'taxonomy' => $taxonomy,
-				'include'  => $term_ids
-			) );
-
-
-			$terms = rtrim( trim( str_replace( '<br />', $separator, $terms ) ), $separator );
-
-			// Display post categories.
+		// Get the terms directly using get_the_term_list for clean output
+		$terms = get_the_term_list( get_the_ID(), $taxonomy, '', ', ', '' );
+		
+		if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
 			return $terms;
 		} else {
 			return false;

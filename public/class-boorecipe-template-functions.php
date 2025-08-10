@@ -218,33 +218,15 @@ class Boorecipe_Template_Functions {
 	 * @return bool|false|string
 	 */
 	public function get_taxonomy_terms( $post_id, $taxonomy ) {
-		// Get the term IDs assigned to post.
-		$post_terms = wp_get_object_terms( $post_id, $taxonomy, array( 'fields' => 'ids' ) );
-
-		if ( ! empty( $post_terms ) && ! is_wp_error( $post_terms ) ) {
-
-			// Separator between links.
-			$separator = ' ';
-
-			$term_ids = implode( ',', $post_terms );
-
-			$terms = wp_list_categories( array(
-				'title_li' => '',
-				'style'    => 'none',
-				'echo'     => false,
-				'taxonomy' => $taxonomy,
-				'include'  => $term_ids
-			) );
-
-
-			$terms = rtrim( trim( str_replace( '<br />', $separator, $terms ) ), $separator );
-
-			// Display post categories.
+		// Get the terms directly using get_the_term_list for clean output
+		$terms = get_the_term_list( $post_id, $taxonomy, '', ', ', '' );
+		
+		if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
 			return $terms;
 		} else {
 			return false;
 		}
-	} // get_taxonomy_label
+	} // get_taxonomy_terms
 
 	/**
 	 * @return bool|string  layout id or false
