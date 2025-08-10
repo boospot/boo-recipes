@@ -674,18 +674,11 @@ video.wp-video-shortcode {
   font-size: 2em;
 }
 
-/* FlexSlider slide visibility management */
+/* FlexSlider slide visibility management - let FlexSlider handle everything naturally */
+
+/* Override FlexSlider's default display: none for slides */
 .recipe-image-slider .flexslider .slides > li {
-  /* Let FlexSlider handle slide display by default */
-}
-
-/* Only show first slide before FlexSlider initializes (fallback) */
-.recipe-image-slider .flexslider:not(.flexslider-initialized) .slides > li:first-child {
-  display: block !important;
-}
-
-.recipe-image-slider .flexslider:not(.flexslider-initialized) .slides > li:not(:first-child) {
-  display: none !important;
+  display: block;
 }
 
 /* Ensure slider container has proper dimensions */
