@@ -29,9 +29,10 @@
 	 * practising this, we should strive to set a better example in our own work.
 	 */
 
-    $( window ).on('load' , function() {
+    $( document ).ready(function() {
 
 		//Image slide for single recipe
+		setTimeout(function() {
     	var slider_container = $('.recipe-image-slider');
     	var has_slides = $('.recipe-image-slider .slides li').length > 0;
     	
@@ -85,6 +86,7 @@
 		} else {
 			console.log('Slider not initialized - container or slides missing');
 		}
+		}, 100); // Small delay to ensure images are loaded
 
 		function onHoverAddClass(selector , classname){
             selector.addClass(classname);

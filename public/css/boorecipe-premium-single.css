@@ -674,18 +674,18 @@ video.wp-video-shortcode {
   font-size: 2em;
 }
 
-/* Fix for FlexSlider slides not displaying - Only apply fallback when not initialized */
+/* FlexSlider slide visibility management */
+.recipe-image-slider .flexslider .slides > li {
+  /* Let FlexSlider handle slide display by default */
+}
+
+/* Only show first slide before FlexSlider initializes (fallback) */
 .recipe-image-slider .flexslider:not(.flexslider-initialized) .slides > li:first-child {
   display: block !important;
 }
 
 .recipe-image-slider .flexslider:not(.flexslider-initialized) .slides > li:not(:first-child) {
   display: none !important;
-}
-
-/* Once FlexSlider is initialized, let it handle slide display */
-.recipe-image-slider .flexslider.flexslider-initialized .slides > li {
-  display: block !important;
 }
 
 /* Ensure slider container has proper dimensions */
