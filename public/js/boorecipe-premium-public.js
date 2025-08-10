@@ -32,8 +32,17 @@
     $( window ).on('load' , function() {
 
 		//Image slide for single recipe
-    	var slider_container =  $('.recipe-image-slider').text();
-    	if(slider_container){
+    	var slider_container = $('.recipe-image-slider');
+    	var has_slides = $('.recipe-image-slider .slides li').length > 0;
+    	
+    	// Debug logging
+    	console.log('Slider Debug:', {
+    		container_exists: slider_container.length > 0,
+    		slides_count: $('.recipe-image-slider .slides li').length,
+    		has_slides: has_slides
+    	});
+    	
+    	if(slider_container.length && has_slides){
             $('#slider-thumbs-section').flexslider({
                 animation: "slide",
                 controlNav: false,
