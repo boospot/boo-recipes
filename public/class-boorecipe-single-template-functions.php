@@ -270,6 +270,68 @@ class Boorecipe_Single_Template_Functions extends Boorecipe_Template_Functions {
 		include boorecipe_get_template( 'sub-section-icon', 'single' );
 	}
 
+	/**
+	 * Unified icon display function for all icon types
+	 *
+	 * @param object $item
+	 * @param array $meta
+	 * @param string $icon_type The type of icon to display ('taxonomy', 'time', 'key_point')
+	 */
+	public function display_icon( $item, $meta, $icon_type = 'taxonomy' ) {
+		if ( $this->get_options_value( 'show_icons' ) !== 'yes' ) {
+			return;
+		}
+
+		// Define icon mapping
+		$icon_map = array(
+			'taxonomy'  => 'tags',
+			'time'      => 'clock', 
+			'key_point' => 'utensils'
+		);
+
+		// Get the appropriate SVG icon
+		$svg = isset( $icon_map[ $icon_type ] ) ? $icon_map[ $icon_type ] : 'tags';
+		
+		// Include the icon template
+		include boorecipe_get_template( 'sub-section-icon', 'single' );
+	}
+
+	/**
+	 * Unified taxonomy icon - wrapper for display_icon
+	 *
+	 * @hooked      boorecipe_single_meta_taxonomy        8
+	 *
+	 * @param object $item
+	 * @param array $meta
+	 */
+	public function unified_taxonomy_icon( $item, $meta ) {
+		$this->display_icon( $item, $meta, 'taxonomy' );
+	}
+
+	/**
+	 * Unified time icon - wrapper for display_icon
+	 *
+	 * @hooked      boorecipe_single_meta_time        8
+	 *
+	 * @param object $item
+	 * @param array $meta
+	 */
+	public function unified_time_icon( $item, $meta ) {
+		$this->display_icon( $item, $meta, 'time' );
+	}
+
+	/**
+	 * Unified key point icon - wrapper for display_icon
+	 *
+	 * @hooked      boorecipe_single_meta_key_point_style_1        8
+	 *
+	 * @param object $item
+	 * @param array $meta
+	 */
+	public function unified_key_point_icon( $item, $meta ) {
+		$this->display_icon( $item, $meta, 'key_point' );
+	}
+
 
 	/**
 	 * Include      public/templates/single/sub-section-meta-key-point-entry
@@ -554,6 +616,20 @@ class Boorecipe_Single_Template_Functions extends Boorecipe_Template_Functions {
 		include boorecipe_get_template( 'sub-section-meta-time-style-1', 'single' );
 
 	} //sub_section_single_taxonomy
+
+	/**
+	 * sub section meta time - unified for all styles
+	 *
+	 * @hooked      boorecipe_single_meta        10
+	 *
+	 * @param object $item
+	 * @param array $meta
+	 */
+	public function sub_section_meta_time( $item, $meta ) {
+
+		include boorecipe_get_template( 'sub-section-meta-time', 'single' );
+
+	} //sub_section_meta_time
 
 
 	/**

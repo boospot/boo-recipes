@@ -1,5 +1,6 @@
 @charset "UTF-8";
 /*Recipe Styling Begin here*/
+/* Test change - Sun Aug 10 02:50:42 PM PKT 2025 */
 .posttype-wrapper {
   display: flex;
   flex-direction: column;
@@ -111,7 +112,6 @@
   .posttype-wrapper.has-sidebar aside {
     flex: 1 0 25%;
   }
-
   .posttype-container .recipe-nutrition .nutrition-info-cont {
     display: inherit;
     justify-content: unset;
@@ -400,7 +400,6 @@
     background-color: #155724;
     color: #ffffff;
   }
-
   .recipe-ingredients .select-item {
     padding-left: 0px;
     margin-right: 0px;
@@ -412,7 +411,6 @@
     top: 5px;
     border: 2px solid #35b518;
   }
-
   .recipe-layout-style1 .recipe-body .recipe-main-body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -440,13 +438,12 @@
 @media screen {
   .responsive-video-container {
     position: relative;
-    padding-bottom: 56.25%;
-    /* 16:9 */
+    padding-bottom: 56.25%; /* 16:9 */
     padding-top: 25px;
     height: 0;
   }
   .responsive-video-container video,
-.responsive-video-container iframe {
+  .responsive-video-container iframe {
     position: absolute;
     top: 0;
     left: 0;
@@ -578,28 +575,26 @@ video.wp-video-shortcode {
     background-color: unset !important;
     color: #000000 !important;
   }
-
   .single-recipe {
     background: #ffffff;
     color: #000000 !important;
     margin: 0;
     max-width: 100%;
   }
-
   .recipe-img-cont,
-.recipe-share-buttons,
-.responsive-video-container,
-.wp-video,
-.single-featured-image-header,
-.subsection-icon,
-aside#secondary,
-img.avatar,
-.recipe-rating,
-.boorecipe-print-link,
-.recipe-author-name-box,
-.related-recipes-section,
-.recipe-comments,
-i {
+  .recipe-share-buttons,
+  .responsive-video-container,
+  .wp-video,
+  .single-featured-image-header,
+  .subsection-icon,
+  aside#secondary,
+  img.avatar,
+  .recipe-rating,
+  .boorecipe-print-link,
+  .recipe-author-name-box,
+  .related-recipes-section,
+  .recipe-comments,
+  i {
     display: none !important;
   }
 }

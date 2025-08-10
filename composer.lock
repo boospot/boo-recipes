@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e5e8b124f5ca96a18faa818803d6502d",
+    "content-hash": "357dfa2604939acdb7aec79b748b5684",
     "packages": [
         {
             "name": "boospot/boo-settings-helper",

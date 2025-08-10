@@ -18,11 +18,8 @@
   ],
   "extra": {
     "installer-paths": {
-      "vendor/meta-box/meta-box": [
-        "wpackagist-plugin/meta-box"
-      ],
       "vendor/meta-box/{$name}/": [
-        "type:wordpress-plugin"
+        "wpackagist-plugin/meta-box"
       ]
     }
   },

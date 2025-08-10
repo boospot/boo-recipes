@@ -263,7 +263,7 @@ class Boorecipe_Premium_Single_Template_Functions extends Boorecipe_Single_Templ
 
 
 	/**
-	 * Include      public/templates/single/sub-section-meta-time-style-2
+	 * Include time display for premium styles (positioned in body_before)
 	 *
 	 * @hooked      boorecipe_single_body_before        9
 	 *
@@ -273,10 +273,9 @@ class Boorecipe_Premium_Single_Template_Functions extends Boorecipe_Single_Templ
 	public function sub_section_meta_time_style_2( $item, $meta ) {
 
 		if ( $this->get_options_value( 'recipe_style' ) != 'style1' ) {
-			include boorecipe_get_template( 'sub-section-meta-time-style-2', 'single' );
-
+			// Use the unified time template for premium styles
+			include boorecipe_get_template( 'sub-section-meta-time', 'single' );
 		}
-
 
 	} //sub_section_meta_time_style_2
 

@@ -1,4 +1,5 @@
 /*Recipe Styling Begin here*/
+/* Test change - Sun Aug 10 02:50:42 PM PKT 2025 */
 /*------------------------------------------------------------------
     Search Form
 -------------------------------------------------------------------*/
@@ -84,7 +85,7 @@ form.boorecipe-search-form .select2-selection__clear {
   height: auto;
 }
 .recipe-card .recipe-link:hover {
-  box-shadow: 3px 3px 8px #b3b3b3;
+  box-shadow: 3px 3px 8px hsl(0, 0%, 70%);
 }
 .recipe-cards .recipe-card .recipe-img-cont {
   margin-bottom: 0;
@@ -332,7 +333,6 @@ form.boorecipe-search-form .select2-selection__clear {
   .per-row-2 .recipe-card.overlay-archive .recipe-card-content {
     width: 100%;
   }
-
   .recipes-layout-list .recipe-card .recipe-link .recipe-img-cont {
     flex-basis: 150px;
   }
@@ -353,19 +353,15 @@ form.boorecipe-search-form .select2-selection__clear {
   .per-row-5:not(.recipes-layout-list):not(.recipes-layout-overlay) .recipe-card {
     width: 20%;
   }
-
   .per-row-4:not(.recipes-layout-list):not(.recipes-layout-overlay) .recipe-card {
     width: 25%;
   }
-
   .per-row-3:not(.recipes-layout-list):not(.recipes-layout-overlay) .recipe-card {
     width: 33.33%;
   }
-
   .per-row-2:not(.recipes-layout-list) .recipe-card {
     width: 50%;
   }
-
   .per-row-1 .recipe-card {
     width: 100%;
   }

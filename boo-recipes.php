@@ -73,6 +73,10 @@ define( 'BOORECIPE_VERSION', '3.0.0' );
 function activate_boorecipe() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-boorecipe-activator.php';
 	Boorecipe_Activator::activate();
+	
+	// Also activate premium features
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-boorecipe-premium-activator.php';
+	Boorecipe_Premium_Activator::activate();
 }
 
 /**
@@ -82,6 +86,10 @@ function activate_boorecipe() {
 function deactivate_boorecipe() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-boorecipe-deactivator.php';
 	Boorecipe_Deactivator::deactivate();
+	
+	// Also deactivate premium features
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-boorecipe-premium-deactivator.php';
+	Boorecipe_Premium_Deactivator::deactivate();
 }
 
 register_activation_hook( __FILE__, 'activate_boorecipe' );
@@ -94,6 +102,11 @@ register_deactivation_hook( __FILE__, 'deactivate_boorecipe' );
 require plugin_dir_path( __FILE__ ) . 'includes/class-boorecipe.php';
 
 /**
+ * The premium plugin class that extends the core functionality
+ */
+require plugin_dir_path( __FILE__ ) . 'includes/class-boorecipe-premium.php';
+
+/**
  * Begins execution of the plugin.
  *
  * Since everything within the plugin is registered via hooks,
@@ -104,8 +117,13 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-boorecipe.php';
  */
 function run_boorecipe() {
 
+	// Initialize the free plugin
 	$plugin = new Boorecipe();
 	$plugin->run();
+	
+	// Initialize the premium features
+	$premium_plugin = new Boorecipe_Premium();
+	$premium_plugin->run();
 
 }
 
