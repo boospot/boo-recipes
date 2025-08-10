@@ -510,8 +510,10 @@ class Boorecipe {
 			// Premium Body Before Features (Priority: 35-39)
 			// Time display for Style 2 and Style 3 (positioned before body content)
 			$this->loader->add_action( 'boorecipe_single_body_before', $premium_template, 'sub_section_meta_time_style_2', 35, 2 );
-			// Sharing buttons for Style 2 (after time information)
-			$this->loader->add_action( 'boorecipe_single_body_before', $premium_template, 'section_sharing_buttons_style_2', 36, 2 );
+			
+			// Premium Meta Features for Style 2+ (Priority: 33-39)
+			// Sharing buttons for Style 2 (in meta section, after key points)
+			$this->loader->add_action( 'boorecipe_single_meta', $premium_template, 'section_sharing_buttons_style_2', 39, 2 );
 
 			// Premium Options Hooks - Follow section priority ranges
 			$this->loader->add_action( 'boorecipe_single_media_before', $premium_template, 'single_media_before', 15, 2 );
