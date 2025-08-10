@@ -42,24 +42,44 @@
     		has_slides: has_slides
     	});
     	
+    	// Check if FlexSlider is available
+    	if (typeof $.fn.flexslider === 'undefined') {
+    		console.error('FlexSlider is not loaded!');
+    		return;
+    	}
+    	
     	if(slider_container.length && has_slides){
-            $('#slider-thumbs-section').flexslider({
-                animation: "slide",
-                controlNav: false,
-                animationLoop: false,
-                slideshow: false,
-                itemWidth: 210,
-                itemMargin: 5,
-                asNavFor: '#slider-image-section',
-            });
+    		console.log('Initializing FlexSlider...');
+    		
+            try {
+                $('#slider-thumbs-section').flexslider({
+                    animation: "slide",
+                    controlNav: false,
+                    animationLoop: false,
+                    slideshow: false,
+                    itemWidth: 210,
+                    itemMargin: 5,
+                    asNavFor: '#slider-image-section',
+                });
 
-            $('#slider-image-section').flexslider({
-                animation: "slide",
-                controlNav: false,
-                animationLoop: false,
-                slideshow: false,
-                sync: "#slider-thumbs-section"
-            });
+                $('#slider-image-section').flexslider({
+                    animation: "slide",
+                    controlNav: false,
+                    animationLoop: false,
+                    slideshow: false,
+                    sync: "#slider-thumbs-section"
+                });
+                
+                console.log('FlexSlider initialized successfully!');
+                
+                // Add a class to indicate initialization
+                slider_container.addClass('flexslider-initialized');
+                
+            } catch (error) {
+                console.error('Error initializing FlexSlider:', error);
+            }
+		} else {
+			console.log('Slider not initialized - container or slides missing');
 		}
 
 		function onHoverAddClass(selector , classname){
