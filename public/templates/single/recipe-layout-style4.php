@@ -18,6 +18,9 @@ do_action( 'boorecipe_single_head_after', $item, $meta );
             do_action( 'boorecipe_single_meta_after', $item, $meta );
             ?>
         </div>
+        <div class="posttype-sub-section recipe-time-info">
+            <?php do_action( 'boorecipe_single_meta_time', $item, $meta ); ?>
+        </div>
     </div>
 <?php
 do_action( 'boorecipe_single_body_before', $item, $meta );

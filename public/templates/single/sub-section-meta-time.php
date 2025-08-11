@@ -17,10 +17,9 @@ if ($recipe_style === 'style3') {
 	return; // Don't display time in meta section for Style 3
 }
 
-// For Style 4, don't include the wrapper div since it's already wrapped in the template
+// For Style 4, render outside the meta container in the layout template
 if ($recipe_style === 'style4') {
-	// Icon first, then time entries
-	do_action( 'boorecipe_single_meta_time', $item, $meta );
+    return;
 } else {
 ?>
 <div class="posttype-sub-section recipe-time-info">
