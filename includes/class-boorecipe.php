@@ -507,9 +507,12 @@ class Boorecipe {
 			$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $premium_template, 'the_taxonomy_cooking_method_style_2', 37, 2 );
 			$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $premium_template, 'key_point_yields_style_2', 38, 2 );
 
-			// Premium Body Before Features (Priority: 35-39)
-			// Time display for Style 2 and Style 3 (positioned before body content)
-			$this->loader->add_action( 'boorecipe_single_body_before', $premium_template, 'sub_section_meta_time_style_2', 35, 2 );
+            // Premium Body Before Features (Priority: 35-39)
+            // Time display for Style 2 (positioned before body content)
+            $this->loader->add_action( 'boorecipe_single_body_before', $premium_template, 'sub_section_meta_time_style_2', 35, 2 );
+
+            // For Style 3, show time right after meta (outside boo-recipe-details-wrapper)
+            $this->loader->add_action( 'boorecipe_single_meta_after', $premium_template, 'sub_section_meta_time_style_3', 35, 2 );
 			
 			// Premium Meta Features for Style 2+ (Priority: 33-39)
 			// Sharing buttons for Style 2 (moved to body_before, after time info, before ingredients)
