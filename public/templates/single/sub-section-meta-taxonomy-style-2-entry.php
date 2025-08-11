@@ -9,13 +9,6 @@ $single_recipe_icon_size_2 = $this->get_options_value( 'single_recipe_icon_size_
 $show_icons                = ( $this->get_options_value( 'show_icons' ) === 'yes' ) ? true : false;
 ?>
 <div class="taxonomy-<?php echo strtolower( sanitize_html_class( $taxonomy ) ); ?>">
-    <span class="key-point-label">
-        <?php if ( $show_icons ) : ?>
-	        <?php echo Boorecipe_Globals::get_svg( $taxonomy, "icon-size-{$single_recipe_icon_size_2}" ); ?>
-        <?php endif; ?>
-	    <?php if ( $show_key_point_label ) : ?>
-            <span class="subsection-label"><?php echo $taxonomy_label; ?></span>
-	    <?php endif; ?>
-     </span>
-    <span <?php echo $itemprop_tag ?> class="subsection-value"><?php echo $taxonomy_terms; ?></span>
+    <div class="key-point-label"><?php if ( $show_icons ) : ?><?php echo Boorecipe_Globals::get_svg( $taxonomy, "icon-size-{$single_recipe_icon_size_2}" ); ?><?php endif; ?><?php if ( $show_key_point_label ) : ?><div class="subsection-label"><?php echo $taxonomy_label; ?></div><?php endif; ?></div>
+    <p class="key-point-value"><span <?php echo $itemprop_tag ?> class="subsection-value value1"><?php echo $taxonomy_terms; ?></span></p>
 </div>
