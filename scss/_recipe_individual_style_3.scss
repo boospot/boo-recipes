@@ -11,7 +11,6 @@
 
     > div {
       display: flex !important;
-      flex-direction: column;
       align-items: flex-start;
       position: relative;
       padding-left: 3.5em;
@@ -136,14 +135,9 @@
       grid-row-gap:1.5em;
       grid-template-rows: auto;
 
-      .recipe-ingredients{
-        grid-row: 1;
-      }
-
-      .recipe-instructions {
-        grid-row: 1;
-        grid-column: 2 / 2 span;
-      }
+      // Default placement for style 4 remains; style 3 overrides below
+      .recipe-ingredients{ grid-row: 1; }
+      .recipe-instructions { grid-row: 1; grid-column: 2 / 2 span; }
 
       .recipe-nutrition{
         grid-row: 2 / 2 span;
@@ -157,6 +151,25 @@
     }
 
 
+  }
+
+  // For Style 3 specifically, show time info above ingredients/instructions
+  @media screen and (min-width: 50em) {
+    .single-recipe-style3 {
+      .boo-recipe-details-wrapper {
+        .recipe-time-info {
+          grid-row: 1;
+          grid-column: 1 / -1;
+        }
+        .recipe-ingredients {
+          grid-row: 2;
+        }
+        .recipe-instructions {
+          grid-row: 2;
+          grid-column: 2 / 2 span;
+        }
+      }
+    }
   }
 
 }

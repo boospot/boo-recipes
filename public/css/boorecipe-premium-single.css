@@ -419,7 +419,7 @@ video.wp-video-shortcode {
 }
 .single-recipe-style2 .posttype-section-box .posttype-section-sub-box .recipe-meta.recipe-style2 > div {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
   column-gap: 1rem;
 }
@@ -475,12 +475,11 @@ video.wp-video-shortcode {
   gap: 5px;
 }
 .single-recipe-style2 > div .key-point-label {
-  background-color: red !important;
+  display: flex;
   flex: 1 1 50%;
   justify-content: flex-start;
 }
 .single-recipe-style2 > div p {
-  background-color: blue !important;
   flex: 1 1 50%;
 }
 
@@ -504,18 +503,6 @@ video.wp-video-shortcode {
 }
 .single-recipe-style2 .posttype-container .posttype-sub-section > div:not(:last-of-type) {
   border-right: 0 !important;
-}
-
-.single-recipe-style2 .posttype-container .posttype-sub-section > div .key-point-label {
-  flex: 1 1 50%;
-  background-color: red !important;
-}
-
-.single-recipe-style2 .posttype-container .posttype-sub-section > div > p,
-.single-recipe-style2 .posttype-container .posttype-sub-section > div > .key-point-value {
-  flex: 1 1 50%;
-  justify-content: flex-end;
-  display: flex;
 }
 
 .recipe-wrapper {
@@ -840,7 +827,6 @@ video.wp-video-shortcode {
 }
 .single-recipe-style3 .recipe-meta.recipe-style3 > div, .single-recipe-style3 .recipe-meta.recipe-style4 > div, .single-recipe-style4 .recipe-meta.recipe-style3 > div, .single-recipe-style4 .recipe-meta.recipe-style4 > div {
   display: flex !important;
-  flex-direction: column;
   align-items: flex-start;
   position: relative;
   padding-left: 3.5em;
@@ -958,6 +944,19 @@ video.wp-video-shortcode {
   }
   .single-recipe-style3 .boo-recipe-details-wrapper .recipe-author-box, .single-recipe-style4 .boo-recipe-details-wrapper .recipe-author-box {
     background: transparent;
+  }
+}
+@media screen and (min-width: 50em) {
+  .single-recipe-style3 .single-recipe-style3 .boo-recipe-details-wrapper .recipe-time-info, .single-recipe-style4 .single-recipe-style3 .boo-recipe-details-wrapper .recipe-time-info {
+    grid-row: 1;
+    grid-column: 1/-1;
+  }
+  .single-recipe-style3 .single-recipe-style3 .boo-recipe-details-wrapper .recipe-ingredients, .single-recipe-style4 .single-recipe-style3 .boo-recipe-details-wrapper .recipe-ingredients {
+    grid-row: 2;
+  }
+  .single-recipe-style3 .single-recipe-style3 .boo-recipe-details-wrapper .recipe-instructions, .single-recipe-style4 .single-recipe-style3 .boo-recipe-details-wrapper .recipe-instructions {
+    grid-row: 2;
+    grid-column: 2/2 span;
   }
 }
 
