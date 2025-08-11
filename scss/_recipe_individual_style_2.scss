@@ -89,7 +89,23 @@
 
         > div {
           display: grid;
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: auto 1fr;
+          align-items: center;
+          column-gap: 1rem;
+        }
+
+        // ensure label (icon + text) sits neatly in left column
+        .key-point-label {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        // value alignment on the right column
+        .subsection-value {
+          justify-self: start;
+          text-align: left;
+          white-space: nowrap;
         }
       }
 

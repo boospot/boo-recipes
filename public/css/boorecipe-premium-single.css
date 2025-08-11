@@ -419,7 +419,19 @@ video.wp-video-shortcode {
 }
 .single-recipe-style2 .posttype-section-box .posttype-section-sub-box .recipe-meta.recipe-style2 > div {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  column-gap: 1rem;
+}
+.single-recipe-style2 .posttype-section-box .posttype-section-sub-box .recipe-meta.recipe-style2 .key-point-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.single-recipe-style2 .posttype-section-box .posttype-section-sub-box .recipe-meta.recipe-style2 .subsection-value {
+  justify-self: start;
+  text-align: left;
+  white-space: nowrap;
 }
 .single-recipe-style2 .recipe-main-body {
   display: flex;
