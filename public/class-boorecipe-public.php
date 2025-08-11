@@ -292,10 +292,15 @@ class Boorecipe_Public {
 	 * @param string $content The post content
 	 * @return string The modified content
 	 */
-	public function disable_wpautop_for_recipes( $content ) {
-		
-		// Only apply to recipe post types
-		if ( is_singular( 'boo_recipe' ) || is_post_type_archive( 'boo_recipe' ) || boorecipe_is_recipe_taxonomy() ) {
+    public function disable_wpautop_for_recipes( $content ) {
+
+        // Apply to single recipes, recipe archives/taxonomies, and when recipe shortcodes are active (embed)
+        if (
+            is_singular( 'boo_recipe' )
+            || is_post_type_archive( 'boo_recipe' )
+            || boorecipe_is_recipe_taxonomy()
+            || boorecipe_is_active_shortcode_single()
+        ) {
 			// Remove wpautop filter temporarily
 			remove_filter( 'the_content', 'wpautop' );
 			remove_filter( 'the_excerpt', 'wpautop' );
@@ -313,10 +318,15 @@ class Boorecipe_Public {
 	/**
 	 * Start output buffering for recipe templates to prevent whitespace issues
 	 */
-	public function start_output_buffering_for_recipes() {
-		
-		// Only apply to recipe post types
-		if ( is_singular( 'boo_recipe' ) || is_post_type_archive( 'boo_recipe' ) || boorecipe_is_recipe_taxonomy() ) {
+    public function start_output_buffering_for_recipes() {
+
+        // Apply to single recipes, archives/taxonomies, and recipe shortcodes (embed)
+        if (
+            is_singular( 'boo_recipe' )
+            || is_post_type_archive( 'boo_recipe' )
+            || boorecipe_is_recipe_taxonomy()
+            || boorecipe_is_active_shortcode_single()
+        ) {
 			ob_start( array( $this, 'clean_output_buffer' ) );
 		}
 	}
@@ -324,10 +334,15 @@ class Boorecipe_Public {
 	/**
 	 * End output buffering for recipe templates
 	 */
-	public function end_output_buffering_for_recipes() {
-		
-		// Only apply to recipe post types
-		if ( is_singular( 'boo_recipe' ) || is_post_type_archive( 'boo_recipe' ) || boorecipe_is_recipe_taxonomy() ) {
+    public function end_output_buffering_for_recipes() {
+
+        // Apply to single recipes, archives/taxonomies, and recipe shortcodes (embed)
+        if (
+            is_singular( 'boo_recipe' )
+            || is_post_type_archive( 'boo_recipe' )
+            || boorecipe_is_recipe_taxonomy()
+            || boorecipe_is_active_shortcode_single()
+        ) {
 			if ( ob_get_level() ) {
 				ob_end_flush();
 			}
@@ -340,19 +355,24 @@ class Boorecipe_Public {
 	 * @param string $buffer The output buffer content
 	 * @return string The cleaned content
 	 */
-	public function clean_output_buffer( $buffer ) {
-		
-		// Remove empty p tags
-		$buffer = preg_replace( '/<p>\s*<\/p>/', '', $buffer );
-		
-		// Remove extra whitespace
-		$buffer = preg_replace( '/\s+/', ' ', $buffer );
-		
-		// Remove whitespace between HTML tags
-		$buffer = preg_replace( '/>\s+</', '><', $buffer );
-		
-		return $buffer;
-	}
+    public function clean_output_buffer( $buffer ) {
+
+        // Remove empty paragraph wrappers introduced by autop or editors
+        // 1) Purely empty <p></p>
+        $buffer = preg_replace( '/<p>\s*<\/p>/i', '', $buffer );
+        // 2) <p><br/></p> or any number of <br> and whitespace inside
+        $buffer = preg_replace( '/<p>\s*(?:<br\s*\/??>\s*)+<\/p>/i', '', $buffer );
+        // 3) <p>&nbsp;</p>
+        $buffer = preg_replace( '/<p>\s*&nbsp;\s*<\/p>/i', '', $buffer );
+        // 4) <p><!-- comment --></p>
+        $buffer = preg_replace( '/<p>\s*<!--.*?-->\s*<\/p>/is', '', $buffer );
+
+        // Keep overall whitespace intact to avoid layout side-effects
+        // Only trim whitespace between tags conservatively (single space)
+        $buffer = preg_replace( '/>\s+</', '><', $buffer );
+
+        return $buffer;
+    }
 
 	/**
 	 * Disable Elementor wpautop for recipe content
@@ -361,10 +381,10 @@ class Boorecipe_Public {
 	 * @param int $post_id Post ID
 	 * @return array Modified data
 	 */
-	public function disable_elementor_wpautop_for_recipes( $data, $post_id ) {
-		
-		// Check if this is a recipe post
-		if ( get_post_type( $post_id ) === 'boo_recipe' ) {
+    public function disable_elementor_wpautop_for_recipes( $data, $post_id ) {
+
+        // Check if this is a recipe post or an active recipe shortcode context
+        if ( get_post_type( $post_id ) === 'boo_recipe' || boorecipe_is_active_shortcode_single() ) {
 			// Remove wpautop from Elementor's content processing
 			remove_filter( 'the_content', 'wpautop' );
 			remove_filter( 'the_excerpt', 'wpautop' );
@@ -380,24 +400,28 @@ class Boorecipe_Public {
 	 * @param \Elementor\Widget_Base $widget Widget instance
 	 * @return string Cleaned content
 	 */
-	public function clean_elementor_widget_content( $content, $widget ) {
-		
-		// Only apply to text editor widgets that contain recipe content
-		if ( $widget->get_name() === 'text-editor' && 
-		     ( is_singular( 'boo_recipe' ) || is_post_type_archive( 'boo_recipe' ) || boorecipe_is_recipe_taxonomy() ) ) {
-			
-			// Remove empty p tags
-			$content = preg_replace( '/<p>\s*<\/p>/', '', $content );
-			
-			// Remove extra whitespace
-			$content = preg_replace( '/\s+/', ' ', $content );
-			
-			// Remove whitespace between HTML tags
-			$content = preg_replace( '/>\s+</', '><', $content );
-		}
-		
-		return $content;
-	}
+    public function clean_elementor_widget_content( $content, $widget ) {
+
+        // Only apply to text editor widgets that contain recipe content or embeds
+        if (
+            $widget->get_name() === 'text-editor'
+            && (
+                is_singular( 'boo_recipe' )
+                || is_post_type_archive( 'boo_recipe' )
+                || boorecipe_is_recipe_taxonomy()
+                || boorecipe_is_active_shortcode_single()
+            )
+        ) {
+            // Remove empty p tags and autop artefacts
+            $content = preg_replace( '/<p>\s*<\/p>/i', '', $content );
+            $content = preg_replace( '/<p>\s*(?:<br\s*\/??>\s*)+<\/p>/i', '', $content );
+            $content = preg_replace( '/<p>\s*&nbsp;\s*<\/p>/i', '', $content );
+            $content = preg_replace( '/<p>\s*<!--.*?-->\s*<\/p>/is', '', $content );
+            $content = preg_replace( '/>\s+</', '><', $content );
+        }
+
+        return $content;
+    }
 
 	/**
 	 * Clean Elementor content to remove empty p tags
@@ -405,25 +429,25 @@ class Boorecipe_Public {
 	 * @param string $content Elementor content
 	 * @return string Cleaned content
 	 */
-	public function clean_elementor_content( $content ) {
-		
-		// Only apply to recipe post types
-		if ( is_singular( 'boo_recipe' ) || is_post_type_archive( 'boo_recipe' ) || boorecipe_is_recipe_taxonomy() ) {
-			
-			// Remove empty p tags
-			$content = preg_replace( '/<p>\s*<\/p>/', '', $content );
-			
-			// Remove extra whitespace
-			$content = preg_replace( '/\s+/', ' ', $content );
-			
-			// Remove whitespace between HTML tags
-			$content = preg_replace( '/>\s+</', '><', $content );
-			
-			// Remove HTML comments that might be wrapped in p tags
-			$content = preg_replace( '/<p>\s*<!--.*?-->\s*<\/p>/', '', $content );
-		}
-		
-		return $content;
-	}
+    public function clean_elementor_content( $content ) {
+
+        // Apply to recipe post types and recipe embed shortcode contexts
+        if (
+            is_singular( 'boo_recipe' )
+            || is_post_type_archive( 'boo_recipe' )
+            || boorecipe_is_recipe_taxonomy()
+            || boorecipe_is_active_shortcode_single()
+        ) {
+            // Remove empty p tags and autop artefacts
+            $content = preg_replace( '/<p>\s*<\/p>/i', '', $content );
+            $content = preg_replace( '/<p>\s*(?:<br\s*\/??>\s*)+<\/p>/i', '', $content );
+            $content = preg_replace( '/<p>\s*&nbsp;\s*<\/p>/i', '', $content );
+            $content = preg_replace( '/>\s+</', '><', $content );
+            // Remove HTML comments that might be wrapped in p tags
+            $content = preg_replace( '/<p>\s*<!--.*?-->\s*<\/p>/is', '', $content );
+        }
+
+        return $content;
+    }
 
 }

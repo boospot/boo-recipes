@@ -5,5 +5,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 <div class="posttype-sub-section recipe-description" itemprop="description"><div><?php
-		echo apply_filters('the_content', $meta['short_description']);
+		echo wp_kses_post( $meta['short_description'] );
 		?></div></div>

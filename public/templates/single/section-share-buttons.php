@@ -51,4 +51,4 @@ $icon_googleplus = Boorecipe_Globals::get_svg( 'googleplus', 'icon-size-16' );
         </a>
 		<?php do_action( 'boorecipe_share_buttons', $item, $title, $excerpt, $featured_image_url ); ?>
     </div>
-</div><!--    .recipe-share-buttons-->
+</div>
