@@ -828,15 +828,13 @@ video.wp-video-shortcode {
 .single-recipe-style3 .recipe-meta.recipe-style3 > div, .single-recipe-style3 .recipe-meta.recipe-style4 > div, .single-recipe-style4 .recipe-meta.recipe-style3 > div, .single-recipe-style4 .recipe-meta.recipe-style4 > div {
   display: flex !important;
   align-items: flex-start;
+  justify-content: flex-start;
   position: relative;
   padding-left: 3.5em;
   margin-bottom: 0.75em;
   border: none;
 }
-.single-recipe-style3 .recipe-meta.recipe-style3 > div span, .single-recipe-style3 .recipe-meta.recipe-style4 > div span, .single-recipe-style4 .recipe-meta.recipe-style3 > div span, .single-recipe-style4 .recipe-meta.recipe-style4 > div span {
-  flex-basis: auto;
-}
-.single-recipe-style3 .recipe-meta.recipe-style3 > div span svg, .single-recipe-style3 .recipe-meta.recipe-style4 > div span svg, .single-recipe-style4 .recipe-meta.recipe-style3 > div span svg, .single-recipe-style4 .recipe-meta.recipe-style4 > div span svg {
+.single-recipe-style3 .recipe-meta.recipe-style3 > div div svg, .single-recipe-style3 .recipe-meta.recipe-style4 > div div svg, .single-recipe-style4 .recipe-meta.recipe-style3 > div div svg, .single-recipe-style4 .recipe-meta.recipe-style4 > div div svg {
   position: absolute;
   left: 0px;
   width: 3em;
@@ -845,6 +843,7 @@ video.wp-video-shortcode {
 .single-recipe-style3 .recipe-meta.recipe-style3 > div .key-point-label, .single-recipe-style3 .recipe-meta.recipe-style4 > div .key-point-label, .single-recipe-style4 .recipe-meta.recipe-style3 > div .key-point-label, .single-recipe-style4 .recipe-meta.recipe-style4 > div .key-point-label {
   font-size: 0.85em;
   line-height: 1em;
+  text-align: left;
 }
 .single-recipe-style3 .recipe-meta.recipe-style3 > div span.subsection-value,
 .single-recipe-style3 .recipe-meta.recipe-style3 > div .subsection-value, .single-recipe-style3 .recipe-meta.recipe-style4 > div span.subsection-value,

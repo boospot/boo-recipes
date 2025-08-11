@@ -12,13 +12,14 @@
     > div {
       display: flex !important;
       align-items: flex-start;
+      justify-content: flex-start;
       position: relative;
       padding-left: 3.5em;
       margin-bottom: .75em;
       border: none;
-      span {
+      div {
 
-        flex-basis: auto;
+        // flex-basis: auto;
 
         svg {
           position: absolute;
@@ -31,6 +32,7 @@
       .key-point-label {
         font-size: .85em;
         line-height: 1em;
+        text-align: left;
       }
 
       span.subsection-value,
