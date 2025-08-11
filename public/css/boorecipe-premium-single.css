@@ -467,14 +467,21 @@ video.wp-video-shortcode {
 .single-recipe-style2 .recipe-key-points-style-2 > div > div svg {
   margin-right: 0.5em;
 }
-.single-recipe-style2 .posttype-container .posttype-sub-section > div > p {
-  flex-basis: 100%;
-}
 .single-recipe-style2 .key-point-label {
   display: flex;
+  gap: 5px;
 }
 .single-recipe-style2 .posttype-container .posttype-sub-section {
   gap: 5px;
+}
+.single-recipe-style2 > div .key-point-label {
+  background-color: red !important;
+  flex: 1 1 50%;
+  justify-content: flex-start;
+}
+.single-recipe-style2 > div p {
+  background-color: blue !important;
+  flex: 1 1 50%;
 }
 
 @media screen and (min-width: 767px) {
@@ -499,11 +506,13 @@ video.wp-video-shortcode {
   border-right: 0 !important;
 }
 
-.single-recipe-style2 .posttype-container .posttype-sub-section > div > div {
+.single-recipe-style2 .posttype-container .posttype-sub-section > div .key-point-label {
   flex: 1 1 50%;
+  background-color: red !important;
 }
 
-.single-recipe-style2 .posttype-container .posttype-sub-section > div > p {
+.single-recipe-style2 .posttype-container .posttype-sub-section > div > p,
+.single-recipe-style2 .posttype-container .posttype-sub-section > div > .key-point-value {
   flex: 1 1 50%;
   justify-content: flex-end;
   display: flex;

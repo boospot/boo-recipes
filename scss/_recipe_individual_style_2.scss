@@ -157,17 +157,26 @@
   }
 
   // Additional styling for recipe style 2
-  .posttype-container .posttype-sub-section > div > p {
-    flex-basis: 100%;
-  }
+
   
   .key-point-label {
     display: flex;
+    gap: 5px;
   }
   
   .posttype-container .posttype-sub-section {
     gap: 5px;
   }
+     > div .key-point-label {
+      background-color: red !important; 
+      flex: 1 1 50%;
+      justify-content: flex-start;
+     }
+     > div p {
+      background-color: blue !important; 
+      flex: 1 1 50%;
+     }
+
 
 }
 
@@ -215,10 +224,13 @@
 }
 
 // Two-column split for key-point rows in style 2
-.single-recipe-style2 .posttype-container .posttype-sub-section > div > div {
+.single-recipe-style2 .posttype-container .posttype-sub-section > div .key-point-label {
   flex: 1 1 50%;
+  background-color: red !important;
 }
-.single-recipe-style2 .posttype-container .posttype-sub-section > div > p {
+
+.single-recipe-style2 .posttype-container .posttype-sub-section > div > p,
+.single-recipe-style2 .posttype-container .posttype-sub-section > div > .key-point-value {
   flex: 1 1 50%;
   justify-content: flex-end;
   display: flex;
