@@ -1,8 +1,11 @@
-$_recipe_container_padding: 1em;
+$recipe_container_padding: 1em;
+$recipe_img_cont_margin_bottom: 1rem;
+$recipe_ingredients_padding: 1rem;
+$recipe_sections_padding: 0.5em 0;
 
-$_recipe_img_cont_margin_bottom: 1rem;
-
-$_recipe_ingredients_padding: 1rem;
-
-$_recipe_sections_padding: 0.5em 0;
+// Legacy private aliases kept for compatibility if this file is ever @import'ed
+$_recipe_container_padding: $recipe_container_padding;
+$_recipe_img_cont_margin_bottom: $recipe_img_cont_margin_bottom;
+$_recipe_ingredients_padding: $recipe_ingredients_padding;
+$_recipe_sections_padding: $recipe_sections_padding;
 

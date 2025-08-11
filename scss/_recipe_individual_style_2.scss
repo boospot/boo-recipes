@@ -65,7 +65,8 @@
 
       }
 
-      span.subsection-label {
+      span.subsection-label,
+      .subsection-label {
         //display: none;
 
       }
@@ -126,7 +127,8 @@
         border-right: 0px !important;
       }
 
-      > span {
+      > span,
+      > div {
         flex-basis: unset;
 
         svg {
@@ -134,6 +136,20 @@
         }
       }
     }
+  }
+
+  // Additional styling for recipe style 2
+  .posttype-container .posttype-sub-section > div > p {
+    flex-basis: 100%;
+  }
+  
+  .key-point-label {
+    display: flex;
+    gap: 5px;
+  }
+  
+  .posttype-container .posttype-sub-section {
+    gap: 5px;
   }
 
 }

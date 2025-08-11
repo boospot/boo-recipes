@@ -1,3 +1,7 @@
+@use "./recipe_archive_masonry" as *;
+@use "./recipe_archive_modern" as *;
+@use "./recipe_archive_overlay" as *;
+
 .recipe-archive-key-value {
   text-transform: capitalize;
 }
@@ -24,7 +28,7 @@
     flex: auto;
   }
 
-  @import "recipe_archive_masonry";
+  @include recipe_archive_masonry();
 
 }
 
@@ -81,8 +85,8 @@
     font-size: 100%;
   }
 
-  @import "recipe_archive_modern";
-  @import "recipe_archive_overlay";
+  @include recipe_archive_modern();
+  @include recipe_archive_overlay();
 
 }
 
@@ -296,7 +300,8 @@
     }
 }
 
-span.recipe-archive-key:after {
+span.recipe-archive-key:after,
+.recipe-archive-key:after {
   content: ':';
   margin-right: 0.2em;
 }

@@ -1,7 +1,7 @@
-$key_points_section_height: 33px;
+@mixin recipe_archive_modern() {
+  $key_points_section_height: 33px;
 
-
-&.modern-archive {
+  &.modern-archive {
 
   .recipe-archive-excerpt {
     display: none;
@@ -106,5 +106,5 @@ $key_points_section_height: 33px;
 
 
   }
-
+}
 }

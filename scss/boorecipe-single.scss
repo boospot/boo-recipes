@@ -1,9 +1,9 @@
 /*Recipe Styling Begin here*/
-@import "functions";
-@import "variables";
+@use "./functions" as *;
+@use "./variables" as *;
 //Debugging
-//@import "debug";
+//@use "debug";
 //Recipe individual
-@import "recipe_individual";
-@import "ingredient_checklist";
-@import "recipe-print";
+@use "./recipe_individual";
+@use "./ingredient_checklist";
+@use "./recipe-print";

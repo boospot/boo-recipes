@@ -1,3 +1,4 @@
+@mixin recipe_archive_overlay() {
 &.overlay-archive {
 
   .overlay-container{
@@ -112,5 +113,6 @@
 
   }
 
+}
 }
 

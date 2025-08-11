@@ -1,14 +1,14 @@
 /*Recipe Styling Begin here*/
-@import "functions";
-@import "variables";
+@use "./functions" as *;
+@use "./variables" as *;
 //Debugging
-//@import "debug";
+//@use "debug";
 //Recipe individual
-@import "recipe_individual";
-@import "ingredient_checklist";
-@import "ratings";
-@import "recipe-print";
-@import "author-box";
-@import "slider";
-@import "recipe_individual_style_2";
-@import "recipe_individual_style_3";
+@use "./recipe_individual";
+@use "./ingredient_checklist";
+@use "./ratings";
+@use "./recipe-print";
+@use "./author-box";
+@use "./slider";
+@use "./recipe_individual_style_2";
+@use "./recipe_individual_style_3";

@@ -1,6 +1,9 @@
-//Layout
-@import "layout";
-@import "nutrition_label";
+@use "./variables" as *;
+@use "./layout";
+@use "./nutrition_label";
+@use "./video_responsive";
+@use "./share_buttons";
+@use "./recipe_individual_style_2";
 
 .recipe-wrapper {
   display: flex;
@@ -10,7 +13,7 @@
 
 .boorecipe-recipe {
   .recipe-head {
-    padding-bottom: $_recipe_container_padding;
+    padding-bottom: $recipe_container_padding;
   }
 
   .recipe-section-heading {
@@ -18,7 +21,7 @@
   }
 
   .recipe-img-cont {
-    margin-bottom: $_recipe_img_cont_margin_bottom;
+    margin-bottom: $recipe_img_cont_margin_bottom;
   }
 
   .recipe-img {
@@ -97,7 +100,7 @@
 
   .recipe-meta {
     > div {
-      padding: $_recipe_sections_padding
+      padding: $recipe_sections_padding
     }
   }
 
@@ -119,7 +122,7 @@
       }
 
       .recipe-ingredients {
-        padding: $_recipe_ingredients_padding;
+        padding: $recipe_ingredients_padding;
         flex: 1 0 40%;
       }
     }
@@ -257,7 +260,6 @@
 }
 
 
-@import "video_responsive";
-@import "share_buttons";
+// (moved module uses to the top per Sass rules)
 
 

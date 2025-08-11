@@ -21,7 +21,8 @@ form.boorecipe-search-form .search-form-field-cont {
 form.boorecipe-search-form .search-form-field-cont > input,
 form.boorecipe-search-form .search-form-field-cont > select,
 form.boorecipe-search-form .search-form-field-cont > textarea,
-form.boorecipe-search-form .search-form-field-cont > span {
+form.boorecipe-search-form .search-form-field-cont > span,
+form.boorecipe-search-form .search-form-field-cont > div {
   background: #fff;
   border: 1px solid #d1d1d1;
   border-radius: 2px;
@@ -368,7 +369,8 @@ form.boorecipe-search-form .select2-selection__clear {
     width: 100%;
   }
 }
-span.recipe-archive-key:after {
+span.recipe-archive-key:after,
+.recipe-archive-key:after {
   content: ":";
   margin-right: 0.2em;
 }
