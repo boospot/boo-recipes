@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "357dfa2604939acdb7aec79b748b5684",
+    "content-hash": "51c377b6a092681e841bdd225ea25baf",
     "packages": [
         {
             "name": "boospot/boo-settings-helper",
-            "version": "5.3",
+            "version": "5.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/boospot/boo-settings-helper.git",
-                "reference": "4162074a51309ccd045d63c3c1b36f0fb4830ebd"
+                "reference": "5fb2e7d33ffefdf956b0dbbb48e957ab9b297b67"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/boospot/boo-settings-helper/zipball/4162074a51309ccd045d63c3c1b36f0fb4830ebd",
-                "reference": "4162074a51309ccd045d63c3c1b36f0fb4830ebd",
+                "url": "https://api.github.com/repos/boospot/boo-settings-helper/zipball/5fb2e7d33ffefdf956b0dbbb48e957ab9b297b67",
+                "reference": "5fb2e7d33ffefdf956b0dbbb48e957ab9b297b67",
                 "shasum": ""
             },
             "type": "library",
@@ -55,9 +55,9 @@
             ],
             "support": {
                 "issues": "https://github.com/boospot/boo-settings-helper/issues",
-                "source": "https://github.com/boospot/boo-settings-helper/tree/5.3"
+                "source": "https://github.com/boospot/boo-settings-helper/tree/5.4"
             },
-            "time": "2021-05-29T10:10:06+00:00"
+            "time": "2025-08-20T11:44:14+00:00"
         },
         {
             "name": "composer/installers",
