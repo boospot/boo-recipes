@@ -293,9 +293,9 @@ class Boorecipe_Premium_Single_Template_Functions extends Boorecipe_Single_Templ
     public function sub_section_meta_time_style_3( $item, $meta ) {
         if ( $this->get_options_value( 'recipe_style' ) === 'style3' ) {
             ?>
-            <div class="posttype-sub-section recipe-time-info"><?php
-                do_action( 'boorecipe_single_meta_time', $item, $meta );
-            ?></div>
+            <div class="posttype-sub-section recipe-time-info">
+                <?php do_action( 'boorecipe_single_meta_time', $item, $meta ); ?>
+            </div>
             <?php
         }
     }
