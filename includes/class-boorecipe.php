@@ -512,7 +512,7 @@ class Boorecipe {
             $this->loader->add_action( 'boorecipe_single_body_before', $premium_template, 'sub_section_meta_time_style_2', 35, 2 );
 
             // For Style 3, show time right after meta (outside boo-recipe-details-wrapper)
-            $this->loader->add_action( 'boorecipe_single_meta_after', $premium_template, 'sub_section_meta_time_style_3', 35, 2 );
+            $this->loader->add_action( 'boorecipe_single_meta_after', $premium_template, 'sub_section_meta_time_style_3', 30, 2 );
 			
 			// Premium Meta Features for Style 2+ (Priority: 33-39)
 			// Sharing buttons for Style 2 (moved to body_before, after time info, before ingredients)
