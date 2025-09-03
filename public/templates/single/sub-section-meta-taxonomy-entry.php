@@ -11,7 +11,7 @@ $single_recipe_icon_size   = $this->get_options_value( 'single_recipe_icon_size'
 <div class="taxonomy-<?php echo strtolower( sanitize_html_class( $taxonomy ) ) ?>">
     <div class="key-point-label">
         <?php if ( $show_icons ) : ?>
-            <?php echo Boorecipe_Globals::get_svg( $taxonomy, "icon-size-{$single_recipe_icon_size}" ); ?>
+            <?php echo Boorecipe_Globals::get_icon_font( $taxonomy, "icon-size-{$single_recipe_icon_size}" ); ?>
         <?php endif; ?>
         <?php if ( $show_key_point_label ) : ?>
             <div class="subsection-label"><?php echo $this->get_options_value( $taxonomy . '_label' ); ?></div>

@@ -13,12 +13,12 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 $excerpt_encoded = urlencode( $excerpt . PHP_EOL . PHP_EOL );
 $link_to_share = $excerpt_encoded . esc_url_raw( get_the_permalink( $item->ID ) );
-$icon_facebook   = Boorecipe_Globals::get_svg( 'facebook', 'icon-size-16' );
-$icon_twitter    = Boorecipe_Globals::get_svg( 'twitter', 'icon-size-16' );
-$icon_pinterest  = Boorecipe_Globals::get_svg( 'pinterest', 'icon-size-16' );
-$icon_linkedin   = Boorecipe_Globals::get_svg( 'linkedin', 'icon-size-16' );
-$icon_email      = Boorecipe_Globals::get_svg( 'email', 'icon-size-16' );
-$icon_googleplus = Boorecipe_Globals::get_svg( 'googleplus', 'icon-size-16' );
+$icon_facebook   = Boorecipe_Globals::get_icon_font( 'facebook', 'icon-size-16' );
+$icon_twitter    = Boorecipe_Globals::get_icon_font( 'twitter', 'icon-size-16' );
+$icon_pinterest  = Boorecipe_Globals::get_icon_font( 'pinterest', 'icon-size-16' );
+$icon_linkedin   = Boorecipe_Globals::get_icon_font( 'facebook', 'icon-size-16' );
+$icon_email      = Boorecipe_Globals::get_icon_font( 'circle-envelope', 'icon-size-16' );
+$icon_googleplus = Boorecipe_Globals::get_icon_font( 'facebook', 'icon-size-16' );
 ?>
 <div class="posttype-sub-section recipe-share-buttons">
     <div class="share-buttons-cont">

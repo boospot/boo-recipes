@@ -818,6 +818,69 @@ class Boorecipe_Globals {
 	} // get_svg()
 
 	/**
+	 * Get icon font class for the new icon font system
+	 *
+	 * @param string $icon_name The icon name (e.g., 'recipe_category', 'star_full')
+	 * @param string $size_class The size class (e.g., 'icon-size-24')
+	 * @return string The complete CSS class string for the icon font
+	 */
+	public static function get_icon_font_class( $icon_name, $size_class = 'icon-size-24' ) {
+		
+		// Icon name mapping from SVG names to font class names
+		$icon_mapping = array(
+			// Direct mappings (same names)
+			'recipe_category'    => 'boo-recipe-recipe_category',
+			'recipe_cuisine'     => 'boo-recipe-recipe_cuisine',
+			'recipe_tags'        => 'boo-recipe-recipe_tags',
+			'cooking_method'     => 'boo-recipe-microwave',
+			'difficulty_level'   => 'boo-recipe-difficulty_level',
+			'ingredients'        => 'boo-recipe-ingredients',
+			'yields'             => 'boo-recipe-yields-1',
+			'total_time'         => 'boo-recipe-total_time',
+			'star_full'          => 'boo-recipe-star_full',
+			'star_empty'         => 'boo-recipe-star_empty',
+			'star'               => 'boo-recipe-star',
+			'print'              => 'boo-recipe-print',
+			'grid'               => 'boo-recipe-grid',
+			'list'               => 'boo-recipe-list',
+			'drag'               => 'boo-recipe-drag',
+			'facebook'           => 'boo-recipe-facebook',
+			'pinterest'          => 'boo-recipe-pinterest',
+			'youtube'            => 'boo-recipe-youtube',
+			'smiley'             => 'boo-recipe-smiley',
+			'utensils'           => 'boo-recipe-utensils',
+			
+			// Alias mappings (multiple SVG names → one font class)
+			'tags'               => 'boo-recipe-recipe_tags',
+			'skill_level'        => 'boo-recipe-difficulty_level',
+			'clock'              => 'boo-recipe-total_time',
+			'email'              => 'boo-recipe-circle-envelope',
+			'envelope'           => 'boo-recipe-circle-envelope',
+			'twitter'            => 'boo-recipe-twitter-alt-circle',
+			'googleplus'         => 'boo-recipe-facebook', // Fallback to facebook since googleplus is deprecated
+			'linkedin'           => 'boo-recipe-facebook', // Fallback to facebook for now
+		);
+		
+		// Get the font class name, fallback to original name if not mapped
+		$font_class = isset( $icon_mapping[ $icon_name ] ) ? $icon_mapping[ $icon_name ] : 'boo-recipe-' . $icon_name;
+		
+		// Return the complete class string
+		return $font_class . ' ' . $size_class;
+	}
+
+	/**
+	 * Render icon font HTML
+	 *
+	 * @param string $icon_name The icon name
+	 * @param string $size_class The size class
+	 * @return string The HTML for the icon font
+	 */
+	public static function get_icon_font( $icon_name, $size_class = 'icon-size-24' ) {
+		$class_string = self::get_icon_font_class( $icon_name, $size_class );
+		return '<i class="' . esc_attr( $class_string ) . '" aria-hidden="true"></i>';
+	}
+
+	/**
 	 * Returns the path to a template file
 	 *
 	 * Looks for the file in these directories, in this order:

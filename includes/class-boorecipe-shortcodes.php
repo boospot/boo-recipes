@@ -136,7 +136,7 @@ class Boorecipe_Shortcodes {
 			$atts
 		);
 
-		$print_icon = Boorecipe_Globals::get_svg( 'print', 'icon-size-' . $this->get_options_value( 'general_icon_size' ) );
+		$print_icon = Boorecipe_Globals::get_icon_font( 'print', 'icon-size-' . $this->get_options_value( 'general_icon_size' ) );
 
 		return "<a class='boorecipe-print-link' style = 'text-align:{$args['align']}' href='javascript:window.print()'>{$print_icon} {$args['text']}</a>";
 	}

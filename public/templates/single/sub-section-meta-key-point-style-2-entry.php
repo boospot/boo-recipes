@@ -10,6 +10,6 @@ $show_icons                = ( $this->get_options_value( 'show_icons' ) === 'yes
 $single_recipe_icon_size_2 = $this->get_options_value( 'single_recipe_icon_size_2' );
 ?>
 <div class="recipe-<?php echo $key_point; ?>">
-    <div class="key-point-label"><?php if ( $show_icons ) : ?><?php echo Boorecipe_Globals::get_svg( $key_point, "icon-size-{$single_recipe_icon_size_2}" ); ?><?php endif; ?><?php if ( $show_key_point_label ) : ?><div class="subsection-label"><?php echo $key_point_label; ?></div><?php endif; ?></div>
+    <div class="key-point-label"><?php if ( $show_icons ) : ?><?php echo Boorecipe_Globals::get_icon_font( $key_point, "icon-size-{$single_recipe_icon_size_2}" ); ?><?php endif; ?><?php if ( $show_key_point_label ) : ?><div class="subsection-label"><?php echo $key_point_label; ?></div><?php endif; ?></div>
     <p class="key-point-value"><span class="subsection-value" <?php echo $itemprop ?>><?php echo $key_point_value ?></span></p>
 </div>

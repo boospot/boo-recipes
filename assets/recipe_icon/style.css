@@ -1,0 +1,129 @@
+@font-face {
+  font-family: 'recipe_icon';
+  src:  url('fonts/recipe_icon.eot?luqi1r');
+  src:  url('fonts/recipe_icon.eot?luqi1r#iefix') format('embedded-opentype'),
+    url('fonts/recipe_icon.ttf?luqi1r') format('truetype'),
+    url('fonts/recipe_icon.woff?luqi1r') format('woff'),
+    url('fonts/recipe_icon.svg?luqi1r#recipe_icon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="boo-recipe-"], [class*=" boo-recipe-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'recipe_icon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.boo-recipe-ingredients-1:before {
+  content: "\e900";
+}
+.boo-recipe-yields-1:before {
+  content: "\e901";
+}
+.boo-recipe-grill:before {
+  content: "\e902";
+}
+.boo-recipe-fondue-pot:before {
+  content: "\e903";
+}
+.boo-recipe-microwave:before {
+  content: "\e904";
+}
+.boo-recipe-user-chef:before {
+  content: "\e905";
+}
+.boo-recipe-haute-cuisine:before {
+  content: "\e906";
+}
+.boo-recipe-total_time:before {
+  content: "\e907";
+}
+.boo-recipe-utensils:before {
+  content: "\e908";
+}
+.boo-recipe-utensils-1:before {
+  content: "\e909";
+}
+.boo-recipe-star:before {
+  content: "\e90a";
+}
+.boo-recipe-print:before {
+  content: "\e90b";
+}
+.boo-recipe-drag:before {
+  content: "\e90c";
+}
+.boo-recipe-list:before {
+  content: "\e90d";
+}
+.boo-recipe-grid:before {
+  content: "\e90e";
+}
+.boo-recipe-youtube:before {
+  content: "\e90f";
+}
+.boo-recipe-circle-envelope:before {
+  content: "\e910";
+}
+.boo-recipe-pinterest:before {
+  content: "\e911";
+}
+.boo-recipe-twitter-alt-circle:before {
+  content: "\e912";
+}
+.boo-recipe-facebook:before {
+  content: "\e913";
+}
+.boo-recipe-smiley:before {
+  content: "\e914";
+}
+.boo-recipe-recipe-book:before {
+  content: "\e915";
+}
+.boo-recipe-star_full:before {
+  content: "\e916";
+}
+.boo-recipe-star_empty:before {
+  content: "\e917";
+}
+.boo-recipe-total_time-1:before {
+  content: "\e918";
+}
+.boo-recipe-ingredients:before {
+  content: "\e919";
+}
+.boo-recipe-difficulty_level:before {
+  content: "\e91a";
+}
+.boo-recipe-recipe_tags:before {
+  content: "\e91b";
+}
+.boo-recipe-recipe_cuisine:before {
+  content: "\e91c";
+}
+.boo-recipe-yields:before {
+  content: "\e91d";
+}
+.boo-recipe-recipe_category:before {
+  content: "\e91e";
+}
+.boo-recipe-recipe:before {
+  content: "\e91f";
+}
+.boo-recipe-cooking_method:before {
+  content: "\e920";
+}
+.boo-recipe-cooking_method-1:before {
+  content: "\e921";
+}

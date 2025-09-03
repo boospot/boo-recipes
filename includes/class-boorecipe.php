@@ -496,8 +496,8 @@ class Boorecipe {
 			// Premium Body After Features (Priority: 50-59)
 			$this->loader->add_action( 'boorecipe_single_body_after', $premium_template, 'ratings_display', 50, 2 );
 			$this->loader->add_action( 'boorecipe_single_body_after', $premium_template, 'author_box', 51, 2 );
-			$this->loader->add_action( 'boorecipe_single_body_after', $premium_template, 'related_recipes_section', 52, 2 );
-			$this->loader->add_action( 'boorecipe_single_body_after', $premium_template, 'close_boo_recipe_details_wrapper', 53 );
+			$this->loader->add_action( 'boorecipe_single_body_after', $premium_template, 'close_boo_recipe_details_wrapper', 52 );
+			$this->loader->add_action( 'boorecipe_single_body_after', $premium_template, 'related_recipes_section', 53, 2 );
 
 			// Premium Meta Key Points for Style 2+ (Priority: 33-39)
 			$this->loader->add_action( 'boorecipe_single_meta_key_point_style_2', $single_template, 'unified_taxonomy_category', 33, 2 );

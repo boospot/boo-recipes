@@ -333,7 +333,7 @@ class Boorecipe_Single_Template_Functions extends Boorecipe_Template_Functions {
 		// Output the icon HTML directly
 		?>
 		<div class="subsection-icon">
-			<?php echo Boorecipe_Globals::get_svg( $svg_name, 'icon-size-' . $icon_size ); ?>
+			<?php echo Boorecipe_Globals::get_icon_font( $svg_name, 'icon-size-' . $icon_size ); ?>
 		</div>
 		<?php
 	}

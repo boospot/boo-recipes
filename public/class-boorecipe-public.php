@@ -90,10 +90,9 @@ class Boorecipe_Public {
 		 * class.
 		 */
 
-		wp_register_style( $this->plugin_name . "-single", plugin_dir_url( __FILE__ ) . 'css/boorecipe-single.css', array(), $this->version, 'all' );
+		wp_register_style( $this->plugin_name . "-single", plugin_dir_url( __FILE__ ) . 'css/boorecipe-single.css', array(), $this->version . '-icons', 'all' );
 
-
-		wp_register_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/style.css', array(), $this->version, 'all' );
+		wp_register_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/style.css', array(), $this->version . '-icons', 'all' );
 
 
 		// Required for Search Widget

@@ -38,14 +38,20 @@ if ( ! defined( 'ABSPATH' ) ) {
         border-bottom-color: <?php echo $border_color; ?>;
         margin-bottom: 1em;
     }
-    .boorecipe-recipe .subsection-icon {
+    .boorecipe-recipe .subsection-icon,
+    .boorecipe-recipe .subsection-icon [class^="boo-recipe-"],
+    .boorecipe-recipe .subsection-icon [class*=" boo-recipe-"] {
         color: <?php echo $icon_color; ?>;
     }
-    .recipe-key-points-style-2 .key-point-label svg {
+    .recipe-key-points-style-2 .key-point-label svg,
+    .recipe-key-points-style-2 .key-point-label [class^="boo-recipe-"],
+    .recipe-key-points-style-2 .key-point-label [class*=" boo-recipe-"] {
         color: <?php echo $icon_color; ?>;
         fill: <?php echo $icon_color; ?>;
     }
-    .key-point-label svg {
+    .key-point-label svg,
+    .key-point-label [class^="boo-recipe-"],
+    .key-point-label [class*=" boo-recipe-"] {
         color: <?php echo $icon_color; ?>;
         fill: <?php echo $icon_color; ?>;
     }

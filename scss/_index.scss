@@ -1,6 +1,7 @@
 // Central entrypoint to load shared sass APIs
 @forward "./variables";
 @forward "./functions";
+@use "./icon_font";
 
 
 

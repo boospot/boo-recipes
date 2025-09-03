@@ -407,7 +407,7 @@ class Boorecipe_Premium_Post_Types extends Boorecipe_Post_Types {
 		//Current rating scale is 1 to 5. If you want the scale to be 1 to 10, then set the value of $i to 10.
 		for ( $i = 5; $i > 0; $i -- ) {
 
-			$svg_icon = Boorecipe_Globals::get_svg( 'star_full', 'icon-size-24' );
+			$svg_icon = Boorecipe_Globals::get_icon_font( 'star_full', 'icon-size-24' );
 
 			echo "<label for='rating-{$i}'>{$svg_icon}
 					<input type='radio' name='boorecipe_user_rating' id='rating-{$i}' value='{$i}' title='{$i} stars'/>
@@ -464,7 +464,7 @@ class Boorecipe_Premium_Post_Types extends Boorecipe_Post_Types {
 			//Current rating scale is 1 to 5. If you want the scale to be 1 to 10, then set the value of $i to 10.
 			for ( $i = 1; $i <= 5; $i ++ ) {
 				$svg         = ( $i <= $comment_rating ) ? 'star_full' : 'star_empty';
-				$rating_html .= Boorecipe_Globals::get_svg( $svg, 'icon-size-24' );
+				$rating_html .= Boorecipe_Globals::get_icon_font( $svg, 'icon-size-24' );
 
 			}
 
