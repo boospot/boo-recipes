@@ -560,13 +560,13 @@ form.boorecipe-search-form .select2-selection__clear {
   }
 }
 @media screen and (min-width: 768px) {
-  .per-row-5:not(.recipes-layout-list):not(.recipes-layout-overlay) .recipe-card {
+  .per-row-5:not(.recipes-layout-list) .recipe-card {
     width: 20%;
   }
-  .per-row-4:not(.recipes-layout-list):not(.recipes-layout-overlay) .recipe-card {
+  .per-row-4:not(.recipes-layout-list) .recipe-card {
     width: 25%;
   }
-  .per-row-3:not(.recipes-layout-list):not(.recipes-layout-overlay) .recipe-card {
+  .per-row-3:not(.recipes-layout-list) .recipe-card {
     width: 33.33%;
   }
   .per-row-2:not(.recipes-layout-list) .recipe-card {

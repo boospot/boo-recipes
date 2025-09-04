@@ -235,9 +235,9 @@ class Boorecipe_Archive_Template_Functions extends Boorecipe_Template_Functions 
 //		}
 
 
-//		if ( $this->get_options_value( 'show_in_masonry' ) === 'yes' ) {
-//			$classes_array['masonry'] = 'masonry-grid';
-//		}
+		if ( $this->get_options_value( 'show_in_masonry' ) === 'yes' ) {
+			$classes_array['masonry'] = 'masonry-grid';
+		}
 
 		$recipe_archive_layout = $this->get_options_value( 'recipe_archive_layout' );
 
@@ -248,6 +248,14 @@ class Boorecipe_Archive_Template_Functions extends Boorecipe_Template_Functions 
 
 			case( 'list' ):
 				$classes_array['layout'] = 'recipes-layout-list';
+				break;
+
+			case( 'modern' ):
+				$classes_array['layout'] = 'recipes-layout-modern';
+				break;
+
+			case( 'overlay' ):
+				$classes_array['layout'] = 'recipes-layout-overlay';
 				break;
 
 			default:
@@ -289,6 +297,14 @@ class Boorecipe_Archive_Template_Functions extends Boorecipe_Template_Functions 
 
 			case( 'list' ):
 				$classes_array[] = 'list-archive';
+				break;
+
+			case( 'modern' ):
+				$classes_array[] = 'modern-archive';
+				break;
+
+			case( 'overlay' ):
+				$classes_array[] = 'overlay-archive';
 				break;
 
 			default:

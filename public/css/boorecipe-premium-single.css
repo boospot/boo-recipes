@@ -1044,17 +1044,11 @@ video.wp-video-shortcode {
   margin-bottom: 0.75em;
   border: none;
 }
-.single-recipe-style3 .recipe-meta.recipe-style3 > div div svg,
-.single-recipe-style3 .recipe-meta.recipe-style3 > div div [class^=boo-recipe-],
-.single-recipe-style3 .recipe-meta.recipe-style3 > div div [class*=" boo-recipe-"], .single-recipe-style3 .recipe-meta.recipe-style4 > div div svg,
-.single-recipe-style3 .recipe-meta.recipe-style4 > div div [class^=boo-recipe-],
-.single-recipe-style3 .recipe-meta.recipe-style4 > div div [class*=" boo-recipe-"], .single-recipe-style4 .recipe-meta.recipe-style3 > div div svg,
-.single-recipe-style4 .recipe-meta.recipe-style3 > div div [class^=boo-recipe-],
-.single-recipe-style4 .recipe-meta.recipe-style3 > div div [class*=" boo-recipe-"], .single-recipe-style4 .recipe-meta.recipe-style4 > div div svg,
-.single-recipe-style4 .recipe-meta.recipe-style4 > div div [class^=boo-recipe-],
-.single-recipe-style4 .recipe-meta.recipe-style4 > div div [class*=" boo-recipe-"] {
+.single-recipe-style3 .recipe-meta.recipe-style3 > div div svg, .single-recipe-style3 .recipe-meta.recipe-style4 > div div svg, .single-recipe-style4 .recipe-meta.recipe-style3 > div div svg, .single-recipe-style4 .recipe-meta.recipe-style4 > div div svg {
   position: absolute;
   left: 0px;
+  width: 3em;
+  height: 3em;
 }
 .single-recipe-style3 .recipe-meta.recipe-style3 > div .key-point-label, .single-recipe-style3 .recipe-meta.recipe-style4 > div .key-point-label, .single-recipe-style4 .recipe-meta.recipe-style3 > div .key-point-label, .single-recipe-style4 .recipe-meta.recipe-style4 > div .key-point-label {
   font-size: 0.85em;
@@ -1089,6 +1083,10 @@ video.wp-video-shortcode {
 .single-recipe-style3 .recipe-time-info .subsection-icon, .single-recipe-style4 .recipe-time-info .subsection-icon {
   position: absolute;
   left: 0px;
+}
+.single-recipe-style3 .recipe-time-info .subsection-icon svg, .single-recipe-style4 .recipe-time-info .subsection-icon svg {
+  width: 3em;
+  height: 3em;
 }
 .single-recipe-style3 .recipe-time-info .subsection-label, .single-recipe-style4 .recipe-time-info .subsection-label {
   font-size: 0.85em;
@@ -1138,30 +1136,22 @@ video.wp-video-shortcode {
   }
   .single-recipe-style3 .boo-recipe-details-wrapper, .single-recipe-style4 .boo-recipe-details-wrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-column-gap: 1em;
     grid-row-gap: 1.5em;
     grid-template-rows: auto;
   }
   .single-recipe-style3 .boo-recipe-details-wrapper .recipe-ingredients, .single-recipe-style4 .boo-recipe-details-wrapper .recipe-ingredients {
     grid-row: 1;
-    grid-column: 1;
   }
   .single-recipe-style3 .boo-recipe-details-wrapper .recipe-instructions, .single-recipe-style4 .boo-recipe-details-wrapper .recipe-instructions {
     grid-row: 1;
-    grid-column: 2;
+    grid-column: 2/2 span;
   }
   .single-recipe-style3 .boo-recipe-details-wrapper .recipe-nutrition, .single-recipe-style4 .boo-recipe-details-wrapper .recipe-nutrition {
-    grid-row: 2;
-    grid-column: 1;
-  }
-  .single-recipe-style3 .boo-recipe-details-wrapper .recipe-discussion, .single-recipe-style4 .boo-recipe-details-wrapper .recipe-discussion {
-    grid-row: 2;
-    grid-column: 1;
+    grid-row: 2/2 span;
   }
   .single-recipe-style3 .boo-recipe-details-wrapper .recipe-author-box, .single-recipe-style4 .boo-recipe-details-wrapper .recipe-author-box {
-    grid-row: 2;
-    grid-column: 2;
     background: transparent;
   }
 }
@@ -1172,23 +1162,10 @@ video.wp-video-shortcode {
   }
   .single-recipe-style3 .single-recipe-style3 .boo-recipe-details-wrapper .recipe-ingredients, .single-recipe-style4 .single-recipe-style3 .boo-recipe-details-wrapper .recipe-ingredients {
     grid-row: 2;
-    grid-column: 1;
   }
   .single-recipe-style3 .single-recipe-style3 .boo-recipe-details-wrapper .recipe-instructions, .single-recipe-style4 .single-recipe-style3 .boo-recipe-details-wrapper .recipe-instructions {
     grid-row: 2;
-    grid-column: 2;
-  }
-  .single-recipe-style3 .single-recipe-style3 .boo-recipe-details-wrapper .recipe-nutrition, .single-recipe-style4 .single-recipe-style3 .boo-recipe-details-wrapper .recipe-nutrition {
-    grid-row: 3;
-    grid-column: 1;
-  }
-  .single-recipe-style3 .single-recipe-style3 .boo-recipe-details-wrapper .recipe-discussion, .single-recipe-style4 .single-recipe-style3 .boo-recipe-details-wrapper .recipe-discussion {
-    grid-row: 3;
-    grid-column: 1;
-  }
-  .single-recipe-style3 .single-recipe-style3 .boo-recipe-details-wrapper .recipe-author-box, .single-recipe-style4 .single-recipe-style3 .boo-recipe-details-wrapper .recipe-author-box {
-    grid-row: 3;
-    grid-column: 2;
+    grid-column: 2/2 span;
   }
 }
 
