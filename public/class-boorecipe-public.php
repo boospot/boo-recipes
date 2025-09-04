@@ -200,75 +200,69 @@ class Boorecipe_Public {
 			return $query;
 		}
 
-		if ( $query->is_main_query() &&
-		     ( is_post_type_archive( 'boo_recipe' ) || boorecipe_is_recipe_taxonomy() )
-		) {
 
-			// Update Query for custom post type
-			$query->set( 'post_type', 'boo_recipe' );
+		// Only modify query for recipe archives (both main and secondary queries)
+		if ( ! is_post_type_archive( 'boo_recipe' ) && ! boorecipe_is_recipe_taxonomy() ) {
+			return $query;
+		}
 
+		// Update Query for custom post type
+		$query->set( 'post_type', 'boo_recipe' );
 
-			// Set Recipes Per Page
-			$recipes_per_page = ( absint( $this->get_options_value( 'recipes_per_page' ) ) > 0 ) ? absint( $this->get_options_value( 'recipes_per_page' ) ) : 9;
+		// Set Recipes Per Page
+		$recipes_per_page = ( absint( $this->get_options_value( 'recipes_per_page' ) ) > 0 ) ? absint( $this->get_options_value( 'recipes_per_page' ) ) : 9;
 
+		$query->set( 'posts_per_page', $recipes_per_page );
 
-			$query->set( 'posts_per_page', $recipes_per_page );
+		// Add Keyword Search to the Query
+		if ( $this->is_search_form_submitted() ) {
 
+			$search_keyword = '';
+			if ( isset( $_GET['keyword'] ) && is_string( $_GET['keyword'] ) ) {
+				$search_keyword = sanitize_text_field( $_GET['keyword'] );
+			}
 
-			// Add Keyword Search to the Query
-			if ( $this->is_search_form_submitted() ) {
+			if ( ! empty( $search_keyword ) ) {
 
-				$search_keyword = '';
-				if ( isset( $_GET['keyword'] ) && is_string( $_GET['keyword'] ) ) {
-					$search_keyword = sanitize_text_field( $_GET['keyword'] );
-				}
+				$custom_meta = array();
 
-				if ( ! empty( $search_keyword ) ) {
+				$current_meta = $query->get( 'meta_query' );
 
-					$custom_meta = array();
+				$meta_fields_to_include_in_search = apply_filters( 'boorecipe_filter_search_meta_fields', array(
+					'boorecipe_recipe_title',
+					'boorecipe_directions',
+					'boorecipe_ingredient',
+					'boorecipe_short_description'
+				) );
 
-					$current_meta = $query->get( 'meta_query' );
+				$custom_meta['relation'] = 'OR';
 
-
-					$meta_fields_to_include_in_search = apply_filters( 'boorecipe_filter_search_meta_fields', array(
-						'boorecipe_recipe_title',
-						'boorecipe_directions',
-						'boorecipe_ingredient',
-						'boorecipe_short_description'
-					) );
-
-
-					$custom_meta['relation'] = 'OR';
-
-					foreach ( $meta_fields_to_include_in_search as $meta_key ) {
-						if ( is_string( $meta_key ) ) {
-							$custom_meta[] = array(
-								'key'     => sanitize_key( $meta_key ),
-								'value'   => $search_keyword,
-								'compare' => 'LIKE'
-							);
-						}
+				foreach ( $meta_fields_to_include_in_search as $meta_key ) {
+					if ( is_string( $meta_key ) ) {
+						$custom_meta[] = array(
+							'key'     => sanitize_key( $meta_key ),
+							'value'   => $search_keyword,
+							'compare' => 'LIKE'
+						);
 					}
-
-
-//					foreach ( $meta_fields as $meta_key ) {
-//						$custom_meta[] = array(
-//							'key'     => $meta_key,
-//							'value'   => $search_keyword,
-//							'compare' => 'LIKE'
-//						);
-//					)
-
-
-					$meta_query = $current_meta = $custom_meta;
-
-					$query->set( 'meta_query', array( $meta_query ) );
 				}
 
+				//					foreach ( $meta_fields as $meta_key ) {
+				//						$custom_meta[] = array(
+				//							'key'     => $meta_key,
+				//							'value'   => $search_keyword,
+				//							'compare' => 'LIKE'
+				//						);
+				//					)
+
+				$meta_query = $current_meta = $custom_meta;
+
+				$query->set( 'meta_query', array( $meta_query ) );
 			}
 
 		}
 
+		return $query;
 	}
 
 	public function is_search_form_submitted() {
