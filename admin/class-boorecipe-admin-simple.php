@@ -843,7 +843,7 @@ class Boorecipe_Admin_Simple {
 			),
 
 			array(
-				'id'      => '$this->prefix .color_archive_keys',
+				'id'      => $this->prefix . 'color_archive_keys',
 				'type'    => 'color',
 				'label'   => __( 'Key Points Text Color', 'boo-recipes' ),
 				'default' => $this->get_default_options( 'color_archive_keys' ),

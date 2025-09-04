@@ -5,7 +5,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 <style>
-    .recipe-archive-title {
+    .recipe-archive-title,
+    .recipe-archive-title h1,
+    .recipe-archive-title h2,
+    .recipe-archive-title h3,
+    .recipe-archive-title h4,
+    .recipe-archive-title h5,
+    .recipe-archive-title h6 {
         color: <?php echo $color_archive_title; ?>;
     }
     .recipe-archive-author {
@@ -25,6 +31,10 @@ if ( ! defined( 'ABSPATH' ) ) {
     }
     .recipe-keypoints svg {
         fill: <?php echo $color_archive_keys; ?>;
+    }
+    .recipe-keypoints [class^="boo-recipe-"],
+    .recipe-keypoints [class*=" boo-recipe-"] {
+        color: <?php echo $color_archive_keys; ?>;
     }
     .recipe-card a {
         background-color: <?php echo $color_card_bg; ?>;
