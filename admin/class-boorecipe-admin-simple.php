@@ -850,6 +850,24 @@ class Boorecipe_Admin_Simple {
 
 			),
 
+			array(
+				'id'      => $this->prefix . 'color_archive_key_points_bg',
+				'type'    => 'color',
+				'label'   => __( 'Key Points Background Color', 'boo-recipes' ),
+				'default' => $this->get_default_options( 'color_archive_key_points_bg' ),
+				'rgba'    => true,
+			),
+
+			array(
+				'id'      => $this->prefix . 'color_archive_hover_overlay',
+				'type'    => 'color',
+				'label'   => __( 'Hover Overlay Color', 'boo-recipes' ),
+				'default' => $this->get_default_options( 'color_archive_hover_overlay' ),
+				'rgba'    => true,
+			),
+
+			// Card Border Color moved to border settings section
+
 			// Expected insertion of premium options
 
 			array(

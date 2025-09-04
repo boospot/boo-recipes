@@ -752,21 +752,7 @@ class Boorecipe_Premium_Admin_Simple extends Boorecipe_Admin_Simple {
 			'desc'    => sprintf( __( "You will need to re-save %spermalinks%s after changing this value", "boo-recipes" ), '<a href=' . get_admin_url() . "options-permalink.php" . ' target="_blank">', '</a>' ),
 		);
 
-		$archive_fields[] = array(
-			'id'      => $this->prefix . 'color_archive_key_points_bg',
-			'type'    => 'color',
-			'label'   => __( 'Key Points Background Color', 'boo-recipes' ),
-			'default' => $this->get_default_options( 'color_archive_key_points_bg' ),
-			'rgba'    => true,
-		);
-
-		$archive_fields[] = array(
-			'id'      => $this->prefix . 'color_archive_hover_overlay',
-			'type'    => 'color',
-			'label'   => __( 'Hover Overlay Color', 'boo-recipes' ),
-			'default' => $this->get_default_options( 'color_archive_hover_overlay' ),
-			'rgba'    => true,
-		);
+		// Color settings moved to appear after "Heading Tag for Recipes Archive" in main admin class
 
 		$archive_fields[] = array(
 			'id'      => $this->prefix . 'card_content_alignment',
