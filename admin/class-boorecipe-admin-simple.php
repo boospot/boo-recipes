@@ -102,6 +102,213 @@ class Boorecipe_Admin_Simple {
 
 	}
 
+	// Old HTML display method removed - now using textarea field
+
+	/**
+	 * Log debug information if debug logging is enabled
+	 *
+	 * @param string $message
+	 * @param mixed  $data
+	 */
+	public function debug_log( $message, $data = null ) {
+		if ( $this->get_options_value( 'enable_debug_logging' ) === 'yes' ) {
+			$log_message = '[Boo Recipes Debug] ' . $message;
+			if ( $data !== null ) {
+				$log_message .= ' - Data: ' . print_r( $data, true );
+			}
+			error_log( $log_message );
+		}
+	}
+
+	/**
+	 * Get system information as plain text
+	 *
+	 * @return string
+	 */
+	public function get_system_information_text() {
+		global $wp_version, $wpdb;
+		
+		// Get plugin information
+		$plugin_data = get_plugin_data( BOORECIPE_BASE_DIR . 'boo-recipes.php' );
+		$active_plugins = get_option( 'active_plugins' );
+		$active_theme = wp_get_theme();
+		
+		// Get Boo Recipes settings
+		$boorecipe_settings = array();
+		$all_options = wp_load_alloptions();
+		foreach ( $all_options as $option_name => $option_value ) {
+			if ( strpos( $option_name, 'boorecipe_' ) === 0 ) {
+				$boorecipe_settings[ $option_name ] = $option_value;
+			}
+		}
+		
+		// Get server information
+		$server_info = array(
+			'PHP Version' => PHP_VERSION,
+			'MySQL Version' => $wpdb->get_var( "SELECT VERSION()" ),
+			'Server Software' => $_SERVER['SERVER_SOFTWARE'] ?? 'Unknown',
+			'Memory Limit' => ini_get( 'memory_limit' ),
+			'Max Execution Time' => ini_get( 'max_execution_time' ),
+			'Upload Max Filesize' => ini_get( 'upload_max_filesize' ),
+			'Post Max Size' => ini_get( 'post_max_size' ),
+		);
+		
+		// Get WordPress information
+		$wp_info = array(
+			'WordPress Version' => $wp_version,
+			'Multisite' => is_multisite() ? 'Yes' : 'No',
+			'Language' => get_locale(),
+			'Timezone' => wp_timezone_string(),
+			'Memory Limit' => WP_MEMORY_LIMIT,
+		);
+		
+		// Get theme information
+		$theme_info = array(
+			'Active Theme' => $active_theme->get( 'Name' ),
+			'Theme Version' => $active_theme->get( 'Version' ),
+			'Child Theme' => is_child_theme() ? 'Yes' : 'No',
+			'Parent Theme' => is_child_theme() ? $active_theme->get( 'Template' ) : 'N/A',
+		);
+		
+		// Get plugin information
+		$plugin_info = array(
+			'Plugin Name' => $plugin_data['Name'],
+			'Plugin Version' => $plugin_data['Version'],
+			'Plugin Author' => $plugin_data['Author'],
+			'Plugin URI' => $plugin_data['PluginURI'],
+		);
+		
+		// Get active plugins (limited to avoid too much data)
+		$active_plugins_list = array();
+		foreach ( $active_plugins as $plugin ) {
+			$plugin_data = get_plugin_data( WP_PLUGIN_DIR . '/' . $plugin );
+			$active_plugins_list[] = $plugin_data['Name'] . ' (' . $plugin_data['Version'] . ')';
+		}
+		
+		// Get recent errors
+		$recent_errors = array();
+		if ( defined( 'WP_DEBUG_LOG' ) && WP_DEBUG_LOG ) {
+			$log_file = WP_CONTENT_DIR . '/debug.log';
+			if ( file_exists( $log_file ) ) {
+				$log_content = file_get_contents( $log_file );
+				$log_lines = explode( "\n", $log_content );
+				$boorecipe_errors = array_filter( $log_lines, function( $line ) {
+					return strpos( $line, 'boo-recipes' ) !== false || strpos( $line, 'boorecipe' ) !== false;
+				});
+				$recent_errors = array_slice( $boorecipe_errors, -10 ); // Last 10 errors
+			}
+		}
+		
+		// Get additional system information
+		$additional_info = array();
+		
+		// Database size
+		$db_size = $wpdb->get_var( "SELECT ROUND(SUM(data_length + index_length) / 1024 / 1024, 2) AS 'DB Size in MB' FROM information_schema.tables WHERE table_schema = '" . DB_NAME . "'" );
+		$additional_info['Database Size'] = $db_size ? $db_size . ' MB' : 'Unknown';
+		
+		// File permissions for uploads directory
+		$upload_dir = wp_upload_dir();
+		$uploads_path = $upload_dir['basedir'];
+		$uploads_writable = is_writable( $uploads_path ) ? 'Yes' : 'No';
+		$additional_info['Uploads Directory Writable'] = $uploads_writable;
+		
+		// Cache status
+		$cache_plugins = array();
+		if ( is_plugin_active( 'wp-rocket/wp-rocket.php' ) ) $cache_plugins[] = 'WP Rocket';
+		if ( is_plugin_active( 'w3-total-cache/w3-total-cache.php' ) ) $cache_plugins[] = 'W3 Total Cache';
+		if ( is_plugin_active( 'wp-super-cache/wp-super-cache.php' ) ) $cache_plugins[] = 'WP Super Cache';
+		if ( is_plugin_active( 'litespeed-cache/litespeed-cache.php' ) ) $cache_plugins[] = 'LiteSpeed Cache';
+		if ( is_plugin_active( 'wp-fastest-cache/wpFastestCache.php' ) ) $cache_plugins[] = 'WP Fastest Cache';
+		$additional_info['Active Cache Plugins'] = !empty( $cache_plugins ) ? implode( ', ', $cache_plugins ) : 'None';
+		
+		// WordPress memory usage
+		$wp_memory_usage = function_exists( 'memory_get_usage' ) ? round( memory_get_usage( true ) / 1024 / 1024, 2 ) . ' MB' : 'Unknown';
+		$additional_info['Current Memory Usage'] = $wp_memory_usage;
+		
+		// WordPress debug status
+		$wp_debug = defined( 'WP_DEBUG' ) && WP_DEBUG ? 'Yes' : 'No';
+		$wp_debug_log = defined( 'WP_DEBUG_LOG' ) && WP_DEBUG_LOG ? 'Yes' : 'No';
+		$additional_info['WP_DEBUG'] = $wp_debug;
+		$additional_info['WP_DEBUG_LOG'] = $wp_debug_log;
+		
+		// Build the system information text
+		$system_info_text = "=== BOO RECIPES SYSTEM INFORMATION ===\n\n";
+		
+		// Plugin Information
+		$system_info_text .= "PLUGIN INFORMATION:\n";
+		$system_info_text .= "==================\n";
+		foreach ( $plugin_info as $key => $value ) {
+			$system_info_text .= $key . ": " . $value . "\n";
+		}
+		$system_info_text .= "\n";
+		
+		// WordPress Information
+		$system_info_text .= "WORDPRESS INFORMATION:\n";
+		$system_info_text .= "=====================\n";
+		foreach ( $wp_info as $key => $value ) {
+			$system_info_text .= $key . ": " . $value . "\n";
+		}
+		$system_info_text .= "\n";
+		
+		// Theme Information
+		$system_info_text .= "THEME INFORMATION:\n";
+		$system_info_text .= "==================\n";
+		foreach ( $theme_info as $key => $value ) {
+			$system_info_text .= $key . ": " . $value . "\n";
+		}
+		$system_info_text .= "\n";
+		
+		// Server Information
+		$system_info_text .= "SERVER INFORMATION:\n";
+		$system_info_text .= "==================\n";
+		foreach ( $server_info as $key => $value ) {
+			$system_info_text .= $key . ": " . $value . "\n";
+		}
+		$system_info_text .= "\n";
+		
+		// Active Plugins
+		$system_info_text .= "ACTIVE PLUGINS (" . count( $active_plugins_list ) . "):\n";
+		$system_info_text .= "==================\n";
+		foreach ( $active_plugins_list as $plugin ) {
+			$system_info_text .= "- " . $plugin . "\n";
+		}
+		$system_info_text .= "\n";
+		
+		// Boo Recipes Settings
+		$system_info_text .= "BOO RECIPES SETTINGS:\n";
+		$system_info_text .= "====================\n";
+		$system_info_text .= print_r( $boorecipe_settings, true );
+		$system_info_text .= "\n";
+		
+		// Additional System Information
+		$system_info_text .= "ADDITIONAL SYSTEM INFORMATION:\n";
+		$system_info_text .= "==============================\n";
+		foreach ( $additional_info as $key => $value ) {
+			$system_info_text .= $key . ": " . $value . "\n";
+		}
+		$system_info_text .= "\n";
+		
+		// Recent Errors
+		if ( ! empty( $recent_errors ) ) {
+			$system_info_text .= "RECENT BOO RECIPES ERRORS:\n";
+			$system_info_text .= "==========================\n";
+			foreach ( $recent_errors as $error ) {
+				$system_info_text .= $error . "\n";
+			}
+			$system_info_text .= "\n";
+		}
+		
+		$system_info_text .= "=== END SYSTEM INFORMATION ===";
+		
+		return $system_info_text;
+	}
+
+	// Backup/restore methods removed
+
+	// Admin footer methods removed - now using proper field integration
+
+	// Old display methods removed - now using proper field integration
+
 	/**
 	 *
 	 */
@@ -412,13 +619,10 @@ class Boorecipe_Admin_Simple {
 				'id'    => 'recipe_widgets',
 				'title' => __( 'Widget Settings', 'boo-recipes' ),
 			),
-//			array(
-//				'id'    => 'recipe_options_backup_restore',
-//				'title' => __( 'Settings Backup', 'boo-recipes' ),
-//			),
-			'recipe_plugin_activation' => array(
-				'id'    => 'recipe_plugin_activation',
-				'title' => __( 'Premium Plugin', 'boo-recipes' ),
+			// Backup/restore tab removed
+			'system_info' => array(
+				'id'    => 'system_info',
+				'title' => __( 'System Information', 'boo-recipes' ),
 			),
 			array(
 				'id'    => 'special_section',
@@ -998,48 +1202,33 @@ class Boorecipe_Admin_Simple {
 			),
 
 		) );
-//		/*
-//		 * Settings Backup
-//		 */
-//		$options_fields['recipe_options_backup_restore'] = apply_filters( 'boorecipe_filter_options_fields_array_backup', array(
-//
-//			array(
-//				'id'    => $this->prefix . 'boorecipe_options_backup_restore',
-//				'type'  => 'backup',
-//				'label' => __( 'Settings Backup and/or Restore', 'boo-recipes' ),
-//			),
-//
-//		) );
+		// Backup/restore functionality removed
 
 		/*
-		 * Premium Plugin
+		 * System Information
 		 */
-		$options_fields['recipe_plugin_activation'] = apply_filters( 'boorecipe_filter_options_fields_array_activation', array(
+		$options_fields['system_info'] = apply_filters( 'boorecipe_filter_options_fields_array_system_info', array(
 			array(
-				'id'    => $this->prefix . 'plugin_activation_content',
-				'type'  => 'html',
-				'class' => 'class-name', // for all fields
-				'desc'  => '<div>
-								<p>Future Updates. 6 Months Support.</p>
-								<p>Key Features include:</p>
-								<ul>
-									<li>2 single recipe styles: style1 and style2</li>
-									<li>2 more recipe index styles: modern and overlay</li>
-									<li>Change Labels to suit your needs</li>
-									<li>Recipe Cuisines Taxonomy</li>
-									<li>Cooking Method Taxonomy</li>
-									<li>Recipes with image sliders</li>
-									<li>Video Recipes</li>
-									<li>Show/embed recipes in posts or pages</li>
-								</ul>
-							</div><br/>'
-				           .
-				           sprintf( '<a href="%s" target="_blank">%s</a>',
-					           'https://boospot.com/product/boorecipes-premium-plugin/',
-					           esc_html__( 'Buy Premium Plugin', 'boo-recipes' )
-				           ),
+				'id'    => $this->prefix . 'system_info_display',
+				'type'  => 'textarea',
+				'label' => __( 'System Information', 'boo-recipes' ),
+				'desc'  => __( 'Select all text (Ctrl+A) and copy (Ctrl+C) to paste into your support ticket for faster assistance.', 'boo-recipes' ),
+				'default' => $this->get_system_information_text(),
+				'readonly' => true,
+				'rows' => 25,
+				'cols' => 100,
 			),
-
+			array(
+				'id'          => $this->prefix . 'enable_debug_logging',
+				'type'        => 'select',
+				'label'       => __( 'Enable Debug Logging', 'boo-recipes' ),
+				'desc'        => __( 'Enable detailed logging for troubleshooting. Only enable when needed for support.', 'boo-recipes' ),
+				'options'     => array(
+					'no'  => __( 'No', 'boo-recipes' ),
+					'yes' => __( 'Yes', 'boo-recipes' ),
+				),
+				'default'     => 'no',
+			),
 		) );
 		/*
 		 * Special

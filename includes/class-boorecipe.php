@@ -210,6 +210,7 @@ class Boorecipe {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin_simple, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin_simple, 'enqueue_scripts' );
+		// System info now integrated into settings fields
 		/*
 		 * Added the plugin options menu and page
 		 */
@@ -226,7 +227,7 @@ class Boorecipe {
 		// Add premium admin hooks
 		$this->loader->add_filter( 'boorecipe_options_sections_array', $plugin_premium_admin_simple, 'filter_options_sections_array', 10 );
 		$this->loader->add_filter( 'boorecipe_options_args_array', $plugin_premium_admin_simple, 'filter_options_fields_array', 10 );
-		$this->loader->add_filter( 'boorecipe_options_args_array', $plugin_premium_admin_simple, 'filter_options_args_array_activation_tab_update', 20 );
+		// Activation tab hook removed
 		$this->loader->add_filter( 'boorecipe_options_args_array', $plugin_premium_admin_simple, 'filter_options_args_array_search_form', 30 );
 		$this->loader->add_filter( 'boorecipe_options_args_array', $plugin_premium_admin_simple, 'filter_options_recipe_single', 40 );
 		$this->loader->add_filter( 'boorecipe_options_args_array', $plugin_premium_admin_simple, 'filter_options_recipe_single_style', 50 );

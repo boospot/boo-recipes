@@ -286,7 +286,7 @@ class Boorecipe_Premium {
 
 			$this->loader->add_filter( 'boorecipe_options_args_array', $admin_premium, 'filter_options_args_array_add_actions', 10, 1 );
 
-			$this->loader->add_filter( 'boorecipe_options_args_array', $admin_premium, 'filter_options_args_array_activation_tab_update', 10, 1 );
+			// Activation tab hook removed
 
 			$this->loader->add_filter( 'recipe_options_search_form_section_fields_array', $admin_premium, 'filter_options_args_array_search_form', 10, 1 );
 
@@ -314,7 +314,7 @@ class Boorecipe_Premium {
 
 			$this->loader->add_filter( 'boorecipe_filter_options_fields_array', $admin_premium_simple, 'filter_options_fields_array', 10, 1 );
 
-			$this->loader->add_filter( 'boorecipe_filter_options_fields_array_activation', $admin_premium_simple, 'filter_options_args_array_activation_tab_update', 10, 1 );
+			// Activation tab hook removed
 
 			$this->loader->add_filter( 'boorecipe_filter_options_fields_array_search', $admin_premium_simple, 'filter_options_args_array_search_form', 10, 1 );
 

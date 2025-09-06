@@ -262,6 +262,7 @@ class Boorecipe_Globals {
 			'featured_image_height'             => 576,
 			'recipes_per_page'                  => 12,
 			'color_archive_title'               => '#333333',
+			'enable_debug_logging'               => 'no',
 			'color_accent'                      => '#71A866',
 			'color_secondary'                   => 'rgba(113, 168, 102, 0.25)',
 			'recipe_style'                      => 'style1',

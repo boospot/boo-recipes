@@ -61,11 +61,11 @@ class Boorecipe_Premium_Admin_Simple extends Boorecipe_Admin_Simple {
 		array_splice( $sections_array, $position_of_action_hooks_section, 0, $hooks_section );
 
 		/*
-		 * Activation
+		 * System Information
 		 */
-		if ( isset( $sections_array['recipe_plugin_activation'] ) && is_array( $sections_array['recipe_plugin_activation'] ) ):
+		if ( isset( $sections_array['system_info'] ) && is_array( $sections_array['system_info'] ) ):
 
-			$sections_array['recipe_plugin_activation']['title'] = __( 'Plugin Activation', 'boo-recipes' );
+			$sections_array['system_info']['title'] = __( 'System Information', 'boo-recipes' );
 
 		endif;
 
@@ -439,82 +439,7 @@ class Boorecipe_Premium_Admin_Simple extends Boorecipe_Admin_Simple {
 	 * @return      array $options_fields
 	 *
 	 */
-	public function filter_options_args_array_activation_tab_update( $options_fields ) {
-
-		$activation_tab = array();
-
-		$activation_tab[] = array(
-			'id'       => $this->prefix . 'premium_license_key',
-			'type'     => 'text',
-			'label'    => __( 'Activation Key for Premium Plugin', 'boo-recipes' ),
-			'class'    => 'text-class author_key license_key',
-			'desc'     => __( 'You must have received an email with activation key', 'boo-recipes' ),
-			'sanitize' => 'sanitize_text_field',
-		);
-
-
-		if ( 'active' === $this->get_options_value( 'license_status' ) ) {
-
-			$activation_tab[] = array(
-				'id'    => $this->prefix . 'deactivate_button',
-				'type'  => 'html',
-				'class' => 'text-class',
-				'label' => __( 'Deactivate', 'boo-recipes' ),
-				'desc'  => '<a href="#" class="button button-secondary deactivate_license_key_button">Deactivate</a>'
-			);
-			$activation_tab[] = array(
-				'id'    => $this->prefix . 'license_status_active',
-				'label' => esc_html__( 'License Status', 'boo-recipes' ),
-				'type'  => 'html',
-				'desc'  => '<span style="font-size:1.5em; color:green;">' . esc_html__( 'Active', 'boo-recipes' ) . '</span>',
-			);
-		} else {
-
-			$activation_tab[] = array(
-				'id'    => $this->prefix . 'validate_button',
-				'type'  => 'html',
-				'class' => 'text-class',
-				'label' => __( 'Validate', 'boo-recipes' ),
-				'desc'  => '<a href="#" class="button button-secondary validate_purchase_code_button">Activate</a>'
-			);
-
-			$activation_tab[] = array(
-				'id'    => $this->prefix . 'license_status_inactive',
-				'label' => esc_html__( 'License Status', 'boo-recipes' ),
-				'type'  => 'html',
-				'desc'  => '<span style="font-size:1.5em; color:red;">' . esc_html__( 'Inactive', 'boo-recipes' ) . '</span>',
-			);
-		}
-
-		$activation_tab[] = array(
-			'id'   => $this->prefix . 'response_message',
-			'type' => 'hidden',
-//			'class' => 'response_message',
-			'desc' => '<span class="uclient-response-message"></span>'
-		);
-
-		$activation_tab[] = array(
-			'id'       => $this->prefix . 'license_source',
-			'type'     => 'hidden',
-			'class'    => 'license_source',
-			'default'  => 'author',
-			'sanitize' => 'sanitize_text_field',
-		);
-
-		$activation_tab[] = array(
-			'id'    => $this->prefix . 'license_status',
-			'type'  => 'hidden',
-			'class' => 'license_status',
-
-		);
-
-
-		// We are not using the fields of premium plugin from free plugin tab
-		//Overwrite
-		$options_fields = $activation_tab;
-
-		return $options_fields;
-	}
+	// Activation tab removed - replaced with System Information tab
 
 	public function get_options_value( $option_id ) {
 		return Boorecipe_Premium_Globals::get_options_value( $option_id );
