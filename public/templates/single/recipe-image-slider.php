@@ -3,6 +3,13 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
+// Skip image slider for Style 4 - only show featured image
+$current_recipe_style = function_exists('boorecipe_get_options_value') ? boorecipe_get_options_value('recipe_style') : 'style1';
+if ( $current_recipe_style === 'style4' ) {
+	return; // Don't show image slider for Style 4
+}
+
 $images_markup           = '';
 $images_thumbnail_markup = '';
 $images_array = rwmb_meta( Boorecipe_Globals::get_meta_prefix() . 'recipe_image_slider_items_attached' );

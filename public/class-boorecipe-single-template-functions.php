@@ -80,8 +80,9 @@ class Boorecipe_Single_Template_Functions extends Boorecipe_Template_Functions {
 			return;
 		}
 
-		// Priority 2: Image Slider (medium priority)
-		if ( method_exists( $this, 'is_show_image_slider' ) && $this->is_show_image_slider( $meta ) ) {
+		// Priority 2: Image Slider (medium priority) - Skip for Style 4
+		$current_recipe_style = $this->get_options_value( 'recipe_style' );
+		if ( method_exists( $this, 'is_show_image_slider' ) && $this->is_show_image_slider( $meta ) && $current_recipe_style !== 'style4' ) {
 			include boorecipe_get_template( 'recipe-image-slider', 'single' );
 			return;
 		}
@@ -250,6 +251,117 @@ class Boorecipe_Single_Template_Functions extends Boorecipe_Template_Functions {
 		endif;
 
 	} // section_sharing_buttons_style_1()
+
+
+	/**
+	 * Include      public/templates/single/section-share-buttons
+	 *
+	 * @hooked      boorecipe_single_head_after        10
+	 *
+	 * @param object $item
+	 * @param array $meta
+	 */
+	public function section_sharing_buttons_style_3( $item, $meta ) {
+
+		if ( $this->get_options_value( 'recipe_style' ) !== 'style3' ) {
+			return;
+		}
+
+		if ( $this->get_options_value( 'show_share_buttons' ) === 'yes' ):
+			$image_size         = boorecipe_get_default_options( 'recipe_image_size' );
+			$featured_image_url = get_the_post_thumbnail_url( $item->ID, $image_size );
+			//Assign default if empty
+			if ( empty( $featured_image_url ) ) {
+				$featured_image_url = $this->get_recipe_featured_image_default();
+			}
+
+			$title   = urlencode( $item->post_title );
+			$excerpt = ( ! empty( trim( $item->post_excerpt ) ) ) ? $item->post_excerpt : $meta['short_description'];
+
+			// Adjust the max length of excerpt for different social sites sharing
+			$excerpt = substr( $excerpt, 0, 145 ) . "...";
+
+			include boorecipe_get_template( 'section-share-buttons', 'single' );
+
+		endif;
+
+	} // section_sharing_buttons_style_3()
+
+
+	/**
+	 * Include      public/templates/single/section-share-buttons
+	 *
+	 * @hooked      boorecipe_single_body_before        5
+	 *
+	 * @param object $item
+	 * @param array $meta
+	 */
+	public function section_sharing_buttons_style_4( $item, $meta ) {
+
+		if ( $this->get_options_value( 'recipe_style' ) !== 'style4' ) {
+			return;
+		}
+
+		if ( $this->get_options_value( 'show_share_buttons' ) === 'yes' ):
+			$image_size         = boorecipe_get_default_options( 'recipe_image_size' );
+			$featured_image_url = get_the_post_thumbnail_url( $item->ID, $image_size );
+			//Assign default if empty
+			if ( empty( $featured_image_url ) ) {
+				$featured_image_url = $this->get_recipe_featured_image_default();
+			}
+
+			$title   = urlencode( $item->post_title );
+			$excerpt = ( ! empty( trim( $item->post_excerpt ) ) ) ? $item->post_excerpt : $meta['short_description'];
+
+			// Adjust the max length of excerpt for different social sites sharing
+			$excerpt = substr( $excerpt, 0, 145 ) . "...";
+
+			// Custom Style 4 share buttons without posttype-sub-section class
+			$excerpt_encoded = urlencode( $excerpt . PHP_EOL . PHP_EOL );
+			$link_to_share = $excerpt_encoded . esc_url_raw( get_the_permalink( $item->ID ) );
+			$icon_facebook   = Boorecipe_Globals::get_icon_font( 'facebook', 'icon-size-16' );
+			$icon_twitter    = Boorecipe_Globals::get_icon_font( 'twitter', 'icon-size-16' );
+			$icon_pinterest  = Boorecipe_Globals::get_icon_font( 'pinterest', 'icon-size-16' );
+			$icon_linkedin   = Boorecipe_Globals::get_icon_font( 'facebook', 'icon-size-16' );
+			$icon_email      = Boorecipe_Globals::get_icon_font( 'circle-envelope', 'icon-size-16' );
+			?>
+			<div class="recipe-share-buttons">
+				<div class="share-buttons-cont">
+					<a class="share-link-button facebook-share"
+					   target="_blank"
+					   href="<?php echo "https://www.facebook.com/sharer/sharer.php?u=" . esc_url_raw( get_the_permalink( $item->ID ) ); ?>">
+						<span class="share-icon"><?php echo $icon_facebook; ?></span>
+						<span class="share-text"><?php echo _x( 'Share', 'facebook, linkedin etc', 'boo-recipes' ); ?></span>
+					</a>
+					<a class="share-link-button twitter-share" target="_blank"
+					   href="<?php echo "https://twitter.com/home?status=" . $link_to_share; ?>">
+						<span class="share-icon"><?php echo $icon_twitter; ?></span>
+						<span class="share-text"><?php echo _x( 'Tweet', 'twitter tweet', 'boo-recipes' ); ?></span>
+					</a>
+					<a class="share-link-button pinterest-share" target="_blank"
+					   href="<?php echo "https://pinterest.com/pin/create/button/?url=" . esc_url_raw( get_the_permalink( $item->ID ) ) . "&media=" . $featured_image_url . "&description=" . $title; ?>">
+						<span class="share-icon"><?php echo $icon_pinterest; ?></span>
+						<span class="share-text"><?php echo _x( 'Save', 'pinterest etc', 'boo-recipes' ); ?></span>
+					</a>
+					<a class="share-link-button linkedin-share"
+					   target="_blank"
+					   href="<?php echo "https://www.linkedin.com/shareArticle?url=" . esc_url_raw( get_the_permalink( $item->ID ) ) . "&title=" . $title . "&summary=" . $excerpt_encoded; ?>">
+						<span class="share-icon"><?php echo $icon_linkedin; ?></span>
+						<span class="share-text"><?php echo _x( 'Share', 'facebook, linkedin etc', 'boo-recipes' ); ?></span>
+					</a>
+					<a class="share-link-button email-share" target="_blank"
+					   href="mailto:?&subject=<?php echo get_the_title( $item->ID ) . " recipe"; ?>&body=<?php echo $excerpt . PHP_EOL . PHP_EOL . "%0A%0A" . esc_url_raw( get_the_permalink( $item->ID ) ); ?>">
+						<span class="share-icon"><?php echo $icon_email; ?></span>
+						<span class="share-text"><?php echo _x( 'Email', 'Send Email', 'boo-recipes' ); ?></span>
+					</a>
+					<?php do_action( 'boorecipe_share_buttons', $item, $title, $excerpt, $featured_image_url ); ?>
+				</div>
+			</div>
+			<?php
+
+		endif;
+
+	} // section_sharing_buttons_style_4()
 
 
 	/**
@@ -512,7 +624,7 @@ class Boorecipe_Single_Template_Functions extends Boorecipe_Template_Functions {
 				include boorecipe_get_template( 'section-recipe-nutrition', 'single' );
 			}
 			// Check if we're in the main body hook and nutrition should NOT be on the side
-			elseif ( $current_hook === 'boorecipe_single_body' && $nutrition_side !== 'yes' ) {
+			elseif ( ( $current_hook === 'boorecipe_single_body' || $current_hook === 'boorecipe_single_body_after' ) && $nutrition_side !== 'yes' ) {
 				$meta_key = 'nutrition';
 				include boorecipe_get_template( 'section-recipe-nutrition', 'single' );
 			}

@@ -5,11 +5,40 @@
 
 .slider-image-section {
   margin-bottom: 0;
+  
+  // Hide navigation text but keep arrows for main slider
+  .flex-direction-nav a {
+    font-size: 0 !important;
+    line-height: 0 !important;
+    text-indent: -9999px !important;
+    overflow: hidden !important;
+    
+    &:before {
+      font-size: 40px !important;
+      line-height: 1 !important;
+      text-indent: 0 !important;
+      position: absolute !important;
+      top: 50% !important;
+      left: 50% !important;
+      transform: translate(-50%, -50%) !important;
+      color: rgba(0, 0, 0, 0.8) !important;
+      text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3) !important;
+    }
+  }
 }
 
 .slider-thumbs-section{
   padding: 0.5em;
   background-color: #e7f1e6;
+  
+  // Hide arrows and pagination controls for thumbs section
+  .flex-direction-nav {
+    display: none !important;
+  }
+  
+  .flex-control-nav {
+    display: none !important;
+  }
 }
 
 

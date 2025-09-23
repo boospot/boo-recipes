@@ -52,10 +52,14 @@
     	if(slider_container.length && has_slides){
     		console.log('Initializing FlexSlider...');
     		
+    		// Add class to indicate slider is present (for Style 4 CSS)
+    		$('.single-recipe-style4').addClass('has-image-slider');
+    		
             try {
                 $('#slider-thumbs-section').flexslider({
                     animation: "slide",
-                    controlNav: true,
+                    controlNav: false,
+                    directionNav: false,
                     animationLoop: true,
                     slideshow: true,
                     itemWidth: 210,

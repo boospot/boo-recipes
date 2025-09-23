@@ -211,6 +211,14 @@ class Boorecipe_Premium_Post_Types extends Boorecipe_Post_Types {
 				'fields' => array(
 
 					array(
+						'id'         => $prefix . 'recipe_image_slider_style4_general_notice',
+						'type'       => 'notice',
+						'class'      => 'info',
+						'content'    => __( '<strong>📋 Recipe Style 4:</strong> If you are using Recipe Style 4, image sliders will not be displayed. Only the featured image will be shown on Style 4.', 'boo-recipes' ),
+						'sanitize'   => 'sanitize_text_field'
+					),
+
+					array(
 						'id'         => $prefix . 'recipe_image_slider_notice',
 						'type'       => 'notice',
 						'class'      => 'danger',
@@ -230,6 +238,15 @@ class Boorecipe_Premium_Post_Types extends Boorecipe_Post_Types {
 						'label'    => __( 'Do you want to show image slider for this recipe?', 'boo-recipes' ),
 						'default'  => 'no',
 						'sanitize' => 'sanitize_key'
+					),
+
+					array(
+						'id'         => $prefix . 'recipe_image_slider_style4_notice',
+						'type'       => 'notice',
+						'class'      => 'warning',
+						'dependency' => array( $prefix . 'show_image_slider', '==', true ),
+						'content'    => __( '<strong>⚠️ Style 4 Limitation:</strong> Image slider does not work with Recipe Style 4. Only the featured image will be displayed on Style 4, regardless of this setting.', 'boo-recipes' ),
+						'sanitize'   => 'sanitize_text_field'
 					),
 					array(
 						'id'         => $prefix . 'recipe_image_slider_items_attached',

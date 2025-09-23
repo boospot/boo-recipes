@@ -21,7 +21,7 @@
 
         // flex-basis: auto;
 
-        svg {
+        svg, i {
           position: absolute;
           left: 0px;
           width: 3em;
@@ -404,18 +404,51 @@
   .single-recipe-style4 {
     grid-template-columns: 2fr 1fr;
 
-    .recipe-image-slider {
-      grid-row: 1 / 5;
-      grid-column: 1 / 2;
-    }
-
     .posttype-section.recipe-img-cont {
       grid-row: 1 / 5;
       grid-column: 1 / 2;
+      height: 100%; // Stretch to fill full grid area height
+      display: flex;
+      align-items: stretch; // Stretch child elements
+      
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; // Maintain aspect ratio while filling container
+        object-position: center;
+      }
+    }
+
+    // Video container should also stretch to fill full height in Style 4
+    .responsive-video-container {
+      grid-row: 1 / 5;
+      grid-column: 1 / 2;
+      height: 100% !important; // Override the default height: 0
+      padding-bottom: 0 !important; // Remove aspect ratio padding
+      padding-top: 0 !important; // Remove top padding
+      
+      video,
+      iframe {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; // Maintain aspect ratio while filling container
+        object-position: center;
+      }
     }
 
     .boo-recipe-details-wrapper {
       grid-column: 1 / 2 span;
+    }
+
+    // Style 4 specific share button styling
+    .recipe-share-buttons {
+      display: flex;
+      justify-content: center;
+      grid-column: 1 / 3;
+    }
+
+    .share-buttons-cont {
+      display: flex;
     }
 
     .recipe-time-info {

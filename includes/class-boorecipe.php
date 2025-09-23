@@ -443,6 +443,13 @@ class Boorecipe {
 		$this->loader->add_action( 'boorecipe_single_head', $single_template, 'sub_section_short_description', 22, 2 );
 		$this->loader->add_action( 'boorecipe_single_head_publish_info', $single_template, 'the_author', 20, 2 );
 		$this->loader->add_action( 'boorecipe_single_head_publish_info', $single_template, 'the_date', 21, 2 );
+		
+		// Share buttons for Style 1 and 3
+		$this->loader->add_action( 'boorecipe_single_head_after', $single_template, 'section_sharing_buttons_style_1', 10, 2 );
+		$this->loader->add_action( 'boorecipe_single_head_after', $single_template, 'section_sharing_buttons_style_3', 10, 2 );
+		
+		// Share buttons for Style 4 - positioned before boo-recipe-details-wrapper
+		$this->loader->add_action( 'boorecipe_single_body_before', $single_template, 'section_sharing_buttons_style_4', 5, 2 );
 
 		/*
 		 * Single Recipe Meta
@@ -454,7 +461,10 @@ class Boorecipe {
 		$this->loader->add_action( 'boorecipe_single_body', $single_template, 'ingredients', 40, 2 );
 		$this->loader->add_action( 'boorecipe_single_body', $single_template, 'instructions', 41, 2 );
 		$this->loader->add_action( 'boorecipe_single_body', $single_template, 'additional_notes', 42, 2 );
-		$this->loader->add_action( 'boorecipe_single_body', $single_template, 'nutrition', 43, 2 );
+		$this->loader->add_action( 'boorecipe_single_body_after', $single_template, 'nutrition', 49, 2 );
+		
+		// Add nutrition to aside hook for side nutrition display
+		$this->loader->add_action( 'boorecipe_recipe_single_aside', $single_template, 'nutrition', 10, 2 );
 
 		// Premium Body Features are handled by the premium plugin
 

@@ -21,8 +21,10 @@ $format_calories_detail =
 //          Fat Calories Calculation
 //          9 calories = 1gram fat
 $calories_from_fat = '';
-if ( isset( $meta['fatContent'] ) && ! empty( $meta['fatContent'] ) ) {
-	$calories_from_fat = round( $meta['fatContent'] * 9 );
+// Try to get fat content from meta array, fallback to direct post meta if not found
+$fat_content = isset( $meta['fatContent'] ) ? $meta['fatContent'] : get_post_meta( get_the_ID(), 'boorecipe_fatContent', true );
+if ( ! empty( $fat_content ) ) {
+	$calories_from_fat = round( $fat_content * 9 );
 }
 //	Initializing Nutrition Variable Array
 $nutrition_variables = array();
@@ -31,7 +33,8 @@ foreach ( $nutrition_meta as $key => $nutrition ) {
 //	        initialize and create variables to use in sprintf
 	$itemprop    = $nutrition['itemprop'];
 	$display     = $nutrition['display'];
-	$value       = $meta[ $itemprop ];
+	// Try to get value from meta array, fallback to direct post meta if not found
+	$value = isset( $meta[ $itemprop ] ) ? $meta[ $itemprop ] : get_post_meta( get_the_ID(), 'boorecipe_' . $itemprop, true );
 	$measurement = ! empty( $nutrition['measurement'] && $value ) ? " " . $nutrition['measurement'] : '';
 	$role_class  = ( $nutrition['parent'] ) ? 'nutrition-parent' : 'nutrition-child';
 	//percent Calculation
