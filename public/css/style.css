@@ -278,6 +278,30 @@ form.boorecipe-search-form .select2-selection__clear {
   content: "";
   flex: auto;
 }
+.recipe-cards.masonry-grid {
+  display: block;
+}
+.recipe-cards.masonry-grid .recipe-card.masonry-grid-item {
+  width: auto;
+  break-inside: avoid;
+  float: left;
+  box-sizing: border-box;
+}
+.recipe-cards.masonry-grid.per-row-1 .recipe-card.masonry-grid-item {
+  width: calc(100% - 8px) !important;
+}
+.recipe-cards.masonry-grid.per-row-2 .recipe-card.masonry-grid-item {
+  width: calc(50% - 8px) !important;
+}
+.recipe-cards.masonry-grid.per-row-3 .recipe-card.masonry-grid-item {
+  width: calc(33.333% - 8px) !important;
+}
+.recipe-cards.masonry-grid.per-row-4 .recipe-card.masonry-grid-item {
+  width: calc(25% - 8px) !important;
+}
+.recipe-cards.masonry-grid.per-row-5 .recipe-card.masonry-grid-item {
+  width: calc(20% - 8px) !important;
+}
 
 .recipe-card {
   display: flex;

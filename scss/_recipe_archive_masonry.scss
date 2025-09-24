@@ -1,12 +1,36 @@
 @mixin recipe_archive_masonry() {
   &.masonry-grid {
     display: block;
-    margin-left: -8px; /* Adjustment for the gutter */
+    // margin-left: -8px; /* Adjustment for the gutter */
     
     .recipe-card.masonry-grid-item {
-      margin: 0 8px 8px 0; /* Some gutter */
+      // margin: 0 8px 8px 0; /* Some gutter */
       width: auto;
       break-inside: avoid;
+      float: left;
+      // padding: 0.5em; /* Keep original padding */
+      box-sizing: border-box;
+    }
+    
+    // Override per-row classes when masonry is active
+    &.per-row-1 .recipe-card.masonry-grid-item {
+      width: calc(100% - 8px) !important;
+    }
+    
+    &.per-row-2 .recipe-card.masonry-grid-item {
+      width: calc(50% - 8px) !important;
+    }
+    
+    &.per-row-3 .recipe-card.masonry-grid-item {
+      width: calc(33.333% - 8px) !important;
+    }
+    
+    &.per-row-4 .recipe-card.masonry-grid-item {
+      width: calc(25% - 8px) !important;
+    }
+    
+    &.per-row-5 .recipe-card.masonry-grid-item {
+      width: calc(20% - 8px) !important;
     }
   }
 }

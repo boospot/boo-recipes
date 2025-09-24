@@ -62,13 +62,15 @@
 
         // Masonry Layout
 
-        var masonry_grid =  $('.masonry-grid');
+        var masonry_grid = $('.masonry-grid');
 
-        if(masonry_grid.text()){
+        if(masonry_grid.length > 0){
             var $grid = $('.masonry-grid').masonry({
                 // options
                 itemSelector: '.masonry-grid-item',
-                // columnWidth: 200
+                columnWidth: '.recipe-card.masonry-grid-item',
+                gutter: 8,
+                horizontalOrder: true
             });
 
             $grid.imagesLoaded().progress( function() {
