@@ -114,8 +114,8 @@
   //}
 
   @media screen and (min-width: 30em) {
-    // When the Nutrition is side-by-side
-    &.ingredient-side {
+    // When ingredients are by the side (current behavior)
+    &.ingredients-by-side {
       .recipe-meta {
         flex: 1 1 50%;
         padding-right: 1em;
@@ -137,9 +137,15 @@
         flex: 1 0 40%;
       }
     }
-    .recipe-additional-notes {
-      grid-column: 1/3 span;
-    }
+  }
+
+  // Grid layout for ingredients by side
+  &.ingredients-by-side {
+    display: grid;
+  }
+
+  .recipe-additional-notes {
+    grid-column: 1/3 span;
   }
 
   div#comments {
@@ -259,6 +265,14 @@
 
 }
 
+// Ingredients layout CSS - outside nesting to target posttype-wrapper correctly
+.posttype-wrapper.ingredients-in-row .recipe-body .recipe-main-body {
+  display: flex !important;
+  flex-direction: column !important;
+  grid-template-columns: none !important;
+  grid-template-rows: none !important;
+  grid-gap: 0 !important;
+}
 
 // (moved module uses to the top per Sass rules)
 

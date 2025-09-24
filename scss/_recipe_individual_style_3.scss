@@ -1,6 +1,19 @@
 
 .single-recipe-style3, .single-recipe-style4 {
   display: grid;
+  
+  // Override grid layout for ingredients by side
+  &.ingredients-by-side {
+    display: grid;
+  }
+  
+  // Override grid layout for ingredients in row
+  &.ingredients-in-row {
+    .boo-recipe-details-wrapper {
+      display: flex !important;
+      flex-direction: column !important;
+    }
+  }
 
   .recipe-meta.recipe-style3, .recipe-meta.recipe-style4 {
     display: grid;
@@ -489,6 +502,12 @@
       max-height: 75vh;
     }
   }
+}
+
+// Style 3 & 4 Ingredients layout CSS - outside nesting to target posttype-wrapper correctly
+.posttype-wrapper.ingredients-in-row .boo-recipe-details-wrapper {
+  display: flex !important;
+  flex-direction: column !important;
 }
 
 /* CSS for style 4 ends here. */

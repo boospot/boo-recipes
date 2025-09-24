@@ -791,20 +791,13 @@ video.wp-video-shortcode {
   padding: 0.5em 0;
 }
 @media screen and (min-width: 30em) {
-  .boorecipe-recipe.ingredient-side {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-  }
-  .boorecipe-recipe.ingredient-side .posttype-section-box {
+  .boorecipe-recipe.ingredients-by-side .recipe-meta {
     flex: 1 1 50%;
     padding-right: 1em;
   }
-  .boorecipe-recipe.ingredient-side .recipe-body {
-    flex: 1 0 40%;
-  }
-  .boorecipe-recipe.ingredient-side .recipe-body .recipe-main-body .recipe-ingredients {
+  .boorecipe-recipe.ingredients-by-side .recipe-ingredients {
     padding: 1rem;
+    flex: 1 0 40%;
   }
   .boorecipe-recipe.nutrition-side .recipe-instructions {
     flex: 1 1 50%;
@@ -813,9 +806,12 @@ video.wp-video-shortcode {
   .boorecipe-recipe.nutrition-side .recipe-nutrition {
     flex: 1 0 40%;
   }
-  .boorecipe-recipe .recipe-additional-notes {
-    grid-column: 1/3 span;
-  }
+}
+.boorecipe-recipe.ingredients-by-side {
+  display: grid;
+}
+.boorecipe-recipe .recipe-additional-notes {
+  grid-column: 1/3 span;
 }
 .boorecipe-recipe div#comments {
   display: flex;
@@ -900,6 +896,14 @@ video.wp-video-shortcode {
     grid-row: 1/2 span;
   }
 }
+.posttype-wrapper.ingredients-in-row .recipe-body .recipe-main-body {
+  display: flex !important;
+  flex-direction: column !important;
+  grid-template-columns: none !important;
+  grid-template-rows: none !important;
+  grid-gap: 0 !important;
+}
+
 .select-items-cont {
   display: flex;
   flex-direction: column;
@@ -1060,6 +1064,13 @@ video.wp-video-shortcode {
 
 .single-recipe-style3, .single-recipe-style4 {
   display: grid;
+}
+.single-recipe-style3.ingredients-by-side, .single-recipe-style4.ingredients-by-side {
+  display: grid;
+}
+.single-recipe-style3.ingredients-in-row .boo-recipe-details-wrapper, .single-recipe-style4.ingredients-in-row .boo-recipe-details-wrapper {
+  display: flex !important;
+  flex-direction: column !important;
 }
 .single-recipe-style3 .recipe-meta.recipe-style3, .single-recipe-style3 .recipe-meta.recipe-style4, .single-recipe-style4 .recipe-meta.recipe-style3, .single-recipe-style4 .recipe-meta.recipe-style4 {
   display: grid;
@@ -1407,6 +1418,11 @@ video.wp-video-shortcode {
     max-height: 75vh;
   }
 }
+.posttype-wrapper.ingredients-in-row .boo-recipe-details-wrapper {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
 /* CSS for style 4 ends here. */
 /* CSS for style 2 starts here. */
 /* CSS for style 2 ends here. */

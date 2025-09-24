@@ -688,6 +688,18 @@ class Boorecipe_Admin_Simple {
 				'sanitize'    => 'boorecipe_sanitize_absint',
 			),
 
+			array(
+				'id'                => $this->prefix . 'ingredient_side',
+				'type'              => 'select',
+				'label'             => __( 'Ingredients by the Side', 'boo-recipes' ),
+				'label_description' => __( 'Do you Want to show ingredients by the side?', 'boo-recipes' ),
+				'default'           => 'no',
+				'options'           => array(
+					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
+					'no'  => esc_html__( 'No', 'boo-recipes' )
+				),
+			),
+
 
 			array(
 				'id'          => $this->prefix . 'color_accent',
@@ -805,49 +817,7 @@ class Boorecipe_Admin_Simple {
 				),
 			),
 
-			// === INGREDIENTS & INSTRUCTIONS ===
-			array(
-				'id'    => $this->prefix . 'ingredients_heading',
-				'type'  => 'html',
-				'desc'  => '<h3 style="margin: 20px 0 10px 0; padding: 10px; background: #f1f1f1; border-left: 4px solid #71A866;">Ingredients & Instructions</h3>',
-			),
 
-			array(
-				'id'      => $this->prefix . 'ingredients_editor',
-				'type'    => 'select',
-				'label'   => __( 'Ingredients Editor', 'boo-recipes' ),
-				'desc'    => __( 'Choose your preferred ingredients input method', 'boo-recipes' ),
-				'default' => 'textarea',
-				'options' => apply_filters( 'boorecipe_filter_options_field_ingredients_editor', array(
-					'textarea' => __( 'Simple Textarea', 'boo-recipes' ),
-					'repeater' => __( 'Repeater Fields', 'boo-recipes' )
-				) )
-			),
-
-			array(
-				'id'                => $this->prefix . 'ingredient_side',
-				'type'              => 'select',
-				'label'             => __( 'Ingredients by the Side', 'boo-recipes' ),
-				'label_description' => __( 'Do you Want to show ingredients by the side?', 'boo-recipes' ),
-				'default'           => 'no',
-				'options'           => array(
-					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
-					'no'  => esc_html__( 'No', 'boo-recipes' )
-				),
-			),
-
-			array(
-				'id'      => $this->prefix . 'enable_wysiwyg_editor',
-				'type'    => 'select',
-				'label'   => __( 'Enable WYSIWYG Editor?', 'boo-recipes' ),
-				'options' => array(
-					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
-					'no'  => esc_html__( 'No', 'boo-recipes' )
-				),
-				'radio'   => true,
-				'default' => 'no',
-				'desc'    => __( 'This will only be available for Short Description and Additional Notes', 'boo-recipes' ),
-			),
 
 			// === DISPLAY OPTIONS ===
 			array(
@@ -1038,6 +1008,31 @@ class Boorecipe_Admin_Simple {
 					'link_to_name'    => esc_html__( 'Link to External Author Name', 'boorecipe-premium' ),
 					'show_under_name' => esc_html__( 'Show Under External Author Name', 'boorecipe-premium' )
 				),
+			),
+
+			array(
+				'id'      => $this->prefix . 'ingredients_editor',
+				'type'    => 'select',
+				'label'   => __( 'Ingredients Editor', 'boo-recipes' ),
+				'desc'    => __( 'Choose your preferred ingredients input method', 'boo-recipes' ),
+				'default' => 'textarea',
+				'options' => apply_filters( 'boorecipe_filter_options_field_ingredients_editor', array(
+					'textarea' => __( 'Simple Textarea', 'boo-recipes' ),
+					'repeater' => __( 'Repeater Fields', 'boo-recipes' )
+				) )
+			),
+
+			array(
+				'id'      => $this->prefix . 'enable_wysiwyg_editor',
+				'type'    => 'select',
+				'label'   => __( 'Enable WYSIWYG Editor?', 'boo-recipes' ),
+				'options' => array(
+					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
+					'no'  => esc_html__( 'No', 'boo-recipes' )
+				),
+				'radio'   => true,
+				'default' => 'no',
+				'desc'    => __( 'This will only be available for Short Description and Additional Notes', 'boo-recipes' ),
 			)
 
 		) );
