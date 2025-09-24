@@ -221,16 +221,16 @@
   flex: 1 0 100%;
 }
 .posttype-wrapper.posttype-layout-right main#posttype-main {
-  order: 0;
+  order: 0 !important;
 }
 .posttype-wrapper.posttype-layout-right aside {
-  order: 1;
+  order: 1 !important;
 }
 .posttype-wrapper.posttype-layout-left main#posttype-main {
-  order: 1;
+  order: 1 !important;
 }
 .posttype-wrapper.posttype-layout-left aside {
-  order: 0;
+  order: 0 !important;
 }
 
 .posttype-container {
@@ -267,8 +267,8 @@
 .posttype-container .posttype-sub-section .subsection-icon {
   flex: 0 0 15%;
 }
-.posttype-container .recipe-taxonomy div .subsection-value a:not(:last-of-type):after {
-  content: ",";
+.posttype-container .recipe-taxonomy div .subsection-value {
+  /* Comma separation removed to prevent double commas */
 }
 .posttype-container .recipe-description {
   text-align: unset;
@@ -314,13 +314,15 @@
 
 @media screen and (min-width: 767px) {
   .posttype-wrapper {
-    flex-direction: row;
+    flex-direction: row !important;
   }
   .posttype-wrapper.has-sidebar main#posttype-main {
-    flex: 1 0 75%;
+    flex: 1 0 75% !important;
+    width: 75% !important;
   }
   .posttype-wrapper.has-sidebar aside {
-    flex: 1 0 25%;
+    flex: 1 0 25% !important;
+    width: 25% !important;
   }
   .posttype-container .recipe-nutrition .nutrition-info-cont {
     display: inherit;
@@ -789,13 +791,20 @@ video.wp-video-shortcode {
   padding: 0.5em 0;
 }
 @media screen and (min-width: 30em) {
-  .boorecipe-recipe.ingredient-side .recipe-meta {
+  .boorecipe-recipe.ingredient-side {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+  .boorecipe-recipe.ingredient-side .posttype-section-box {
     flex: 1 1 50%;
     padding-right: 1em;
   }
-  .boorecipe-recipe.ingredient-side .recipe-ingredients {
-    padding: 1rem;
+  .boorecipe-recipe.ingredient-side .recipe-body {
     flex: 1 0 40%;
+  }
+  .boorecipe-recipe.ingredient-side .recipe-body .recipe-main-body .recipe-ingredients {
+    padding: 1rem;
   }
   .boorecipe-recipe.nutrition-side .recipe-instructions {
     flex: 1 1 50%;

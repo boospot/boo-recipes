@@ -644,6 +644,51 @@ class Boorecipe_Admin_Simple {
 		*/
 		$options_fields['recipe_single'] = apply_filters( 'boorecipe_filter_options_fields_array_single', array(
 
+			// === LAYOUT & STYLE ===
+			array(
+				'id'    => $this->prefix . 'layout_style_heading',
+				'type'  => 'html',
+				'desc'  => '<h3 style="margin: 20px 0 10px 0; padding: 10px; background: #f1f1f1; border-left: 4px solid #71A866;">Layout & Style</h3>',
+			),
+
+			array(
+				'id'      => $this->prefix . 'recipe_style',
+				'type'    => 'select',
+				'label'   => __( 'Recipe Style', 'boo-recipes' ),
+				'options' => apply_filters( 'boorecipe_filter_options_fields_array_single_style', array(
+					'style1' => sprintf( __( 'Style %s', 'boo-recipes' ), 1 ),
+					'style2' => sprintf( __( 'Style %s', 'boo-recipes' ), 2 ),
+					'style3' => sprintf( __( 'Style %s', 'boo-recipes' ), 3 ),
+					'style4' => sprintf( __( 'Style %s', 'boo-recipes' ), 4 )
+				) ),
+				'radio'   => true,
+				'default' => 'style1',
+				'desc'    => __( 'Choose from 4 different recipe layout styles. Note: Image slider does not work with Style 4.', 'boo-recipes' ),
+			),
+
+			array(
+				'id'      => $this->prefix . 'recipe_layout',
+				'type'    => 'select',
+				'label'   => __( 'Recipe Layout', 'boo-recipes' ),
+				'options' => array(
+					'full'  => __( 'Full', 'boo-recipes' ),
+					'left'  => __( 'Left', 'boo-recipes' ),
+					'right' => __( 'Right', 'boo-recipes' ),
+				),
+				'radio'   => true,
+				'default' => 'full',
+			),
+
+			array(
+				'id'          => $this->prefix . 'layout_max_width',
+				'type'        => 'number',
+				'label'       => __( 'Layout Max Width', 'boo-recipes' ),
+				'description' => __( 'in pixels', 'boo-recipes' ),
+				'default'     => '1048',
+				'sanitize'    => 'boorecipe_sanitize_absint',
+			),
+
+
 			array(
 				'id'          => $this->prefix . 'color_accent',
 				'type'        => 'color',
@@ -679,19 +724,116 @@ class Boorecipe_Admin_Simple {
 				'rgba'              => true,
 			),
 
+			// === FEATURED IMAGE ===
 			array(
-				'id'      => $this->prefix . 'recipe_style',
+				'id'    => $this->prefix . 'featured_image_heading',
+				'type'  => 'html',
+				'desc'  => '<h3 style="margin: 20px 0 10px 0; padding: 10px; background: #f1f1f1; border-left: 4px solid #71A866;">Featured Image</h3>',
+			),
+
+			array(
+				'id'                => $this->prefix . 'show_featured_image',
+				'type'              => 'select',
+				'label'             => __( 'Show Featured Image?', 'boo-recipes' ),
+				'label_description' => __( 'Some Themes add this to header, you may want to hide the one added by this plugin to avoid duplicated contents', 'boo-recipes' ),
+				'default'           => $this->get_default_options( 'show_featured_image' ),
+				'options'           => array(
+					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
+					'no'  => esc_html__( 'No', 'boo-recipes' )
+				),
+			),
+
+			array(
+				'id'          => $this->prefix . 'featured_image_height',
+				'type'        => 'text',
+				'label'       => __( 'Featured image height', 'boo-recipes' ),
+				'description' => __( 'Maximum height of the recipe image', 'boo-recipes' ),
+				'default'     => '576',
+				'sanitize'    => 'boorecipe_sanitize_absint',
+			),
+
+			array(
+				'id'          => $this->prefix . 'recipe_default_img_url',
+				'type'        => 'media',
+				'label'       => __( 'Recipe default image', 'boo-recipes' ),
+				'description' => __( 'Paste the full url to the image you want to use', 'boo-recipes' ),
+				'width'       => 768,
+				'height'      => 768,
+				'max_width'   => 768
+			),
+
+			// === NUTRITION INFORMATION ===
+			array(
+				'id'    => $this->prefix . 'nutrition_heading',
+				'type'  => 'html',
+				'desc'  => '<h3 style="margin: 20px 0 10px 0; padding: 10px; background: #f1f1f1; border-left: 4px solid #71A866;">Nutrition Information</h3>',
+			),
+
+			array(
+				'id'                => $this->prefix . 'show_nutrition',
+				'type'              => 'select',
+				'label'             => __( 'Show Nutrition? (Global)', 'boo-recipes' ),
+				'label_description' => __( 'Do you want to show Nutrition info in individual Recipe?', 'boo-recipes' ),
+				'default'           => 'yes',
+				'options'           => array(
+					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
+					'no'  => esc_html__( 'No', 'boo-recipes' )
+				),
+			),
+
+			array(
+				'id'                => $this->prefix . 'nutrition_side',
+				'type'              => 'select',
+				'label'             => __( 'Nutrition by the Side', 'boo-recipes' ),
+				'label_description' => __( 'Do you Want to show nutrition by the side?', 'boo-recipes' ),
+				'default'           => 'yes',
+				'options'           => array(
+					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
+					'no'  => esc_html__( 'No', 'boo-recipes' )
+				),
+			),
+
+			array(
+				'id'                => $this->prefix . 'hide_empty_nutrition',
+				'type'              => 'select',
+				'label'             => __( 'Hide Empty Nutrition Info', 'boo-recipes' ),
+				'label_description' => __( 'Do you want to hide nutrition info if value not provided?', 'boo-recipes' ),
+				'default'           => 'no',
+				'options'           => array(
+					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
+					'no'  => esc_html__( 'No', 'boo-recipes' )
+				),
+			),
+
+			// === INGREDIENTS & INSTRUCTIONS ===
+			array(
+				'id'    => $this->prefix . 'ingredients_heading',
+				'type'  => 'html',
+				'desc'  => '<h3 style="margin: 20px 0 10px 0; padding: 10px; background: #f1f1f1; border-left: 4px solid #71A866;">Ingredients & Instructions</h3>',
+			),
+
+			array(
+				'id'      => $this->prefix . 'ingredients_editor',
 				'type'    => 'select',
-				'label'   => __( 'Recipe Style', 'boo-recipes' ),
-				'options' => apply_filters( 'boorecipe_filter_options_fields_array_single_style', array(
-					'style1' => sprintf( __( 'Style %s', 'boo-recipes' ), 1 ),
-					'style2' => sprintf( __( 'Style %s', 'boo-recipes' ), 2 ),
-					'style3' => sprintf( __( 'Style %s', 'boo-recipes' ), 3 ),
-					'style4' => sprintf( __( 'Style %s', 'boo-recipes' ), 4 )
-				) ),
-				'radio'   => true,
-				'default' => 'style1',
-				'desc'    => __( 'Choose from 4 different recipe layout styles', 'boo-recipes' ),
+				'label'   => __( 'Ingredients Editor', 'boo-recipes' ),
+				'desc'    => __( 'Choose your preferred ingredients input method', 'boo-recipes' ),
+				'default' => 'textarea',
+				'options' => apply_filters( 'boorecipe_filter_options_field_ingredients_editor', array(
+					'textarea' => __( 'Simple Textarea', 'boo-recipes' ),
+					'repeater' => __( 'Repeater Fields', 'boo-recipes' )
+				) )
+			),
+
+			array(
+				'id'                => $this->prefix . 'ingredient_side',
+				'type'              => 'select',
+				'label'             => __( 'Ingredients by the Side', 'boo-recipes' ),
+				'label_description' => __( 'Do you Want to show ingredients by the side?', 'boo-recipes' ),
+				'default'           => 'no',
+				'options'           => array(
+					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
+					'no'  => esc_html__( 'No', 'boo-recipes' )
+				),
 			),
 
 			array(
@@ -707,12 +849,44 @@ class Boorecipe_Admin_Simple {
 				'desc'    => __( 'This will only be available for Short Description and Additional Notes', 'boo-recipes' ),
 			),
 
+			// === DISPLAY OPTIONS ===
 			array(
-				'id'                => $this->prefix . 'show_nutrition',
+				'id'    => $this->prefix . 'display_heading',
+				'type'  => 'html',
+				'desc'  => '<h3 style="margin: 20px 0 10px 0; padding: 10px; background: #f1f1f1; border-left: 4px solid #71A866;">Display Options</h3>',
+			),
+
+			array(
+				'id'                => $this->prefix . 'show_recipe_title',
 				'type'              => 'select',
-				'label'             => __( 'Show Nutrition? (Global)', 'boo-recipes' ),
-				'label_description' => __( 'Do you want to show Nutrition info in individual Recipe?', 'boo-recipes' ),
-				'default'           => 'yes',
+				'label'             => __( 'Show Recipe Title?', 'boo-recipes' ),
+				'label_description' => __( 'Some Themes add this to header, you may want to hide the one added by this plugin to avoid duplicated contents', 'boo-recipes' ),
+				'default'           => $this->get_default_options( 'show_recipe_title' ),
+				'options'           => array(
+					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
+					'no'  => esc_html__( 'No', 'boo-recipes' )
+				),
+			),
+
+			array(
+				'id'                => $this->prefix . 'show_recipe_publish_info',
+				'type'              => 'select',
+				'label'             => __( 'Show Recipe Publish info?', 'boo-recipes' ),
+				'label_description' => __( 'Some Themes add this to header, you may want to hide the one added by this plugin to avoid duplicated contents', 'boo-recipes' ),
+				'default'           => $this->get_default_options( 'show_recipe_publish_info' ),
+				'options'           => array(
+					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
+					'no'  => esc_html__( 'No', 'boo-recipes' )
+				),
+			),
+
+
+			array(
+				'id'                => $this->prefix . 'show_published_date',
+				'type'              => 'select',
+				'label'             => __( 'Show Published Date', 'boo-recipes' ),
+				'label_description' => __( 'Do you want to show published date on recipe page?', 'boo-recipes' ),
+				'default'           => 'no',
 				'options'           => array(
 					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
 					'no'  => esc_html__( 'No', 'boo-recipes' )
@@ -744,91 +918,6 @@ class Boorecipe_Admin_Simple {
 			),
 
 			array(
-				'id'      => $this->prefix . 'ingredients_editor',
-				'type'    => 'select',
-				'label'   => __( 'Ingredients Editor', 'boo-recipes' ),
-				'desc'    => __( 'Choose your preferred ingredients input method', 'boo-recipes' ),
-				'default' => 'textarea',
-				'options' => apply_filters( 'boorecipe_filter_options_field_ingredients_editor', array(
-					'textarea' => __( 'Simple Textarea', 'boo-recipes' ),
-					'repeater' => __( 'Repeater Fields', 'boo-recipes' )
-				) )
-
-			),
-
-			array(
-				'id'                => $this->prefix . 'ingredient_side',
-				'type'              => 'select',
-				'label'             => __( 'Ingredients by the Side', 'boo-recipes' ),
-				'label_description' => __( 'Do you Want to show ingredients by the side?', 'boo-recipes' ),
-				'default'           => 'no',
-				'options'           => array(
-					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
-					'no'  => esc_html__( 'No', 'boo-recipes' )
-				),
-			),
-
-			array(
-				'id'                => $this->prefix . 'nutrition_side',
-				'type'              => 'select',
-				'label'             => __( 'Nutrition by the Side', 'boo-recipes' ),
-				'label_description' => __( 'Do you Want to show nutrition by the side?', 'boo-recipes' ),
-				'default'           => 'yes',
-				'options'           => array(
-					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
-					'no'  => esc_html__( 'No', 'boo-recipes' )
-				),
-			),
-
-			array(
-				'id'                => $this->prefix . 'hide_empty_nutrition',
-				'type'              => 'select',
-				'label'             => __( 'Hide Empty Nutrition Info', 'boo-recipes' ),
-				'label_description' => __( 'Do you want to hide nutrition info if value not provided?', 'boo-recipes' ),
-				'default'           => 'no',
-				'options'           => array(
-					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
-					'no'  => esc_html__( 'No', 'boo-recipes' )
-				),
-			),
-
-			array(
-				'id'                => $this->prefix . 'show_featured_image',
-				'type'              => 'select',
-				'label'             => __( 'Show Featured Image?', 'boo-recipes' ),
-				'label_description' => __( 'Some Themes add this to header, you may want to hide the one added by this plugin to avoid duplicated contents', 'boo-recipes' ),
-				'default'           => $this->get_default_options( 'show_featured_image' ),
-				'options'           => array(
-					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
-					'no'  => esc_html__( 'No', 'boo-recipes' )
-				),
-			),
-
-			array(
-				'id'                => $this->prefix . 'show_recipe_title',
-				'type'              => 'select',
-				'label'             => __( 'Show Recipe Title?', 'boo-recipes' ),
-				'label_description' => __( 'Some Themes add this to header, you may want to hide the one added by this plugin to avoid duplicated contents', 'boo-recipes' ),
-				'default'           => $this->get_default_options( 'show_recipe_title' ),
-				'options'           => array(
-					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
-					'no'  => esc_html__( 'No', 'boo-recipes' )
-				),
-			),
-
-			array(
-				'id'                => $this->prefix . 'show_recipe_publish_info',
-				'type'              => 'select',
-				'label'             => __( 'Show Recipe Publish info?', 'boo-recipes' ),
-				'label_description' => __( 'Some Themes add this to header, you may want to hide the one added by this plugin to avoid duplicated contents', 'boo-recipes' ),
-				'default'           => $this->get_default_options( 'show_recipe_publish_info' ),
-				'options'           => array(
-					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
-					'no'  => esc_html__( 'No', 'boo-recipes' )
-				),
-			),
-
-			array(
 				'id'                => $this->prefix . 'show_share_buttons',
 				'type'              => 'select',
 				'label'             => __( 'Show Share Buttons?', 'boo-recipes' ),
@@ -841,10 +930,52 @@ class Boorecipe_Admin_Simple {
 			),
 
 			array(
+				'id'      => $this->prefix . 'show_recipe_tool_img',
+				'type'    => 'select',
+				'label'   => __( 'Show Recipes tools images', 'boo-recipes' ),
+				'default' => $this->get_default_options( 'show_recipe_tool_img' ),
+				'options' => array(
+					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
+					'no'  => esc_html__( 'No', 'boo-recipes' )
+				),
+			),
+
+			array(
+				'id'          => $this->prefix . 'recipe_tool_default_img_url',
+				'type'        => 'media',
+				'label'       => __( 'Recipe Tool Default image', 'boo-recipes' ),
+				'description' => __( 'Select the image you want to use if no recipe tool image found', 'boo-recipes' ),
+				'width'       => 150,
+				'height'      => 150,
+				'max_width'   => 150
+			),
+
+			array(
+				'id'      => $this->prefix . 'show_cooking_method_img',
+				'type'    => 'select',
+				'label'   => __( 'Show Cooking method images', 'boo-recipes' ),
+				'default' => $this->get_default_options( 'show_cooking_method_img' ),
+				'options' => array(
+					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
+					'no'  => esc_html__( 'No', 'boo-recipes' )
+				),
+			),
+
+			array(
+				'id'          => $this->prefix . 'cooking_method_default_img_url',
+				'type'        => 'media',
+				'label'       => __( 'Cooking Default image', 'boo-recipes' ),
+				'description' => __( 'Select the image you want to use if no recipe tool image found', 'boo-recipes' ),
+				'width'       => 150,
+				'height'      => 150,
+				'max_width'   => 150
+			),
+
+			array(
 				'id'                => $this->prefix . 'show_author',
 				'type'              => 'select',
 				'label'             => __( 'Show Author', 'boo-recipes' ),
-				'label_description' => __( 'Do you Want to show author name on recipe page?', 'boo-recipes' ),
+				'label_description' => __( 'Shows author name with avatar under the recipe title. Note: This only works when "Show Author Box" is set to "No".', 'boo-recipes' ),
 				'default'           => 'yes',
 				'options'           => array(
 					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
@@ -853,60 +984,33 @@ class Boorecipe_Admin_Simple {
 			),
 
 			array(
-				'id'                => $this->prefix . 'show_published_date',
-				'type'              => 'select',
-				'label'             => __( 'Show Published Date', 'boo-recipes' ),
-				'label_description' => __( 'Do you want to show published date on recipe page?', 'boo-recipes' ),
-				'default'           => 'no',
-				'options'           => array(
+				'id'      => $this->prefix . 'show_author_box',
+				'type'    => 'select',
+				'label'   => __( 'Show Author Box', 'boo-recipes' ),
+				'desc'    => __( 'Shows author in a dedicated box before comments. Note: This will hide the author name under the title. This option will not work with External Author', 'boo-recipes' ),
+				'default' => 'no',
+				'options' => array(
 					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
 					'no'  => esc_html__( 'No', 'boo-recipes' )
 				),
 			),
 
 			array(
-				'id'          => $this->prefix . 'featured_image_height',
-				'type'        => 'text',
-				'label'       => __( 'Featured image height', 'boo-recipes' ),
-//					'after'       => __("You will need to re-generate thumbnails after changing this value for existing recipes", "boorecipe"),
-				'description' => __( 'Maximum height of the recipe image', 'boo-recipes' ),
-				'default'     => '576',
-				'sanitize'    => 'boorecipe_sanitize_absint',
-
+				'id'       => $this->prefix . 'author_link_label',
+				'type'     => 'text',
+				'label'    => __( 'Label for All Recipes By [Author Name]', 'boo-recipes' ),
+				'class'    => 'text-class',
+				'desc'     => __( 'Enter text if you want to override.', 'boo-recipes' ) . " " .
+				              sprintf(
+					              __( 'use %s where you want to add author name. Example: All Recipes by %s', 'boo-recipes' ), '<b>%author</b>', '%author' ),
+				'sanitize' => 'sanitize_text_field',
 			),
 
+			// === ADVANCED SETTINGS ===
 			array(
-				'id'          => $this->prefix . 'recipe_default_img_url',
-				'type'        => 'media',
-				'label'       => __( 'Recipe default image', 'boo-recipes' ),
-				'description' => __( 'Paste the full url to the image you want to use', 'boo-recipes' ),
-				'width'       => 768,
-				'height'      => 768,
-				'max_width'   => 768
-			),
-
-			array(
-				'id'          => $this->prefix . 'layout_max_width',
-				'type'        => 'number',
-				'label'       => __( 'Layout Max Width', 'boo-recipes' ),
-//					'after'       => __("You will need to re-generate thumbnails after changing this value for existing recipes", "boorecipe"),
-				'description' => __( 'in pixels', 'boo-recipes' ),
-				'default'     => '1048',
-				'sanitize'    => 'boorecipe_sanitize_absint',
-
-			),
-
-			array(
-				'id'      => $this->prefix . 'recipe_layout',
-				'type'    => 'select',
-				'label'   => __( 'Recipe Layout', 'boo-recipes' ),
-				'options' => array(
-					'full'  => __( 'Full', 'boo-recipes' ),
-					'left'  => __( 'Left', 'boo-recipes' ),
-					'right' => __( 'Right', 'boo-recipes' ),
-				),
-				'radio'   => true,
-				'default' => 'full',
+				'id'    => $this->prefix . 'advanced_heading',
+				'type'  => 'html',
+				'desc'  => '<h3 style="margin: 20px 0 10px 0; padding: 10px; background: #f1f1f1; border-left: 4px solid #71A866;">Advanced Settings</h3>',
 			),
 
 			array(
@@ -923,7 +1027,6 @@ class Boorecipe_Admin_Simple {
 				),
 				'help'        => 'only use small letters and underscores or dashes',
 				'sanitize'    => 'sanitize_key',
-
 			),
 
 			array(
@@ -937,23 +1040,28 @@ class Boorecipe_Admin_Simple {
 				),
 			)
 
-
 		) );
 		/*
 		 * Recipe Archive
 		 */
 		$options_fields['recipe_archive'] = apply_filters( 'boorecipe_filter_options_fields_array_archive', array(
 
+			// === LAYOUT & STYLE ===
 			array(
-				'id'       => $this->prefix . 'recipes_per_page',
-				'type'     => 'number',
-				'label'    => __( 'Recipes Per Page', 'boo-recipes' ),
-				'default'  => $this->get_default_options( 'recipes_per_page' ),
-				'sanitize' => 'boorecipe_sanitize_absint',
-				'options'  => array(
-					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
-					'no'  => esc_html__( 'No', 'boo-recipes' )
-				),
+				'id'    => $this->prefix . 'archive_layout_heading',
+				'type'  => 'html',
+				'desc'  => '<h3 style="margin: 20px 0 10px 0; padding: 10px; background: #f1f1f1; border-left: 4px solid #71A866;">Layout & Style</h3>',
+			),
+
+			array(
+				'id'      => $this->prefix . 'recipe_archive_layout',
+				'type'    => 'select',
+				'label'   => __( 'Recipes Archive Layout', 'boo-recipes' ),
+				'options' => apply_filters( 'boorecipe_filter_options_fields_array_archive_layout', array(
+					'grid' => __( 'Grid', 'boo-recipes' ),
+					'list' => __( 'List', 'boo-recipes' ),
+				) ),
+				'default' => $this->get_default_options( 'recipe_archive_layout' ),
 			),
 
 			array(
@@ -970,17 +1078,6 @@ class Boorecipe_Admin_Simple {
 				'after'    => __( 'This option will not take affect for ALL archie layouts', 'boo-recipes' ),
 				'default'  => $this->get_default_options( 'recipes_per_row' ),
 				'sanitize' => 'boorecipe_sanitize_absint'
-			),
-
-			array(
-				'id'      => $this->prefix . 'recipe_archive_layout',
-				'type'    => 'select',
-				'label'   => __( 'Recipes Archive Layout', 'boo-recipes' ),
-				'options' => apply_filters( 'boorecipe_filter_options_fields_array_archive_layout', array(
-					'grid' => __( 'Grid', 'boo-recipes' ),
-					'list' => __( 'List', 'boo-recipes' ),
-				) ),
-				'default' => $this->get_default_options( 'recipe_archive_layout' ),
 			),
 
 			array(
@@ -1008,19 +1105,20 @@ class Boorecipe_Admin_Simple {
 			),
 
 			array(
-				'id'      => $this->prefix . 'heading_for_archive_title',
-				'type'    => 'select',
-				'label'   => __( 'Heading Tag for Recipes Archive', 'boo-recipes' ),
-				'options' => array(
-					'h2' => __( 'h2', 'boo-recipes' ),
-					'h3' => __( 'h3', 'boo-recipes' ),
-					'h4' => __( 'h4', 'boo-recipes' ),
-					'h5' => __( 'h5', 'boo-recipes' ),
-					'h6' => __( 'h6', 'boo-recipes' ),
-				),
-				'default' => $this->get_default_options( 'heading_for_archive_title' ),
+				'id'          => $this->prefix . 'archive_layout_max_width',
+				'type'        => 'number',
+				'label'       => __( 'Archive Layout Max Width', 'boo-recipes' ),
+				'description' => __( 'in pixels', 'boo-recipes' ),
+				'default'     => $this->get_default_options( 'archive_layout_max_width' ),
+				'sanitize'    => 'boorecipe_sanitize_absint',
 			),
 
+			// === COLORS ===
+			array(
+				'id'    => $this->prefix . 'archive_colors_heading',
+				'type'  => 'html',
+				'desc'  => '<h3 style="margin: 20px 0 10px 0; padding: 10px; background: #f1f1f1; border-left: 4px solid #71A866;">Colors</h3>',
+			),
 
 			array(
 				'id'          => $this->prefix . 'color_archive_title',
@@ -1035,7 +1133,6 @@ class Boorecipe_Admin_Simple {
 				'type'    => 'color',
 				'label'   => __( 'Recipe Excerpt Color', 'boo-recipes' ),
 				'default' => $this->get_default_options( 'color_archive_excerpt' ),
-
 			),
 
 			array(
@@ -1051,7 +1148,6 @@ class Boorecipe_Admin_Simple {
 				'type'    => 'color',
 				'label'   => __( 'Key Points Text Color', 'boo-recipes' ),
 				'default' => $this->get_default_options( 'color_archive_keys' ),
-
 			),
 
 			array(
@@ -1070,31 +1166,33 @@ class Boorecipe_Admin_Simple {
 				'rgba'    => true,
 			),
 
-			// Card Border Color moved to border settings section
-
-			// Expected insertion of premium options
-
+			// === DISPLAY OPTIONS ===
 			array(
-				'id'          => $this->prefix . 'archive_layout_max_width',
-				'type'        => 'number',
-				'label'       => __( 'Archive Layout Max Width', 'boo-recipes' ),
-				'description' => __( 'in pixels', 'boo-recipes' ),
-				'default'     => $this->get_default_options( 'archive_layout_max_width' ),
-				'sanitize'    => 'boorecipe_sanitize_absint',
-
+				'id'    => $this->prefix . 'archive_display_heading',
+				'type'  => 'html',
+				'desc'  => '<h3 style="margin: 20px 0 10px 0; padding: 10px; background: #f1f1f1; border-left: 4px solid #71A866;">Display Options</h3>',
 			),
 
+			array(
+				'id'       => $this->prefix . 'recipes_per_page',
+				'type'     => 'number',
+				'label'    => __( 'Recipes Per Page', 'boo-recipes' ),
+				'default'  => $this->get_default_options( 'recipes_per_page' ),
+				'sanitize' => 'boorecipe_sanitize_absint',
+			),
 
 			array(
-				'id'                => $this->prefix . 'override_theme_pagination_style',
-				'type'              => 'select',
-				'label'             => __( 'Override Pagination Styling?', 'boo-recipes' ),
-				'label_description' => __( 'Do you want to override theme styling for pagination?', 'boo-recipes' ),
-				'default'           => $this->get_default_options( 'override_theme_pagination_style' ),
-				'options'           => array(
-					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
-					'no'  => esc_html__( 'No', 'boo-recipes' )
+				'id'      => $this->prefix . 'heading_for_archive_title',
+				'type'    => 'select',
+				'label'   => __( 'Heading Tag for Recipes Archive', 'boo-recipes' ),
+				'options' => array(
+					'h2' => __( 'h2', 'boo-recipes' ),
+					'h3' => __( 'h3', 'boo-recipes' ),
+					'h4' => __( 'h4', 'boo-recipes' ),
+					'h5' => __( 'h5', 'boo-recipes' ),
+					'h6' => __( 'h6', 'boo-recipes' ),
 				),
+				'default' => $this->get_default_options( 'heading_for_archive_title' ),
 			),
 
 			array(
@@ -1122,6 +1220,25 @@ class Boorecipe_Admin_Simple {
 			),
 
 			array(
+				'id'                => $this->prefix . 'override_theme_pagination_style',
+				'type'              => 'select',
+				'label'             => __( 'Override Pagination Styling?', 'boo-recipes' ),
+				'label_description' => __( 'Do you want to override theme styling for pagination?', 'boo-recipes' ),
+				'default'           => $this->get_default_options( 'override_theme_pagination_style' ),
+				'options'           => array(
+					'yes' => esc_html__( 'Yes', 'boo-recipes' ),
+					'no'  => esc_html__( 'No', 'boo-recipes' )
+				),
+			),
+
+			// === ADVANCED SETTINGS ===
+			array(
+				'id'    => $this->prefix . 'archive_advanced_heading',
+				'type'  => 'html',
+				'desc'  => '<h3 style="margin: 20px 0 10px 0; padding: 10px; background: #f1f1f1; border-left: 4px solid #71A866;">Advanced Settings</h3>',
+			),
+
+			array(
 				'id'      => $this->prefix . 'recipe_category_slug',
 				'type'    => 'text',
 				'label'   => __( 'Recipe Category Slug', 'boorecipe-premium' ),
@@ -1144,7 +1261,6 @@ class Boorecipe_Admin_Simple {
 				'default' => $this->get_default_options( 'recipe_tags_slug' ),
 				'desc'    => sprintf( __( "You will need to re-save %spermalinks%s after changing this value", "boorecipe" ), '<a href=' . get_admin_url() . "options-permalink.php" . ' target="_blank">', '</a>' ),
 			)
-
 
 		) );
 		/*

@@ -17,22 +17,22 @@
 
   &.posttype-layout-right {
     main#posttype-main {
-      order: 0;
+      order: 0 !important;
     }
 
     aside {
-      order: 1;
+      order: 1 !important;
     }
 
   }
 
   &.posttype-layout-left {
     main#posttype-main {
-      order: 1;
+      order: 1 !important;
     }
 
     aside {
-      order: 0;
+      order: 0 !important;
     }
 
   }
@@ -119,9 +119,7 @@
   .recipe-taxonomy{
     div{
       .subsection-value{
-        a:not(:last-of-type):after{
-          content: ',';
-        }
+        /* Comma separation removed to prevent double commas */
       }
     }
 
@@ -204,15 +202,17 @@
 
 @media screen and (min-width: 767px) {
   .posttype-wrapper {
-    flex-direction: row;
+    flex-direction: row !important;
     &.has-sidebar {
 
       main#posttype-main {
-        flex: 1 0 75%;
+        flex: 1 0 75% !important;
+        width: 75% !important;
       }
 
       aside {
-        flex: 1 0 25%;
+        flex: 1 0 25% !important;
+        width: 25% !important;
       }
 
     }

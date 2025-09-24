@@ -483,28 +483,6 @@ class Boorecipe_Premium_Admin_Simple extends Boorecipe_Admin_Simple {
 
 		$author_box_fields = array();
 
-		$author_box_fields[] = array(
-			'id'      => $this->prefix . 'show_author_box',
-			'type'    => 'select',
-			'label'   => __( 'Show Author Box', 'boo-recipes' ),
-			'desc'    => __( 'If you choose to enable this option, author will be shown in a box before comments', 'boo-recipes' ) . '. ' . __( 'This option will not work with External Author', 'boo-recipes' ),
-			'default' => 'no',
-			'options' => array(
-				'yes' => esc_html__( 'Yes', 'boo-recipes' ),
-				'no'  => esc_html__( 'No', 'boo-recipes' )
-			),
-		);
-
-		$author_box_fields[] = array(
-			'id'       => $this->prefix . 'author_link_label',
-			'type'     => 'text',
-			'label'    => __( 'Label for All Recipes By [Author Name]', 'boo-recipes' ),
-			'class'    => 'text-class',
-			'desc'     => __( 'Enter text if you want to override.', 'boo-recipes' ) . " " .
-			              sprintf(
-				              __( 'use %s where you want to add author name. Example: All Recipes by %s', 'boo-recipes' ), '<b>%author</b>', '%author' ),
-			'sanitize' => 'sanitize_text_field',
-		);
 
 
 		$author_box_fields[] = array(
@@ -523,6 +501,13 @@ class Boorecipe_Premium_Admin_Simple extends Boorecipe_Admin_Simple {
 
 
 		$related_recipes_fields = array();
+
+		// Add heading for Related Recipes section
+		$related_recipes_fields[] = array(
+			'id'    => $this->prefix . 'related_recipes_heading',
+			'type'  => 'html',
+			'desc'  => '<h3 style="margin: 20px 0 10px 0; padding: 10px; background: #f1f1f1; border-left: 4px solid #71A866;">Related Recipes</h3>',
+		);
 
 		$related_recipes_fields[] = array(
 			'id'      => $this->prefix . 'related_recipes_show',
@@ -574,47 +559,6 @@ class Boorecipe_Premium_Admin_Simple extends Boorecipe_Admin_Simple {
 			'sanitize'   => 'boorecipe_sanitize_absint',
 		);
 
-		$related_recipes_fields[] = array(
-			'id'      => $this->prefix . 'show_recipe_tool_img',
-			'type'    => 'select',
-			'label'   => __( 'Show Recipes tools images', 'boo-recipes' ),
-			'default' => $this->get_default_options( 'show_recipe_tool_img' ),
-			'options' => array(
-				'yes' => esc_html__( 'Yes', 'boo-recipes' ),
-				'no'  => esc_html__( 'No', 'boo-recipes' )
-			),
-		);
-
-		$related_recipes_fields[] = array(
-			'id'          => $this->prefix . 'recipe_tool_default_img_url',
-			'type'        => 'media',
-			'label'       => __( 'Recipe Tool Default image', 'boo-recipes' ),
-			'description' => __( 'Select the image you want to use if no recipe tool image found', 'boo-recipes' ),
-			'width'       => 150,
-			'height'      => 150,
-			'max_width'   => 150
-		);
-
-		$related_recipes_fields[] = array(
-			'id'      => $this->prefix . 'show_cooking_method_img',
-			'type'    => 'select',
-			'label'   => __( 'Show Cooking method images', 'boo-recipes' ),
-			'default' => $this->get_default_options( 'show_cooking_method_img' ),
-			'options' => array(
-				'yes' => esc_html__( 'Yes', 'boo-recipes' ),
-				'no'  => esc_html__( 'No', 'boo-recipes' )
-			),
-		);
-
-		$related_recipes_fields[] = array(
-			'id'          => $this->prefix . 'cooking_method_default_img_url',
-			'type'        => 'media',
-			'label'       => __( 'Cooking Default image', 'boo-recipes' ),
-			'description' => __( 'Select the image you want to use if no recipe tool image found', 'boo-recipes' ),
-			'width'       => 150,
-			'height'      => 150,
-			'max_width'   => 150
-		);
 
 		$options_fields = array_merge( $options_fields, $related_recipes_fields );
 

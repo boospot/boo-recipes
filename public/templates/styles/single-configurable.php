@@ -56,10 +56,19 @@ if ( ! defined( 'ABSPATH' ) ) {
         fill: <?php echo $icon_color; ?>;
     }
     .posttype-section.recipe-img-cont {
-        max-height: <?php echo $image_height; ?>px;
+        height: <?php echo $image_height; ?>px !important;
         overflow: hidden;
+        display: flex;
+        align-items: center;
         justify-content: center;
     }
+    .posttype-section.recipe-img-cont img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: center !important;
+    }
+    /* DEBUG: Featured image height set to <?php echo $image_height; ?>px */
     .select-items-cont .select-item.active::before {
         background-color: <?php echo $accent_color; ?>;
         opacity: 0.5;
