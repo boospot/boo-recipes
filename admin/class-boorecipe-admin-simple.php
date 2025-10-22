@@ -121,6 +121,21 @@ class Boorecipe_Admin_Simple {
 	}
 
 	/**
+	 * Render system information field
+	 *
+	 * @param array $args Field arguments
+	 */
+	public function render_system_info_field( $args ) {
+		$system_info = $this->get_system_information_text();
+		?>
+		<textarea readonly style="width: 100%; height: 400px; font-family: monospace; font-size: 12px; background: #f9f9f9; border: 1px solid #ddd; padding: 10px; resize: vertical;"><?php echo esc_textarea( $system_info ); ?></textarea>
+		<?php
+		if ( isset( $args['desc'] ) && ! empty( $args['desc'] ) ) {
+			echo '<p class="description">' . wp_kses_post( $args['desc'] ) . '</p>';
+		}
+	}
+
+	/**
 	 * Get system information as plain text
 	 *
 	 * @return string
@@ -1320,14 +1335,10 @@ class Boorecipe_Admin_Simple {
 		 */
 		$options_fields['system_info'] = apply_filters( 'boorecipe_filter_options_fields_array_system_info', array(
 			array(
-				'id'    => $this->prefix . 'system_info_display',
-				'type'  => 'textarea',
+				'type'  => 'html',
 				'label' => __( 'System Information', 'boo-recipes' ),
 				'desc'  => __( 'Select all text (Ctrl+A) and copy (Ctrl+C) to paste into your support ticket for faster assistance.', 'boo-recipes' ),
-				'default' => $this->get_system_information_text(),
-				'readonly' => true,
-				'rows' => 25,
-				'cols' => 100,
+				'callback' => array( $this, 'render_system_info_field' ),
 			),
 			array(
 				'id'          => $this->prefix . 'enable_debug_logging',
