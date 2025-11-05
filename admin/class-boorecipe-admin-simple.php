@@ -50,6 +50,43 @@ class Boorecipe_Admin_Simple {
 
 		$this->prefix = Boorecipe_Globals::get_meta_prefix();
 
+		// Migrate old option names to new format for boo-settings-helper v5.4+ compatibility
+		$this->migrate_old_option_names();
+
+	}
+
+	/**
+	 * Migrate old option names to new format for boo-settings-helper v5.4+ compatibility
+	 *
+	 * This ensures backward compatibility when field IDs are updated to include prefixes.
+	 *
+	 * @since 1.0.0
+	 */
+	private function migrate_old_option_names() {
+		// Migration flag to prevent running multiple times
+		$migration_flag = 'boorecipe_masonry_option_migrated';
+		
+		// Check if migration has already been done
+		if ( get_option( $migration_flag, false ) ) {
+			return;
+		}
+
+		// Check for old option name (without prefix) and migrate if exists
+		$old_option_name = 'show_in_masonry';
+		$new_option_name = $this->prefix . 'show_in_masonry';
+		
+		$old_value = get_option( $old_option_name, false );
+		
+		if ( $old_value !== false ) {
+			// Migrate old option to new option name
+			update_option( $new_option_name, $old_value );
+			
+			// Delete old option to avoid confusion
+			delete_option( $old_option_name );
+		}
+		
+		// Mark migration as complete
+		update_option( $migration_flag, true );
 	}
 
 	/**
@@ -1091,7 +1128,7 @@ class Boorecipe_Admin_Simple {
 			),
 
 			array(
-				'id'          => 'show_in_masonry',
+				'id'          => $this->prefix . 'show_in_masonry',
 				'type'        => 'select',
 				'label'       => __( 'Show Recipe cards in Masonry?', 'boo-recipes' ),
 				'default'     => $this->get_default_options( 'show_in_masonry' ),
@@ -1335,9 +1372,10 @@ class Boorecipe_Admin_Simple {
 		 */
 		$options_fields['system_info'] = apply_filters( 'boorecipe_filter_options_fields_array_system_info', array(
 			array(
-				'type'  => 'html',
-				'label' => __( 'System Information', 'boo-recipes' ),
-				'desc'  => __( 'Select all text (Ctrl+A) and copy (Ctrl+C) to paste into your support ticket for faster assistance.', 'boo-recipes' ),
+				'id'      => $this->prefix . 'system_info_display',
+				'type'    => 'html',
+				'label'   => __( 'System Information', 'boo-recipes' ),
+				'desc'    => __( 'Select all text (Ctrl+A) and copy (Ctrl+C) to paste into your support ticket for faster assistance.', 'boo-recipes' ),
 				'callback' => array( $this, 'render_system_info_field' ),
 			),
 			array(
