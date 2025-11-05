@@ -33,6 +33,14 @@ class Boorecipe_Admin_Simple {
 	 * @var      string $version The current version of this plugin.
 	 */
 	private $version;
+	/**
+	 * The prefix for option names.
+	 *
+	 * @since    1.0.0
+	 * @access   protected
+	 * @var      string $prefix The prefix for option names.
+	 */
+	protected $prefix;
 
 	/**
 	 * Initialize the class and set its properties.
