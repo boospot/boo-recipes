@@ -45,7 +45,7 @@ $item_count               = 0;
 						$html .= "<ol class='instructions-list' type='1'>";
 					}
 					$html .= "<li class='recipe-single-instruction'>";
-					$html .= "<span class='instruction-text' itemprop='recipeInstructions'>";
+					$html .= "<span class='instruction-text'>";
 					$html .= $item;
 					$html .= "</span>";
 					$html .= "</li>";

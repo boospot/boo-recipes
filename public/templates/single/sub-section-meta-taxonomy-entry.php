@@ -3,7 +3,6 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-$itemprop_tag              = ( isset( $itemprop ) ) ? "itemprop='$itemprop'" : '';
 $show_key_point_label      = ( $this->get_options_value( 'show_key_point_label' ) === 'yes' ) ? true : false;
 $show_icons                = ( $this->get_options_value( 'show_icons' ) === 'yes' ) ? true : false;
 $single_recipe_icon_size   = $this->get_options_value( 'single_recipe_icon_size' );
@@ -17,5 +16,5 @@ $single_recipe_icon_size   = $this->get_options_value( 'single_recipe_icon_size'
             <div class="subsection-label"><?php echo $this->get_options_value( $taxonomy . '_label' ); ?></div>
         <?php endif; ?>
     </div>
-    <span <?php echo $itemprop_tag ?> class="subsection-value"><?php echo $taxonomy_terms; ?></span>
+    <span class="subsection-value"><?php echo $taxonomy_terms; ?></span>
 </div>

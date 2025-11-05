@@ -3,9 +3,9 @@
 Contributors: boospot
 Tags: recipe, recipes, rich snippet, schema.org
 Donate link: https://www.buymeacoffee.com/raoabid
-Requires at least: 4.8
-Tested up to: 5.6.1
-Requires PHP: 7.0
+Requires at least: 5.0
+Tested up to: 6.8
+Requires PHP: 8.0
 Stable tag: trunk
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt

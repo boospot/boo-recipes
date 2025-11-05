@@ -303,7 +303,7 @@ class Boorecipe {
 		/**
 		 * JSON-LD Schema Generator
 		 */
-		$jsonld_generator = new Boorecipe_JSONLD_Generator( $this );
+		$jsonld_generator = new Boorecipe_JSONLD_Generator();
 		$this->loader->add_action( 'wp_head', $jsonld_generator, 'output_schema' );
 
 		/**

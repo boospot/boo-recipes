@@ -3,7 +3,6 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-$itemprop = ( isset( $itemprop ) ) ? "itemprop='{$itemprop}'" : "";
 $show_icons = ( $this->get_options_value( 'show_icons' ) === 'yes' ) ? true : false;
 $single_recipe_icon_size = $this->get_options_value( 'single_recipe_icon_size' );
 ?>
@@ -18,5 +17,5 @@ $single_recipe_icon_size = $this->get_options_value( 'single_recipe_icon_size' )
             <?php endif; ?>
         </div>
 	<?php endif; ?>
-    <span class="subsection-value" <?php echo $itemprop ?>><?php echo $key_point_value ?></span>
+    <span class="subsection-value"><?php echo $key_point_value ?></span>
 </div>

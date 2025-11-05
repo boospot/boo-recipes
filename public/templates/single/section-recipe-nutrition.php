@@ -9,13 +9,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 $nutrition_meta = boorecipe_get_nutrition_meta();
 $format_nutrition_detail =
 	"<div class='nutrition-detail'>
-                        <div class='nutrition-measurement'><span class='%s'>%s</span> <span class='nutrition-info' itemprop='%s'>%s%s</span></div>
+                        <div class='nutrition-measurement'><span class='%s'>%s</span> <span class='nutrition-info'>%s%s</span></div>
                         <div class='nutrition-percent'>%s</div>
                     </div>";
 //there are nine calories in one gram of fat.
 $format_calories_detail =
 	"<div class='calories-section'>
-                        <div class='calories-number'><span class='%s'>%s</span> <span class='nutrition-info' itemprop='%s'>%s</span></div>
+                        <div class='calories-number'><span class='%s'>%s</span> <span class='nutrition-info'>%s</span></div>
                         <div class='calories-fat'>%s %s</div>
                     </div>";
 //          Fat Calories Calculation
@@ -53,7 +53,6 @@ foreach ( $nutrition_meta as $key => $nutrition ) {
 					$format_calories_detail,
 					$role_class,
 					$display,
-					$itemprop,
 					$value,
 					__( 'Calories from Fat', 'boo-recipes' ),
 					$calories_from_fat
@@ -65,7 +64,6 @@ foreach ( $nutrition_meta as $key => $nutrition ) {
 					$format_nutrition_detail,
 					$role_class,
 					$display,
-					$itemprop,
 					$value,
 					$measurement,
 					$percentage
@@ -73,7 +71,7 @@ foreach ( $nutrition_meta as $key => $nutrition ) {
 	}
 }
 ?>
-<div class="recipe-nutrition" itemprop="nutrition" itemscope itemtype="http://schema.org/NutritionInformation">
+<div class="recipe-nutrition">
     <div class="nutrition-info-cont">
         <section class="nutrition-facts">
             <header class="nutrition-facts__header">

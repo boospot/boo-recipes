@@ -7,5 +7,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <span class="recipe-archive-author">
     <?php include boorecipe_get_template( 'author-avatar', 'archive' ); ?>
-    <span class="recipe-author-name" itemprop="author"><?php echo $recipe_author_name; ?></span>
+    <span class="recipe-author-name"><?php echo $recipe_author_name; ?></span>
 </span>

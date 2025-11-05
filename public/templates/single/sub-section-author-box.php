@@ -15,7 +15,7 @@ $link_label = sprintf( $recipe_author_link_label, get_the_author_meta( 'display_
 		<?php echo get_avatar( get_the_author_meta( 'email', $author_id ), '100' ); ?>
     </div>
     <div class="recipe-author-desc">
-        <h2 itemprop="author"><?php echo get_the_author_meta( 'display_name', $author_id ); ?></h2>
+        <h2><?php echo get_the_author_meta( 'display_name', $author_id ); ?></h2>
         <p><?php echo get_the_author_meta( 'description', $author_id ); ?></p>
         <div class="author-icons">
                 <span class="before_author_recipes_link_action"><?php

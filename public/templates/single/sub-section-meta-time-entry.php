@@ -16,6 +16,5 @@ if ( $meta['recipe_time_format'] === 'time_format_minutes' ) {
 ?>
 <div class="recipe-<?php echo $itemprop; ?>">
     <div class="subsection-label"><?php echo $time_label; ?></div>
-    <span itemprop="<?php echo $itemprop ?>" content="PT<?php echo $time_value . $time_content_initial ?>"
-          class="subsection-value"><?php echo $time_value . " " . $time_content_unit_label; ?></span>
+    <span class="subsection-value"><?php echo $time_value . " " . $time_content_unit_label; ?></span>
 </div>

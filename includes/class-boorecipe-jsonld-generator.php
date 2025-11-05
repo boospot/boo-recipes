@@ -18,19 +18,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Boorecipe_JSONLD_Generator {
 
 	/**
-	 * The plugin's options helper
-	 *
-	 * @var Boo_Settings_Helper
-	 */
-	private $options_helper;
-
-	/**
 	 * Initialize the class
-	 *
-	 * @param Boo_Settings_Helper $options_helper The options helper instance
 	 */
-	public function __construct( $options_helper ) {
-		$this->options_helper = $options_helper;
+	public function __construct() {
+		// No parameters needed - we use Boorecipe_Globals::get_recipe_meta() directly
 	}
 
 	/**
@@ -44,8 +35,8 @@ class Boorecipe_JSONLD_Generator {
 
 		global $post;
 		
-		// Get recipe meta data
-		$meta = $this->get_recipe_meta( $post->ID );
+		// Get recipe meta data using the global method
+		$meta = Boorecipe_Globals::get_recipe_meta( $post->ID );
 		
 		// Generate recipe schema
 		$schema = $this->generate_recipe_schema( $post, $meta );
@@ -82,9 +73,9 @@ class Boorecipe_JSONLD_Generator {
 			'name'  => get_the_author_meta( 'display_name', $post->post_author ),
 		);
 
-		// Recipe details
-		if ( ! empty( $meta['recipeYield'] ) ) {
-			$schema['recipeYield'] = $meta['recipeYield'];
+		// Recipe details - map 'yields' to 'recipeYield'
+		if ( ! empty( $meta['yields'] ) ) {
+			$schema['recipeYield'] = $meta['yields'];
 		}
 
 		// Time information
@@ -99,8 +90,13 @@ class Boorecipe_JSONLD_Generator {
 			$schema['recipeIngredient'] = $ingredients;
 		}
 
-		// Instructions
-		$instructions = $this->parse_instructions( $meta['instructions'] ?? '' );
+		// Instructions - map 'directions' or 'directions_wysiwyg' to 'recipeInstructions'
+		$directions = $meta['directions'] ?? '';
+		// Check for WYSIWYG version if available
+		if ( empty( $directions ) && ! empty( $meta['directions_wysiwyg'] ) ) {
+			$directions = $meta['directions_wysiwyg'];
+		}
+		$instructions = $this->parse_instructions( $directions );
 		if ( ! empty( $instructions ) ) {
 			$schema['recipeInstructions'] = $instructions;
 		}
@@ -112,7 +108,7 @@ class Boorecipe_JSONLD_Generator {
 		}
 
 		// Rating information
-		$rating = $this->generate_rating_schema( $meta );
+		$rating = $this->generate_rating_schema( $post->ID );
 		if ( ! empty( $rating ) ) {
 			$schema['aggregateRating'] = $rating;
 		}
@@ -136,31 +132,6 @@ class Boorecipe_JSONLD_Generator {
 		return $schema;
 	}
 
-	/**
-	 * Get recipe meta data
-	 *
-	 * @param int $post_id The post ID
-	 * @return array The meta data
-	 */
-	private function get_recipe_meta( $post_id ) {
-		$meta = array();
-		
-		// Get all recipe meta fields
-		$meta_fields = array(
-			'recipeYield', 'prepTime', 'cookTime', 'totalTime', 'keywords',
-			'ingredients', 'instructions', 'short_description', 'additional_notes',
-			'cookingMethod', 'servingSize', 'calories', 'fatContent', 'saturatedFatContent',
-			'transFatContent', 'unsaturatedFatContent', 'cholesterolContent',
-			'sodiumContent', 'carbohydrateContent', 'fiberContent', 'sugarContent',
-			'proteinContent', 'rating', 'reviewCount'
-		);
-
-		foreach ( $meta_fields as $field ) {
-			$meta[ $field ] = get_post_meta( $post_id, 'boorecipe_' . $field, true );
-		}
-
-		return $meta;
-	}
 
 	/**
 	 * Get recipe description
@@ -212,16 +183,19 @@ class Boorecipe_JSONLD_Generator {
 	private function get_time_schema( $meta ) {
 		$time_schema = array();
 
-		if ( ! empty( $meta['prepTime'] ) ) {
-			$time_schema['prepTime'] = $this->format_duration( $meta['prepTime'] );
+		// Map 'prep_time' to 'prepTime'
+		if ( ! empty( $meta['prep_time'] ) ) {
+			$time_schema['prepTime'] = $this->format_duration( $meta['prep_time'] );
 		}
 
-		if ( ! empty( $meta['cookTime'] ) ) {
-			$time_schema['cookTime'] = $this->format_duration( $meta['cookTime'] );
+		// Map 'cook_time' to 'cookTime'
+		if ( ! empty( $meta['cook_time'] ) ) {
+			$time_schema['cookTime'] = $this->format_duration( $meta['cook_time'] );
 		}
 
-		if ( ! empty( $meta['totalTime'] ) ) {
-			$time_schema['totalTime'] = $this->format_duration( $meta['totalTime'] );
+		// Map 'total_time' to 'totalTime'
+		if ( ! empty( $meta['total_time'] ) ) {
+			$time_schema['totalTime'] = $this->format_duration( $meta['total_time'] );
 		}
 
 		return $time_schema;
@@ -230,14 +204,33 @@ class Boorecipe_JSONLD_Generator {
 	/**
 	 * Format duration for schema
 	 *
-	 * @param string $time The time string
+	 * @param string|int $time The time string or number (minutes)
 	 * @return string The formatted duration
 	 */
 	private function format_duration( $time ) {
 		// Convert time to ISO 8601 duration format
 		// Example: "30 minutes" -> "PT30M"
 		// Example: "1 hour 30 minutes" -> "PT1H30M"
+		// Example: 30 (number) -> "PT30M"
 		
+		// If it's a number, treat it as minutes
+		if ( is_numeric( $time ) ) {
+			$minutes = intval( $time );
+			$hours = floor( $minutes / 60 );
+			$minutes = $minutes % 60;
+			
+			$duration = 'PT';
+			if ( $hours > 0 ) {
+				$duration .= $hours . 'H';
+			}
+			if ( $minutes > 0 ) {
+				$duration .= $minutes . 'M';
+			}
+			
+			return $duration;
+		}
+		
+		// If it's a string, parse it
 		$time = strtolower( trim( $time ) );
 		
 		// Extract hours and minutes
@@ -324,7 +317,7 @@ class Boorecipe_JSONLD_Generator {
 	/**
 	 * Parse instructions into structured format
 	 *
-	 * @param string $instructions The instructions string
+	 * @param string $instructions The instructions string (may contain HTML)
 	 * @return array The instructions array
 	 */
 	private function parse_instructions( $instructions ) {
@@ -332,14 +325,23 @@ class Boorecipe_JSONLD_Generator {
 			return array();
 		}
 
-		// Split by newlines and create HowToStep objects
+		// Remove paragraph tags and convert to plain text with line breaks
+		$instructions = str_ireplace( '<p>', '', $instructions );
+		$instructions = str_ireplace( '</p>', '', $instructions );
+		
+		// Split by <br> tags or newlines
+		$lines = preg_split( '/<br[^>]*>|<\/li>|<li[^>]*>/i', $instructions );
+		
 		$instructions_array = array();
-		$lines = explode( "\n", $instructions );
 		$step_number = 1;
 		
 		foreach ( $lines as $line ) {
+			// Strip HTML tags and clean up
+			$line = wp_strip_all_tags( $line );
 			$line = trim( $line );
-			if ( ! empty( $line ) ) {
+			
+			// Skip empty lines and section identifiers (lines starting with **)
+			if ( ! empty( $line ) && substr( $line, 0, 2 ) !== '**' ) {
 				$instructions_array[] = array(
 					'@type' => 'HowToStep',
 					'position' => $step_number,
@@ -393,20 +395,35 @@ class Boorecipe_JSONLD_Generator {
 	/**
 	 * Generate rating schema
 	 *
-	 * @param array $meta The meta data
+	 * @param int $post_id The post ID
 	 * @return array The rating schema
 	 */
-	private function generate_rating_schema( $meta ) {
+	private function generate_rating_schema( $post_id ) {
 		$rating = array(
 			'@type' => 'AggregateRating',
 		);
 
-		if ( ! empty( $meta['rating'] ) ) {
-			$rating['ratingValue'] = floatval( $meta['rating'] );
+		// Get rating from comments (same logic as sub-section-ratings-display.php)
+		$rating_count = 0;
+		$rating_total = 0;
+		$comments = get_comments( array(
+			'post_id' => $post_id,
+		) );
+		
+		if ( ! empty( $comments ) && is_array( $comments ) ) {
+			foreach ( $comments as $comment ) {
+				$posttype_rating = absint( get_comment_meta( $comment->comment_ID, 'boorecipe_user_rating', true ) );
+				if ( $posttype_rating > 0 ) {
+					$rating_count++;
+					$rating_total = $rating_total + $posttype_rating;
+				}
+			}
 		}
-
-		if ( ! empty( $meta['reviewCount'] ) ) {
-			$rating['reviewCount'] = intval( $meta['reviewCount'] );
+		
+		if ( $rating_count > 0 && $rating_total > 0 ) {
+			$aggregate_rating = round( $rating_total / $rating_count, 1 );
+			$rating['ratingValue'] = floatval( $aggregate_rating );
+			$rating['reviewCount'] = intval( $rating_count );
 		}
 
 		return ( isset( $rating['ratingValue'] ) || isset( $rating['reviewCount'] ) ) ? $rating : array();

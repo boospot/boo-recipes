@@ -3,4 +3,4 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-?><h1 class="recipe-title" itemprop="name"><?php echo $item->post_title; ?></h1>
+?><h1 class="recipe-title"><?php echo $item->post_title; ?></h1>

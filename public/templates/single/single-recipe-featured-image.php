@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 <div class="posttype-section recipe-img-cont">
-    <img itemprop="image" src="<?php echo esc_url_raw( $featured_image ); ?>"
+    <img src="<?php echo esc_url_raw( $featured_image ); ?>"
          alt="<?php echo esc_html( $item->post_title ); ?>"
          class="recipe-img"/>
 </div>

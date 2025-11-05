@@ -19,8 +19,7 @@ if ( ! empty( $comments ) && is_array( $comments ) ):
 endif;
 $aggregate_rating = ( ! empty( $rating_total ) ) ? round( $rating_total / $rating_count, 1 ) : 0;
 $format_ratings_detail =
-	"<div itemprop='aggregateRating' itemscope itemtype='http://schema.org/AggregateRating'
-        ><span>%s </span><span class='recipe-rating-value'><span itemprop='ratingValue'>%s</span><span>/5</span></span> %s <span itemprop='reviewCount'>%d</span> %s</div>";
+	"<div><span>%s </span><span class='recipe-rating-value'><span>%s</span><span>/5</span></span> %s <span>%d</span> %s</div>";
 $ratings_detail_markup = sprintf(
 	$format_ratings_detail,
 	$this->get_options_value( 'rating_start_label' ),

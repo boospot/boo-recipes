@@ -46,7 +46,7 @@ if ( is_wp_error( $terms_ids_array ) || empty( $terms_ids_array ) ) {
 				);
 			}
 			printf( '<a href="%s" title="%s"  class="cooking-method" target="%s">
-                                %s<span itemprop="cookingMethod" class="cooking-method-title">%s</span>
+                                %s<span class="cooking-method-title">%s</span>
                             </a>',
 				$term_link,
 				$term->name,

@@ -17,5 +17,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 	    endif;
 	    ?>
     <?php endif; ?>
-    <span class="recipe-author-name" itemprop="author"><?php echo $recipe_author_with_link; ?></span>
+    <span class="recipe-author-name"><?php echo $recipe_author_with_link; ?></span>
 </span>

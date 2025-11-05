@@ -26,7 +26,7 @@ do_action( 'boorecipe_single_body_ingredients_before' );
 						<?php
 					} else {
 						?>
-                        <div class='select-item' itemprop='recipeIngredient'><?php echo $item; ?></div>
+                        <div class='select-item'><?php echo $item; ?></div>
 						<?php
 					}
 				}

@@ -4,6 +4,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 ?>
-<div class="posttype-sub-section recipe-description" itemprop="description"><div><?php
+<div class="posttype-sub-section recipe-description"><div><?php
 		echo wp_kses_post( $meta['short_description'] );
 		?></div></div>
