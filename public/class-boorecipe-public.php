@@ -200,6 +200,11 @@ class Boorecipe_Public {
 			return $query;
 		}
 
+		// Don't modify queries for nav_menu_item (menu items) - this breaks menu functionality
+		$current_post_type = $query->get( 'post_type' );
+		if ( 'nav_menu_item' === $current_post_type ) {
+			return $query;
+		}
 
 		// Only modify query for recipe archives (both main and secondary queries)
 		if ( ! is_post_type_archive( 'boo_recipe' ) && ! boorecipe_is_recipe_taxonomy() ) {

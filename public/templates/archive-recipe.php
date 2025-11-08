@@ -9,11 +9,13 @@ if ( boorecipe_is_search_form_submitted() ) {
 		die( __( 'Security Validation Failed', 'boo-recipes' ) );
 	}
 }
+
 /**
- * Get a custom header-recipe.php file, if it exists.
- * Otherwise, get default header.
+ * Let WordPress and the theme handle header/footer loading
+ * This template only provides the archive content
+ * The theme's template hierarchy will handle the page structure
  */
-get_header( 'recipe' );
+get_header();
 ?>
     <div class="wrap archive-recipe">
 		<?php do_action( 'boorecipe_archive_wrap_start_inside' ); ?>
@@ -21,5 +23,5 @@ get_header( 'recipe' );
 		<?php do_action( 'boorecipe_archive_wrap_end_inside' ); ?>
     </div><!--.archive-recipe-->
 <?php
-get_footer( 'recipe' );
+get_footer();
 ?>

@@ -33,7 +33,16 @@ class Boorecipe_JSONLD_Generator {
 			return;
 		}
 
+		// Check if Boorecipe_Globals class exists
+		if ( ! class_exists( 'Boorecipe_Globals' ) ) {
+			return;
+		}
+
 		global $post;
+		
+		if ( ! $post || ! isset( $post->ID ) ) {
+			return;
+		}
 		
 		// Get recipe meta data using the global method
 		$meta = Boorecipe_Globals::get_recipe_meta( $post->ID );
@@ -85,13 +94,13 @@ class Boorecipe_JSONLD_Generator {
 		$schema = array_merge( $schema, $this->get_taxonomy_schema( $post->ID ) );
 
 		// Ingredients
-		$ingredients = $this->parse_ingredients( $meta['ingredients'] ?? '' );
+		$ingredients = $this->parse_ingredients( isset( $meta['ingredients'] ) ? $meta['ingredients'] : '' );
 		if ( ! empty( $ingredients ) ) {
 			$schema['recipeIngredient'] = $ingredients;
 		}
 
 		// Instructions - map 'directions' or 'directions_wysiwyg' to 'recipeInstructions'
-		$directions = $meta['directions'] ?? '';
+		$directions = isset( $meta['directions'] ) ? $meta['directions'] : '';
 		// Check for WYSIWYG version if available
 		if ( empty( $directions ) && ! empty( $meta['directions_wysiwyg'] ) ) {
 			$directions = $meta['directions_wysiwyg'];
@@ -185,17 +194,26 @@ class Boorecipe_JSONLD_Generator {
 
 		// Map 'prep_time' to 'prepTime'
 		if ( ! empty( $meta['prep_time'] ) ) {
-			$time_schema['prepTime'] = $this->format_duration( $meta['prep_time'] );
+			$formatted = $this->format_duration( $meta['prep_time'] );
+			if ( ! empty( $formatted ) ) {
+				$time_schema['prepTime'] = $formatted;
+			}
 		}
 
 		// Map 'cook_time' to 'cookTime'
 		if ( ! empty( $meta['cook_time'] ) ) {
-			$time_schema['cookTime'] = $this->format_duration( $meta['cook_time'] );
+			$formatted = $this->format_duration( $meta['cook_time'] );
+			if ( ! empty( $formatted ) ) {
+				$time_schema['cookTime'] = $formatted;
+			}
 		}
 
 		// Map 'total_time' to 'totalTime'
 		if ( ! empty( $meta['total_time'] ) ) {
-			$time_schema['totalTime'] = $this->format_duration( $meta['total_time'] );
+			$formatted = $this->format_duration( $meta['total_time'] );
+			if ( ! empty( $formatted ) ) {
+				$time_schema['totalTime'] = $formatted;
+			}
 		}
 
 		return $time_schema;
@@ -216,6 +234,9 @@ class Boorecipe_JSONLD_Generator {
 		// If it's a number, treat it as minutes
 		if ( is_numeric( $time ) ) {
 			$minutes = intval( $time );
+			if ( $minutes <= 0 ) {
+				return '';
+			}
 			$hours = floor( $minutes / 60 );
 			$minutes = $minutes % 60;
 			
@@ -252,6 +273,11 @@ class Boorecipe_JSONLD_Generator {
 		}
 		if ( $minutes > 0 ) {
 			$duration .= $minutes . 'M';
+		}
+		
+		// Return empty string if no time was found
+		if ( $duration === 'PT' ) {
+			return '';
 		}
 		
 		return $duration;
